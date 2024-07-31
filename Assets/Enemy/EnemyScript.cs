@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+
 
 public class EnemyScript : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class EnemyScript : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 5);
         transform.rotation = Quaternion.Euler(0, 0, 0);
         int r = Random.Range(0, 2);
     }

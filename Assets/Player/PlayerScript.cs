@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -41,7 +41,7 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 Vector3 position = transform.position;
-                position.y += 0.5f;
+                position.y += 0.3f;
                 position.z += 1.0f;
                 Instantiate(bullet, position, Quaternion.identity);
                 bulletTimer = 1.0f;
