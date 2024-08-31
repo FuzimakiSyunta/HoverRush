@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject player;
+    public GameObject gameOverText;
     int[] CoolTime = new int[5];
+    private bool GameOverFlag = false;
+    public TextMeshProUGUI scoreText;
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         for(int i = 0;i<5;i++)
         {
             CoolTime[i] = 0;
@@ -21,16 +29,26 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //スコア
+        scoreText.text = "SCORE"+score;
+
+        
         //ゲームオーバーなら
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (GameOverFlag == true)
         {
-            SceneManager.LoadScene("TitleScene");
+            //ゲームオーバーなら
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene("Title");
+            }
         }
 
     }
 
     private void FixedUpdate()
     {
+        if (GameOverFlag == true) return;
+
         int r = Random.Range(0, 15000);
         CoolTime[0]++;
         CoolTime[1]++;
@@ -79,5 +97,18 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    public void GameOverStart()
+    {
+        GameOverFlag = true;
+        gameOverText.SetActive(true);
+    }
+    public bool IsGameOver()
+    {
+        return GameOverFlag;
+    }
+    public void Score()
+    {
+        score += 1;
+    }
+    
 }

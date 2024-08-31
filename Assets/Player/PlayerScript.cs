@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -10,15 +10,36 @@ public class PlayerScript : MonoBehaviour
     float bulletTimer = 0.0f;
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    private Animator animator;
+    private int MaxHp;
+    public bool Damege = false;
+    public int DamegePoint;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        animator = GetComponent<Animator>();
+        MaxHp = 5;
+        DamegePoint = 1;
+        Damege = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameManagerScript.IsGameOver() == true)
+        {
+            transform.position += new Vector3(0, 0, 0);
+            animator.SetBool("GameOver", true);
+            return;
+        }
+        else
+        {
+            animator.SetBool("GameOver", false);
+        }
         if (Input.GetKey(KeyCode.RightArrow)&& transform.position.x <= 10)
         {
             transform.position += new Vector3(MoveSpeed, 0, 0);
@@ -31,10 +52,14 @@ public class PlayerScript : MonoBehaviour
         {
             transform.position += new Vector3(0, 0, 0);
         }
+
     }
     void FixedUpdate()
     {
-
+        if (gameManagerScript.IsGameOver() == true)
+        {
+            return;
+        }
         if (bulletTimer == 0.0f)
         {
             //’e”­ŽË
@@ -56,4 +81,25 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Damege = true;
+            if(Damege == true)
+            {
+                MaxHp = MaxHp - DamegePoint;
+                Damege =false;
+            }
+            
+            if(MaxHp <= 0)
+            {
+                Destroy(gameObject, 1);
+                gameManagerScript.GameOverStart();
+            }
+        }
+    }
+
+    
+   
 }
