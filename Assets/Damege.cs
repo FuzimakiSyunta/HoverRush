@@ -8,6 +8,7 @@ public class Damege : MonoBehaviour
     [SerializeField] Image DamageImg;
     private PlayerScript playerScript;
     private Damege damege;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()

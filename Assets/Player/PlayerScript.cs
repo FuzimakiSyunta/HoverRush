@@ -13,10 +13,10 @@ public class PlayerScript : MonoBehaviour
     public GameObject gameManager;
     private Animator animator;
     private int MaxHp;
-    public bool Damege = false;
-    public int DamegePoint;
-    
-    
+    private bool Damege = false;
+    private int DamegePoint;
+    public Image DamageImg;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,7 @@ public class PlayerScript : MonoBehaviour
         MaxHp = 5;
         DamegePoint = 1;
         Damege = false;
+        DamageImg.color = Color.clear;
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class PlayerScript : MonoBehaviour
                 transform.position += new Vector3(0, 0, 0);
             }
         }
-
+        
     }
     void FixedUpdate()
     {
@@ -100,9 +101,11 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            DamageImg.color = Color.Lerp(DamageImg.color, Color.clear, Time.deltaTime);
             Damege = true;
             if(Damege == true)
             {
+                DamageImg.color = new Color(0.7f, 0, 0, 0.7f);
                 MaxHp = MaxHp - DamegePoint;
                 Damege = false;
             }
@@ -110,7 +113,6 @@ public class PlayerScript : MonoBehaviour
             
         }
     }
-
     
-   
+
 }

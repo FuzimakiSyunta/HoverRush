@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneScript : MonoBehaviour
+public class BackScene : MonoBehaviour
 {
     private GameManager gameManagerScript;
     public GameObject gameManager;
@@ -11,22 +11,17 @@ public class SceneScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManagerScript = gameManager.GetComponent<GameManager>();
         Timer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameManagerScript.IsGameOver() == true)
+        Timer++;
+        if (Timer>=120)
         {
-            Timer++;
-            if (Timer >= 240)
-            {
-                SceneManager.LoadScene("Clear");
-                Timer = 0;
-            }
+            SceneManager.LoadScene("PlayerMove");
+            Timer = 0;
         }
-        
     }
 }

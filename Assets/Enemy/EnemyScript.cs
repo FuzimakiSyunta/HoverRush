@@ -1,21 +1,29 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class EnemyScript : MonoBehaviour
 {
     private GameObject gameManager;
     private GameManager gameManagerScript;
+    private Animator animator;
     private bool Damage;
     private int DamegePoint;
+    public int enemyHP;// 敵の最大HP
+    private int wkHP;  // 敵の現在のHP
+    public Slider hpSlider;     //HPバー（スライダー）
     // Start is called before the first frame update
     void Start()
     {
-        Damage = false;
-        DamegePoint = 3;
+        //Damage = false;
+        //DamegePoint = 3;
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        animator = GetComponent<Animator>();
+        hpSlider.value = (float)enemyHP;//HPバーの最初の値（最大HP）を設定
+        wkHP = enemyHP; // 現在のHPを最大HPに設定
         Destroy(gameObject, 5);
         if (gameManagerScript.IsGameOver() == true)
         {
@@ -34,34 +42,42 @@ public class EnemyScript : MonoBehaviour
             Vector3 velocity = new Vector3(0, 0, moveSpeed * Time.deltaTime);
             transform.position += transform.rotation * velocity;
         }
+        // スライダーの向きをカメラ方向に固定
+        hpSlider.transform.rotation = Camera.main.transform.rotation;
     }
     void OnCollisionEnter(Collision other)
     {
-        //�G�ƒe
+        //敵と弾
         if (other.gameObject.tag == "Bullet")
         {
-            Damage = true;
-            if (Damage == true)
+            //Damage = true;
+            wkHP -= 50;//一度当たるごとに50をマイナス
+            hpSlider.value = (float)wkHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            // HPが0以下になった場合、自らを消す
+            if (wkHP == 0)
             {
-                DamegePoint = DamegePoint - 1;
-                if (DamegePoint <= 0)
-                {
-                    Destroy(gameObject);
-                    gameManagerScript.Score();
-                }
+                Destroy(gameObject, 0f);
+                gameManagerScript.Score();
             }
+            //if (Damage == true)
+            //{
+            //    DamegePoint = DamegePoint - 1;
+            //    if (DamegePoint <= 0)
+            //    {
+            //        Destroy(gameObject);
+            //        gameManagerScript.Score();
+            //    }
+            //}
 
         }
 
         if (other.gameObject.tag == "Player")
         {
-            float DamegeSpeed = 7.0f;
-            Vector3 velocity = new Vector3(0, -DamegeSpeed * Time.deltaTime, 0);
-
+            animator.SetBool("Damege", true);
+        }else
+        {
+            animator.SetBool("Damege", false);
         }
-
-
-       
 
     }
 }
