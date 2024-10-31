@@ -14,11 +14,11 @@ public class EnemyScript : MonoBehaviour
     public int enemyHP;// 敵の最大HP
     private int wkHP;  // 敵の現在のHP
     public Slider hpSlider;     //HPバー（スライダー）
+    public ParticleSystem particle;
     // Start is called before the first frame update
     void Start()
     {
-        //Damage = false;
-        //DamegePoint = 3;
+        
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
         animator = GetComponent<Animator>();
@@ -50,27 +50,25 @@ public class EnemyScript : MonoBehaviour
         //敵と弾
         if (other.gameObject.tag == "Bullet")
         {
-            //Damage = true;
             wkHP -= 50;//一度当たるごとに50をマイナス
             hpSlider.value = (float)wkHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             // HPが0以下になった場合、自らを消す
             if (wkHP == 0)
             {
+                ParticleSystem newParticle = Instantiate(particle);
+                //場所固定
+                newParticle.transform.position = this.gameObject.transform.position;
+                //発生
+                newParticle.Play();
+                //エフェクト消える
+                Destroy(newParticle.gameObject, 0.5f);
+                //敵消える
                 Destroy(gameObject, 0f);
                 gameManagerScript.Score();
             }
-            //if (Damage == true)
-            //{
-            //    DamegePoint = DamegePoint - 1;
-            //    if (DamegePoint <= 0)
-            //    {
-            //        Destroy(gameObject);
-            //        gameManagerScript.Score();
-            //    }
-            //}
-
+            
         }
-
+        
         if (other.gameObject.tag == "Player")
         {
             animator.SetBool("Damege", true);
@@ -79,5 +77,30 @@ public class EnemyScript : MonoBehaviour
             animator.SetBool("Damege", false);
         }
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        //敵とレーザー
+        if (other.gameObject.tag == "Lazer")
+        {
+            wkHP -= 10;//一度当たるごとに50をマイナス
+            hpSlider.value = (float)wkHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+                                                          // HPが0以下になった場合、自らを消す
+            if (wkHP == 0)
+            {
+                ParticleSystem newParticle = Instantiate(particle);
+                //場所固定
+                newParticle.transform.position = this.gameObject.transform.position;
+                //発生
+                newParticle.Play();
+                //エフェクト消える
+                Destroy(newParticle.gameObject, 0.5f);
+                //敵消える
+                Destroy(gameObject, 0f);
+                gameManagerScript.Score();
+            }
+
+        }
     }
 }
