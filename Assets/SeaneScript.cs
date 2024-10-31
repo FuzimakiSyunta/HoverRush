@@ -12,7 +12,6 @@ public class SceneScript : MonoBehaviour
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        Timer = 0;
     }
 
     // Update is called once per frame
@@ -20,11 +19,9 @@ public class SceneScript : MonoBehaviour
     {
         if (gameManagerScript.IsGameOver() == true)
         {
-            Timer++;
-            if (Timer >= 240)
+            if (Input.GetKey(KeyCode.Space))
             {
                 SceneManager.LoadScene("Clear");
-                Timer = 0;
             }
         }
         

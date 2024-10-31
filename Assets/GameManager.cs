@@ -35,25 +35,24 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //スコア
-        scoreText.text = "SCORE"+score;
+        scoreText.text = "SCORE" + score;
 
         //スタート
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameStartFlag=true;
+            GameStartFlag = true;
             startText.enabled = false;
         }
-
+        
     }
-
     private void FixedUpdate()
     {
         if (GameOverFlag == true) return;
 
         //敵生成
-        int r = Random.Range(0, 15000);
         if (GameStartFlag==true)
         {
+            int r = Random.Range(0, 15000);
             CoolTime[0]++;
             CoolTime[1]++;
             CoolTime[2]++;

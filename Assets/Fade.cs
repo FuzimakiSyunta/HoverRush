@@ -2,29 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour
+public class Fade : MonoBehaviour
 {
-    Camera mainCamera;
-    public Camera subCamera;
     private GameManager gameManagerScript;
     public GameObject gameManager;
-
+    public GameObject Score;
+    public GameObject HP;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        mainCamera = Camera.main;
-       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (gameManagerScript.IsGameStart() == false)
         {
-            mainCamera.enabled = false;
-            subCamera.enabled = true;
+            //UIÇè¡Ç∑
+            Score.SetActive(false);
+            HP.SetActive(false);
+        }else { 
+            Score.SetActive(true);
+            HP.SetActive(true);
         }
     }
 }
