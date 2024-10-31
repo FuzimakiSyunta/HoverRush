@@ -52,6 +52,7 @@ public class PlayerScript : MonoBehaviour
             else if (Input.GetKey(KeyCode.A) && transform.position.x >= -10)
             {
                 transform.position += new Vector3(-MoveSpeed, 0, 0);
+                
             }
             
         }
