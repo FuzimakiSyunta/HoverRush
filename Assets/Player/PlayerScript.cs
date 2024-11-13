@@ -9,15 +9,15 @@ public class PlayerScript : MonoBehaviour
     private float MoveSpeed = 0.02f;
     public GameObject bullet;
     public GameObject Lazer;
-    float bulletTimer = 0.0f;
+    float[] bulletTimer = new float[3];
     private GameManager gameManagerScript;
     public GameObject gameManager;
     private Animator animator;
     public int playerHP;// 敵の最大HP
-    private int MaxHp;  // 敵の現在のHP
-    public Slider hpSlider;     //HPバー（スライダー）
-    private int ShotChenge;
-
+    private int MaxHp;// 敵の現在のHP
+    public Slider hpSlider;//HPバー（スライダー）
+    private int ShotChenge;//射撃パターン追加
+    private float PlayTime;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,12 @@ public class PlayerScript : MonoBehaviour
         animator = GetComponent<Animator>();
         hpSlider.value = (float)playerHP;//HPバーの最初の値（最大HP）を設定
         MaxHp = playerHP; // 現在のHPを最大HPに設定
-        ShotChenge = 0;
+        ShotChenge = 1;
+        for (int i = 0; i < 3; i++)
+        {
+            bulletTimer[i] = 0.0f;
+        }
+        PlayTime = 0;
     }
 
     // Update is called once per frame
@@ -56,21 +61,17 @@ public class PlayerScript : MonoBehaviour
             }
             
         }
-        
 
-        //弾切り替え
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            ShotChenge = 1;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
+
+        //装甲追加
+        PlayTime++;
+        PlayTime += Time.deltaTime;
+        if (PlayTime >= 8000)
         {
             ShotChenge = 2;
         }
-        //if(Input.GetKey(KeyCode.Alpha3))
-        //{
 
-        //}
+
     }
     void FixedUpdate()
     {
@@ -82,38 +83,54 @@ public class PlayerScript : MonoBehaviour
         if (gameManagerScript.IsGameStart() == true)
         {
             //マシンガン
-            if (bulletTimer == 0.0f)
+            if (bulletTimer[0] == 0.0f)
             {
-                if(ShotChenge==1)
+                if(ShotChenge>=1)
                 {
                    Vector3 position = transform.position;
                    position.y += 0.3f;
-                   
+                   position.z += 0.6f;
                    Instantiate(bullet, position, Quaternion.identity);
-                   bulletTimer = 1.0f;
+                   bulletTimer[0] = 1.0f;
                    
                 }
                 
             }
             else
             {
-                bulletTimer++;
-                if (bulletTimer > 5.0f)
+                bulletTimer[0]++;
+                if (bulletTimer[0] > 15.0f)
                 {
-                    bulletTimer = 0.0f;
+                    bulletTimer[0] = 0.0f;
                 }
             }
-
-           //レーザー
-           if (ShotChenge == 2)
-           {
-               //弾発射
-               Vector3 position = transform.position;
-               position.y += 0.3f;
-               position.z += 6.0f;
-               Instantiate(Lazer, position, Quaternion.identity);
-           } 
+            if (bulletTimer[1] == 0.0f)
+            {
+                //サブガトリング
+                if (ShotChenge >= 2)
+                {
+                    //弾発射
+                    Vector3 positionR = transform.position;
+                    Vector3 positionL = transform.position;
+                    positionR.y += 0.3f;
+                    positionR.x += 2.0f;
+                    positionL.y += 0.3f;
+                    positionL.x -= 2.0f;
+                    Instantiate(Lazer, positionR, Quaternion.identity);
+                    Instantiate(Lazer, positionL, Quaternion.identity);
+                    bulletTimer[1] = 1.0f;
+                }
+            }
+            else
+            {
+                bulletTimer[1]++;
+                if (bulletTimer[1] > 5.0f)
+                {
+                    bulletTimer[1] = 0.0f;
+                }
+            }
         }
+        
         if (MaxHp <= 0)
         {
            gameManagerScript.GameOverStart();
