@@ -66,7 +66,8 @@ public class PlayerScript : MonoBehaviour
         //装甲追加
         PlayTime++;
         PlayTime += Time.deltaTime;
-        if (PlayTime >= 8000)
+
+        if (PlayTime >= 6000)
         {
             ShotChenge = 2;
         }
