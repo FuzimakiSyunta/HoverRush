@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     private int score = 0;
     public TextMeshProUGUI startText;
+    private int Wave = 0;
 
 
     // Start is called before the first frame update
@@ -50,9 +51,60 @@ public class GameManager : MonoBehaviour
         if (GameOverFlag == true) return;
 
         //ìGê∂ê¨
-        if (GameStartFlag==true)
+        if (GameStartFlag == true && Wave == 0)//WAVE0
         {
-            int r = Random.Range(0, 15000);
+            int r = Random.Range(0, 50000);
+            CoolTime[0]++;
+            CoolTime[1]++;
+            CoolTime[2]++;
+            CoolTime[3]++;
+            CoolTime[4]++;
+
+            if (r <= 300)
+            {
+                if (CoolTime[0] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[0] = 0;
+                }
+            }
+            if (r >= 2000 && r <= 2300)
+            {
+                if (CoolTime[1] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[1] = 0;
+                }
+            }
+            if (r >= 4000 && r <= 4300)
+            {
+                if (CoolTime[2] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[2] = 0;
+                }
+            }
+            if (r >= 6000 && r <= 6300)
+            {
+                if (CoolTime[3] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[3] = 0;
+                }
+            }
+            if (r >= 8000 && r <= 8300)
+            {
+                if (CoolTime[4] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(-4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[4] = 0;
+                }
+            }
+        }
+
+        if (GameStartFlag==true&&Wave == 1)//WAVE1
+        {
+            int r = Random.Range(0, 20000);
             CoolTime[0]++;
             CoolTime[1]++;
             CoolTime[2]++;
