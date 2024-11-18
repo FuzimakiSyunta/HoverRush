@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
             CoolTime[i] = 0;
         }
         startText.enabled = true;
+        
     }
 
     // Update is called once per frame

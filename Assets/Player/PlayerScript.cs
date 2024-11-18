@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     private float MoveSpeed = 0.02f;
     public GameObject bullet;
     public GameObject Lazer;
+    public EnemyScript enemy;
     float[] bulletTimer = new float[3];
     private GameManager gameManagerScript;
     public GameObject gameManager;
@@ -17,12 +18,12 @@ public class PlayerScript : MonoBehaviour
     private int MaxHp;// 敵の現在のHP
     public Slider hpSlider;//HPバー（スライダー）
     private int ShotChenge;//射撃パターン追加
-    private float PlayTime;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        enemy = gameManager.GetComponent<EnemyScript>();
         animator = GetComponent<Animator>();
         hpSlider.value = (float)playerHP;//HPバーの最初の値（最大HP）を設定
         MaxHp = playerHP; // 現在のHPを最大HPに設定
@@ -31,7 +32,6 @@ public class PlayerScript : MonoBehaviour
         {
             bulletTimer[i] = 0.0f;
         }
-        PlayTime = 0;
     }
 
     // Update is called once per frame
@@ -63,11 +63,8 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-        //装甲追加
-        PlayTime++;
-        PlayTime += Time.deltaTime;
-
-        if (PlayTime >= 6000)
+        //装甲追加  
+        if (enemy.Killcount==true)
         {
             ShotChenge = 2;
         }

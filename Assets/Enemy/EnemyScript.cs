@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class EnemyScript : MonoBehaviour
@@ -14,6 +15,7 @@ public class EnemyScript : MonoBehaviour
     public ParticleSystem particle;
     public bool sliderBool;
     private float MoveSpeed = 0.02f;
+    public float Killcount;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class EnemyScript : MonoBehaviour
         wkHP = enemyHP; // 現在のHPを最大HPに設定
         hpSlider.gameObject.SetActive(false);
         sliderBool= false;
+        Killcount = 0;
         Destroy(gameObject, 5);
         if (gameManagerScript.IsGameOver() == true)
         {
@@ -78,6 +81,7 @@ public class EnemyScript : MonoBehaviour
         // HPが0以下になった場合、自らを消す
         if (wkHP <= 0)
         {
+            
             ParticleSystem newParticle = Instantiate(particle);
             //場所固定
             newParticle.transform.position = this.gameObject.transform.position;
@@ -97,5 +101,10 @@ public class EnemyScript : MonoBehaviour
             animator.SetBool("Damege", false);
         }
 
+    }
+    
+    public float KillCount()
+    {
+        return Killcount;
     }
 }
