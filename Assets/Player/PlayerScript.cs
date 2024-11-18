@@ -64,10 +64,10 @@ public class PlayerScript : MonoBehaviour
 
 
         //装甲追加  
-        if (enemy.Killcount==true)
-        {
-            ShotChenge = 2;
-        }
+        //if (enemy.Killcount==true)
+        //{
+        //    ShotChenge = 2;
+        //}
 
 
     }
