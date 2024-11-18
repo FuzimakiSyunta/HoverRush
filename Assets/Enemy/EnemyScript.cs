@@ -15,7 +15,7 @@ public class EnemyScript : MonoBehaviour
     public ParticleSystem particle;
     public bool sliderBool;
     private float MoveSpeed = 0.02f;
-    public float Killcount;
+    public float Killcount= 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,6 @@ public class EnemyScript : MonoBehaviour
         wkHP = enemyHP; // 現在のHPを最大HPに設定
         hpSlider.gameObject.SetActive(false);
         sliderBool= false;
-        Killcount = 0;
         Destroy(gameObject, 5);
         if (gameManagerScript.IsGameOver() == true)
         {
@@ -81,7 +80,6 @@ public class EnemyScript : MonoBehaviour
         // HPが0以下になった場合、自らを消す
         if (wkHP <= 0)
         {
-            
             ParticleSystem newParticle = Instantiate(particle);
             //場所固定
             newParticle.transform.position = this.gameObject.transform.position;
@@ -89,10 +87,12 @@ public class EnemyScript : MonoBehaviour
             newParticle.Play();
             //エフェクト消える
             Destroy(newParticle.gameObject, 0.5f);
+            Killcount += 1;
             //敵消える
             Destroy(gameObject, 0f);
             gameManagerScript.Score();
         }
+        
         if (other.gameObject.tag == "Player")
         {
             animator.SetBool("Damege", true);

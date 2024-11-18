@@ -17,17 +17,15 @@ public class PlayerScript : MonoBehaviour
     public int playerHP;// 敵の最大HP
     private int MaxHp;// 敵の現在のHP
     public Slider hpSlider;//HPバー（スライダー）
-    private int ShotChenge;//射撃パターン追加
+    private int ShotChenge = 0;//射撃パターン追加
 
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        enemy = gameManager.GetComponent<EnemyScript>();
         animator = GetComponent<Animator>();
         hpSlider.value = (float)playerHP;//HPバーの最初の値（最大HP）を設定
         MaxHp = playerHP; // 現在のHPを最大HPに設定
-        ShotChenge = 1;
         for (int i = 0; i < 3; i++)
         {
             bulletTimer[i] = 0.0f;
@@ -57,19 +55,14 @@ public class PlayerScript : MonoBehaviour
             else if (Input.GetKey(KeyCode.A) && transform.position.x >= -10)
             {
                 transform.position += new Vector3(-MoveSpeed, 0, 0);
-                
             }
             
         }
-
-
         //装甲追加  
-        //if (enemy.Killcount==true)
-        //{
-        //    ShotChenge = 2;
-        //}
-
-
+        if (enemy.Killcount >= 5)
+        {
+            ShotChenge = 1;
+        }
     }
     void FixedUpdate()
     {
@@ -83,7 +76,7 @@ public class PlayerScript : MonoBehaviour
             //マシンガン
             if (bulletTimer[0] == 0.0f)
             {
-                if(ShotChenge>=1)
+                if(ShotChenge >= 0)
                 {
                    Vector3 position = transform.position;
                    position.y += 0.3f;
@@ -92,7 +85,6 @@ public class PlayerScript : MonoBehaviour
                    bulletTimer[0] = 1.0f;
                    
                 }
-                
             }
             else
             {
@@ -105,7 +97,7 @@ public class PlayerScript : MonoBehaviour
             if (bulletTimer[1] == 0.0f)
             {
                 //サブガトリング
-                if (ShotChenge >= 2)
+                if (ShotChenge >= 1)
                 {
                     //弾発射
                     Vector3 positionR = transform.position;
