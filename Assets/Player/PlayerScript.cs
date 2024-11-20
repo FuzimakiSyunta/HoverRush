@@ -59,7 +59,7 @@ public class PlayerScript : MonoBehaviour
             
         }
         //装甲追加  
-        if (enemy.Killcount >= 5)
+        if (gameManagerScript.IsScore()>= 5)
         {
             ShotChenge = 1;
         }

@@ -15,7 +15,8 @@ public class EnemyScript : MonoBehaviour
     public ParticleSystem particle;
     public bool sliderBool;
     private float MoveSpeed = 0.02f;
-    public float Killcount= 0.0f;
+    private object get;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +88,7 @@ public class EnemyScript : MonoBehaviour
             newParticle.Play();
             //エフェクト消える
             Destroy(newParticle.gameObject, 0.5f);
-            Killcount += 1;
+            
             //敵消える
             Destroy(gameObject, 0f);
             gameManagerScript.Score();
@@ -101,10 +102,5 @@ public class EnemyScript : MonoBehaviour
             animator.SetBool("Damege", false);
         }
 
-    }
-    
-    public float KillCount()
-    {
-        return Killcount;
     }
 }

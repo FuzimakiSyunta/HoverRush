@@ -168,6 +168,10 @@ public class GameManager : MonoBehaviour
     {
         score += 1;
     }
+    public int IsScore()
+    {
+        return score;
+    }
     public void GameStart()
     {
         GameStartFlag = false;
