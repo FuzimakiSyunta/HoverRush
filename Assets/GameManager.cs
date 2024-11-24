@@ -11,6 +11,8 @@ using static System.Net.Mime.MediaTypeNames;
 public class GameManager : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject minienemy;
+    public GameObject bigenemy;
     public GameObject player;
     public GameObject gameOverText;
     int[] CoolTime = new int[5];
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
         if (GameStartFlag == true && Wave == 0)//WAVE0
         {
             int r = Random.Range(0, 50000);
+            int Style = Random.Range(0, 6);
             CoolTime[0]++;
             CoolTime[1]++;
             CoolTime[2]++;
@@ -65,7 +68,18 @@ public class GameManager : MonoBehaviour
             {
                 if (CoolTime[0] >= 30)
                 {
-                    Instantiate(enemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    if (Style == 0)
+                    {
+                        Instantiate(enemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 1)
+                    {
+                        Instantiate(minienemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 2)
+                    {
+                        Instantiate(bigenemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
                     CoolTime[0] = 0;
                 }
             }
@@ -73,7 +87,18 @@ public class GameManager : MonoBehaviour
             {
                 if (CoolTime[1] >= 30)
                 {
-                    Instantiate(enemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    if (Style == 0)
+                    {
+                        Instantiate(enemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 1)
+                    {
+                        Instantiate(minienemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 2)
+                    {
+                        Instantiate(bigenemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
                     CoolTime[1] = 0;
                 }
             }
@@ -81,7 +106,18 @@ public class GameManager : MonoBehaviour
             {
                 if (CoolTime[2] >= 30)
                 {
-                    Instantiate(enemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    if (Style == 0)
+                    {
+                        Instantiate(enemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 1)
+                    {
+                        Instantiate(minienemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 2)
+                    {
+                        Instantiate(bigenemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
                     CoolTime[2] = 0;
                 }
             }
@@ -89,7 +125,18 @@ public class GameManager : MonoBehaviour
             {
                 if (CoolTime[3] >= 30)
                 {
-                    Instantiate(enemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    if (Style == 0)
+                    {
+                        Instantiate(enemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 1)
+                    {
+                        Instantiate(minienemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 2)
+                    {
+                        Instantiate(bigenemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
                     CoolTime[3] = 0;
                 }
             }
