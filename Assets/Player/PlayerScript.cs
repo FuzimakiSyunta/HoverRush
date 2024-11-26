@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
-    private float MoveSpeed = 0.02f;
+    private float MoveSpeed = 0.08f;
     public GameObject bullet;
     public GameObject Lazer;
     public EnemyScript enemy;
@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     private int MaxHp;// 敵の現在のHP
     public Slider hpSlider;//HPバー（スライダー）
     private int ShotChenge = 0;//射撃パターン追加
+    public Image DamageImg;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,13 @@ public class PlayerScript : MonoBehaviour
         {
             bulletTimer[i] = 0.0f;
         }
+        DamageImg.color = Color.clear;
+    }
+
+    void Damaged()
+    {
+        DamageImg.color = new Color(0.7f, 0, 0, 0.7f);
+        return;
     }
 
     // Update is called once per frame
@@ -127,12 +135,24 @@ public class PlayerScript : MonoBehaviour
            Destroy(gameObject, 1);
         }
     }
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
             MaxHp -= 15;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
+        if (other.gameObject.tag == "EnemyBullet")
+        {
+            MaxHp -= 5;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+        //ダメージカラー
+        if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy")
+        {
+            Damaged();
+        }
+
     }
+    
 }

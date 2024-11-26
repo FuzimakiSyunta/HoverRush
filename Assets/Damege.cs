@@ -26,10 +26,8 @@ public class Damege : MonoBehaviour
     }
     void Damaged()
     {
-       
          DamageImg.color = new Color(0.7f, 0, 0, 0.7f);
-         return;
-        
+         return;   
     }
 
 }
