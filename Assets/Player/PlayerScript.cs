@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
-    private float MoveSpeed = 0.02f;
+    private float MoveSpeed = 0.08f;
     public GameObject bullet;
     public GameObject Lazer;
     public EnemyScript enemy;
@@ -132,6 +132,15 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             MaxHp -= 15;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+        
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyBullet")
+        {
+            MaxHp -= 5;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
     }

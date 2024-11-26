@@ -7,7 +7,7 @@ public class FloorMove : MonoBehaviour
 {
     private GameManager gameManagerScript;
     private GameObject gameManager;
-    private float MoveSpeed = 0.08f;
+    private float MoveSpeed = 0.15f;
     // Start is called before the first frame update
     void Start()
     {

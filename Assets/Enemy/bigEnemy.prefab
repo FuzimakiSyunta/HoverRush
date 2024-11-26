@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b69f4050111995409e9ce17314bfc22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemybullet: {fileID: 0}
   enemyHP: 100
   hpSlider: {fileID: 7262347468014557397}
   particle: {fileID: 1368096948050383225, guid: 2133ea6142d4bc34f888c2a6df08ce9a, type: 3}

@@ -8,6 +8,7 @@ public class EnemyScript : MonoBehaviour
 {
     private GameObject gameManager;
     private GameManager gameManagerScript;
+    public GameObject Enemybullet;
     private Animator animator;
     public int enemyHP;// 敵の最大HP
     private int wkHP;  // 敵の現在のHP
@@ -16,6 +17,7 @@ public class EnemyScript : MonoBehaviour
     public bool sliderBool;
     private float MoveSpeed = 0.02f;
     private object get;
+    float[] bulletTimer = new float[3];
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +30,16 @@ public class EnemyScript : MonoBehaviour
         wkHP = enemyHP; // 現在のHPを最大HPに設定
         hpSlider.gameObject.SetActive(false);
         sliderBool= false;
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 10);
         if (gameManagerScript.IsGameOver() == true)
         {
             return;
         }
         transform.rotation = Quaternion.Euler(0, 0, 0);
+        for (int i = 0; i < 3; i++)
+        {
+            bulletTimer[i] = 0.0f;
+        }
         int r = Random.Range(0, 2);
     }
 
@@ -102,5 +108,24 @@ public class EnemyScript : MonoBehaviour
             animator.SetBool("Damege", false);
         }
 
+    }
+    void FixedUpdate()
+    {
+        if (bulletTimer[0] == 0.0f)
+        {
+            Vector3 position = transform.position;
+            position.y += 0.3f;
+            position.z -= 3.0f;
+            Instantiate(Enemybullet, position, Quaternion.identity);
+            bulletTimer[0] = 1.0f;
+        }
+        else
+        {
+            bulletTimer[0]++;
+            if (bulletTimer[0] > 45.0f)
+            {
+                bulletTimer[0] = 0.0f;
+            }
+        }
     }
 }

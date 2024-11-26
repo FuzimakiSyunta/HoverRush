@@ -8,6 +8,7 @@ TagManager:
   - playerDamage
   - Bullet
   - Lazer
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
