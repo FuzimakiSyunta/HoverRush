@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 5909209246426711722}
   - component: {fileID: 9028048021637115930}
   m_Layer: 0
-  m_Name: miniEnemy
+  m_Name: BlueiEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

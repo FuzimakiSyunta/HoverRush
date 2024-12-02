@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-    public GameObject BossBulletCube;
+    public Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        float moveSpeedZ = 150.0f;
+        float moveSpeedY = 30.0f;
+        rb.velocity = new Vector3(0, -moveSpeedY, -moveSpeedZ);
+        Destroy(gameObject, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 30フレーム毎にシーンにプレハブを生成
-        if (Time.frameCount % 30 == 0)
-        {
-            // プレハブの位置をランダムで設定
-            float x = Random.Range(-5.0f, 5.0f);
-            float z = Random.Range(-5.0f, 5.0f);
-            Vector3 pos = new Vector3(x, 10.0f, z);
 
-            // プレハブを生成
-            Instantiate(BossBulletCube, pos, Quaternion.identity);
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Destroy(this.gameObject);
         }
+        
     }
 }

@@ -16,13 +16,11 @@ public class EnemyScript : MonoBehaviour
     public ParticleSystem particle;
     public bool sliderBool;
     private float MoveSpeed = 0.02f;
-    private object get;
     float[] bulletTimer = new float[3];
 
     // Start is called before the first frame update
     void Start()
     {
-        
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
         animator = GetComponent<Animator>();

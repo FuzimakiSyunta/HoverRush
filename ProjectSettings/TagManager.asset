@@ -9,6 +9,9 @@ TagManager:
   - Bullet
   - Lazer
   - EnemyBullet
+  - BossBullet
+  - Boss
+  - Floor
   layers:
   - Default
   - TransparentFX
