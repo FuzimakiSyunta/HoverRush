@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
-    private float MoveSpeed = 0.08f;
+    private float MoveSpeed = 0.04f;
     public GameObject bullet;
     public GameObject Lazer;
     public EnemyScript enemy;
@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     private int MaxHp;// 敵の現在のHP
     public Slider hpSlider;//HPバー（スライダー）
     private int ShotChenge = 0;//射撃パターン追加
-    public Image DamageImg;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +31,12 @@ public class PlayerScript : MonoBehaviour
         {
             bulletTimer[i] = 0.0f;
         }
-        DamageImg.color = Color.clear;
+        
     }
 
     void Damaged()
     {
-        DamageImg.color = new Color(0.7f, 0, 0, 0.7f);
-        return;
+        
     }
 
     // Update is called once per frame
@@ -64,7 +63,15 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(-MoveSpeed, 0, 0);
             }
-            
+            if (Input.GetKey(KeyCode.W) && transform.position.z <= 20)
+            {
+                transform.position += new Vector3(0, 0, MoveSpeed);
+            }
+            else if (Input.GetKey(KeyCode.S) && transform.position.z >= -6.5f)
+            {
+                transform.position += new Vector3(0, 0, -MoveSpeed);
+            }
+
         }
         //装甲追加  
         if (gameManagerScript.IsScore()>= 5)
@@ -91,7 +98,6 @@ public class PlayerScript : MonoBehaviour
                    position.z += 0.6f;
                    Instantiate(bullet, position, Quaternion.identity);
                    bulletTimer[0] = 1.0f;
-                   
                 }
             }
             else
@@ -147,8 +153,16 @@ public class PlayerScript : MonoBehaviour
             MaxHp -= 5;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
-        //ダメージカラー
-        if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy")
+
+        //BossBullet
+        if (other.gameObject.tag == "BossBullet")
+        {
+            MaxHp -= 15;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+
+        //ダメージ
+        if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy"|| other.gameObject.tag == "BossBullet")
         {
             Damaged();
         }

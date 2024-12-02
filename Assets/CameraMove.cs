@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    private float MoveSpeed = 0.08f;
+    private float MoveSpeed = 0.04f;
     private bool Moving;
 
     // Start is called before the first frame update

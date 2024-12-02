@@ -15,14 +15,14 @@ public class GameManager : MonoBehaviour
     public GameObject bigenemy;
     public GameObject player;
     public GameObject gameOverText;
-    int[] CoolTime = new int[5];
+    private int[] CoolTime = new int[5];
     private bool GameOverFlag = false;
     private bool GameStartFlag = false;
     public TextMeshProUGUI scoreText;
     private int score = 0;
     public TextMeshProUGUI startText;
     private int Wave = 0;
-
+    private bool[] BossWave = new bool[3];
 
     // Start is called before the first frame update
     void Start()
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (GameStartFlag==true&&Wave == 1)//WAVE1
+        if (GameStartFlag==true&&Wave == 1 && BossWave[0]==false)//WAVE1
         {
             int r = Random.Range(0, 20000);
             CoolTime[0]++;
