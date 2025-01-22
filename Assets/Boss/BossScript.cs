@@ -35,6 +35,7 @@ public class BossScript : MonoBehaviour
         }
         bulletTimer = 0;
         BossBattleTime = 0;
+        animator.SetBool("isMove", false);
     }
 
     // Update is called once per frame
@@ -51,11 +52,8 @@ public class BossScript : MonoBehaviour
         if (gameManagerScript.IsGameStart() == true)
         {
             //スピード
-            float moveSpeed = -0.2f;
             float waveStartmoveSpeed = -0.05f;
-            //移動
-            Vector3 position = transform.position;
-            transform.position += new Vector3(0, 0, moveSpeed);
+            
             //ループ
             if (transform.position.z <=-50)
             {
@@ -63,7 +61,7 @@ public class BossScript : MonoBehaviour
             }
 
             BossBattleTime = Time.time;
-            if (BossBattleTime >= 30)
+            if (BossBattleTime >= 20)
             {
                 if(transform.position.y>4.2f&& transform.position.z>30)
                 {
@@ -129,6 +127,11 @@ public class BossScript : MonoBehaviour
 
     void BossWaveUpdate()
     {
-        transform.position = new Vector3(0, 4.2f, 30);
+        animator.SetBool("isMove", true);
+        if (BossBattleTime>=40)
+        {
+            animator.SetBool("isMove", false);
+            BossBattleTime = 0;
+        }
     }
 }

@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     public TextMeshProUGUI startText;
     private int Wave = 0;
+    private float BossWaveCount;
+    private bool BossWaveFlag;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
         if(GameStartFlag==true)
         {
             BossWaveCount = Time.time;
-            if (BossWaveCount>=30&&BossWaveCount<=60)
+            if (BossWaveCount>=20&&BossWaveCount<=40)
             {
                 BossWaveFlag = true;
             }
