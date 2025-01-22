@@ -10,14 +10,22 @@ public class BossScript : MonoBehaviour
     private GameObject gameManager;
     private GameManager gameManagerScript;
     public GameObject Bossbullet;
+    public GameObject BossBarstbullet_L;
+    public GameObject BossBarstbullet_R;
     public int bossHP;// ボスの最大HP
     private int wkHP;  // ボスの現在のHP
     public UnityEngine.UI.Slider hpSlider; //HPバー（スライダー）
     public ParticleSystem particle;
     public bool sliderBool;
+    private float MultibulletTimer = 0;
     private float bulletTimer = 0;
     private Animator animator;
-    private float BossBattleTime = 0;
+    public float BossBattleTime = 0;
+    private bool StartTime=false;
+    private float MultiBulletCoolTime = 0;
+    private float BulletCoolTime = 0;
+    public AudioClip DeleteSound;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +37,10 @@ public class BossScript : MonoBehaviour
         wkHP = bossHP; // 現在のHPを最大HPに設定
         hpSlider.gameObject.SetActive(false);
         sliderBool = false;
-        if (gameManagerScript.IsGameOver() == true)
-        {
-            return;
-        }
+        animator.SetBool("isMove", false);
         bulletTimer = 0;
+        MultibulletTimer = 0;
+        StartTime = false;
         BossBattleTime = 0;
     }
 
@@ -50,31 +57,25 @@ public class BossScript : MonoBehaviour
         
         if (gameManagerScript.IsGameStart() == true)
         {
-            //スピード
-            float moveSpeed = -0.2f;
-            float waveStartmoveSpeed = -0.05f;
-            //移動
-            Vector3 position = transform.position;
-            transform.position += new Vector3(0, 0, moveSpeed);
-            //ループ
-            if (transform.position.z <=-50)
+            StartTime=true;
+            
+            if (StartTime == true)
             {
-                transform.position = new Vector3(0, 9.7f, 110.6f);
+                BossBattleTime += Time.deltaTime;
+            }else
+            {
+                animator.SetBool("isMove", false);
             }
-
-            BossBattleTime = Time.time;
-            if (BossBattleTime >= 30)
+            
+            if (BossBattleTime > 20)
             {
-                if(transform.position.y>4.2f&& transform.position.z>30)
-                {
-                    transform.position += new Vector3(0, waveStartmoveSpeed, waveStartmoveSpeed);
-                }
                 BossWaveUpdate();
             }
+           
         }
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         //ボスと弾
         if (other.gameObject.tag == "Bullet")
@@ -104,18 +105,57 @@ public class BossScript : MonoBehaviour
 
             //ボス消える
             Destroy(gameObject, 0f);
-            gameManagerScript.Score();
+            gameManagerScript.GameClearStart();//ゲームクリア
+            audioSource.PlayOneShot(DeleteSound);
         }
     }
     void FixedUpdate()
     {
-        if (bulletTimer == 0.0f)
+        //散弾
+        if (MultibulletTimer == 0.0f)
         {
             Vector3 position = transform.position;
-            position.y += 0.3f;
-            position.z -= 3.0f;
-            Instantiate(Bossbullet, position, Quaternion.identity);
-            bulletTimer = 1.0f;
+            MultiBulletCoolTime++;
+            if (animator.GetBool("isMove")==false)
+            {
+                if(MultiBulletCoolTime>= 60)
+                {
+                    position.y += 0.3f;
+                    position.z -= 35.0f;
+                    Instantiate(Bossbullet, position, Quaternion.identity);
+                    MultibulletTimer = 1.0f;
+
+                }
+                
+            }
+           
+        }
+        else
+        {
+            MultibulletTimer++;
+            if (MultibulletTimer > 120.0f)
+            {
+                MultibulletTimer = 0.0f;
+            }
+            BulletCoolTime = 0;
+        }
+
+        //爆弾ウェーブ
+        if (bulletTimer == 0.0f)
+        {
+            Vector3 positionR = transform.position;
+            Vector3 positionL = transform.position;
+            BulletCoolTime++;
+            if (animator.GetBool("isMove") == true)
+            {
+                if (BulletCoolTime >= 60)
+                {
+                    Instantiate(BossBarstbullet_R, positionR, Quaternion.identity);
+                    Instantiate(BossBarstbullet_L, positionL, Quaternion.identity);
+                    bulletTimer = 1.0f;
+                }
+            }
+
         }
         else
         {
@@ -124,11 +164,31 @@ public class BossScript : MonoBehaviour
             {
                 bulletTimer = 0.0f;
             }
+            MultiBulletCoolTime = 0;
         }
     }
 
     void BossWaveUpdate()
     {
-        transform.position = new Vector3(0, 4.2f, 30);
+        if (BossBattleTime > 20 && BossBattleTime <= 40)
+        {
+            animator.SetBool("isMove", true);
+        }
+        if (BossBattleTime >= 40 && BossBattleTime < 60)
+        {
+            animator.SetBool("isMove", false);
+        }
+        if (BossBattleTime >= 60 && BossBattleTime < 80)
+        {
+            animator.SetBool("isMove", true);
+        }
+        if (BossBattleTime >= 80 && BossBattleTime < 100)
+        {
+            animator.SetBool("isMove", false);
+        }
+        if (BossBattleTime >= 100)
+        {
+            animator.SetBool("isMove", true);
+        }
     }
 }

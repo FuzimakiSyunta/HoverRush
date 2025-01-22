@@ -17,13 +17,21 @@ public class SceneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManagerScript.IsGameOver() == true)
+        if (gameManagerScript.IsGameOver() == true)//ゲームオーバー時
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+            {
+                SceneManager.LoadScene("Load");
+            }
+        }
+
+        if (gameManagerScript.IsGameClear() == true)//ゲームクリア時
+        {
+            if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
                 SceneManager.LoadScene("Clear");
             }
         }
-        
+
     }
 }

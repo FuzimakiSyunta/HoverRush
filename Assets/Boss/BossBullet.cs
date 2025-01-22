@@ -5,12 +5,12 @@ using UnityEngine;
 public class BossBullet : MonoBehaviour
 {
     public Rigidbody rb;
-
+  
     // Start is called before the first frame update
     void Start()
     {
-        float moveSpeedZ = 150.0f;
-        float moveSpeedY = 30.0f;
+        float moveSpeedZ = 110.0f;
+        float moveSpeedY = 11.0f;
         rb.velocity = new Vector3(0, -moveSpeedY, -moveSpeedZ);
         Destroy(gameObject, 3);
     }
@@ -18,7 +18,7 @@ public class BossBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     void OnCollisionEnter(Collision other)
     {
