@@ -17,7 +17,7 @@ public class BossScript : MonoBehaviour
     public bool sliderBool;
     private float bulletTimer = 0;
     private Animator animator;
-    private float BossBattleTime = 0;
+    public float BossBattleTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,8 @@ public class BossScript : MonoBehaviour
         }
         bulletTimer = 0;
         BossBattleTime = 0;
+        animator.SetBool("isMove", false);
+        
     }
 
     // Update is called once per frame
@@ -50,31 +52,16 @@ public class BossScript : MonoBehaviour
         
         if (gameManagerScript.IsGameStart() == true)
         {
-            //スピード
-            float moveSpeed = -0.2f;
-            float waveStartmoveSpeed = -0.05f;
-            //移動
-            Vector3 position = transform.position;
-            transform.position += new Vector3(0, 0, moveSpeed);
-            //ループ
-            if (transform.position.z <=-50)
-            {
-                transform.position = new Vector3(0, 9.7f, 110.6f);
-            }
-
             BossBattleTime = Time.time;
-            if (BossBattleTime >= 30)
+            if (BossBattleTime > 20)
             {
-                if(transform.position.y>4.2f&& transform.position.z>30)
-                {
-                    transform.position += new Vector3(0, waveStartmoveSpeed, waveStartmoveSpeed);
-                }
                 BossWaveUpdate();
             }
+           
         }
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         //ボスと弾
         if (other.gameObject.tag == "Bullet")
@@ -129,6 +116,25 @@ public class BossScript : MonoBehaviour
 
     void BossWaveUpdate()
     {
-        transform.position = new Vector3(0, 4.2f, 30);
+        if (BossBattleTime > 20 && BossBattleTime <= 40)
+        {
+            animator.SetBool("isMove", true);
+        }
+        if (BossBattleTime >= 40 && BossBattleTime < 60)
+        {
+            animator.SetBool("isMove", false);
+        }
+        if (BossBattleTime >= 60 && BossBattleTime < 80)
+        {
+            animator.SetBool("isMove", true);
+        }
+        if (BossBattleTime >= 80 && BossBattleTime < 100)
+        {
+            animator.SetBool("isMove", false);
+        }
+        if (BossBattleTime >= 100)
+        {
+            animator.SetBool("isMove", true);
+        }
     }
 }

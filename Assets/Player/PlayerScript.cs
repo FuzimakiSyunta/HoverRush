@@ -74,7 +74,7 @@ public class PlayerScript : MonoBehaviour
 
         }
         //装甲追加  
-        if (gameManagerScript.IsScore()>= 5)
+        if (gameManagerScript.IsScore()>= 15)
         {
             ShotChenge = 1;
         }
@@ -143,11 +143,7 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
-        {
-            MaxHp -= 15;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-        }
+       
         if (other.gameObject.tag == "EnemyBullet")
         {
             MaxHp -= 5;
@@ -168,5 +164,18 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
-    
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            MaxHp -= 15;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+        //ダメージ
+        if (other.gameObject.tag == "Enemy")
+        {
+            Damaged();
+        }
+    }
+
 }

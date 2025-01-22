@@ -9,7 +9,7 @@ public class LazerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float moveSpeed = 27.0f;
+        float moveSpeed = 57.0f;
         rb.velocity = new Vector3(0, 0, moveSpeed);
         Destroy(gameObject, 3);
     }
@@ -22,6 +22,10 @@ public class LazerScript : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.tag == "Boss")
         {
             Destroy(this.gameObject);
         }

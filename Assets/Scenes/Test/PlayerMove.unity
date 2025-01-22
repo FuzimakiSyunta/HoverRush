@@ -1282,6 +1282,7 @@ MonoBehaviour:
   gameOverText: {fileID: 1766756253}
   scoreText: {fileID: 268335297}
   startText: {fileID: 660251543}
+  Wave: 0
 --- !u!4 &738859543
 Transform:
   m_ObjectHideFlags: 0
@@ -2095,11 +2096,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bossbullet: {fileID: 389623457992006024, guid: 362ef3d617463dc4cbbd0a9266f0490c, type: 3}
-  bossHP: 250
+  bossHP: 10000
   hpSlider: {fileID: 979730752}
   particle: {fileID: 1368096948050383225, guid: 2133ea6142d4bc34f888c2a6df08ce9a, type: 3}
   sliderBool: 0
---- !u!95 &1736841754
+  BossBattleTime: 0
+--- !u!95 &1736841753
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -2109,7 +2111,7 @@ Animator:
   m_GameObject: {fileID: 1736841748}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e19ea1fb77c58de49b94605acb94796f, type: 2}
+  m_Controller: {fileID: 9100000, guid: c0e58ccc03587624f96b1148d7e0f2ca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2296,7 +2298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5611508562477550188, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5611508562477550188, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2339,7 +2341,7 @@ PrefabInstance:
       addedObject: {fileID: 1736841752}
     - targetCorrespondingSourceObject: {fileID: 2238456086702735711, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1736841754}
+      addedObject: {fileID: 1736841753}
   m_SourcePrefab: {fileID: 100100000, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
 --- !u!1 &1770588728170230404 stripped
 GameObject:
