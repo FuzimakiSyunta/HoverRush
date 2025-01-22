@@ -64,13 +64,16 @@ public class EnemyScript : MonoBehaviour
             hpSlider.gameObject.SetActive(true);
         }
 
+        
+
     }
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
+        
         //敵と弾
         if (other.gameObject.tag == "Bullet")
         {
-            wkHP -= 30;//一度当たるごとに50をマイナス
+            wkHP -= 20;//一度当たるごとに20をマイナス
             hpSlider.value = (float)wkHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             //Slider表示
             sliderBool = true;
@@ -78,7 +81,9 @@ public class EnemyScript : MonoBehaviour
         //敵とレーザー
         if (other.gameObject.tag == "Lazer")
         {
+
             wkHP -= 10;//一度当たるごとに10をマイナス
+            
             hpSlider.value = (float)wkHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }

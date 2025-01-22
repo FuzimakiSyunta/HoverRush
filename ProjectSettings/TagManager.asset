@@ -12,6 +12,7 @@ TagManager:
   - BossBullet
   - Boss
   - Floor
+  - BossExtraBullet
   layers:
   - Default
   - TransparentFX

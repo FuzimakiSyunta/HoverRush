@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4013187002375706802}
   - component: {fileID: 6251006912960470985}
   - component: {fileID: 3755532387356250779}
+  - component: {fileID: 3590008167816800276}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -48,9 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6148454434878659236, guid: c693d708a39a6024d98cc4adc8e8a46f, type: 3}
+  Lazer: {fileID: 0}
+  enemy: {fileID: 0}
   gameManager: {fileID: 0}
-  Damege: 0
-  DamegePoint: 0
+  playerHP: 0
+  hpSlider: {fileID: 0}
 --- !u!95 &3755532387356250779
 Animator:
   serializedVersion: 5
@@ -72,6 +75,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &3590008167816800276
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659194270495719948}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 1, z: 7}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1 &8815871741374331564
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +253,34 @@ PrefabInstance:
       value: StarSparrow2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3654435805906221950, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 3654435806000589329, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 3654435804652493590, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 3654435804831174047, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 882138968568171164, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 882138967995093836, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 7448340411825060216, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 7448340411346921000, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 1860523470694922884, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 1860523471398225374, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 1860523470124531636, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 1860523470894874862, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 1860523470090604130, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 1860523470928802104, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 4156741868731659801, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 4072229752216664824, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 4072229751520995927, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 4072229751196757197, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 4072229752170968921, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 5230854571225729466, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 5230854572340536203, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 5230854571454999809, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 5230854571416137711, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 5230854572269977966, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 5230854571371785055, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 5230854572558230997, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
+    - {fileID: 5230854572586477371, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bffac15ab19a54a4dad63ea5b57a6b0b, type: 3}
