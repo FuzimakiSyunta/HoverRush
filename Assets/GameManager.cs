@@ -21,9 +21,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     private int score = 0;
     public TextMeshProUGUI startText;
-    private int Wave;
-    private bool BossWaveFlag;
-    private float BossWaveCount;
+    private int Wave = 0;
 
     // Start is called before the first frame update
     void Start()
