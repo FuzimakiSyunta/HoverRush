@@ -17,8 +17,8 @@ public class BackScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Timer++;
-        if (Timer>=120)
+        Timer += Time.deltaTime;
+        if (Timer>=2)
         {
             SceneManager.LoadScene("PlayerMove");
             Timer = 0;
