@@ -6,14 +6,17 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using static System.Net.Mime.MediaTypeNames;
+using static UnityEditor.PlayerSettings;
 
 
 public class GameManager : MonoBehaviour
 {
+    //主要オブジェクト
     public GameObject enemy;
     public GameObject blueEnemy;
     public GameObject yellowEnemy;
     public GameObject player;
+    //text&Image
     public GameObject gameOverText;
     public GameObject gameClearText;
     public GameObject WAVEText0;
@@ -22,14 +25,30 @@ public class GameManager : MonoBehaviour
     public GameObject WAVEText3;
     public GameObject WAVEText4;
     public GameObject WAVEText5;
+    public TextMeshProUGUI scoreText;
+    public GameObject titleText;
+    public GameObject StartButtonImage;
+
+    //Select
+    private bool OpenSelector = false;
+    public RectTransform Selector;
+    public GameObject SelectorImage;
+    private bool LuleFlag = false;
+    private bool StartFlag = false;
+    public RectTransform LuleImage;
+    private float move = 1.0f;
+    private float selectormove = 100.0f;
+    public RectTransform StartImage;
+    
+
+    //ゲームシステム
     private float[] CoolTime = new float[5];
     private bool GameOverFlag = false;
     private bool GameClearFlag = false;
     private bool GameStartFlag = false;
-    public TextMeshProUGUI scoreText;
     private int score = 0;
-    public GameObject titleText;
-    public GameObject StartButtonImage;
+
+    //WAVE
     public int Wave;
     public float BossWaveCount;
     private bool BossWaveFlag;
@@ -53,6 +72,8 @@ public class GameManager : MonoBehaviour
         WAVEText3.SetActive(false);
         WAVEText4.SetActive(false);
         WAVEText5.SetActive(false);
+        //selector
+        SelectorImage.SetActive(false);
     }
 
     // Update is called once per frame
@@ -62,14 +83,67 @@ public class GameManager : MonoBehaviour
         scoreText.text = "ENERGY  " + score;
 
         //スタート
-        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown("joystick button 0"))
+        if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown("joystick button 6"))
         {
-            GameStartFlag = true;
+            OpenSelector = true;
             titleText.SetActive(false);
             StartButtonImage.SetActive(false);
         }
-        if(GameStartFlag==true)
+        if (OpenSelector ==true)
         {
+            //画像移動
+            if (LuleImage.position.x >= 150.0f)
+            {
+                move -= 1.0f;
+                SelectorImage.SetActive (true);
+                
+                //Selector
+                if (Selector.position.y >= 0)
+                {
+                    StartFlag = true;
+                    
+                    if (Input.GetKeyDown(KeyCode.S))
+                    {
+                        Selector.position += new Vector3(0, -selectormove, 0);
+                        
+                        StartFlag = false;
+                    }
+                }
+                if (Selector.position.y >= -100)
+                {
+                    LuleFlag = true;
+                    
+                    if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        Selector.position += new Vector3(0, selectormove, 0);
+                        LuleFlag = false;
+                        
+                    }
+                }
+                
+
+            }
+            else
+            {
+                LuleImage.position += new Vector3(move, 0, 0);
+                StartImage.position += new Vector3(move, 0, 0);
+            }
+
+            //スタート
+            if (Selector.position.y == 0 && Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("joystick button 0"))
+            {
+                GameStartFlag = true;
+                StartFlag = false;
+                LuleFlag = false;
+            }
+
+        }
+
+
+
+            //テキスト
+            if (GameStartFlag==true)
+            {
             BossWaveCount += Time.deltaTime;
             if (BossWaveCount < 20)
             {
@@ -523,5 +597,17 @@ public class GameManager : MonoBehaviour
     {
         return GameStartFlag;
     }
-    
+    public bool IsOpenSelector()
+    {
+        return OpenSelector;
+    }
+    public bool IsLuleSelect()
+    {
+        return LuleFlag;
+    }
+    public bool IsStartSelect()
+    {
+        return StartFlag;
+    }
+
 }

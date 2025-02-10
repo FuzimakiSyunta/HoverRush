@@ -9,9 +9,6 @@ public class CameraMove : MonoBehaviour
     private bool Moving;
     private GameManager gameManagerScript;
     public GameObject gameManager;
-   
-
-    
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +23,8 @@ public class CameraMove : MonoBehaviour
     {
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+
+        if (gameManagerScript.IsOpenSelector()==true&&Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown("joystick button 0"))
         {
             Moving = true;
         }

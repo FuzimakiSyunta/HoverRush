@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject LuleImage;
+    
     // Start is called before the first frame update
     void Start()
     {
