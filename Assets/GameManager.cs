@@ -10,10 +10,12 @@ using static System.Net.Mime.MediaTypeNames;
 
 public class GameManager : MonoBehaviour
 {
+    //主要オブジェクト
     public GameObject enemy;
     public GameObject blueEnemy;
     public GameObject yellowEnemy;
     public GameObject player;
+    //text&Image
     public GameObject gameOverText;
     public GameObject gameClearText;
     public GameObject WAVEText0;
@@ -22,14 +24,23 @@ public class GameManager : MonoBehaviour
     public GameObject WAVEText3;
     public GameObject WAVEText4;
     public GameObject WAVEText5;
+    public TextMeshProUGUI scoreText;
+    public GameObject titleText;
+    public GameObject StartButtonImage;
+
+    //Lule
+    private bool LuleFlag = false;
+    public RectTransform LuleSelector;
+    private float move = 1.0f;
+
+    //ゲームシステム
     private float[] CoolTime = new float[5];
     private bool GameOverFlag = false;
     private bool GameClearFlag = false;
     private bool GameStartFlag = false;
-    public TextMeshProUGUI scoreText;
     private int score = 0;
-    public GameObject titleText;
-    public GameObject StartButtonImage;
+
+    //WAVE
     public int Wave;
     public float BossWaveCount;
     private bool BossWaveFlag;
@@ -62,14 +73,34 @@ public class GameManager : MonoBehaviour
         scoreText.text = "ENERGY  " + score;
 
         //スタート
-        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown("joystick button 0"))
+        if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown("joystick button 6"))
         {
-            GameStartFlag = true;
+            LuleFlag = true;
             titleText.SetActive(false);
             StartButtonImage.SetActive(false);
         }
-        if(GameStartFlag==true)
+        if (LuleFlag==true)
         {
+            if (LuleSelector.position.x >= 150.0f)
+            {
+                move -= 1.0f;
+                if (LuleFlag == true && Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("joystick button 0"))
+                {
+                    GameStartFlag=true;
+                    LuleFlag=false;
+                }
+            }
+            else
+            {
+                LuleSelector.position += new Vector3(move, 0, 0);
+            }
+        }
+
+
+
+            //テキスト
+            if (GameStartFlag==true)
+            {
             BossWaveCount += Time.deltaTime;
             if (BossWaveCount < 20)
             {
@@ -522,6 +553,10 @@ public class GameManager : MonoBehaviour
     public bool IsGameStart()
     {
         return GameStartFlag;
+    }
+    public bool IsLuleStart()
+    {
+        return LuleFlag;
     }
     
 }
