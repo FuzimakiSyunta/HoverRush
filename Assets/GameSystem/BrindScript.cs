@@ -7,7 +7,10 @@ public class BrindScript : MonoBehaviour
     public GameObject boss;
     public GameObject bossBullet;
     public GameObject EnergyImage;
-    public GameObject LuleImage;
+    public GameObject StartSelectImage;
+    public GameObject LuleSelectImage;
+    public GameObject SelectorImage;
+    //public GameObject LuleImage;
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
@@ -18,8 +21,7 @@ public class BrindScript : MonoBehaviour
         boss.SetActive(false);
         bossBullet.SetActive(false);
         EnergyImage.SetActive(false);
-        LuleImage.SetActive(true);
-        
+        //LuleImage.SetActive(true);
     }
 
     // Update is called once per frame
@@ -30,8 +32,10 @@ public class BrindScript : MonoBehaviour
             boss.SetActive(true);
             bossBullet.SetActive(true);
             EnergyImage.SetActive(true);
-            LuleImage.SetActive(false);
-            
+            StartSelectImage.SetActive(false);
+            LuleSelectImage.SetActive(false);
+            SelectorImage.SetActive(false);
+
         }
     }
 }

@@ -6,21 +6,31 @@ using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
-    private float MoveSpeed = 0.08f;
+    private GameManager gameManagerScript;
+    public GameObject gameManager;
+
+    //オブジェクト挿入
     public GameObject bullet;
     public GameObject Lazer;
     public EnemyScript enemy;
+
+    //ステータス
+    private float MoveSpeed = 0.08f;
     float[] bulletTimer = new float[3];
-    private GameManager gameManagerScript;
-    public GameObject gameManager;
-    public GameObject HPSlider;
+    private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
+
+    //HP関連
+    public GameObject HPSlider;
     public int playerHP;// プレイヤーの最大HP
     private int MaxHp;// プレイヤーの現在のHP
     public Slider hpSlider;//HPバー（スライダー）
-    private int ShotChenge = 0;//射撃パターン追加
     public bool isDameged = false;
+
+    //パーティクル
     public ParticleSystem particle;
+
+    //オーディオ
     public AudioClip DamegeSound;
     private AudioSource audioSource;
 
