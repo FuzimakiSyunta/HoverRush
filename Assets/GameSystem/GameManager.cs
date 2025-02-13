@@ -31,16 +31,7 @@ public class GameManager : MonoBehaviour
 
     //Select
     private bool OpenSelector = false;
-    public RectTransform Selector;
-    public GameObject SelectorImage;
-    private bool LuleFlag = false;
-    private bool StartFlag = false;
-    public RectTransform LuleImage;
-    private float move = 1.0f;
-    private float selectormove = 100.0f;
-    public RectTransform StartImage;
     
-
     //ゲームシステム
     private float[] CoolTime = new float[5];
     private bool GameOverFlag = false;
@@ -72,8 +63,7 @@ public class GameManager : MonoBehaviour
         WAVEText3.SetActive(false);
         WAVEText4.SetActive(false);
         WAVEText5.SetActive(false);
-        //selector
-        SelectorImage.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -83,67 +73,17 @@ public class GameManager : MonoBehaviour
         scoreText.text = "ENERGY  " + score;
 
         //スタート
-        if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown("joystick button 6"))
+        if (Input.GetKeyDown(KeyCode.F)|| Input.GetKeyDown("joystick button 6"))
         {
             OpenSelector = true;
             titleText.SetActive(false);
             StartButtonImage.SetActive(false);
+            GameStartFlag = false;
         }
-        if (OpenSelector ==true)
+        
+        //テキスト
+        if (GameStartFlag == true)
         {
-            //画像移動
-            if (LuleImage.position.x >= 150.0f)
-            {
-                move -= 1.0f;
-                SelectorImage.SetActive (true);
-                
-                //Selector
-                if (Selector.position.y >= 0)
-                {
-                    StartFlag = true;
-                    
-                    if (Input.GetKeyDown(KeyCode.S))
-                    {
-                        Selector.position += new Vector3(0, -selectormove, 0);
-                        
-                        StartFlag = false;
-                    }
-                }
-                if (Selector.position.y >= -100)
-                {
-                    LuleFlag = true;
-                    
-                    if (Input.GetKeyDown(KeyCode.W))
-                    {
-                        Selector.position += new Vector3(0, selectormove, 0);
-                        LuleFlag = false;
-                        
-                    }
-                }
-                
-
-            }
-            else
-            {
-                LuleImage.position += new Vector3(move, 0, 0);
-                StartImage.position += new Vector3(move, 0, 0);
-            }
-
-            //スタート
-            if (Selector.position.y == 0 && Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("joystick button 0"))
-            {
-                GameStartFlag = true;
-                StartFlag = false;
-                LuleFlag = false;
-            }
-
-        }
-
-
-
-            //テキスト
-            if (GameStartFlag==true)
-            {
             BossWaveCount += Time.deltaTime;
             if (BossWaveCount < 20)
             {
@@ -591,7 +531,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameStart()//ゲームスタート
     {
-        GameStartFlag = false;
+        GameStartFlag = true;
     }
     public bool IsGameStart()
     {
@@ -601,13 +541,6 @@ public class GameManager : MonoBehaviour
     {
         return OpenSelector;
     }
-    public bool IsLuleSelect()
-    {
-        return LuleFlag;
-    }
-    public bool IsStartSelect()
-    {
-        return StartFlag;
-    }
+    
 
 }
