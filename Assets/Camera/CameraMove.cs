@@ -9,11 +9,15 @@ public class CameraMove : MonoBehaviour
     private bool Moving;
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    //select
+    private SelectorMenu selectorMenuScript;
+    public GameObject selectMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        selectorMenuScript = selectMenu.GetComponent<SelectorMenu>();
         Moving = false;
         
     }
@@ -24,7 +28,7 @@ public class CameraMove : MonoBehaviour
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
 
-        if (gameManagerScript.IsOpenSelector()==true&&Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 4"))
+        if (selectorMenuScript.IsStartFlag() == true && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
             Moving = true;
         }

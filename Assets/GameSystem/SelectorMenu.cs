@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
+public class SelectorMenu : MonoBehaviour
 {
     private GameManager gameManagerScript;
     public GameObject gameManager;
     public RectTransform Selector;
     public GameObject SelectorImage;
-    public bool LuleFlag = false;
-    public bool StartFlag = true;
+    public bool LuleFlag;//ルール説明が出せる状態
+    public bool StartFlag;//ゲームが始められる状態
     public RectTransform LuleImage;
     private float move = 1.0f;
     private float selectormove = 100.0f;
@@ -22,7 +22,6 @@ public class Menu : MonoBehaviour
         gameManagerScript = gameManager.GetComponent<GameManager>();
         //selector
         SelectorImage.SetActive(false);
-        StartFlag = true;
     }
 
     // Update is called once per frame
@@ -35,12 +34,12 @@ public class Menu : MonoBehaviour
             {
                 move -= 1.0f;
                 SelectorImage.SetActive(true);
-
+                
                 //Selector
-                if (StartFlag == true)
+                if (LuleFlag == false)
                 {
                     
-                    if (StartFlag == true &&Input.GetKeyDown(KeyCode.S))
+                    if (Input.GetKeyDown(KeyCode.S))
                     {
                         Selector.position += new Vector3(0, -selectormove, 0);
                         StartFlag = false;
@@ -51,14 +50,13 @@ public class Menu : MonoBehaviour
                         gameManagerScript.GameStart();
                     }
                 }
-                else
+                if (LuleFlag == true)
                 {
-                    if (LuleFlag == true&&Input.GetKeyDown(KeyCode.W))
+                    if (Input.GetKeyDown(KeyCode.W))
                     {
                         Selector.position += new Vector3(0, selectormove, 0);
                         LuleFlag = false;
                         StartFlag = true;
-
                     }
                 }
             }

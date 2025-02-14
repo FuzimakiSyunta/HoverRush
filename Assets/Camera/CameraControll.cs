@@ -16,7 +16,6 @@ public class CameraControll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         gameManagerScript = gameManager.GetComponent<GameManager>();
     }
 

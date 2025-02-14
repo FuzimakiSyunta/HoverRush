@@ -6,14 +6,14 @@ public class CameraScript : MonoBehaviour
 {
     Camera mainCamera;
     public Camera subCamera;
-    private GameManager gameManagerScript;
-    public GameObject gameManager;
+    //select
+    private SelectorMenu selectorMenuScript;
+    public GameObject selectMenu;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameManager");
-        gameManagerScript = gameManager.GetComponent<GameManager>();
+        selectorMenuScript = selectMenu.GetComponent<SelectorMenu>();
         mainCamera = Camera.main;
        
     }
@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsOpenSelector() == true && Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 4"))
+        if(selectorMenuScript.IsStartFlag() == true && Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 4"))
         {
             mainCamera.enabled = false;
             subCamera.enabled = true;

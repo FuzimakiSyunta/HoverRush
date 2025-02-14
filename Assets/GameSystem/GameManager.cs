@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         Wave = 0;
         BossWaveCount = 0;
 
+
         //WAVEText
         WAVEText0.SetActive(false);
         WAVEText1.SetActive(false);
@@ -72,14 +73,18 @@ public class GameManager : MonoBehaviour
         //スコア
         scoreText.text = "ENERGY  " + score;
 
-        //スタート
-        if (Input.GetKeyDown(KeyCode.F)|| Input.GetKeyDown("joystick button 6"))
+        //セレクト
+        if(OpenSelector == false)
         {
-            OpenSelector = true;
-            titleText.SetActive(false);
-            StartButtonImage.SetActive(false);
-            GameStartFlag = false;
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+            {
+                OpenSelector = true;
+                titleText.SetActive(false);
+                StartButtonImage.SetActive(false);
+                GameStartFlag = false;
+            }
         }
+        
         
         //テキスト
         if (GameStartFlag == true)

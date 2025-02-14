@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subCamera: {fileID: 636607176}
-  gameManager: {fileID: 707850054}
+  selectMenu: {fileID: 738859541}
 --- !u!4 &707850056
 Transform:
   m_ObjectHideFlags: 0
@@ -1621,6 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 738859541}
+  selectMenu: {fileID: 738859541}
 --- !u!1 &738859541
 GameObject:
   m_ObjectHideFlags: 0
