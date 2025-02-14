@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 052c807fde63e354ebe73021850702c9, type: 2}
+  - {fileID: 2100000, guid: 57daf37ebf07bc444a349e80ca5c2feb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -527,7 +527,6 @@ MonoBehaviour:
   hpSlider: {fileID: 3323242276378516979}
   particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
   sliderBool: 0
-  DeleteSound: {fileID: 8300000, guid: 7ba909a17a5c26049a2be1fed16f664e, type: 3}
 --- !u!65 &8150136410196521076
 BoxCollider:
   m_ObjectHideFlags: 0

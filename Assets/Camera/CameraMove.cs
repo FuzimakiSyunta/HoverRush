@@ -24,7 +24,7 @@ public class CameraMove : MonoBehaviour
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
 
-        if (gameManagerScript.IsOpenSelector()==true&&Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown("joystick button 0"))
+        if (gameManagerScript.IsOpenSelector()==true&&Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 4"))
         {
             Moving = true;
         }

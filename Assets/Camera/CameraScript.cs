@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsOpenSelector() == true && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+        if(gameManagerScript.IsOpenSelector() == true && Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown("joystick button 4"))
         {
             mainCamera.enabled = false;
             subCamera.enabled = true;
