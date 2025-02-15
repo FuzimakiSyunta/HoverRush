@@ -168,7 +168,7 @@ public class BossScript : MonoBehaviour
         }
     }
 
-    void BossWaveUpdate()
+    void BossWaveUpdate()//一対一のアニメーション
     {
         if (BossBattleTime > 20 && BossBattleTime <= 40)
         {
