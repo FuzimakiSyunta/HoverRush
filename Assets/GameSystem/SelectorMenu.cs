@@ -38,7 +38,7 @@ public class SelectorMenu : MonoBehaviour
                 //Selector
                 if (LuleFlag == false)
                 {
-                    
+                    StartFlag = true;
                     if (Input.GetKeyDown(KeyCode.S))
                     {
                         Selector.position += new Vector3(0, -selectormove, 0);

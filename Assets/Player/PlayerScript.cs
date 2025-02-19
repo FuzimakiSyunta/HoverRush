@@ -70,8 +70,6 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if (gameManagerScript.IsGameOver() == true)
         {
             animator.SetBool("GameOver", true);
