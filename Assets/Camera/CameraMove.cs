@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    private float MoveSpeed = 0.08f;
+    private float MoveSpeed = 0.02f;
     private bool Moving;
     private GameManager gameManagerScript;
     public GameObject gameManager;
+
+    //プレイヤーを変数に格納
+    public GameObject Player;
+    private float angle;
+
     //select
     private SelectorMenu selectorMenuScript;
     public GameObject selectMenu;
@@ -36,6 +41,11 @@ public class CameraMove : MonoBehaviour
         {
             if (gameManagerScript.IsGameClear() == false&&gameManagerScript.IsGameOver()==false)
             {
+                //プレイヤー位置情報
+                Vector3 playerPos = Player.transform.position;
+                //カメラを回転させる
+                transform.RotateAround(playerPos, Vector3.up, angle);
+
                 if (stick > 0 && transform.position.x <= 10)
                 {
                     transform.position += new Vector3(MoveSpeed, 0, 0);

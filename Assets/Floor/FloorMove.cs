@@ -20,9 +20,9 @@ public class FloorMove : MonoBehaviour
         Vector3 position = transform.position;
         
             transform.position -= new Vector3(0, 0, MoveSpeed);
-            if (transform.position.z <= -40)
+            if (transform.position.z <= -165)
             {
-                transform.position = new Vector3(0.0f, 0.0f, 80.0f);
+                transform.position = new Vector3(0.0f, 0.0f, 165.0f);
             }
         
       

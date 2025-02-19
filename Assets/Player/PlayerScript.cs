@@ -11,11 +11,11 @@ public class PlayerScript : MonoBehaviour
 
     //オブジェクト挿入
     public GameObject bullet;
-    public GameObject Lazer;
+    public GameObject machineGun;
     public EnemyScript enemy;
 
     //ステータス
-    private float MoveSpeed = 0.08f;
+    private float MoveSpeed = 0.02f;
     float[] bulletTimer = new float[3];
     private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
@@ -122,7 +122,7 @@ public class PlayerScript : MonoBehaviour
             }
 
         }
-        //装甲追加  
+        //射撃パターン追加  
         if (gameManagerScript.IsScore()>= 10)
         {
             ShotChenge = 1;
@@ -140,7 +140,7 @@ public class PlayerScript : MonoBehaviour
         ///ゲームスタートしたら
         if (gameManagerScript.IsGameStart() == true)
         {
-            //マシンガン
+            //遅い弾
             if (bulletTimer[0] == 0.0f)
             {
                 if(ShotChenge >= 0)
@@ -163,7 +163,7 @@ public class PlayerScript : MonoBehaviour
             }
             if (bulletTimer[1] == 0.0f)
             {
-                //サブガトリング
+                //マシンガン
                 if (ShotChenge >= 1)
                 {
                     //弾発射
@@ -173,8 +173,8 @@ public class PlayerScript : MonoBehaviour
                     positionR.x += 2.0f;
                     positionL.y += 0.3f;
                     positionL.x -= 2.0f;
-                    Instantiate(Lazer, positionR, Quaternion.identity);
-                    Instantiate(Lazer, positionL, Quaternion.identity);
+                    Instantiate(machineGun, positionR, Quaternion.identity);
+                    Instantiate(machineGun, positionL, Quaternion.identity);
                     bulletTimer[1] = 1.0f;
                     
                 }

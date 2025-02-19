@@ -9,21 +9,29 @@ public class BossScript : MonoBehaviour
 {
     private GameObject gameManager;
     private GameManager gameManagerScript;
+
+    //Bossの弾
     public GameObject Bossbullet;
     public GameObject BossBarstbullet_L;
     public GameObject BossBarstbullet_R;
+    public GameObject Lazer_L;
+    public GameObject Lazer_R;
+
+    //弾のステータス
+    private float MultibulletTimer = 0;
+    private float bulletTimer = 0;
+    public float BossBattleTime = 0;
+    private float MultiBulletCoolTime = 0;
+    private float BulletCoolTime = 0;
+
+    //Bossのステータス
     public int bossHP;// ボスの最大HP
     private int wkHP;  // ボスの現在のHP
     public UnityEngine.UI.Slider hpSlider; //HPバー（スライダー）
     public ParticleSystem particle;
     public bool sliderBool;
-    private float MultibulletTimer = 0;
-    private float bulletTimer = 0;
     private Animator animator;
-    public float BossBattleTime = 0;
     private bool StartTime=false;
-    private float MultiBulletCoolTime = 0;
-    private float BulletCoolTime = 0;
     public AudioClip DeleteSound;
     private AudioSource audioSource;
 
@@ -42,6 +50,7 @@ public class BossScript : MonoBehaviour
         MultibulletTimer = 0;
         StartTime = false;
         BossBattleTime = 0;
+
     }
 
     // Update is called once per frame
@@ -74,7 +83,7 @@ public class BossScript : MonoBehaviour
            
         }
     }
-
+    
     void OnTriggerEnter(Collider other)
     {
         //ボスと弾
@@ -85,8 +94,8 @@ public class BossScript : MonoBehaviour
             //Slider表示
             sliderBool = true;
         }
-        //ボスとレーザー
-        if (other.gameObject.tag == "Lazer")
+        //ボスとマシンガン
+        if (other.gameObject.tag == "Machinegun")
         {
             wkHP -= 10;//一度当たるごとに10をマイナス
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
@@ -166,6 +175,11 @@ public class BossScript : MonoBehaviour
             }
             MultiBulletCoolTime = 0;
         }
+
+
+        //レーザーウェーブ
+        
+
     }
 
     void BossWaveUpdate()//一対一のアニメーション
