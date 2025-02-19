@@ -148,7 +148,6 @@ MonoBehaviour:
   hpSlider: {fileID: 590065527923438734}
   particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
   sliderBool: 0
-  DeleteSound: {fileID: 8300000, guid: 7ba909a17a5c26049a2be1fed16f664e, type: 3}
 --- !u!65 &5619656269080463713
 BoxCollider:
   m_ObjectHideFlags: 0
