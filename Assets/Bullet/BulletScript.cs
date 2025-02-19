@@ -12,7 +12,7 @@ public class BulletScript : MonoBehaviour
     {
         float moveSpeed = 27.0f;
         rb.velocity = new Vector3(0, 0, moveSpeed);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 1.5f);
     }
 
     // Update is called once per frame

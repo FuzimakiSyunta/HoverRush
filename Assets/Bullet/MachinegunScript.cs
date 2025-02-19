@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class LazerScript : MonoBehaviour
+public class MachinegunScript : MonoBehaviour
 {
     public Rigidbody rb;
     public ParticleSystem particle;
@@ -13,7 +13,7 @@ public class LazerScript : MonoBehaviour
     {
         float moveSpeed = 57.0f;
         rb.velocity = new Vector3(0, 0, moveSpeed);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 1.5f);
     }
 
     // Update is called once per frame
