@@ -13,11 +13,12 @@ TagManager:
   - Boss
   - Floor
   - BossExtraBullet
+  - Machinegun
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcess
   - Water
   - UI
   - 
