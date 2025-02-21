@@ -10,7 +10,7 @@ public class BrindScript : MonoBehaviour
     public GameObject StartSelectImage;
     public GameObject LuleSelectImage;
     public GameObject SelectorImage;
-    //public GameObject LuleImage;
+    public GameObject StartSelectCoverImage;
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
@@ -21,13 +21,13 @@ public class BrindScript : MonoBehaviour
         boss.SetActive(false);
         bossBullet.SetActive(false);
         EnergyImage.SetActive(false);
-        //LuleImage.SetActive(true);
+        StartSelectCoverImage.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsGameStart()==true)
+        if(gameManagerScript.IsGameStart()==true)//gamestart
         {
             boss.SetActive(true);
             bossBullet.SetActive(true);
@@ -35,7 +35,12 @@ public class BrindScript : MonoBehaviour
             StartSelectImage.SetActive(false);
             LuleSelectImage.SetActive(false);
             SelectorImage.SetActive(false);
+            StartSelectCoverImage?.SetActive(false);
+        }
 
+        if (gameManagerScript.IsOpenSelector() == true)//selectormenu
+        {
+            StartSelectCoverImage.SetActive(false);
         }
     }
 }

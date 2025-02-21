@@ -48,12 +48,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061c22ec1c1786448a56c844cd657127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 6148454434878659236, guid: c693d708a39a6024d98cc4adc8e8a46f, type: 3}
-  Lazer: {fileID: 0}
-  enemy: {fileID: 0}
   gameManager: {fileID: 0}
+  bullet: {fileID: 6148454434878659236, guid: c693d708a39a6024d98cc4adc8e8a46f, type: 3}
+  machineGun: {fileID: 0}
+  enemy: {fileID: 0}
+  HPSlider: {fileID: 0}
   playerHP: 0
   hpSlider: {fileID: 0}
+  isDameged: 0
+  particle: {fileID: 0}
+  DamegeSound: {fileID: 0}
 --- !u!95 &3755532387356250779
 Animator:
   serializedVersion: 5

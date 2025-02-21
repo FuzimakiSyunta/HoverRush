@@ -9,11 +9,13 @@ public class SelectorMenu : MonoBehaviour
     public GameObject gameManager;
     public RectTransform Selector;
     public GameObject SelectorImage;
-    public bool LuleFlag;//ルール説明が出せる状態
+    //public GameObject GAMESTARTImage;
+    //public GameObject SETTINGImage;
+    public bool ColorMenuFlag;//セッティングが出せる状態
     public bool StartFlag;//ゲームが始められる状態
-    public RectTransform LuleImage;
+    public RectTransform SettingMENUImage;
     private float move = 1.0f;
-    private float selectormove = 100.0f;
+    private float selectormove = 210.0f;
     public RectTransform StartImage;
 
     // Start is called before the first frame update
@@ -30,47 +32,64 @@ public class SelectorMenu : MonoBehaviour
         if(gameManagerScript.IsOpenSelector()==true)
         {
             //画像移動
-            if (LuleImage.position.x >= 150.0f)
+            if (SettingMENUImage.position.x >= 325.0f)
             {
                 move -= 1.0f;
                 SelectorImage.SetActive(true);
-                
+
+                StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
+                StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
+
                 //Selector
-                if (LuleFlag == false)
+                if (ColorMenuFlag == false)
                 {
                     StartFlag = true;
+                    StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
+                    StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                     if (Input.GetKeyDown(KeyCode.S))
                     {
                         Selector.position += new Vector3(0, -selectormove, 0);
                         StartFlag = false;
-                        LuleFlag = true;
+                        ColorMenuFlag = true;
                     }
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         gameManagerScript.GameStart();
                     }
                 }
-                if (LuleFlag == true)
+                else
                 {
+                    StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
+                    StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
+                }
+                if (ColorMenuFlag == true)
+                {
+                    SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
+                    SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                     if (Input.GetKeyDown(KeyCode.W))
                     {
                         Selector.position += new Vector3(0, selectormove, 0);
-                        LuleFlag = false;
+                        ColorMenuFlag = false;
                         StartFlag = true;
                     }
+                }
+                else
+                {
+                    SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
+                    SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
                 }
             }
             else
             {
-                LuleImage.position += new Vector3(move, 0, 0);
+                SettingMENUImage.position += new Vector3(move, 0, 0);
                 StartImage.position += new Vector3(move, 0, 0);
             }
         }
         
     }
-    public bool IsLuleFlag()
+    public bool IsColorMenuFlag()
     {
-        return LuleFlag;
+        return ColorMenuFlag;
     }
     public bool IsStartFlag()
     {

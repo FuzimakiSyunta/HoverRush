@@ -112,21 +112,25 @@ public class EnemyScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (bulletTimer[0] == 0.0f)
+        if (gameManagerScript.IsGameOver() == false)
         {
-            Vector3 position = transform.position;
-            position.y += 0.3f;
-            position.z -= 3.0f;
-            Instantiate(Enemybullet, position, Quaternion.identity);
-            bulletTimer[0] = 1.0f;
-        }
-        else
-        {
-            bulletTimer[0]++;
-            if (bulletTimer[0] > 60.0f)
+            if (bulletTimer[0] == 0.0f)
             {
-                bulletTimer[0] = 0.0f;
+                Vector3 position = transform.position;
+                position.y += 0.3f;
+                position.z -= 3.0f;
+                Instantiate(Enemybullet, position, Quaternion.identity);
+                bulletTimer[0] = 1.0f;
+            }
+            else
+            {
+                bulletTimer[0]++;
+                if (bulletTimer[0] > 60.0f)
+                {
+                    bulletTimer[0] = 0.0f;
+                }
             }
         }
+        
     }
 }
