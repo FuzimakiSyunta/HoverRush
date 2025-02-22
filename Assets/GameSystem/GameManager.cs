@@ -19,12 +19,6 @@ public class GameManager : MonoBehaviour
     //text&Image
     public GameObject gameOverText;
     public GameObject gameClearText;
-    public GameObject WAVEText0;
-    public GameObject WAVEText1;
-    public GameObject WAVEText2;
-    public GameObject WAVEText3;
-    public GameObject WAVEText4;
-    public GameObject WAVEText5;
     public TextMeshProUGUI scoreText;
     public GameObject titleText;
     public GameObject StartButtonImage;
@@ -55,15 +49,6 @@ public class GameManager : MonoBehaviour
         StartButtonImage.SetActive(true);
         Wave = 0;
         BossWaveCount = 0;
-
-
-        //WAVEText
-        WAVEText0.SetActive(false);
-        WAVEText1.SetActive(false);
-        WAVEText2.SetActive(false);
-        WAVEText3.SetActive(false);
-        WAVEText4.SetActive(false);
-        WAVEText5.SetActive(false);
         
     }
 
@@ -86,65 +71,10 @@ public class GameManager : MonoBehaviour
         }
         
         
-        //テキスト
+        //WAVE
         if (GameStartFlag == true)
         {
             BossWaveCount += Time.deltaTime;
-            if (BossWaveCount < 20)
-            {
-                WAVEText0.SetActive(true);
-                WAVEText1.SetActive(false);
-                WAVEText2.SetActive(false);
-                WAVEText3.SetActive(false);
-                WAVEText4.SetActive(false);
-                WAVEText5.SetActive(false);
-            }
-            if (BossWaveCount > 20 && BossWaveCount <= 40)
-            {
-                WAVEText0.SetActive(false);
-                WAVEText1.SetActive(true);
-                WAVEText2.SetActive(false);
-                WAVEText3.SetActive(false);
-                WAVEText4.SetActive(false);
-                WAVEText5.SetActive(false);
-            }
-            if (BossWaveCount >= 40 && BossWaveCount < 60)
-            {
-                WAVEText0.SetActive(false);
-                WAVEText1.SetActive(false);
-                WAVEText2.SetActive(true);
-                WAVEText3.SetActive(false);
-                WAVEText4.SetActive(false);
-                WAVEText5.SetActive(false);
-            }
-            if (BossWaveCount >= 60 && BossWaveCount < 80)
-            {
-                WAVEText0.SetActive(false);
-                WAVEText1.SetActive(false);
-                WAVEText2.SetActive(false);
-                WAVEText3.SetActive(true);
-                WAVEText4.SetActive(false);
-                WAVEText5.SetActive(false);
-            }
-            if (BossWaveCount >= 80 && BossWaveCount < 100)
-            {
-                WAVEText0.SetActive(false);
-                WAVEText1.SetActive(false);
-                WAVEText2.SetActive(false);
-                WAVEText3.SetActive(false);
-                WAVEText4.SetActive(true);
-                WAVEText5.SetActive(false);
-            }
-            if (BossWaveCount >= 100)
-            {
-                WAVEText0.SetActive(false);
-                WAVEText1.SetActive(false);
-                WAVEText2.SetActive(false);
-                WAVEText3.SetActive(false);
-                WAVEText4.SetActive(false);
-                WAVEText5.SetActive(true);
-            }
-
             if (BossWaveCount>=18&&BossWaveCount<=40)
             {
                 BossWaveFlag = true;
@@ -546,6 +476,12 @@ public class GameManager : MonoBehaviour
     {
         return OpenSelector;
     }
-    
-
+    public bool IsBossWaveStart()
+    {
+        return BossWaveFlag;
+    }
+    public float IsBossWaveCount()
+    {
+        return BossWaveCount;
+    }
 }

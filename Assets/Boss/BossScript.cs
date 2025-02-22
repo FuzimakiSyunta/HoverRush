@@ -10,6 +10,8 @@ public class BossScript : MonoBehaviour
     private GameObject gameManager;
     private GameManager gameManagerScript;
 
+    public GameObject Robot;
+    public GameObject BossAir;
     //Bossの弾
     public GameObject Bossbullet;
     public GameObject BossBarstbullet_L;
@@ -50,6 +52,9 @@ public class BossScript : MonoBehaviour
         sliderBool = false;
         animator.SetBool("isMove", false);
         animator.SetBool("isLazer", false);
+        animator.SetBool("isAirTransform", false);
+        animator.SetBool("isRobotStay", false);
+        animator.SetBool("isTransform", false);
         bulletTimer = 0;
         MultibulletTimer = 0;
         StartTime = false;
@@ -57,6 +62,8 @@ public class BossScript : MonoBehaviour
         isLazerWave = false;
         Lazer_L.SetActive(false);
         Lazer_R.SetActive(false);
+        Robot.SetActive(false);
+        BossAir.SetActive(true);
     }
 
     // Update is called once per frame
@@ -210,6 +217,16 @@ public class BossScript : MonoBehaviour
             Lazer_R.SetActive(false);
         }
 
+        if(animator.GetBool("isRobotStay")==true)
+        {
+            BossAir.SetActive(false);
+            Robot.SetActive(true);
+        }
+        if (animator.GetBool("isMove") == true)
+        {
+            BossAir.SetActive(true);
+            Robot.SetActive(false);
+        }
 
     }
 
@@ -231,10 +248,24 @@ public class BossScript : MonoBehaviour
         if (BossBattleTime >= 80 && BossBattleTime < 100)
         {
             animator.SetBool("isLazer", false);
+            animator.SetBool("isTransform",true);
             isLazerWave = false;
 
         }
-        if (BossBattleTime >= 100)
+        if (BossBattleTime >= 85&& BossBattleTime < 100)
+        {
+            animator.SetBool("isRobotStay", true);
+        }
+        if (BossBattleTime >= 100&& BossBattleTime < 103)
+        {
+            animator.SetBool("isAirTransform", true);
+            animator.SetBool("isRobotStay", false);
+        }
+        if (BossBattleTime >= 105&& BossBattleTime < 110)
+        {
+            animator.SetBool("isRobotStay", false);
+        }
+        if (BossBattleTime >= 110)
         {
             animator.SetBool("isMove", true);
         }

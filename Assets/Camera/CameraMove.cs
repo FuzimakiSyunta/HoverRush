@@ -66,6 +66,7 @@ public class CameraMove : MonoBehaviour
                 {
                     transform.position += new Vector3(-MoveSpeed, 0, 0);
                 }
+                
             }
         }
     }

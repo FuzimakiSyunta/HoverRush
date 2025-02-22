@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject bullet;
     public GameObject machineGun;
     public EnemyScript enemy;
+    public GameObject Fire;
 
     //ステータス
     private float MoveSpeed = 0.02f;
@@ -101,6 +102,15 @@ public class PlayerScript : MonoBehaviour
             else if (Vstick < 0 && transform.position.z >= -6.5f)
             {
                 transform.position += new Vector3(0, 0, -MoveSpeed);
+            }
+
+            if (Vstick > 0 || Input.GetKey(KeyCode.W))
+            {
+                Fire.SetActive(true);
+            }
+            else
+            {
+                Fire.SetActive(false);
             }
 
             //キーボード
