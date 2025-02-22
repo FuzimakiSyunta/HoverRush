@@ -1742,12 +1742,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b807d33461cca48bd12cad00fa1980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WAVEText0: {fileID: 639150840}
-  WAVEText1: {fileID: 226774807}
-  WAVEText2: {fileID: 1984427953}
-  WAVEText3: {fileID: 1650039840}
-  WAVEText4: {fileID: 1990964108}
-  WAVEText5: {fileID: 63905520}
+  WAVEText0: {fileID: 0}
+  WAVEText1: {fileID: 0}
+  WAVEText2: {fileID: 0}
+  WAVEText3: {fileID: 0}
+  WAVEText4: {fileID: 0}
+  WAVEText5: {fileID: 0}
 --- !u!1 &782488165
 GameObject:
   m_ObjectHideFlags: 0

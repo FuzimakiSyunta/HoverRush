@@ -20,6 +20,7 @@ public class WAVETEXTScripti : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
         WaveImageActiveTime = 0;
         WAVEText0.SetActive(false);
