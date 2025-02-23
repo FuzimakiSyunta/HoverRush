@@ -5,13 +5,12 @@ using Unity.VisualScripting;
 
 public class FloorMove : MonoBehaviour
 {
-    private GameManager gameManagerScript;
-    private GameObject gameManager;
+    
     private float MoveSpeed = 0.4f;
     // Start is called before the first frame update
     void Start()
     {
-        gameManagerScript = gameManager.GetComponent<GameManager>();
+        
     }
 
     // Update is called once per frame

@@ -82,6 +82,11 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("GameOver", false);
         }
 
+        if(gameManagerScript.IsGameStart() == true)
+        {
+            HPSlider.SetActive(true);
+        }
+
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
         ///ゲームスタートしたら
@@ -133,7 +138,7 @@ public class PlayerScript : MonoBehaviour
 
         }
         //射撃パターン追加  
-        if (gameManagerScript.IsScore()>= 10)
+        if (gameManagerScript.IsScore()>= 15)
         {
             ShotChenge = 1;
         }
