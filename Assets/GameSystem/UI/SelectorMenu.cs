@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+    using UnityEngine.UI;
 
 public class SelectorMenu : MonoBehaviour
 {
@@ -9,14 +9,17 @@ public class SelectorMenu : MonoBehaviour
     public GameObject gameManager;
     public RectTransform Selector;
     public GameObject SelectorImage;
-    //public GameObject GAMESTARTImage;
-    //public GameObject SETTINGImage;
+    public GameObject GAMESTARTImage;
+    public GameObject SETTINGImage;
     public bool ColorMenuFlag;//セッティングが出せる状態
     public bool StartFlag;//ゲームが始められる状態
     public RectTransform SettingMENUImage;
     private float move = 1.0f;
     private float selectormove = 210.0f;
     public RectTransform StartImage;
+    public bool Hrizonal_L;
+    public bool Vertical_L;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +49,21 @@ public class SelectorMenu : MonoBehaviour
                     StartFlag = true;
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
-                    if (Input.GetKeyDown(KeyCode.S))
+                    //L Stick
+                    float lsh = Input.GetAxis("L_Stick_H");
+                    float lsv = Input.GetAxis("L_Stick_V");
+                    if ((lsh != 0))
+                    {
+                        Hrizonal_L = true;
+                        Vertical_L = false;
+                    }
+                    if ((lsv != 0))
+                    {
+                        Hrizonal_L = false;
+                        Vertical_L = true;
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.S)/*|| Hrizonal_L == true*/)
                     {
                         Selector.position += new Vector3(0, -selectormove, 0);
                         StartFlag = false;
@@ -66,7 +83,7 @@ public class SelectorMenu : MonoBehaviour
                 {
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
-                    if (Input.GetKeyDown(KeyCode.W))
+                    if (Input.GetKeyDown(KeyCode.W)/*|| Vertical_L == true*/)
                     {
                         Selector.position += new Vector3(0, selectormove, 0);
                         ColorMenuFlag = false;
