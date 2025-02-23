@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+    using UnityEngine.UI;
 
 public class SelectorMenu : MonoBehaviour
 {
@@ -9,14 +9,15 @@ public class SelectorMenu : MonoBehaviour
     public GameObject gameManager;
     public RectTransform Selector;
     public GameObject SelectorImage;
-    //public GameObject GAMESTARTImage;
-    //public GameObject SETTINGImage;
+    public GameObject GAMESTARTImage;
+    public GameObject SETTINGImage;
     public bool ColorMenuFlag;//セッティングが出せる状態
     public bool StartFlag;//ゲームが始められる状態
     public RectTransform SettingMENUImage;
     private float move = 1.0f;
     private float selectormove = 210.0f;
     public RectTransform StartImage;
+    
 
     // Start is called before the first frame update
     void Start()

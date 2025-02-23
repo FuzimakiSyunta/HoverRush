@@ -222,7 +222,7 @@ public class BossScript : MonoBehaviour
             BossAir.SetActive(false);
             Robot.SetActive(true);
         }
-        if (animator.GetBool("isMove") == true)
+        if (animator.GetBool("FinalWave") == true)
         {
             BossAir.SetActive(true);
             Robot.SetActive(false);
@@ -261,13 +261,13 @@ public class BossScript : MonoBehaviour
             animator.SetBool("isAirTransform", true);
             animator.SetBool("isRobotStay", false);
         }
-        if (BossBattleTime >= 105&& BossBattleTime < 110)
+        if (BossBattleTime >= 103&& BossBattleTime < 104)
         {
             animator.SetBool("isRobotStay", false);
         }
-        if (BossBattleTime >= 110)
+        if (BossBattleTime >= 101)
         {
-            animator.SetBool("isMove", true);
+            animator.SetBool("FinalWave", true);
         }
     }
 
