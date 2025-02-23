@@ -46,8 +46,8 @@ public class EnemyScript : MonoBehaviour
     {
         if (gameManagerScript.IsGameStart() == true)
         {
-            float moveSpeed = -18.0f;
-            Vector3 velocity = new Vector3(0, 0, moveSpeed * Time.deltaTime);
+            float moveSpeed = -0.05f;
+            Vector3 velocity = new Vector3(0, 0, moveSpeed);
             transform.position += transform.rotation * velocity;
         }
         // スライダーの向きをカメラ方向に固定

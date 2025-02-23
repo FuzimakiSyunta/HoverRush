@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemySpeed : MonoBehaviour
 {
-    private float MeteoriteSpeed = 0.05f;
+    private float MeteoriteSpeedY = 0.01f;
+    private float MeteoriteSpeedZ = 0.05f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,6 @@ public class EnemySpeed : MonoBehaviour
         //ˆÚ“®
         Vector3 position = transform.position;
 
-        transform.position -= new Vector3(0, 0, MeteoriteSpeed);
+        transform.position -= new Vector3(0, MeteoriteSpeedY, MeteoriteSpeedZ);
     }
 }
