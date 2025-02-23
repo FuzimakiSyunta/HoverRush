@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.SceneManagement;
 using static System.Net.Mime.MediaTypeNames;
 using static UnityEditor.PlayerSettings;
+using TMPro;
+//using TMPro;
 
 
 public class GameManager : MonoBehaviour
 {
     //主要オブジェクト
     public GameObject enemy;
-    public GameObject blueEnemy;
+    public GameObject mineEnemy;
     public GameObject yellowEnemy;
     public GameObject player;
+    public GameObject UI;
     //text&Image
     public GameObject gameOverText;
     public GameObject gameClearText;
-    public TextMeshProUGUI scoreText;
     public GameObject titleText;
     public GameObject StartButtonImage;
 
@@ -55,11 +56,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //スコア
-        scoreText.text = "ENERGY  " + score;
-
+        
         //セレクト
-        if(OpenSelector == false)
+        if (OpenSelector == false)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
@@ -68,6 +67,13 @@ public class GameManager : MonoBehaviour
                 StartButtonImage.SetActive(false);
                 GameStartFlag = false;
             }
+        }
+        if(GameClearFlag==true)
+        {
+            UI.SetActive(false);
+        }else
+        {
+            UI.SetActive(true);
         }
         
         
@@ -109,9 +115,10 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()//敵出現
     {
         if (GameOverFlag == true) return;
+        if (GameClearFlag == true) return;
 
         //ボスウェーブじゃないとき
-        if(BossWaveFlag==false)
+        if (BossWaveFlag==false)
         {
             //敵生成
             if (GameStartFlag == true && Wave == 0)//WAVE0
@@ -134,7 +141,7 @@ public class GameManager : MonoBehaviour
                         }
                         if (Style == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(-8.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(-8.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
                         if (Style == 2)
                         {
@@ -153,7 +160,7 @@ public class GameManager : MonoBehaviour
                         }
                         if (Style == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(0.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(0.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
                         if (Style == 2)
                         {
@@ -172,7 +179,7 @@ public class GameManager : MonoBehaviour
                         }
                         if (Style == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(8.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(8.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
                         if (Style == 2)
                         {
@@ -191,7 +198,7 @@ public class GameManager : MonoBehaviour
                         }
                         if (Style == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(4.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(4.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
                         if (Style == 2)
                         {
@@ -210,7 +217,7 @@ public class GameManager : MonoBehaviour
                         }
                         if (Style == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(-4.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(-4.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
                         if (Style == 2)
                         {
@@ -225,7 +232,7 @@ public class GameManager : MonoBehaviour
             if (GameStartFlag == true && Wave == 1)//WAVE1
             {
                 int r = Random.Range(0, 7000);
-                int Style = Random.Range(0, 6);
+                int EnemyStyle = Random.Range(0, 6);
                 int AttackEnemyStyle = Random.Range(0, 4);
                 
                 for (int i = 0; i < 5; i++)
@@ -237,15 +244,15 @@ public class GameManager : MonoBehaviour
                 {
                     if (CoolTime[0] >= 60)
                     {
-                        if (AttackEnemyStyle == 0 && Style == 0)
+                        if (AttackEnemyStyle == 0 && EnemyStyle == 0)
                         {
                             Instantiate(enemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 1)
+                        if (EnemyStyle == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(-8.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(-8.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 2)
+                        if (EnemyStyle == 2)
                         {
                             Instantiate(yellowEnemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
@@ -256,15 +263,15 @@ public class GameManager : MonoBehaviour
                 {
                     if (CoolTime[1] >= 60)
                     {
-                        if (AttackEnemyStyle == 1 && Style == 0)
+                        if (AttackEnemyStyle == 1 && EnemyStyle == 0)
                         {
                             Instantiate(enemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 1)
+                        if (EnemyStyle == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(0.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(0.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 2)
+                        if (EnemyStyle == 2)
                         {
                             Instantiate(yellowEnemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
@@ -275,15 +282,15 @@ public class GameManager : MonoBehaviour
                 {
                     if (CoolTime[2] >= 60)
                     {
-                        if (AttackEnemyStyle == 2 && Style == 0)
+                        if (AttackEnemyStyle == 2 && EnemyStyle == 0)
                         {
                             Instantiate(enemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 1)
+                        if (EnemyStyle == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(8.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(8.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 2)
+                        if (EnemyStyle == 2)
                         {
                             Instantiate(yellowEnemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
@@ -294,15 +301,15 @@ public class GameManager : MonoBehaviour
                 {
                     if (CoolTime[3] >= 60)
                     {
-                        if (AttackEnemyStyle == 3 && Style == 0)
+                        if (AttackEnemyStyle == 3 && EnemyStyle == 0)
                         {
                             Instantiate(enemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 1)
+                        if (EnemyStyle == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(4.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(4.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 2)
+                        if (EnemyStyle == 2)
                         {
                             Instantiate(yellowEnemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
@@ -313,15 +320,15 @@ public class GameManager : MonoBehaviour
                 {
                     if (CoolTime[4] >= 60)
                     {
-                        if (AttackEnemyStyle == 3 && Style == 0)
+                        if (AttackEnemyStyle == 3 && EnemyStyle == 0)
                         {
                             Instantiate(enemy, new Vector3(-4.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 1)
+                        if (EnemyStyle == 1)
                         {
-                            Instantiate(blueEnemy, new Vector3(-4.0f, 3.06f, 45.0f), Quaternion.identity);
+                            Instantiate(mineEnemy, new Vector3(-4.0f, 8.0f, 45.0f), Quaternion.identity);
                         }
-                        if (Style == 2)
+                        if (EnemyStyle == 2)
                         {
                             Instantiate(yellowEnemy, new Vector3(-4.0f, 1.5f, 45.0f), Quaternion.identity);
                         }
@@ -350,7 +357,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (Style == 1)
                     {
-                        Instantiate(blueEnemy, new Vector3(-8.0f, 3.06f, 45.0f), Quaternion.identity);
+                        Instantiate(mineEnemy, new Vector3(-8.0f, 8.0f, 45.0f), Quaternion.identity);
                     }
                     if (Style == 2)
                     {
@@ -369,7 +376,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (Style == 1)
                     {
-                        Instantiate(blueEnemy, new Vector3(0.0f, 3.06f, 45.0f), Quaternion.identity);
+                        Instantiate(mineEnemy, new Vector3(0.0f, 8.0f, 45.0f), Quaternion.identity);
                     }
                     if (Style == 2)
                     {
@@ -388,7 +395,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (Style == 1)
                     {
-                        Instantiate(blueEnemy, new Vector3(8.0f, 3.06f, 45.0f), Quaternion.identity);
+                        Instantiate(mineEnemy, new Vector3(8.0f, 8.0f, 45.0f), Quaternion.identity);
                     }
                     if (Style == 2)
                     {
@@ -407,7 +414,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (Style == 1)
                 {
-                    Instantiate(blueEnemy, new Vector3(4.0f, 3.06f, 45.0f), Quaternion.identity);
+                    Instantiate(mineEnemy, new Vector3(4.0f, 8.0f, 45.0f), Quaternion.identity);
                 }
                 if (Style == 2)
                 {
@@ -426,7 +433,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (Style == 1)
                     {
-                        Instantiate(blueEnemy, new Vector3(-4.0f, 3.06f, 45.0f), Quaternion.identity);
+                        Instantiate(mineEnemy, new Vector3(-4.0f, 8.0f, 45.0f), Quaternion.identity);
                     }
                     if (Style == 2)
                     {
