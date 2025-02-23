@@ -52,6 +52,7 @@ MonoBehaviour:
   bullet: {fileID: 6148454434878659236, guid: c693d708a39a6024d98cc4adc8e8a46f, type: 3}
   machineGun: {fileID: 0}
   enemy: {fileID: 0}
+  Fire: {fileID: 0}
   HPSlider: {fileID: 0}
   playerHP: 0
   hpSlider: {fileID: 0}

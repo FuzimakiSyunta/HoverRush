@@ -28,6 +28,7 @@ public class BossScript : MonoBehaviour
     public float BossBattleTime = 0;
     private float MultiBulletCoolTime = 0;
     private float BulletCoolTime = 0;
+    private float LazerBulletCoolTime = 0;
 
     //Bossのステータス
     public int bossHP;// ボスの最大HP
@@ -144,7 +145,7 @@ public class BossScript : MonoBehaviour
                 if(MultiBulletCoolTime>= 120)
                 {
                     position.y += 0.3f;
-                    position.z -= 35.0f;
+                    position.z -= 30.0f;
                     Instantiate(Bossbullet, position, Quaternion.identity);
                     MultibulletTimer = 1.0f;
 
@@ -195,19 +196,23 @@ public class BossScript : MonoBehaviour
         if (animator.GetBool("isLazer") == true)
         {
             LazerTime += Time.deltaTime;
-            if(LazerTime<=1)
+            LazerBulletCoolTime++;
+            if(LazerBulletCoolTime>=60)
             {
-                Lazer_L.SetActive(true);
-                Lazer_R.SetActive(false);
-            }
-            if (LazerTime <= 4 && LazerTime > 2)
-            {
-                Lazer_L.SetActive(false);
-                Lazer_R.SetActive(true);
-            }
-            if(LazerTime <= 6 && LazerTime > 4)
-            {
-                LazerTime= 0.0f;
+                if (LazerTime <= 1)
+                {
+                    Lazer_L.SetActive(true);
+                    Lazer_R.SetActive(false);
+                }
+                if (LazerTime <= 4 && LazerTime > 2)
+                {
+                    Lazer_L.SetActive(false);
+                    Lazer_R.SetActive(true);
+                }
+                if (LazerTime <= 6 && LazerTime > 4)
+                {
+                    LazerTime = 0.0f;
+                }
             }
 
         }
@@ -215,6 +220,7 @@ public class BossScript : MonoBehaviour
         {
             Lazer_L.SetActive(false);
             Lazer_R.SetActive(false);
+            LazerBulletCoolTime = 0;
         }
 
         if(animator.GetBool("isRobotStay")==true)
@@ -222,7 +228,7 @@ public class BossScript : MonoBehaviour
             BossAir.SetActive(false);
             Robot.SetActive(true);
         }
-        if (animator.GetBool("isMove") == true)
+        if (animator.GetBool("FinalWave") == true)
         {
             BossAir.SetActive(true);
             Robot.SetActive(false);
@@ -261,13 +267,13 @@ public class BossScript : MonoBehaviour
             animator.SetBool("isAirTransform", true);
             animator.SetBool("isRobotStay", false);
         }
-        if (BossBattleTime >= 105&& BossBattleTime < 110)
+        if (BossBattleTime >= 103&& BossBattleTime < 104)
         {
             animator.SetBool("isRobotStay", false);
         }
-        if (BossBattleTime >= 110)
+        if (BossBattleTime >= 101)
         {
-            animator.SetBool("isMove", true);
+            animator.SetBool("FinalWave", true);
         }
     }
 

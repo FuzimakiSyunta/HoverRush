@@ -13,6 +13,8 @@ public class BrindScript : MonoBehaviour
     public GameObject StartSelectCoverImage;
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    public GameObject LuleBGmage;
+    public GameObject LuleUiImage;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,8 @@ public class BrindScript : MonoBehaviour
             LuleSelectImage.SetActive(false);
             SelectorImage.SetActive(false);
             StartSelectCoverImage?.SetActive(false);
+            LuleBGmage.SetActive(false);
+            LuleUiImage.SetActive(false);
         }
 
         if (gameManagerScript.IsOpenSelector() == true)//selectormenu
