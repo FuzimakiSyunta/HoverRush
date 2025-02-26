@@ -5,18 +5,20 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public Rigidbody rb;
+    private float RotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
         float moveSpeed = 27.0f;
         rb.velocity = new Vector3(0, 0, -moveSpeed);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 5);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        RotateSpeed -= 1.0f;
+        transform.rotation = Quaternion.Euler(0, RotateSpeed, 0); // // X²‚ğ’†S‚É45‹‰ñ“]
     }
     void OnCollisionEnter(Collision other)
     {

@@ -8,8 +8,8 @@ public class RobotScript : MonoBehaviour
     private GameManager gameManagerScript;
 
     private float bulletTimer = 0;
-    private float BulletCoolTime = 0;
-    private Animator animator;
+    //private float BulletCoolTime = 0;
+    public Animator animator;
 
     public GameObject RobotBullet;
     // Start is called before the first frame update
@@ -29,35 +29,29 @@ public class RobotScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (animator.GetBool("FinalWave") == true)
+        if (animator.GetBool("isRobotStay") == true)
         {
-            //ŽU’e
-            if (bulletTimer == 0.0f)
+            if (gameManagerScript.IsGameOver() == false)
             {
-                Vector3 position = transform.position;
-                BulletCoolTime++;
-
-                if (BulletCoolTime >= 120)
+                if (bulletTimer == 0.0f)
                 {
+                    Vector3 position = transform.position;
                     position.y += 0.3f;
-                    position.z = 35.0f;
+                    position.z -= 3.0f;
                     Instantiate(RobotBullet, position, Quaternion.identity);
                     bulletTimer = 1.0f;
-
                 }
-
-
-            }
-            else
-            {
-                bulletTimer++;
-                if (bulletTimer > 60.0f)
+                else
                 {
-                    bulletTimer = 0.0f;
+                    bulletTimer++;
+                    if (bulletTimer > 60.0f)
+                    {
+                        bulletTimer = 0.0f;
+                    }
                 }
-                BulletCoolTime = 0;
             }
         }
     }
+
 
 }
