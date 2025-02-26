@@ -222,11 +222,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5598817387518822421}
-  - component: {fileID: 8362292044617852588}
   - component: {fileID: 8150136410196521076}
   - component: {fileID: 5909209246426711722}
   - component: {fileID: 9028048021637115930}
   - component: {fileID: 1314916291452446331}
+  - component: {fileID: 1857482927388067906}
   m_Layer: 0
   m_Name: Meteorite
   m_TagString: Enemy
@@ -253,23 +253,6 @@ Transform:
   - {fileID: 8112041999377938677}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8362292044617852588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2898809129046960840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b69f4050111995409e9ce17314bfc22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enemybullet: {fileID: 0}
-  enemyHP: 60
-  hpSlider: {fileID: 3323242276378516979}
-  particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
-  sliderBool: 0
 --- !u!65 &8150136410196521076
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -343,6 +326,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843d9a1d1c324984f92bfd8dd4a70296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1857482927388067906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2898809129046960840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f6f6886d19dfe4ca0d93d7be01f6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHP: 60
+  hpSlider: {fileID: 3323242276378516979}
+  particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
+  sliderBool: 0
 --- !u!1 &7575957361474961641
 GameObject:
   m_ObjectHideFlags: 0
