@@ -14,6 +14,9 @@ TagManager:
   - Floor
   - BossExtraBullet
   - Machinegun
+  - WallRight
+  - WallLeft
+  - WallUp
   layers:
   - Default
   - TransparentFX
