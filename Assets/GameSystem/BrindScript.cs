@@ -48,68 +48,72 @@ public class BrindScript : MonoBehaviour
         WAVETextWarnigSecondWave.SetActive(false);
         WAVETextFinalWave.SetActive(false);
         WAVETextWarnigFinalWave.SetActive(false);
-        ClearText.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsGameStart()==true&& gameManagerScript.IsGameOver() == false&& gameManagerScript.IsGameClear() == false)//gamestart
+        if(gameManagerScript.IsGameClear()==false)
         {
-            boss.SetActive(true);
-            bossBullet.SetActive(true);
-            EnergyImage.SetActive(true);
-            StartSelectImage.SetActive(false);
-            LuleSelectImage.SetActive(false);
-            SelectorImage.SetActive(false);
-            StartSelectCoverImage.SetActive(false);
-            LuleBGImage.SetActive(false);
-            LuleUiImage.SetActive(false);
-            Hp.SetActive(true);
-            EnergyEMP.SetActive(true);
-            
-        }
-        if (gameManagerScript.IsGameOver() == true|| gameManagerScript.IsGameClear() == true)//gamestart
-        {
-            boss.SetActive(false);
-            EnergyImage.SetActive(false);
-            StartSelectImage.SetActive(false);
-            LuleSelectImage.SetActive(false);
-            SelectorImage.SetActive(false);
-            StartSelectCoverImage.SetActive(false);
-            LuleBGImage.SetActive(false);
-            LuleUiImage.SetActive(false);
-            EnergyImage.SetActive(false);
-            Hp.SetActive(false);
-            WAVETextWarnigFarstWave.SetActive(false);
-            WAVETextSecond.SetActive(false);
-            WAVETextWarnigSecondWave.SetActive(false);
-            WAVETextFinalWave.SetActive(false);
-            WAVETextWarnigFinalWave.SetActive(false);
+            if (gameManagerScript.IsGameStart() == true && gameManagerScript.IsGameOver() == false)//gamestart
+            {
+                boss.SetActive(true);
+                bossBullet.SetActive(true);
+                EnergyImage.SetActive(true);
+                StartSelectImage.SetActive(false);
+                LuleSelectImage.SetActive(false);
+                SelectorImage.SetActive(false);
+                StartSelectCoverImage.SetActive(false);
+                LuleBGImage.SetActive(false);
+                LuleUiImage.SetActive(false);
+                Hp.SetActive(true);
+                EnergyEMP.SetActive(true);
+
+            }
+            if (gameManagerScript.IsGameOver() == true)//gamestart
+            {
+                boss.SetActive(false);
+                EnergyImage.SetActive(false);
+                StartSelectImage.SetActive(false);
+                LuleSelectImage.SetActive(false);
+                SelectorImage.SetActive(false);
+                StartSelectCoverImage.SetActive(false);
+                LuleBGImage.SetActive(false);
+                LuleUiImage.SetActive(false);
+                EnergyImage.SetActive(false);
+                Hp.SetActive(false);
+                WAVETextWarnigFarstWave.SetActive(false);
+                WAVETextSecond.SetActive(false);
+                WAVETextWarnigSecondWave.SetActive(false);
+                WAVETextFinalWave.SetActive(false);
+                WAVETextWarnigFinalWave.SetActive(false);
+            }
+
+
+            if (gameManagerScript.IsOpenSelector() == true)//selectormenu
+            {
+                StartSelectCoverImage.SetActive(false);
+
+            }
+
+            if (gameManagerScript.IsGameStart() == true)
+            {
+                if (gameManagerScript.IsScore() >= 5)
+                {
+                    EnergyMIN.SetActive(true);
+                }
+                if (gameManagerScript.IsScore() >= 10)
+                {
+                    EnergyMID.SetActive(true);
+                }
+                if (gameManagerScript.IsScore() >= 15)
+                {
+                    EnergyMAX.SetActive(true);
+                }
+            }
         }
         
-
-        if (gameManagerScript.IsOpenSelector() == true)//selectormenu
-        {
-            StartSelectCoverImage.SetActive(false);
-            
-        }
-
-        if (gameManagerScript.IsGameStart() == true)
-        {
-            if (gameManagerScript.IsScore() >= 5)
-            {
-                EnergyMIN.SetActive(true);
-            }
-            if (gameManagerScript.IsScore() >= 10)
-            {
-                EnergyMID.SetActive(true);
-            }
-            if (gameManagerScript.IsScore() >= 15)
-            {
-                EnergyMAX.SetActive(true);
-            }
-        }
         
     }
 }

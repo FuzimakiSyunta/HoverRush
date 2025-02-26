@@ -204,12 +204,12 @@ public class BossScript : MonoBehaviour
                     Lazer_L.SetActive(true);
                     Lazer_R.SetActive(false);
                 }
-                if (LazerTime <= 4 && LazerTime > 2)
+                if (LazerTime <= 5 && LazerTime > 3)
                 {
                     Lazer_L.SetActive(false);
                     Lazer_R.SetActive(true);
                 }
-                if (LazerTime <= 6 && LazerTime > 4)
+                if (LazerTime <= 9 && LazerTime > 7)
                 {
                     LazerTime = 0.0f;
                 }
@@ -223,6 +223,7 @@ public class BossScript : MonoBehaviour
             LazerBulletCoolTime = 0;
         }
 
+        //ロボット状態の切り替え
         if(animator.GetBool("isRobotStay")==true)
         {
             BossAir.SetActive(false);

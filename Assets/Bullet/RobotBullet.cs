@@ -10,9 +10,9 @@ public class RobotBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float moveSpeedZ = 110.0f;
+        float moveSpeedZ = 27.0f;
         float moveSpeedY = 1.0f;
-        rb.velocity = new Vector3(0, -moveSpeedY, moveSpeedZ);
+        rb.velocity = new Vector3(0, -moveSpeedY, -moveSpeedZ);
         Destroy(gameObject, 3);
     }
 

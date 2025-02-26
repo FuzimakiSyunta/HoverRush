@@ -14,7 +14,7 @@ public class SelectorMenu : MonoBehaviour
     public GameObject SETTINGImage;
     public bool ColorMenuFlag;//セッティングが出せる状態
     public bool StartFlag;//ゲームが始められる状態
-    private float move = 1.0f;
+    private float move = 5.5f;
     private float selectormove = 210.0f;
     public RectTransform SettingMENUImage;
     public RectTransform StartImage;
@@ -44,7 +44,7 @@ public class SelectorMenu : MonoBehaviour
             //画像移動
             if (SettingMENUImage.position.x >= 325.0f)
             {
-                move -= 1.0f;
+                move -= 5.5f;
                 SelectorImage.SetActive(true);
 
                 StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);

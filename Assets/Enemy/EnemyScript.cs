@@ -11,12 +11,12 @@ public class EnemyScript : MonoBehaviour
     public GameObject Enemybullet;
     private Animator animator;
     public int enemyHP;// 敵の最大HP
-    private int wkHP;  // 敵の現在のHP
+    private int EnemyNowHP;  // 敵の現在のHP
     public Slider hpSlider; //HPバー（スライダー）
     public ParticleSystem particle;
     public bool sliderBool;
     private float MoveSpeed = 0.02f;
-    float[] bulletTimer = new float[3];
+    private float[] bulletTimer = new float[3];
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +24,8 @@ public class EnemyScript : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
         animator = GetComponent<Animator>();
-        hpSlider.value = (float)enemyHP;//HPバーの最初の値（最大HP）を設定
-        wkHP = enemyHP; // 現在のHPを最大HPに設定
+        hpSlider.value = enemyHP;//HPバーの最初の値（最大HP）を設定
+        EnemyNowHP = enemyHP; // 現在のHPを最大HPに設定
         hpSlider.gameObject.SetActive(false);
         sliderBool= false;
         Destroy(gameObject, 10);
@@ -38,7 +38,7 @@ public class EnemyScript : MonoBehaviour
         {
             bulletTimer[i] = 0.0f;
         }
-        int r = Random.Range(0, 2);
+        
     }
 
     // Update is called once per frame
@@ -71,8 +71,8 @@ public class EnemyScript : MonoBehaviour
         //敵と弾
         if (other.gameObject.tag == "Bullet")
         {
-            wkHP -= 20;//一度当たるごとに20をマイナス
-            hpSlider.value = (float)wkHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            EnemyNowHP -= 20;//一度当たるごとに20をマイナス
+            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             //Slider表示
             sliderBool = true;
         }
@@ -80,13 +80,13 @@ public class EnemyScript : MonoBehaviour
         if (other.gameObject.tag == "Machinegun")
         {
 
-            wkHP -= 15;//一度当たるごとに10をマイナス
+            EnemyNowHP -= 15;//一度当たるごとに10をマイナス
             
-            hpSlider.value = (float)wkHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
         // HPが0以下になった場合、自らを消す
-        if (wkHP <= 0)
+        if (EnemyNowHP <= 0)
         {
             ParticleSystem newParticle = Instantiate(particle);
             //場所固定
@@ -103,13 +103,7 @@ public class EnemyScript : MonoBehaviour
             gameManagerScript.Score();
         }
         
-        //if (other.gameObject.tag == "Player")
-        //{
-        //    animator.SetBool("Damege", true);
-        //}else
-        //{
-        //    animator.SetBool("Damege", false);
-        //}
+        
 
     }
     void FixedUpdate()
@@ -127,7 +121,7 @@ public class EnemyScript : MonoBehaviour
             else
             {
                 bulletTimer[0]++;
-                if (bulletTimer[0] > 60.0f)
+                if (bulletTimer[0] > 90.0f)
                 {
                     bulletTimer[0] = 0.0f;
                 }

@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject Fire;
 
     //ステータス
-    private float MoveSpeed = 0.02f;
+    private float MoveSpeed = 0.04f;
     float[] bulletTimer = new float[3];
     private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
@@ -87,11 +87,14 @@ public class PlayerScript : MonoBehaviour
             HPSlider.SetActive(true);
         }
 
+        //L Stick
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
+
         ///ゲームスタートしたら
         if (gameManagerScript.IsGameStart() == true&&gameManagerScript.IsGameClear()==false)
         {
+            ///コントローラー対応///////////////////////
             if (stick > 0 && transform.position.x <= 10)
             {
                 transform.position += new Vector3(MoveSpeed, 0, 0);
@@ -118,7 +121,7 @@ public class PlayerScript : MonoBehaviour
                 Fire.SetActive(false);
             }
 
-            //キーボード
+            //キーボード/////////////////////////////////
             if (Input.GetKey(KeyCode.D)&& transform.position.x <= 10)
             {
                 transform.position += new Vector3(MoveSpeed, 0, 0);
@@ -135,6 +138,7 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(0, 0, -MoveSpeed);
             }
+            //////////////////////////////////////////////
 
         }
         //射撃パターン追加  
