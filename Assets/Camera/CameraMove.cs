@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    private float MoveSpeed = 0.04f;
+    private float MoveSpeed = 0.06f;
     private bool Moving;
     private GameManager gameManagerScript;
     public GameObject gameManager;
