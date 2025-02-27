@@ -130,7 +130,7 @@ public class BossScript : MonoBehaviour
             //ボス消える
             gameManagerScript.GameClearStart();//ゲームクリア
             Destroy(gameObject, 0f);
-            audioSource.PlayOneShot(DeleteSound);
+            
         }
     }
     void FixedUpdate()

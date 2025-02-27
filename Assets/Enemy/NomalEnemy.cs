@@ -62,7 +62,7 @@ public class NomalEnemy : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (gameManagerScript.IsGameStart() == true)
+        if (gameManagerScript.IsGameStart() == true && gameManagerScript.IsGameClear() == false)
         {
             //敵と弾
             if (other.gameObject.tag == "Bullet")

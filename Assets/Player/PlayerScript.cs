@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject Fire;
 
     //ステータス
-    private float MoveSpeed = 0.04f;
+    private float MoveSpeed = 0.06f;
     float[] bulletTimer = new float[3];
     private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
@@ -139,6 +139,14 @@ public class PlayerScript : MonoBehaviour
                 transform.position += new Vector3(0, 0, -MoveSpeed);
             }
             //////////////////////////////////////////////
+
+            ///回復
+            if (Input.GetKey(KeyCode.L))
+            {
+                MaxHp = 100;
+                hpSlider.value = (float)MaxHp / (float)playerHP;
+                
+            }
 
         }
         //射撃パターン追加  
