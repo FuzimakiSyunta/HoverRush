@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RobotBullet : MonoBehaviour
+public class RobotBullet_L : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody rb;
-    private float moveSpeedX = 0;
+    private float moveSpeedX = -20.0f;
     private float moveSpeedY = -60.0f;
     private float moveSpeedZ = -125.0f;
     private float rotateZ;

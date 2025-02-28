@@ -3237,6 +3237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1736841753}
   RobotBullet: {fileID: 679023749104929143, guid: a068f9dc0dc0bde478effef60f829b15, type: 3}
+  RobotBullet_L: {fileID: 679023749104929143, guid: 192e9bf343472dd4ea42805bb3cfd507, type: 3}
+  RobotBullet_R: {fileID: 679023749104929143, guid: c279c4494ba0f734f8604a4c03426453, type: 3}
 --- !u!1 &1740348079
 GameObject:
   m_ObjectHideFlags: 0

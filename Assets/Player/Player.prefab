@@ -56,6 +56,7 @@ MonoBehaviour:
   machineGun: {fileID: 4932371020863500020, guid: c693d708a39a6024d98cc4adc8e8a46f, type: 3}
   enemy: {fileID: 4142080795586807030, guid: 818ef5a4190293c44b81ddf80065c947, type: 3}
   Fire: {fileID: 4939153805180380502}
+  position_R: 0
   HPSlider: {fileID: 0}
   playerHP: 100
   hpSlider: {fileID: 0}
