@@ -6,36 +6,39 @@ public class RobotBullet : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody rb;
-    
-    public Transform player; // プレイヤーオブジェクトのTransform
-    public float moveSpeed = 5.0f; // 敵の移動速度
-
+    private float moveSpeedX;
+    private float moveSpeedY;
+    private float moveSpeedZ;
+    private float rotateZ;
+    private float rotateX;
     // Start is called before the first frame update
     void Start()
     {
-        
-
-        //float moveSpeedZ = 125.0f;
-        //float moveSpeedY = 60.0f;
-        //float rotateZ = 45.0f;
-
-        //rb.velocity = new Vector3(0, -moveSpeedY, -moveSpeedZ);
-        //transform.rotation = Quaternion.Euler(0, 0, rotateZ); // // Y軸を中心に45°回転
-        //Destroy(gameObject, 3);
+        rb.velocity = new Vector3(moveSpeedX, moveSpeedY, moveSpeedZ);
+        transform.rotation = Quaternion.Euler(rotateX, 0, rotateZ); // // Y軸を中心に45°回転
+        Destroy(gameObject, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
-        {
-            // プレイヤーの位置を向く
-            transform.LookAt(player);
-
-            // プレイヤーに向かって移動
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-        }
-
+       moveSpeedZ = -125.0f;
+       moveSpeedY = -60.0f;
+       moveSpeedX = 0;
+       rotateX = 0;
+       
+       
+       //moveSpeedZ = -125.0f;
+       //moveSpeedY = -60.0f;
+       //moveSpeedX = 50.0f;
+       //rotateX = 45.0f;
+       
+       
+       //moveSpeedZ = -125.0f;
+       //moveSpeedY = -60.0f;
+       //moveSpeedX = -50.0f;
+       //rotateX = -45.0f;
+        
     }
     void OnCollisionEnter(Collision other)
     {
