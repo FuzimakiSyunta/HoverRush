@@ -6,8 +6,10 @@ using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
+    //gamemanager
     private GameManager gameManagerScript;
     public GameObject gameManager;
+
     //select
     private SelectorMenu selectorMenuScript;
     public GameObject selectMenu;
@@ -23,10 +25,12 @@ public class PlayerScript : MonoBehaviour
     public bool position_R;
 
     //ステータス
-    private float MoveSpeed = 0.06f;
     float[] bulletTimer = new float[3];
     private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
+    //private float MoveSpeed = 0.06f;
+
+    private float MoveSpeed = 0.15f;
 
     //HP関連
     public GameObject HPSlider;
@@ -80,6 +84,7 @@ public class PlayerScript : MonoBehaviour
         // インスタンス化したパーティクルシステムのGameObjectを5秒後に削除する。(任意)
         // ※第一引数をnewParticleだけにするとコンポーネントしか削除されない。
         Destroy(newParticle.gameObject, 5.0f);
+        
     }
 
     // Update is called once per frame
@@ -133,7 +138,7 @@ public class PlayerScript : MonoBehaviour
                 NoHealImage.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown("joystick button 2"))
                 {
-                    MaxHp = 100;
+                    MaxHp = 200;
                     hpSlider.value = (float)MaxHp / (float)playerHP;
                     isHeal = true;
                     HealImage.SetActive(false);
@@ -283,27 +288,29 @@ public class PlayerScript : MonoBehaviour
         //雑魚の弾
         if (other.gameObject.tag == "EnemyBullet")
         {
-            MaxHp -= 3;
+            MaxHp -= 10;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            
         }
 
         //BossBullet
         if (other.gameObject.tag == "BossBullet")
         {
-            MaxHp -= 8;
+            MaxHp -= 20;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
+        
         //BossExtraBullet
         if (other.gameObject.tag == "BossExtraBullet")
         {
-            MaxHp -= 10;
+            MaxHp -= 20;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
 
         //ボスのレーザー
         if (other.gameObject.tag == "Lazer")
         {
-            MaxHp -= 5;
+            MaxHp -= 15;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
 
@@ -311,6 +318,11 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy"|| other.gameObject.tag == "BossBullet"||other.gameObject.tag == "BossExtraBullet"|| other.gameObject.tag == "Lazer")
         {
             Damaged();
+            
+        }
+        else
+        {
+            isDameged = false;
         }
 
     }
@@ -321,6 +333,7 @@ public class PlayerScript : MonoBehaviour
             MaxHp -= 5;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             Damaged();
+            
         }
         
     }
@@ -334,5 +347,8 @@ public class PlayerScript : MonoBehaviour
     {
         return position_R;
     }
-
+    public float Speed()
+    {
+        return MoveSpeed;
+    }
 }

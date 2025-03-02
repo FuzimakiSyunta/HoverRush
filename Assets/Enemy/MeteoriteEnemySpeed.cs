@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpeed : MonoBehaviour
+public class MeteoriteEnemySpeed : MonoBehaviour
 {
-    private float MeteoriteSpeedY = 0.01f;
-    private float MeteoriteSpeedZ = 0.05f;
+    //private float MeteoriteSpeedY = 0.01f;
+    //private float MeteoriteSpeedZ = 0.05f;
+
+    private float MeteoriteSpeedY = 0.015f;
+    private float MeteoriteSpeedZ = 0.12f;
     // Start is called before the first frame update
     void Start()
     {
