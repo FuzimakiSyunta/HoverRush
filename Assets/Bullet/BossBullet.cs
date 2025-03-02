@@ -9,8 +9,8 @@ public class BossBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float moveSpeedZ = 110.0f;
-        float moveSpeedY = 11.0f;
+        float moveSpeedZ = 100.0f;
+        float moveSpeedY = 10.0f;
         rb.velocity = new Vector3(0, -moveSpeedY, -moveSpeedZ);
         Destroy(gameObject, 3);
     }

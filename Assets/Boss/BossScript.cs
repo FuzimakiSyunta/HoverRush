@@ -145,7 +145,7 @@ public class BossScript : MonoBehaviour
             MultiBulletCoolTime++;
             if (animator.GetBool("isMove")==false && animator.GetBool("isLazer") == false && animator.GetBool("isRobotStay") == false && animator.GetBool("FinalWave") == false)
             {
-                if(MultiBulletCoolTime>= 120)
+                if(MultiBulletCoolTime>= 240)
                 {
                     position.y += 0.3f;
                     position.z -= 30.0f;
@@ -202,17 +202,17 @@ public class BossScript : MonoBehaviour
             LazerBulletCoolTime++;
             if(LazerBulletCoolTime>=60)
             {
-                if (LazerTime <= 1)
+                if (LazerTime <= 1.0f)
                 {
                     Lazer_L.SetActive(true);
                     Lazer_R.SetActive(false);
                 }
-                if (LazerTime <= 6 && LazerTime > 4)
+                if (LazerTime <= 2.5f && LazerTime > 1.5f)
                 {
                     Lazer_L.SetActive(false);
                     Lazer_R.SetActive(true);
                 }
-                if (LazerTime <= 10 && LazerTime > 7)
+                if (LazerTime <= 4.0f && LazerTime > 3.0f)
                 {
                     LazerTime = 0.0f;
                 }
