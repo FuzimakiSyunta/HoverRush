@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static System.Net.Mime.MediaTypeNames;
-using static UnityEditor.PlayerSettings;
+
 using TMPro;
 //using TMPro;
 
