@@ -5,68 +5,40 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    private float MoveSpeed = 0.06f;
-    private bool Moving;
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
-    //プレイヤーを変数に格納
-    public GameObject Player;
-    private float angle;
+    private float MoveSpeedY = 0.05f;
+    private float MoveSpeedZ = 0.05f;
 
-    //select
-    private SelectorMenu selectorMenuScript;
-    public GameObject selectMenu;
+    private Vector3 pos;
+
 
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        selectorMenuScript = selectMenu.GetComponent<SelectorMenu>();
-        Moving = false;
-        
+        pos.y = 3.95f;
+        pos.z = -1.81f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float stick = Input.GetAxis("Horizontal");
-        float Vstick = Input.GetAxis("Vertical");
-
-        if (selectorMenuScript.IsStartFlag() == true)
+        if (gameManagerScript.IsBossWaveCount() >= 80 && gameManagerScript.IsBossWaveCount() <= 101)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+            transform.position += new Vector3(0, -MoveSpeedY, MoveSpeedZ);
+            if (transform.position.y <= 0.1f && transform.position.z >= 2.74f)
             {
-                Moving = true;
+                transform.position = new Vector3(0, 0.1f, 2.74f);
             }
         }
-        if(Moving==true)
+        else
         {
-            if (gameManagerScript.IsGameClear() == false&&gameManagerScript.IsGameOver()==false)
+            transform.position += new Vector3(0, MoveSpeedY, -MoveSpeedZ);
+            if (transform.position.y >= 1.95f&& transform.position.z <= -1.81f)
             {
-                //プレイヤー位置情報
-                Vector3 playerPos = Player.transform.position;
-                //カメラを回転させる
-                transform.RotateAround(playerPos, Vector3.up, angle);
-
-                if (stick > 0 && transform.position.x <= 10)
-                {
-                    transform.position += new Vector3(MoveSpeed, 0, 0);
-                }
-                else if (stick < 0 && transform.position.x >= -10)
-                {
-                    transform.position += new Vector3(-MoveSpeed, 0, 0);
-                }
-                //キーボード
-                if (Input.GetKey(KeyCode.D) && transform.position.x <= 10)
-                {
-                    transform.position += new Vector3(MoveSpeed, 0, 0);
-                }
-                else if (Input.GetKey(KeyCode.A) && transform.position.x >= -10)
-                {
-                    transform.position += new Vector3(-MoveSpeed, 0, 0);
-                }
-                
+                transform.position = new Vector3(0, pos.y, pos.z);
             }
         }
     }

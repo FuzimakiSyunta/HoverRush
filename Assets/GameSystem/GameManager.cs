@@ -80,7 +80,8 @@ public class GameManager : MonoBehaviour
         //WAVE
         if (GameStartFlag == true)
         {
-            BossWaveCount += Time.deltaTime;
+            BossWaveCount += Time.deltaTime;//ƒQ[ƒ€‚ÌŽžŠÔŒo‰ß
+
             if (BossWaveCount>=18&&BossWaveCount<=40)
             {
                 BossWaveFlag = true;

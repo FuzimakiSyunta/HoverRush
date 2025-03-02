@@ -59,27 +59,6 @@ public class NomalEnemy : MonoBehaviour
             hpSlider.gameObject.SetActive(true);
         }
 
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        
-        //敵と弾
-        if (other.gameObject.tag == "Bullet")
-        {
-            EnemyNowHP -= 20;//一度当たるごとに20をマイナス
-            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-                                                                //Slider表示
-            sliderBool = true;
-        }
-        //敵とマシンガン
-        if (other.gameObject.tag == "Machinegun")
-        {
-        
-            EnemyNowHP -= 15;//一度当たるごとに10をマイナス
-        
-            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-            sliderBool = true;
-        }
         // HPが0以下になった場合、自らを消す
         if (EnemyNowHP <= 0)
         {
@@ -90,14 +69,33 @@ public class NomalEnemy : MonoBehaviour
             newParticle.Play();
             //エフェクト消える
             Destroy(newParticle.gameObject, 0.5f);
-        
+
             //スコア上昇
             gameManagerScript.Score();
             //敵消える
             Destroy(gameObject, 0f);
-        
-            
         }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        
+        //敵と弾
+        if (other.gameObject.tag == "Bullet")
+        {
+            EnemyNowHP -= 20;//一度当たるごとに20をマイナス
+            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換                 
+            sliderBool = true;//Slider表示
+        }
+        //敵とマシンガン
+        if (other.gameObject.tag == "Machinegun")
+        {
+        
+            EnemyNowHP -= 15;//一度当たるごとに10をマイナス
+        
+            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            sliderBool = true;
+        }
+        
         
     }
     
