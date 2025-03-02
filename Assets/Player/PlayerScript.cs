@@ -8,12 +8,17 @@ public class PlayerScript : MonoBehaviour
 {
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    //select
+    private SelectorMenu selectorMenuScript;
+    public GameObject selectMenu;
 
     //オブジェクト挿入
     public GameObject bullet;
     public GameObject machineGun;
     public EnemyScript enemy;
     public GameObject Fire;
+    public GameObject HealImage;
+    public GameObject NoHealImage;
 
     public bool position_R;
 
@@ -29,6 +34,7 @@ public class PlayerScript : MonoBehaviour
     private int MaxHp;// プレイヤーの現在のHP
     public Slider hpSlider;//HPバー（スライダー）
     public bool isDameged = false;
+    private bool isHeal=false;
 
     //パーティクル
     public ParticleSystem particle;
@@ -42,7 +48,11 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        //selector
+        selectorMenuScript = selectMenu.GetComponent<SelectorMenu>();
         animator = GetComponent<Animator>();
+
+        //Hp関連
         audioSource = GetComponent<AudioSource>();
         hpSlider.value = (float)playerHP;//HPバーの最初の値（最大HP）を設定
         MaxHp = playerHP; // 現在のHPを最大HPに設定
@@ -51,8 +61,10 @@ public class PlayerScript : MonoBehaviour
             bulletTimer[i] = 0.0f;
         }
         isDameged = false;
-        
         HPSlider.SetActive(true);
+        //回復
+        isHeal = false;
+        
     }
 
     void Damaged()
@@ -73,10 +85,17 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (selectorMenuScript.IsColorMenuFlag() == true)
+        {
+            HealImage.SetActive(false);
+            NoHealImage.SetActive(false);
+        }
         if (gameManagerScript.IsGameOver() == true)
         {
             animator.SetBool("GameOver", true);
             HPSlider.SetActive(false);
+            HealImage.SetActive(false);
+            NoHealImage.SetActive(false);
             return;
         }
         else
@@ -96,7 +115,32 @@ public class PlayerScript : MonoBehaviour
         ///ゲームスタートしたら
         if (gameManagerScript.IsGameStart() == true&&gameManagerScript.IsGameClear()==false)
         {
+            //回復UI
+            if (gameManagerScript.IsScore() < 15)
+            {
+                isHeal = false;
+            }
+            if(gameManagerScript.IsScore() < 15&&isHeal ==false)
+            {
+                HealImage.SetActive(false);
+                NoHealImage.SetActive(true);
+            }
             
+            ///回復
+            if (gameManagerScript.IsScore() >= 15 && isHeal == false)
+            {
+                HealImage.SetActive(true);
+                NoHealImage.SetActive(false);
+                if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown("joystick button 2"))
+                {
+                    MaxHp = 100;
+                    hpSlider.value = (float)MaxHp / (float)playerHP;
+                    isHeal = true;
+                    HealImage.SetActive(false);
+                    NoHealImage.SetActive(true);
+                }
+            }
+
             ///コントローラー対応///////////////////////
             if (stick > 0 && transform.position.x <= 10)
             {
@@ -151,14 +195,13 @@ public class PlayerScript : MonoBehaviour
                 position_R = false;
             }
 
-            ///回復
-            if (Input.GetKey(KeyCode.L))
-            {
-                MaxHp = 100;
-                hpSlider.value = (float)MaxHp / (float)playerHP;
-                
-            }
+            
 
+        }
+        else
+        {
+            HealImage.SetActive(false);
+            NoHealImage.SetActive(false);
         }
         //射撃パターン追加  
         if (gameManagerScript.IsScore()>= 15)
@@ -166,8 +209,6 @@ public class PlayerScript : MonoBehaviour
             ShotChenge = 1;
         }
         
-        
-
     }
     void FixedUpdate()
     {

@@ -4,45 +4,69 @@ using UnityEngine;
 
 public class BrindScript : MonoBehaviour
 {
+    //gamemanager
+    private GameManager gameManagerScript;
+    public GameObject gameManager;
+
+    //Boss
     public GameObject boss;
     public GameObject bossBullet;
+    //Enemy
     public GameObject EnergyImage;
     public GameObject StartSelectImage;
+    //SelectUI
     public GameObject LuleSelectImage;
     public GameObject SelectorImage;
     public GameObject StartSelectCoverImage;
-    private GameManager gameManagerScript;
-    public GameObject gameManager;
     public GameObject LuleBGImage;
     public GameObject LuleUiImage;
+
+    //ColorChengeUI
+    public GameObject colorMenuWHITE;
+    public GameObject colorMenuRED;
+    public GameObject colorMenuYELLOW;
+
+    //hp
     public GameObject Hp;
+    //Energy
     public GameObject EnergyEMP;
     public GameObject EnergyMIN;
     public GameObject EnergyMID;
     public GameObject EnergyMAX;
+    //Wavetext
     public GameObject WAVETextFirst;
     public GameObject WAVETextWarnigFarstWave;
     public GameObject WAVETextSecond;
     public GameObject WAVETextWarnigSecondWave;
     public GameObject WAVETextFinalWave;
     public GameObject WAVETextWarnigFinalWave;
-    public GameObject ClearText;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        //gamemanager
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        //boss
         boss.SetActive(false);
         bossBullet.SetActive(false);
+        //enemy
         EnergyImage.SetActive(false);
-        StartSelectCoverImage.SetActive(true);
         Hp.SetActive(false);
+        //Energy
         EnergyEMP.SetActive(false);
         EnergyMIN.SetActive(false);
         EnergyMID.SetActive(false);
         EnergyMAX.SetActive(false);
+        //Lule
+        StartSelectCoverImage.SetActive(true);
         LuleBGImage.SetActive(false);
         LuleUiImage.SetActive(false);
+        ////color
+        //colorMenuWHITE.SetActive(false);
+        //colorMenuRED.SetActive(false);
+        //colorMenuYELLOW.SetActive(false);
+        //Wave
         WAVETextWarnigFarstWave.SetActive(false);
         WAVETextSecond.SetActive(false);
         WAVETextWarnigSecondWave.SetActive(false);
@@ -58,16 +82,25 @@ public class BrindScript : MonoBehaviour
         {
             if (gameManagerScript.IsGameStart() == true && gameManagerScript.IsGameOver() == false)//gamestart
             {
+                //Boss
                 boss.SetActive(true);
                 bossBullet.SetActive(true);
+                //enemy
                 EnergyImage.SetActive(true);
+                //SelectUI
                 StartSelectImage.SetActive(false);
                 LuleSelectImage.SetActive(false);
                 SelectorImage.SetActive(false);
                 StartSelectCoverImage.SetActive(false);
                 LuleBGImage.SetActive(false);
                 LuleUiImage.SetActive(false);
+                ////color
+                //colorMenuWHITE.SetActive(false);
+                //colorMenuRED.SetActive(false);
+                //colorMenuYELLOW.SetActive(false);
+                //Hp
                 Hp.SetActive(true);
+                //Energy
                 EnergyEMP.SetActive(true);
 
             }
@@ -76,13 +109,20 @@ public class BrindScript : MonoBehaviour
                 boss.SetActive(false);
                 EnergyImage.SetActive(false);
                 StartSelectImage.SetActive(false);
+                //selectorUI
                 LuleSelectImage.SetActive(false);
                 SelectorImage.SetActive(false);
                 StartSelectCoverImage.SetActive(false);
                 LuleBGImage.SetActive(false);
                 LuleUiImage.SetActive(false);
                 EnergyImage.SetActive(false);
+                ////color
+                //colorMenuWHITE.SetActive(false);
+                //colorMenuRED.SetActive(false);
+                //colorMenuYELLOW.SetActive(false);
+                //Hp
                 Hp.SetActive(false);
+                //Wave
                 WAVETextWarnigFarstWave.SetActive(false);
                 WAVETextSecond.SetActive(false);
                 WAVETextWarnigSecondWave.SetActive(false);

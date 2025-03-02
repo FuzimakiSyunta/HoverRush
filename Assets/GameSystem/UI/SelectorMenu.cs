@@ -20,7 +20,7 @@ public class SelectorMenu : MonoBehaviour
     public RectTransform StartImage;
     public GameObject LuleBGmage;
     public GameObject LuleUiImage;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +32,8 @@ public class SelectorMenu : MonoBehaviour
         //Lule
         LuleBGmage.SetActive(false);
         LuleUiImage.SetActive(false);
+
+        
     }
 
     // Update is called once per frame
@@ -39,6 +41,8 @@ public class SelectorMenu : MonoBehaviour
     {
         //L Stick
         float tri = Input.GetAxis("L_R_Trigger");
+        
+
         if (gameManagerScript.IsOpenSelector()==true)
         {
             //‰æ‘œˆÚ“®
@@ -88,8 +92,8 @@ public class SelectorMenu : MonoBehaviour
                         Selector.position += new Vector3(0, selectormove, 0);
                         ColorMenuFlag = false;
                         StartFlag = true;
-                        
                     }
+                    
                 }
                 else
                 {

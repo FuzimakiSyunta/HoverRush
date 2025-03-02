@@ -18,7 +18,6 @@ public class BossScript : MonoBehaviour
     public GameObject BossBarstbullet_R;
     public GameObject Lazer_L;
     public GameObject Lazer_R;
-    public GameObject UnderLazer;
     public bool isfadeLazer;
     public bool isLazerWave;
     public float LazerTime;
@@ -57,6 +56,7 @@ public class BossScript : MonoBehaviour
         animator.SetBool("isAirTransform", false);
         animator.SetBool("isRobotStay", false);
         animator.SetBool("isTransform", false);
+        animator.SetBool("FinalWave", false);
         bulletTimer = 0;
         MultibulletTimer = 0;
         StartTime = false;
@@ -66,7 +66,7 @@ public class BossScript : MonoBehaviour
         Lazer_R.SetActive(false);
         Robot.SetActive(false);
         BossAir.SetActive(true);
-        UnderLazer.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -91,6 +91,7 @@ public class BossScript : MonoBehaviour
             {
                 animator.SetBool("isMove", false);
                 animator.SetBool("isLazer", false);
+                animator.SetBool("FinalWave", false);
             }
             
             if (BossBattleTime > 20)
@@ -142,7 +143,7 @@ public class BossScript : MonoBehaviour
         {
             Vector3 position = transform.position;
             MultiBulletCoolTime++;
-            if (animator.GetBool("isMove")==false && animator.GetBool("isLazer") == false)
+            if (animator.GetBool("isMove")==false && animator.GetBool("isLazer") == false && animator.GetBool("isRobotStay") == false && animator.GetBool("FinalWave") == false)
             {
                 if(MultiBulletCoolTime>= 120)
                 {
@@ -195,7 +196,7 @@ public class BossScript : MonoBehaviour
 
 
         //レーザーウェーブ
-        if (animator.GetBool("isLazer") == true)
+        if (animator.GetBool("isLazer") == true|| animator.GetBool("FinalWave") == true)
         {
             LazerTime += Time.deltaTime;
             LazerBulletCoolTime++;
@@ -206,12 +207,12 @@ public class BossScript : MonoBehaviour
                     Lazer_L.SetActive(true);
                     Lazer_R.SetActive(false);
                 }
-                if (LazerTime <= 3 && LazerTime > 2)
+                if (LazerTime <= 6 && LazerTime > 4)
                 {
                     Lazer_L.SetActive(false);
                     Lazer_R.SetActive(true);
                 }
-                if (LazerTime <= 5 && LazerTime > 3)
+                if (LazerTime <= 10 && LazerTime > 7)
                 {
                     LazerTime = 0.0f;
                 }
@@ -225,16 +226,7 @@ public class BossScript : MonoBehaviour
             LazerBulletCoolTime = 0;
         }
 
-        //FinalWave
-        if (animator.GetBool("FinalWave") == true)
-        {
-           
-            UnderLazer.SetActive(true);
-        }
-        else
-        {
-            UnderLazer.SetActive(false);
-        }
+        
 
         //ロボット状態の切り替え
         if (animator.GetBool("isRobotStay")==true)
@@ -246,7 +238,9 @@ public class BossScript : MonoBehaviour
         {
             BossAir.SetActive(true);
             Robot.SetActive(false);
+            
         }
+        
 
     }
 
@@ -288,6 +282,11 @@ public class BossScript : MonoBehaviour
         if (BossBattleTime >= 101)
         {
             animator.SetBool("FinalWave", true);
+        }
+        if (BossBattleTime >= 131)
+        {
+            animator.SetBool("FinalWave", false);
+            animator.SetBool("isMove", true);
         }
     }
 

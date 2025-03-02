@@ -5,13 +5,12 @@ using UnityEngine;
 public class BossUnderLazer : MonoBehaviour
 {
     public Rigidbody rb;
-    public ParticleSystem particle;
-    private float rotateY = 40.0f;
+    //public ParticleSystem particle;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.rotation = Quaternion.Euler(0, rotateY, 0); // // Y²‚ğ’†S‚É45‹‰ñ“]
+
     }
 
     // Update is called once per frame

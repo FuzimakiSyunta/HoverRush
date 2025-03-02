@@ -47,8 +47,8 @@ GameObject:
   - component: {fileID: 5611508562477550188}
   - component: {fileID: 6514422283263536146}
   - component: {fileID: 4914990872261636624}
-  - component: {fileID: 8036999663807445830}
-  - component: {fileID: 3279087846731742999}
+  - component: {fileID: 483316865853557374}
+  - component: {fileID: 7638775686597293998}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -116,7 +116,6 @@ MonoBehaviour:
   BossBarstbullet_R: {fileID: 679023749104929143, guid: 0ac24dd98e76e2f4abd591732ec5ac4b, type: 3}
   Lazer_L: {fileID: 8600058979624334789}
   Lazer_R: {fileID: 6149071780264674003}
-  UnderLazer: {fileID: 0}
   isfadeLazer: 0
   isLazerWave: 0
   LazerTime: 0
@@ -126,7 +125,7 @@ MonoBehaviour:
   particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
   sliderBool: 0
   DeleteSound: {fileID: 8300000, guid: 7ba909a17a5c26049a2be1fed16f664e, type: 3}
---- !u!95 &8036999663807445830
+--- !u!95 &483316865853557374
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -147,7 +146,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3279087846731742999
+--- !u!114 &7638775686597293998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65a01f23c02b914f8d983b4ecdf2a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8036999663807445830}
+  animator: {fileID: 483316865853557374}
   RobotBullet: {fileID: 679023749104929143, guid: a068f9dc0dc0bde478effef60f829b15, type: 3}
   RobotBullet_L: {fileID: 679023749104929143, guid: 192e9bf343472dd4ea42805bb3cfd507, type: 3}
   RobotBullet_R: {fileID: 679023749104929143, guid: c279c4494ba0f734f8604a4c03426453, type: 3}
@@ -553,7 +552,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3199872199829591015}
-  particle: {fileID: 4420587825053408745, guid: 0883a7c4f8b6d2f4182cbb9043275cc1, type: 3}
 --- !u!54 &3199872199829591015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1044,7 +1042,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 991314357544618494}
-  particle: {fileID: 4420587825053408745, guid: 0883a7c4f8b6d2f4182cbb9043275cc1, type: 3}
 --- !u!54 &991314357544618494
 Rigidbody:
   m_ObjectHideFlags: 0
