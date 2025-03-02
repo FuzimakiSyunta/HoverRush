@@ -52,10 +52,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  selectMenu: {fileID: 0}
   bullet: {fileID: 679023749104929143, guid: 9089c5322e9abeb49980d02a5c4cabfb, type: 3}
   machineGun: {fileID: 4932371020863500020, guid: c693d708a39a6024d98cc4adc8e8a46f, type: 3}
   enemy: {fileID: 4142080795586807030, guid: 818ef5a4190293c44b81ddf80065c947, type: 3}
   Fire: {fileID: 4939153805180380502}
+  HealImage: {fileID: 0}
+  NoHealImage: {fileID: 0}
   position_R: 0
   HPSlider: {fileID: 0}
   playerHP: 100
