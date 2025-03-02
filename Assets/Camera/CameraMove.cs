@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    private float MoveSpeed = 0.06f;
+    //private float MoveSpeed = 0.06f;
     private bool Moving;
     private GameManager gameManagerScript;
     public GameObject gameManager;
@@ -49,23 +49,23 @@ public class CameraMove : MonoBehaviour
                 //カメラを回転させる
                 transform.RotateAround(playerPos, Vector3.up, angle);
 
-                if (stick > 0 && transform.position.x <= 10)
-                {
-                    transform.position += new Vector3(MoveSpeed, 0, 0);
-                }
-                else if (stick < 0 && transform.position.x >= -10)
-                {
-                    transform.position += new Vector3(-MoveSpeed, 0, 0);
-                }
-                //キーボード
-                if (Input.GetKey(KeyCode.D) && transform.position.x <= 10)
-                {
-                    transform.position += new Vector3(MoveSpeed, 0, 0);
-                }
-                else if (Input.GetKey(KeyCode.A) && transform.position.x >= -10)
-                {
-                    transform.position += new Vector3(-MoveSpeed, 0, 0);
-                }
+                //if (stick > 0 && transform.position.x <= 10)
+                //{
+                //    transform.position += new Vector3(MoveSpeed, 0, 0);
+                //}
+                //else if (stick < 0 && transform.position.x >= -10)
+                //{
+                //    transform.position += new Vector3(-MoveSpeed, 0, 0);
+                //}
+                ////キーボード
+                //if (Input.GetKey(KeyCode.D) && transform.position.x <= 10)
+                //{
+                //    transform.position += new Vector3(MoveSpeed, 0, 0);
+                //}
+                //else if (Input.GetKey(KeyCode.A) && transform.position.x >= -10)
+                //{
+                //    transform.position += new Vector3(-MoveSpeed, 0, 0);
+                //}
                 
             }
         }
