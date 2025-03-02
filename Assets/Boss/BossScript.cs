@@ -100,6 +100,22 @@ public class BossScript : MonoBehaviour
             }
            
         }
+        // HPが0以下になった場合、自らを消す
+        if (wkHP <= 0)
+        {
+            ParticleSystem newParticle = Instantiate(particle);
+            //場所固定
+            newParticle.transform.position = this.gameObject.transform.position;
+            //発生
+            newParticle.Play();
+            //エフェクト消える
+            Destroy(newParticle.gameObject, 0.5f);
+
+            //ボス消える
+            gameManagerScript.GameClearStart();//ゲームクリア
+            Destroy(gameObject, 0f);
+
+        }
     }
     
     void OnTriggerEnter(Collider other)
@@ -119,22 +135,7 @@ public class BossScript : MonoBehaviour
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
-        // HPが0以下になった場合、自らを消す
-        if (wkHP <= 0)
-        {
-            ParticleSystem newParticle = Instantiate(particle);
-            //場所固定
-            newParticle.transform.position = this.gameObject.transform.position;
-            //発生
-            newParticle.Play();
-            //エフェクト消える
-            Destroy(newParticle.gameObject, 0.5f);
-
-            //ボス消える
-            gameManagerScript.GameClearStart();//ゲームクリア
-            Destroy(gameObject, 0f);
-            
-        }
+        
     }
     void FixedUpdate()
     {
@@ -145,7 +146,7 @@ public class BossScript : MonoBehaviour
             MultiBulletCoolTime++;
             if (animator.GetBool("isMove")==false && animator.GetBool("isLazer") == false && animator.GetBool("isRobotStay") == false && animator.GetBool("FinalWave") == false)
             {
-                if(MultiBulletCoolTime>= 120)
+                if(MultiBulletCoolTime>= 240)
                 {
                     position.y += 0.3f;
                     position.z -= 30.0f;
@@ -202,17 +203,17 @@ public class BossScript : MonoBehaviour
             LazerBulletCoolTime++;
             if(LazerBulletCoolTime>=60)
             {
-                if (LazerTime <= 1)
+                if (LazerTime <= 1.0f)
                 {
                     Lazer_L.SetActive(true);
                     Lazer_R.SetActive(false);
                 }
-                if (LazerTime <= 6 && LazerTime > 4)
+                if (LazerTime <= 2.5f && LazerTime > 1.5f)
                 {
                     Lazer_L.SetActive(false);
                     Lazer_R.SetActive(true);
                 }
-                if (LazerTime <= 10 && LazerTime > 7)
+                if (LazerTime <= 4.0f && LazerTime > 3.0f)
                 {
                     LazerTime = 0.0f;
                 }

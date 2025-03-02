@@ -14,7 +14,11 @@ public class NomalEnemy : MonoBehaviour
     public Slider hpSlider; //HPバー（スライダー）
     public ParticleSystem particle;
     public bool sliderBool;
-    private float MoveSpeed = 0.02f;
+    //private float MoveSpeed = 0.02f;
+    //private float BackmoveSpeed = -0.05f;
+
+    private float MoveSpeed = 0.05f;
+    private float BackmoveSpeed = -0.08f;
     //private float[] bulletTimer = new float[3];
 
     // Start is called before the first frame update
@@ -41,8 +45,7 @@ public class NomalEnemy : MonoBehaviour
     {
         if (gameManagerScript.IsGameStart() == true)
         {
-            float moveSpeed = -0.05f;
-            Vector3 velocity = new Vector3(0, 0, moveSpeed);
+            Vector3 velocity = new Vector3(0, 0, BackmoveSpeed);
             transform.position += transform.rotation * velocity;
         }
         // スライダーの向きをカメラ方向に固定
@@ -58,7 +61,24 @@ public class NomalEnemy : MonoBehaviour
         {
             hpSlider.gameObject.SetActive(true);
         }
+        // HPが0以下になった場合、自らを消す
+        if (EnemyNowHP <= 0)
+        {
+            ParticleSystem newParticle = Instantiate(particle);
+            //場所固定
+            newParticle.transform.position = this.gameObject.transform.position;
+            //発生
+            newParticle.Play();
+            //エフェクト消える
+            Destroy(newParticle.gameObject, 0.5f);
 
+            //スコア上昇
+            gameManagerScript.Score();
+            //敵消える
+            Destroy(gameObject, 0f);
+
+
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -80,25 +100,8 @@ public class NomalEnemy : MonoBehaviour
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
-        // HPが0以下になった場合、自らを消す
-        if (EnemyNowHP <= 0)
-        {
-            ParticleSystem newParticle = Instantiate(particle);
-            //場所固定
-            newParticle.transform.position = this.gameObject.transform.position;
-            //発生
-            newParticle.Play();
-            //エフェクト消える
-            Destroy(newParticle.gameObject, 0.5f);
         
-            //スコア上昇
-            gameManagerScript.Score();
-            //敵消える
-            Destroy(gameObject, 0f);
-        
-            
-        }
         
     }
-    
+
 }
