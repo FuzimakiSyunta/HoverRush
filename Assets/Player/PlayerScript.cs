@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour
     public EnemyScript enemy;
     public GameObject Fire;
 
+    public bool position_R;
+
     //ステータス
     private float MoveSpeed = 0.06f;
     float[] bulletTimer = new float[3];
@@ -94,6 +96,7 @@ public class PlayerScript : MonoBehaviour
         ///ゲームスタートしたら
         if (gameManagerScript.IsGameStart() == true&&gameManagerScript.IsGameClear()==false)
         {
+            
             ///コントローラー対応///////////////////////
             if (stick > 0 && transform.position.x <= 10)
             {
@@ -139,6 +142,14 @@ public class PlayerScript : MonoBehaviour
                 transform.position += new Vector3(0, 0, -MoveSpeed);
             }
             //////////////////////////////////////////////
+
+            if(transform.position.x > 0)
+            {
+                position_R = true;
+            }else
+            {
+                position_R = false;
+            }
 
             ///回復
             if (Input.GetKey(KeyCode.L))
@@ -251,7 +262,7 @@ public class PlayerScript : MonoBehaviour
         //ボスのレーザー
         if (other.gameObject.tag == "Lazer")
         {
-            MaxHp -= 3;
+            MaxHp -= 5;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
 
@@ -276,6 +287,11 @@ public class PlayerScript : MonoBehaviour
     public bool IsDamege()
     {
         return isDameged;
+    }
+
+    public bool IsPotion()
+    {
+        return position_R;
     }
 
 }

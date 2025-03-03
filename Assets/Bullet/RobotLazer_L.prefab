@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6546061714927818172}
   - component: {fileID: 2327427753219100532}
   - component: {fileID: 5729095766109722887}
-  - component: {fileID: 3872255150262086058}
+  - component: {fileID: -8118756540070146210}
   m_Layer: 0
-  m_Name: RobotLazer
+  m_Name: RobotLazer_L
   m_TagString: BossBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
---- !u!114 &3872255150262086058
+--- !u!114 &-8118756540070146210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 679023749104929143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc2d4d28b52ca04f97855a47b744208, type: 3}
+  m_Script: {fileID: 11500000, guid: 084f64be65ee5fb408eea3ff1b3c6d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5729095766109722887}
