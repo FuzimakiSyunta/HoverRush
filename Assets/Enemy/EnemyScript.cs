@@ -20,7 +20,7 @@ public class EnemyScript : MonoBehaviour
     //private float BackmoveSpeed = -0.05f;
 
     private float MoveSpeed = 0.05f;
-    private float BackmoveSpeed = -0.1f;
+    private float BackmoveSpeed = -0.15f;
 
     // Start is called before the first frame update
     void Start()

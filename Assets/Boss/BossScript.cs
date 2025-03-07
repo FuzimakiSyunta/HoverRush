@@ -197,7 +197,7 @@ public class BossScript : MonoBehaviour
 
 
         //レーザーウェーブ
-        if (animator.GetBool("isLazer") == true|| animator.GetBool("FinalWave") == true)
+        if (animator.GetBool("isLazer") == true || animator.GetBool("FinalWave") == true)
         {
             LazerTime += Time.deltaTime;
             LazerBulletCoolTime++;
@@ -274,10 +274,6 @@ public class BossScript : MonoBehaviour
         if (BossBattleTime >= 100&& BossBattleTime < 103)
         {
             animator.SetBool("isAirTransform", true);
-            animator.SetBool("isRobotStay", false);
-        }
-        if (BossBattleTime >= 103&& BossBattleTime < 104)
-        {
             animator.SetBool("isRobotStay", false);
         }
         if (BossBattleTime >= 101)
