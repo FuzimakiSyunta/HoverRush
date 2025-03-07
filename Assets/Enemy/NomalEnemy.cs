@@ -18,7 +18,7 @@ public class NomalEnemy : MonoBehaviour
     //private float BackmoveSpeed = -0.05f;
 
     private float MoveSpeed = 0.05f;
-    private float BackmoveSpeed = -0.08f;
+    private float BackmoveSpeed = -0.15f;
     //private float[] bulletTimer = new float[3];
 
     // Start is called before the first frame update

@@ -30,7 +30,7 @@ public class PlayerScript : MonoBehaviour
     private Animator animator;
     //private float MoveSpeed = 0.06f;
 
-    private float MoveSpeed = 0.15f;
+    private float MoveSpeed = 0.16f;
 
     //HP関連
     public GameObject HPSlider;
