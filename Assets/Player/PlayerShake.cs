@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CameraShake : MonoBehaviour
+public class PLayerShake : MonoBehaviour
 {
     private float amplitude = 0.5f; // 振幅を小さく設定
     private float frequency = 100f; // 周波数を高く設定
@@ -8,7 +8,6 @@ public class CameraShake : MonoBehaviour
     private Vector3 startPos;
     private bool isShaking = false;
     private float shakeStartTime;
-    public new Camera camera;
 
     //
     private PlayerScript playerScript;
@@ -17,7 +16,7 @@ public class CameraShake : MonoBehaviour
     void Start()
     {
         playerScript = player.GetComponent<PlayerScript>();
-        startPos = camera.transform.position;
+        startPos = player.transform.position;
     }
 
     void Update()
@@ -32,7 +31,7 @@ public class CameraShake : MonoBehaviour
             float time = Time.time - shakeStartTime;
             float damping = Mathf.Exp(-dampingFactor * time);
             float offset = amplitude * damping * Mathf.Sin(frequency * time);
-            camera.transform.position = startPos + new Vector3(offset, 0, 0);
+            player.transform.position = startPos + new Vector3(offset, 0, 0);
 
             if (damping < 0.01f) // 減衰が十分に小さくなったら揺れを止める
             {
@@ -43,7 +42,7 @@ public class CameraShake : MonoBehaviour
 
     public void StartShaking()
     {
-        startPos = camera.transform.position;
+        startPos = player.transform.position;
         isShaking = true;
         shakeStartTime = Time.time;
     }
@@ -51,7 +50,7 @@ public class CameraShake : MonoBehaviour
     public void StopShaking()
     {
         isShaking = false;
-        camera.transform.position = startPos;
+        player.transform.position = startPos;
     }
 
     public bool IsShaking()
