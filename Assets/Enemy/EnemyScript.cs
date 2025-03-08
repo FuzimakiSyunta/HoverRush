@@ -19,6 +19,10 @@ public class EnemyScript : MonoBehaviour
     private float MoveSpeed = 0.02f;
     private float BackmoveSpeed = -0.05f;
 
+    //オーディオ
+    public AudioClip DamegeSound;
+    private AudioSource audioSource;
+
     //private float MoveSpeed = 0.05f;
     //private float BackmoveSpeed = -0.15f;
 
@@ -28,6 +32,7 @@ public class EnemyScript : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         hpSlider.value = enemyHP;//HPバーの最初の値（最大HP）を設定
         EnemyNowHP = enemyHP; // 現在のHPを最大HPに設定
         hpSlider.gameObject.SetActive(false);
@@ -91,6 +96,7 @@ public class EnemyScript : MonoBehaviour
         //敵と弾
         if (other.gameObject.tag == "Bullet")
         {
+            audioSource.PlayOneShot(DamegeSound);
             EnemyNowHP -= 20;//一度当たるごとに20をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             //Slider表示
@@ -99,9 +105,8 @@ public class EnemyScript : MonoBehaviour
         //敵とマシンガン
         if (other.gameObject.tag == "Machinegun")
         {
-
+            audioSource.PlayOneShot(DamegeSound);
             EnemyNowHP -= 15;//一度当たるごとに10をマイナス
-            
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }

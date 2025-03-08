@@ -38,7 +38,9 @@ public class BossScript : MonoBehaviour
     public bool sliderBool;
     private Animator animator;
     private bool StartTime=false;
-    public AudioClip DeleteSound;
+
+    //オーディオ
+    public AudioClip DamegeSound;
     private AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -47,6 +49,7 @@ public class BossScript : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         hpSlider.value = (float)bossHP;//HPバーの最初の値（最大HP）を設定
         wkHP = bossHP; // 現在のHPを最大HPに設定
         hpSlider.gameObject.SetActive(false);
@@ -123,6 +126,7 @@ public class BossScript : MonoBehaviour
         //ボスと弾
         if (other.gameObject.tag == "Bullet")
         {
+            audioSource.PlayOneShot(DamegeSound);
             wkHP -= 30;//一度当たるごとに30をマイナス
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             //Slider表示
@@ -131,6 +135,7 @@ public class BossScript : MonoBehaviour
         //ボスとマシンガン
         if (other.gameObject.tag == "Machinegun")
         {
+            audioSource.PlayOneShot(DamegeSound);
             wkHP -= 10;//一度当たるごとに10をマイナス
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
