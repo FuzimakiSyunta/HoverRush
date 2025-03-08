@@ -4,29 +4,37 @@ using UnityEngine;
 
 public class RobotBullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Rigidbody rb;
-    private float moveSpeedX = 0;
-    private float moveSpeedY = -60.0f;
-    private float moveSpeedZ = -125.0f;
-    private float rotateZ;
-    private float rotateX;
-    // Start is called before the first frame update
-    void Start()
+    private Transform target; // オブジェクト2 (ターゲット)
+    public float speed = 13f; // 移動速度
+    public float rotationSpeed = 200f; // 回転速度
+
+    public void SetTarget(Transform targetTransform)
     {
-        rb.velocity = new Vector3(moveSpeedX, moveSpeedY, moveSpeedZ);
-        transform.rotation = Quaternion.Euler(rotateX, 0, rotateZ); // // Y軸を中心に45°回転
-        Destroy(gameObject, 2);
+        target = targetTransform; // ターゲットを設定
     }
 
-    // Update is called once per frame
+    void Start()
+    { 
+        Destroy(gameObject, 5f);
+    }
+
     void Update()
     {
-       
+        if (target == null) return;
+
+        // ターゲットの方向を計算
+        Vector3 direction = (target.position - transform.position).normalized;
+
+        // ターゲットの方向に回転
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+
+        // ターゲットに向かって移動
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "HomingTargrt")
         {
             Destroy(this.gameObject);
         }

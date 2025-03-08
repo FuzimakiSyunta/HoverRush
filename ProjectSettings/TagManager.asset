@@ -17,6 +17,8 @@ TagManager:
   - WallRight
   - WallLeft
   - WallUp
+  - HomingTargrt
+  - RobotBullet
   layers:
   - Default
   - TransparentFX

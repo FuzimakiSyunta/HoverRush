@@ -21,10 +21,10 @@ public class BrindScript : MonoBehaviour
     public GameObject LuleBGImage;
     public GameObject LuleUiImage;
 
-    //ColorChengeUI
-    public GameObject colorMenuWHITE;
-    public GameObject colorMenuRED;
-    public GameObject colorMenuYELLOW;
+    ////ColorChengeUI
+    //public GameObject colorMenuWHITE;
+    //public GameObject colorMenuRED;
+    //public GameObject colorMenuYELLOW;
 
     //hp
     public GameObject Hp;
