@@ -97,18 +97,13 @@ public class GameManager : MonoBehaviour
                 BossWaveFlag = true;
                
             }
-            if (BossWaveCount >= 80 && BossWaveCount < 100)
+            if (BossWaveCount >= 80 && BossWaveCount < 125)
             {
                 BossWaveFlag = false;
                 Wave = 2;
                
             }
-            if (BossWaveCount >= 100)
-            {
-                BossWaveFlag = true;
-                Wave = 3;
-               
-            }
+            
         }
         
     }
@@ -442,6 +437,7 @@ public class GameManager : MonoBehaviour
                     CoolTime[4] = 0;
                 }
             }
+            
         }
     }
 

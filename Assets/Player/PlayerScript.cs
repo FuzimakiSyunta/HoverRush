@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     float[] bulletTimer = new float[3];
     private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
-    private float MoveSpeed = 0.06f;
+    private float MoveSpeed = 18.0f;
 
     //private float MoveSpeed = 0.16f;
 
@@ -90,6 +90,9 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 時間依存の移動
+        float move = MoveSpeed * Time.deltaTime;
+
         if (selectorMenuScript.IsColorMenuFlag() == true)
         {
             HealImage.SetActive(false);
@@ -138,7 +141,7 @@ public class PlayerScript : MonoBehaviour
                 NoHealImage.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown("joystick button 2"))
                 {
-                    MaxHp = 200;
+                    MaxHp = 250;
                     hpSlider.value = (float)MaxHp / (float)playerHP;
                     isHeal = true;
                     HealImage.SetActive(false);
@@ -149,19 +152,19 @@ public class PlayerScript : MonoBehaviour
             ///コントローラー対応///////////////////////
             if (stick > 0 && transform.position.x <= 10)
             {
-                transform.position += new Vector3(MoveSpeed, 0, 0);
+                transform.position += new Vector3(move, 0, 0);
             }
             else if (stick < 0 && transform.position.x >= -10)
             {
-                transform.position += new Vector3(-MoveSpeed, 0, 0);
+                transform.position += new Vector3(-move, 0, 0);
             }
             if (Vstick > 0 && transform.position.z <= 20)
             {
-                transform.position += new Vector3(0, 0, MoveSpeed);
+                transform.position += new Vector3(0, 0, move);
             }
             else if (Vstick < 0 && transform.position.z >= -6.5f)
             {
-                transform.position += new Vector3(0, 0, -MoveSpeed);
+                transform.position += new Vector3(0, 0, -move);
             }
 
             if (Vstick > 0 || Input.GetKey(KeyCode.W))
@@ -176,19 +179,19 @@ public class PlayerScript : MonoBehaviour
             //キーボード/////////////////////////////////
             if (Input.GetKey(KeyCode.D)&& transform.position.x <= 10)
             {
-                transform.position += new Vector3(MoveSpeed, 0, 0);
+                transform.position += new Vector3(move, 0, 0);
             }
             else if (Input.GetKey(KeyCode.A) && transform.position.x >= -10)
             {
-                transform.position += new Vector3(-MoveSpeed, 0, 0);
+                transform.position += new Vector3(-move, 0, 0);
             }
             if (Input.GetKey(KeyCode.W) && transform.position.z <= 20)
             {
-                transform.position += new Vector3(0, 0, MoveSpeed);
+                transform.position += new Vector3(0, 0, move);
             }
             else if (Input.GetKey(KeyCode.S) && transform.position.z >= -6.5f)
             {
-                transform.position += new Vector3(0, 0, -MoveSpeed);
+                transform.position += new Vector3(0, 0, -move);
             }
             //////////////////////////////////////////////
 
@@ -314,8 +317,16 @@ public class PlayerScript : MonoBehaviour
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
 
+        //ロボットの弾
+        if (other.gameObject.tag == "RobotBullet")
+        {
+            MaxHp -= 10;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+
         //ダメージ
-        if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy"|| other.gameObject.tag == "BossBullet"||other.gameObject.tag == "BossExtraBullet"|| other.gameObject.tag == "Lazer")
+        if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy"|| other.gameObject.tag == "BossBullet"||other.gameObject.tag == "BossExtraBullet"|| other.gameObject.tag == "Lazer"
+            || other.gameObject.tag == "RobotBullet")
         {
             Damaged();
             
@@ -349,6 +360,6 @@ public class PlayerScript : MonoBehaviour
     }
     public float Speed()
     {
-        return MoveSpeed;
+        return MoveSpeed * Time.deltaTime;
     }
 }
