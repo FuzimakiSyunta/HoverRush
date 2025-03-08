@@ -2,21 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RobotBullet : MonoBehaviour
+public class HomingScript : MonoBehaviour
 {
-    private Transform target; // オブジェクト2 (ターゲット)
-    public float speed = 10f; // 移動速度
-    public float rotationSpeed = 200f; // 回転速度
-
-    public void SetTarget(Transform targetTransform)
-    {
-        target = targetTransform; // ターゲットを設定
-    }
+    public Transform target; // 追尾対象のオブジェクト（オブジェクト2）
+    public float speed = 5f; // 移動速度
+    public float rotationSpeed = 10f; // 回転速度
 
     void Update()
     {
-        if (target == null) return;
-
         // ターゲットの方向を計算
         Vector3 direction = (target.position - transform.position).normalized;
 
@@ -27,12 +20,5 @@ public class RobotBullet : MonoBehaviour
         // ターゲットに向かって移動
         transform.position += transform.forward * speed * Time.deltaTime;
     }
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Destroy(this.gameObject);
-        }
-
-    }
 }
+

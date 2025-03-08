@@ -16,8 +16,11 @@ public class BossScript : MonoBehaviour
     public GameObject Bossbullet;
     public GameObject BossBarstbullet_L;
     public GameObject BossBarstbullet_R;
+    public GameObject FinalBossBarstbullet_L;
+    public GameObject FinalBossBarstbullet_R;
     public GameObject Lazer_L;
     public GameObject Lazer_R;
+    public GameObject BIGLAZER;
     public bool isfadeLazer;
     public bool isLazerWave;
     public float LazerTime;
@@ -60,6 +63,7 @@ public class BossScript : MonoBehaviour
         animator.SetBool("isRobotStay", false);
         animator.SetBool("isTransform", false);
         animator.SetBool("FinalWave", false);
+        animator.SetBool("isFinalBullet", false);
         bulletTimer = 0;
         MultibulletTimer = 0;
         StartTime = false;
@@ -67,9 +71,10 @@ public class BossScript : MonoBehaviour
         isLazerWave = false;
         Lazer_L.SetActive(false);
         Lazer_R.SetActive(false);
+        BIGLAZER.SetActive(false);
         Robot.SetActive(false);
         BossAir.SetActive(true);
-        
+        BIGLAZER.SetActive(false);
     }
 
     // Update is called once per frame
@@ -95,6 +100,7 @@ public class BossScript : MonoBehaviour
                 animator.SetBool("isMove", false);
                 animator.SetBool("isLazer", false);
                 animator.SetBool("FinalWave", false);
+                animator.SetBool("isFinalBullet", false);
             }
             
             if (BossBattleTime > 20)
@@ -179,7 +185,7 @@ public class BossScript : MonoBehaviour
             Vector3 positionR = transform.position;
             Vector3 positionL = transform.position;
             BulletCoolTime++;
-            if (animator.GetBool("isMove") == true)
+            if (animator.GetBool("isMove") == true&& animator.GetBool("isFinalBullet") == false)
             {
                 if (BulletCoolTime >= 60)
                 {
@@ -202,7 +208,7 @@ public class BossScript : MonoBehaviour
 
 
         //レーザーウェーブ
-        if (animator.GetBool("isLazer") == true || animator.GetBool("FinalWave") == true)
+        if (animator.GetBool("isLazer") == true)
         {
             LazerTime += Time.deltaTime;
             LazerBulletCoolTime++;
@@ -232,7 +238,43 @@ public class BossScript : MonoBehaviour
             LazerBulletCoolTime = 0;
         }
 
-        
+        //最終レーザー
+        if (animator.GetBool("FinalWave") == true)
+        {
+            BIGLAZER.SetActive(true);
+        }
+        else
+        {
+            BIGLAZER.SetActive(false);
+        }
+
+        //最終爆弾ウェーブ
+        if (bulletTimer == 0.0f)
+        {
+            Vector3 positionR = transform.position;
+            Vector3 positionL = transform.position;
+            BulletCoolTime++;
+            if (animator.GetBool("isMove") == true && animator.GetBool("isFinalBullet") == true)
+            {
+                if (BulletCoolTime >= 60)
+                {
+                    Instantiate(FinalBossBarstbullet_R, positionR, Quaternion.identity);
+                    Instantiate(FinalBossBarstbullet_L, positionL, Quaternion.identity);
+                    bulletTimer = 1.0f;
+                }
+            }
+
+        }
+        else
+        {
+            bulletTimer++;
+            if (bulletTimer > 45.0f)
+            {
+                bulletTimer = 0.0f;
+            }
+            MultiBulletCoolTime = 0;
+        }
+
 
         //ロボット状態の切り替え
         if (animator.GetBool("isRobotStay")==true)
@@ -244,7 +286,6 @@ public class BossScript : MonoBehaviour
         {
             BossAir.SetActive(true);
             Robot.SetActive(false);
-            
         }
         
 
@@ -270,7 +311,6 @@ public class BossScript : MonoBehaviour
             animator.SetBool("isLazer", false);
             animator.SetBool("isTransform",true);
             isLazerWave = false;
-
         }
         if (BossBattleTime >= 85&& BossBattleTime < 100)
         {
@@ -289,6 +329,7 @@ public class BossScript : MonoBehaviour
         {
             animator.SetBool("FinalWave", false);
             animator.SetBool("isMove", true);
+            animator.SetBool("isFinalBullet", true);
         }
     }
 

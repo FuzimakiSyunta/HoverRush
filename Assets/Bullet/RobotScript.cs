@@ -13,9 +13,11 @@ public class RobotScript : MonoBehaviour
     //private float BulletCoolTime = 0;
     public Animator animator;
 
-    public GameObject RobotBullet;
-    public GameObject RobotBullet_L;
-    public GameObject RobotBullet_R;
+    //public GameObject RobotBullet;
+
+    public GameObject projectilePrefab; // オブジェクト3 (弾) のプレハブ
+    public Transform target; // オブジェクト2 (ターゲット)
+    public float projectileSpeed = 10f; // 弾の初速度
     // Start is called before the first frame update
     void Start()
     {
@@ -34,16 +36,13 @@ public class RobotScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (animator.GetBool("isRobotStay") == true)
+        if (animator.GetBool("isRobotStay") == true|| animator.GetBool("isRobotStay") == false)
         {
             if (gameManagerScript.IsGameOver() == false)
             {
                 if (bulletTimer == 0.0f)
                 {
-                    Vector3 position = transform.position;
-                    position.y += 0.3f;
-                    position.z -= 3.0f;
-                    Instantiate(RobotBullet_R, position, Quaternion.identity);
+                    FireProjectile();
                     bulletTimer = 1.0f;
                 }
                 else
@@ -54,44 +53,21 @@ public class RobotScript : MonoBehaviour
                         bulletTimer = 0.0f;
                     }
                 }
-                
-                if (bulletTimer == 0.0f)
-                {
-                    Vector3 position = transform.position;
-                    position.y += 0.3f;
-                    position.z -= 3.0f;
-                    Instantiate(RobotBullet_L, position, Quaternion.identity);
-                    bulletTimer = 1.0f;
-                }
-                else
-                {
-                    bulletTimer++;
-                    if (bulletTimer > 120.0f)
-                    {
-                        bulletTimer = 0.0f;
-                    }
-                }
-
-                if (bulletTimer == 0.0f)
-                {
-                    Vector3 position = transform.position;
-                    position.y += 0.3f;
-                    position.z -= 3.0f;
-                    Instantiate(RobotBullet_L, position, Quaternion.identity);
-                    bulletTimer = 1.0f;
-                }
-                else
-                {
-                    bulletTimer++;
-                    if (bulletTimer > 60.0f)
-                    {
-                        bulletTimer = 0.0f;
-                    }
-                }
-
-
 
             }
+
+        }
+    }
+
+    void FireProjectile()
+    {
+        // オブジェクト3を生成
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        // 弾に初速度を付与
+        RobotBullet robotbulletScript = projectile.GetComponent<RobotBullet>();
+        if (robotbulletScript != null)
+        {
+            robotbulletScript.SetTarget(target);
         }
     }
 

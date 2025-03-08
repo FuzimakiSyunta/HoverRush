@@ -82,7 +82,6 @@ public class NomalEnemy : MonoBehaviour
             //敵消える
             Destroy(gameObject, 0f);
 
-
         }
     }
     void OnTriggerEnter(Collider other)
