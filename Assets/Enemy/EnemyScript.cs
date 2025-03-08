@@ -16,8 +16,8 @@ public class EnemyScript : MonoBehaviour
     public ParticleSystem particle;
     public bool sliderBool;
     private float[] bulletTimer = new float[3];
-    private float MoveSpeed = 0.02f;
-    private float BackmoveSpeed = -0.05f;
+    private float MoveSpeed = 2.0f;
+    private float BackmoveSpeed = -27.0f;
 
     //オーディオ
     public AudioClip DamegeSound;
@@ -53,10 +53,13 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 時間依存の移動
+        float move = MoveSpeed * Time.deltaTime;
+        float backMove = BackmoveSpeed * Time.deltaTime;
+
         if (gameManagerScript.IsGameStart() == true)
         {
-            
-            Vector3 velocity = new Vector3(0, 0, BackmoveSpeed);
+            Vector3 velocity = new Vector3(0, 0, backMove);
             transform.position += transform.rotation * velocity;
         }
         // スライダーの向きをカメラ方向に固定
@@ -65,7 +68,7 @@ public class EnemyScript : MonoBehaviour
         //移動
         Vector3 position = transform.position;
 
-        transform.position += new Vector3(0, 0, MoveSpeed);
+        transform.position += new Vector3(0, 0, move);
 
         //スライダー表示
         if(sliderBool == true)
@@ -141,11 +144,11 @@ public class EnemyScript : MonoBehaviour
 
     public float Speed()
     {
-        return MoveSpeed;
+        return MoveSpeed * Time.deltaTime;
     }
     public float BackSpeed()
     {
-        return BackmoveSpeed;
+        return BackmoveSpeed * Time.deltaTime;
     }
 
 }
