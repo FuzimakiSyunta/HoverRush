@@ -5,8 +5,8 @@ using Unity.VisualScripting;
 
 public class FloorMove : MonoBehaviour
 {
-    //private float MoveSpeed = 0.4f;
-    private float MoveSpeed = 0.8f;
+    private float MoveSpeed = 0.4f;
+    //private float MoveSpeed = 0.8f;
     // Start is called before the first frame update
     void Start()
     {

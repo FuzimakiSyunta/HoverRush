@@ -28,9 +28,9 @@ public class PlayerScript : MonoBehaviour
     float[] bulletTimer = new float[3];
     private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
-    //private float MoveSpeed = 0.06f;
+    private float MoveSpeed = 0.06f;
 
-    private float MoveSpeed = 0.16f;
+    //private float MoveSpeed = 0.16f;
 
     //HP関連
     public GameObject HPSlider;

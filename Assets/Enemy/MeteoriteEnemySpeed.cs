@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MeteoriteEnemySpeed : MonoBehaviour
 {
-    //private float MeteoriteSpeedY = 0.01f;
-    //private float MeteoriteSpeedZ = 0.05f;
+    private float MeteoriteSpeedY = 0.01f;
+    private float MeteoriteSpeedZ = 0.05f;
 
-    private float MeteoriteSpeedY = 0.015f;
-    private float MeteoriteSpeedZ = 0.09f;
+    //private float MeteoriteSpeedY = 0.015f;
+    //private float MeteoriteSpeedZ = 0.09f;
     // Start is called before the first frame update
     void Start()
     {

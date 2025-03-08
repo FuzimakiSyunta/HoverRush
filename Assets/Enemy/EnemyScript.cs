@@ -16,11 +16,11 @@ public class EnemyScript : MonoBehaviour
     public ParticleSystem particle;
     public bool sliderBool;
     private float[] bulletTimer = new float[3];
-    //private float MoveSpeed = 0.02f;
-    //private float BackmoveSpeed = -0.05f;
+    private float MoveSpeed = 0.02f;
+    private float BackmoveSpeed = -0.05f;
 
-    private float MoveSpeed = 0.05f;
-    private float BackmoveSpeed = -0.15f;
+    //private float MoveSpeed = 0.05f;
+    //private float BackmoveSpeed = -0.15f;
 
     // Start is called before the first frame update
     void Start()
