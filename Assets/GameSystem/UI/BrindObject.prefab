@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &379741914683170306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7825553411614870446}
+  - component: {fileID: 7720349696783910413}
+  m_Layer: 0
+  m_Name: BrindObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7825553411614870446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379741914683170306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 124.35967, y: -73.45812, z: -76.50334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7720349696783910413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379741914683170306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c70226afc80c1d4baa3da03332fa580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  boss: {fileID: 0}
+  bossBullet: {fileID: 389623457992006024, guid: 362ef3d617463dc4cbbd0a9266f0490c, type: 3}
+  EnergyImage: {fileID: 0}
+  StartSelectImage: {fileID: 0}
+  LuleSelectImage: {fileID: 0}
+  SelectorImage: {fileID: 0}
+  StartSelectCoverImage: {fileID: 0}
+  LuleBGImage: {fileID: 0}
+  LuleUiImage: {fileID: 0}
+  Hp: {fileID: 0}
+  EnergyEMP: {fileID: 0}
+  EnergyMIN: {fileID: 0}
+  EnergyMID: {fileID: 0}
+  EnergyMAX: {fileID: 0}
+  WAVETextFirst: {fileID: 0}
+  WAVETextWarnigFarstWave: {fileID: 0}
+  WAVETextSecond: {fileID: 0}
+  WAVETextWarnigSecondWave: {fileID: 0}
+  WAVETextFinalWave: {fileID: 0}
+  WAVETextWarnigFinalWave: {fileID: 0}
+  LTRT: {fileID: 0}
