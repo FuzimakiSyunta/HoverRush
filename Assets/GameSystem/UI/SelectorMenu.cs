@@ -43,7 +43,7 @@ public class SelectorMenu : MonoBehaviour
         float tri = Input.GetAxis("L_R_Trigger");
         
 
-        if (gameManagerScript.IsOpenSelector()==true)
+        if (gameManagerScript.IsOpenSelector()==true&&gameManagerScript.IsGameStart()==false)
         {
             //‰æ‘œˆÚ“®
             if (SettingMENUImage.position.x >= 325.0f)
