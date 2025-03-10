@@ -99,7 +99,7 @@ public class EnemyScript : MonoBehaviour
         //敵と弾
         if (other.gameObject.tag == "Bullet")
         {
-            audioSource.PlayOneShot(DamegeSound);
+            //audioSource.PlayOneShot(DamegeSound);
             EnemyNowHP -= 20;//一度当たるごとに20をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             //Slider表示
@@ -108,7 +108,7 @@ public class EnemyScript : MonoBehaviour
         //敵とマシンガン
         if (other.gameObject.tag == "Machinegun")
         {
-            audioSource.PlayOneShot(DamegeSound);
+            //audioSource.PlayOneShot(DamegeSound);
             EnemyNowHP -= 15;//一度当たるごとに10をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
