@@ -73,7 +73,7 @@ public class SelectorMenu : MonoBehaviour
                     }
                     if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
                     {
-                        gameManagerScript.GameStart();
+                        gameManagerScript.GameStart();//ÉQÅ[ÉÄäJén
                     }
                 }
                 else
