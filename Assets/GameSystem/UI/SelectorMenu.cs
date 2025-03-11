@@ -20,6 +20,10 @@ public class SelectorMenu : MonoBehaviour
     public RectTransform StartImage;
     public GameObject LuleBGmage;
     public GameObject LuleUiImage;
+
+    public GameObject AllUi;
+
+    private bool isSeaneEffect = false;
     
 
     // Start is called before the first frame update
@@ -73,7 +77,8 @@ public class SelectorMenu : MonoBehaviour
                     }
                     if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
                     {
-                        gameManagerScript.GameStart();//ゲーム開始
+                        isSeaneEffect = true;
+                        //gameManagerScript.GameStart();//ゲーム開始
                     }
                 }
                 else
@@ -108,6 +113,9 @@ public class SelectorMenu : MonoBehaviour
                 StartImage.position += new Vector3(move, 0, 0);
                 
             }
+        }else
+        {
+            isSeaneEffect = false;
         }
         
     }
@@ -115,8 +123,13 @@ public class SelectorMenu : MonoBehaviour
     {
         return ColorMenuFlag;
     }
-    public bool IsStartFlag()
+    public bool IsStartButtonFlag()
     {
         return StartFlag;
+    }
+
+    public bool IsSeaneEffectFlag()
+    {
+        return isSeaneEffect;
     }
 }

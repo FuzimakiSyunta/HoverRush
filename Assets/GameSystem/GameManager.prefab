@@ -108,6 +108,7 @@ MonoBehaviour:
   StartImage: {fileID: 0}
   LuleBGmage: {fileID: 0}
   LuleUiImage: {fileID: 0}
+  AllUi: {fileID: 0}
 --- !u!114 &7386112647475877928
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -234,5 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22365e00e46e6324abdbeead937e990a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
   subCamera: {fileID: 4449856355073619743}
   selectMenu: {fileID: 0}

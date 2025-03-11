@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    Camera mainCamera;
+    public Camera mainCamera;
     public Camera subCamera;
     //select
     private SelectorMenu selectorMenuScript;
     public GameObject selectMenu;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,7 @@ public class CameraScript : MonoBehaviour
     {
         if (mainCamera != null && subCamera != null && selectorMenuScript != null)
         {
-            if (selectorMenuScript.IsStartFlag() == true)
+            if (selectorMenuScript.IsStartButtonFlag() == true)
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
                 {
