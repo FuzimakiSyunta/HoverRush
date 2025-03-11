@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeteoriteEnemySpeed : MonoBehaviour
 {
     private float MeteoriteSpeedY = 5.0f;
-    private float MeteoriteSpeedZ = 25.0f;
+    private float MeteoriteSpeedZ = 20.0f;
 
     //private float MeteoriteSpeedY = 0.015f;
     //private float MeteoriteSpeedZ = 0.09f;

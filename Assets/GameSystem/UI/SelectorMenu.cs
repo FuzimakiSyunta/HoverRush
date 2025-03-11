@@ -68,7 +68,7 @@ public class SelectorMenu : MonoBehaviour
                     LuleUiImage.SetActive(true);
 
 
-                    if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow)|| tri > 0)
+                    if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow)|| tri > 0&& isSeaneEffect==false)
                     {
                         Selector.position += new Vector3(0, -selectormove, 0);
                         StartFlag = false;
@@ -92,7 +92,7 @@ public class SelectorMenu : MonoBehaviour
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                     LuleBGmage.SetActive(false);
                     LuleUiImage.SetActive(false);
-                    if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow) || tri < 0)
+                    if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow) || tri < 0&&isSeaneEffect == false)
                     {
                         Selector.position += new Vector3(0, selectormove, 0);
                         ColorMenuFlag = false;
