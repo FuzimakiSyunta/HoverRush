@@ -5,24 +5,48 @@ using UnityEngine.InputSystem;
 
 public class PauseSystem : MonoBehaviour
 {
-    private bool isPaused = false;
+    private bool isPaused = false;//pause‚µ‚½‚©ƒtƒ‰ƒO
     //gamemanager
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    //SelectorMenu
+    private SelectorMenu selectorMenuScrpt;
+    public GameObject selectorMenu;
+
+    //Image
+    public GameObject PauseImage;
+
+    public GameObject AllUi;
 
     void Start()
     {
         //gamemanager
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        
+        //SelectorMenu
+        selectorMenuScrpt = selectorMenu.GetComponent<SelectorMenu>();
+        PauseImage.SetActive(false);
+        AllUi.SetActive(true);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)|| Input.GetKeyDown("joystick button 7") && gameManagerScript.IsGameStart()==true)
+        if(gameManagerScript.IsGameStart() == true)
         {
-            TogglePause();
+            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown("joystick button 7"))
+            {
+                TogglePause();
+            }
+            if(isPaused)
+            {
+                PauseImage.SetActive(true);
+                AllUi.SetActive(false);
+            }else
+            {
+                PauseImage.SetActive(false);
+                AllUi.SetActive(true);
+            }
         }
+        
     }
 
     void TogglePause()

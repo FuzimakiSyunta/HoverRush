@@ -457,7 +457,7 @@ public class GameManager : MonoBehaviour
     }
     public bool IsGameClear()
     {
-        return GameClearFlag;
+        return GameClearFlag;//クリアのフラグ
     }
     public void Score()//スコア
     {

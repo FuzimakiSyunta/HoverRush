@@ -119,15 +119,15 @@ public class SelectorMenu : MonoBehaviour
     }
     public bool IsColorMenuFlag()
     {
-        return ColorMenuFlag;
+        return ColorMenuFlag;//SettingボタンのFrag
     }
     public bool IsStartButtonFlag()
     {
-        return StartFlag;
+        return StartFlag;//GameStartボタンのFrag
     }
 
     public bool IsSeaneEffectFlag()
     {
-        return isSeaneEffect;
+        return isSeaneEffect;//画面推移Effectフラグ
     }
 }
