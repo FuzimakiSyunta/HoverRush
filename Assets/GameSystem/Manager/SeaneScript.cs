@@ -7,17 +7,25 @@ public class SceneScript : MonoBehaviour
 {
     private GameManager gameManagerScript;
     public GameObject gameManager;
-    private float Timer;
-    // Start is called before the first frame update
+    private PauseMenuSelector pauseMenuSelectorScript;
+    public GameObject pauseMenuSelector;
+
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        pauseMenuSelectorScript = pauseMenuSelector.GetComponent<PauseMenuSelector>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (gameManagerScript.IsGameOver() == true)//ゲームオーバー時
+        // isTitleBackがtrueの場合にLoadシーンへ移動
+        if (pauseMenuSelectorScript.IsTitleBack())
+        {
+            SceneManager.LoadScene("Load");
+        }
+
+        // ゲームオーバー処理
+        if (gameManagerScript.IsGameOver())
         {
             if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
@@ -25,13 +33,13 @@ public class SceneScript : MonoBehaviour
             }
         }
 
-        if (gameManagerScript.IsGameClear() == true)//ゲームクリア時
+        // ゲームクリア処理
+        if (gameManagerScript.IsGameClear())
         {
             if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
                 SceneManager.LoadScene("Clear");
             }
         }
-
     }
 }

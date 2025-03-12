@@ -1,27 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BackScene : MonoBehaviour
 {
-    private GameManager gameManagerScript;
-    public GameObject gameManager;
     private float Timer;
-    // Start is called before the first frame update
+
     void Start()
     {
-        Timer = 0;
+        Timer = 0.0f;
+        Debug.Log("BackScene initialized. Timer reset.");
     }
 
-    // Update is called once per frame
     void Update()
     {
         Timer += Time.deltaTime;
-        if (Timer>=2)
+        Debug.Log($"Timer: {Timer}, TimeScale: {Time.timeScale}");
+
+        if (Timer >= 2.0f) // 2•bŒã‚ÉƒV[ƒ“‘JˆÚ
         {
+            Debug.Log("Attempting to load PlayerMove scene...");
             SceneManager.LoadScene("PlayerMove");
-            Timer = 0;
         }
     }
 }

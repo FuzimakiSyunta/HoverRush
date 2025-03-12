@@ -20,6 +20,7 @@ public class SelectorMenu : MonoBehaviour
     public RectTransform StartImage;
     public GameObject LuleBGmage;
     public GameObject LuleUiImage;
+    public GameObject LTRTImage;
 
     private bool isSeaneEffect = false;
     
@@ -51,13 +52,21 @@ public class SelectorMenu : MonoBehaviour
             if (SettingMENUImage.position.x >= 325.0f)
             {
                 move -= 5.5f;
-                SelectorImage.SetActive(true);
+                if (isSeaneEffect)
+                {
+                    SelectorImage.SetActive(false);
+                    Debug.Log("SelectorImage hidden due to scene effect.");
+                }else
+                {
+                    SelectorImage.SetActive(true);
+                }
+                
 
                 StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
                 StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                 
                 //Selector
-                if (ColorMenuFlag == false)
+                if (ColorMenuFlag == false && isSeaneEffect == false)
                 {
                     StartFlag = true;
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
@@ -66,7 +75,7 @@ public class SelectorMenu : MonoBehaviour
                     LuleUiImage.SetActive(true);
 
 
-                    if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow)|| tri > 0&& isSeaneEffect==false)
+                    if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow)|| tri > 0)
                     {
                         Selector.position += new Vector3(0, -selectormove, 0);
                         StartFlag = false;
@@ -76,7 +85,11 @@ public class SelectorMenu : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
                     {
                         isSeaneEffect = true;
-                        //gameManagerScript.GameStart();//ÉQÅ[ÉÄäJén
+                        LuleBGmage.SetActive(false);
+                        LuleUiImage.SetActive(false);
+                        GAMESTARTImage.SetActive(false);
+                        SETTINGImage.SetActive(false);
+                        SelectorImage.SetActive(false);
                     }
                 }
                 else
