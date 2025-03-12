@@ -22,6 +22,8 @@ public class CameraControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ŽžŠÔˆË‘¶‚ÌˆÚ“®
+        float move = rotateSpeed * Time.deltaTime;
         if (gameManagerScript.IsGameStart() == false)
         {
             //‰ñ“]‚³‚¹‚éŠp“x

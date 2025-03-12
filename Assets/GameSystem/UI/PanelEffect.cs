@@ -15,7 +15,9 @@ public class PanelEffect : MonoBehaviour
     public GameObject selectorMenu;
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    public GameObject Allui;
     private bool isWhite;
+    private bool isAlpha;
 
     void Start()
     {
@@ -44,17 +46,19 @@ public class PanelEffect : MonoBehaviour
         // 透明から白にフェード
         yield return StartCoroutine(FadeColor(startColor, endColor));
         isWhite = true;
+        isAlpha = false;
+        Allui.SetActive(false);
 
         // 少し待機（白の状態を維持する時間）
         yield return new WaitForSeconds(2f);
-        gameManagerScript.GameStart();
+        gameManagerScript.GameStart();//ゲームスタート
 
         // 白から透明にフェード
         yield return StartCoroutine(FadeColor(endColor, startColor));
         isWhite = false;
+        isAlpha = true;
+        Allui.SetActive(true);
 
-        
-        
 
         isChangingColor = false; // 色変更フラグをリセット
     }
@@ -82,5 +86,9 @@ public class PanelEffect : MonoBehaviour
     public bool IsWhite()
     {
         return isWhite;
+    }
+    public bool IsAlpha()
+    {
+        return isAlpha;
     }
 }
