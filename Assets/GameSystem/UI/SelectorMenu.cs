@@ -21,8 +21,6 @@ public class SelectorMenu : MonoBehaviour
     public GameObject LuleBGmage;
     public GameObject LuleUiImage;
 
-    public GameObject AllUi;
-
     private bool isSeaneEffect = false;
     
 

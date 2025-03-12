@@ -19,6 +19,7 @@ TagManager:
   - WallUp
   - HomingTargrt
   - RobotBullet
+  - Pauseable
   layers:
   - Default
   - TransparentFX
