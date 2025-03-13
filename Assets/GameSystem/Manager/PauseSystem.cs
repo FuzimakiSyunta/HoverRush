@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.HDROutputUtils;
 
 public class PauseSystem : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class PauseSystem : MonoBehaviour
     //gamemanager
     private GameManager gameManagerScript;
     public GameObject gameManager;
-    //SelectorMenu
-    private SelectorMenu selectorMenuScript;
-    public GameObject selectorMenu;
+
+    ////SelectorMenu
+    //private SelectorMenu selectorMenuScript;
+    //public GameObject selectorMenu;
 
     //PanelEffect
     private PanelEffect PanelEffectScript;
@@ -31,8 +33,8 @@ public class PauseSystem : MonoBehaviour
     {
         //gamemanager
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        //SelectorMenu
-        selectorMenuScript = selectorMenu.GetComponent<SelectorMenu>();
+        ////SelectorMenu
+        //selectorMenuScript = selectorMenu.GetComponent<SelectorMenu>();
         //PanelEffect
         PanelEffectScript = panelEffect.GetComponent<PanelEffect>();
         pauseMenuSelectorScript = pauseMenuSelector.GetComponent<PauseMenuSelector>();
@@ -63,7 +65,19 @@ public class PauseSystem : MonoBehaviour
                 Ui.SetActive(true);
                 isPauseOn = false;
             }
+            //ëÄçÏê‡ñæâÊñ 
+            if (pauseMenuSelectorScript.IsOperation() == true)
+            {
+                PauseImage.SetActive(false);
+                if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 1"))
+                {
+                    PauseImage.SetActive(true);
+                }
+            }
+            
         }
+
+        
 
     }
 

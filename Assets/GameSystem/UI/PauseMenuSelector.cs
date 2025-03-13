@@ -10,23 +10,27 @@ public class PauseMenuSelector : MonoBehaviour
     public GameObject SelectorImage;
     public RectTransform Selector;
 
-    public bool isRestartSelect;
+    //ëÄçÏê‡ñæâÊëú
+    public GameObject OperationImage;
+
+    public bool isOperationSelect;
     private bool isTitleBackSelect;
 
-    public bool isRestart = false;
+    public bool isOperation = false;
     public bool isTitleBack = false;
 
-    private float upperPosition = 100f;
-    private float lowerPosition = -100f;
+    private float upperPosition = 107f;
+    private float lowerPosition = -105.7f;
 
     void Start()
     {
         pauseSystemScript = pauseSystem.GetComponent<PauseSystem>();
-        isRestart = false;
+        isOperation = false;
         isTitleBack = false;
-        isRestartSelect = false;
+        isOperationSelect = false;
         isTitleBackSelect = false;
         SelectorImage.SetActive(false);
+        OperationImage.SetActive(false);
     }
 
     void Update()
@@ -58,25 +62,42 @@ public class PauseMenuSelector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || tri > 0)
         {
             Selector.anchoredPosition = new Vector2(Selector.anchoredPosition.x, upperPosition);
-            isRestartSelect = true;
+            isOperationSelect = true;
             isTitleBackSelect = false;
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || tri < 0)
         {
             Selector.anchoredPosition = new Vector2(Selector.anchoredPosition.x, lowerPosition);
-            isRestartSelect = false;
+            isOperationSelect = false;
             isTitleBackSelect = true;
         }
+
+        if(isOperation)
+        {
+            OperationImage.SetActive(true);
+            SelectorImage.SetActive(false);
+            isOperationSelect = true;
+            if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 1"))
+            {
+                isOperation=false;
+            }
+        }
+        else
+        {
+            OperationImage.SetActive(false);
+            SelectorImage.SetActive(true);
+        }
+        
+
     }
 
     private void HandleSelection()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
         {
-            if (isRestartSelect)
+            if (isOperationSelect)
             {
-                isRestart = true;
-                Debug.Log("Selection: isRestart = true");
+                isOperation = true;
             }
             else if (isTitleBackSelect)
             {
@@ -86,8 +107,14 @@ public class PauseMenuSelector : MonoBehaviour
         }
     }
 
+
     public bool IsTitleBack()
     {
         return isTitleBack;
+    }
+
+    public bool IsOperation()
+    {
+        return isOperation;
     }
 }

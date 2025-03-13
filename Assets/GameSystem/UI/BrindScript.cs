@@ -44,6 +44,8 @@ public class BrindScript : MonoBehaviour
     //LTRT
     public GameObject LTRT;
     
+    //Option
+    public GameObject OptionImage;
 
 
     // Start is called before the first frame update
@@ -67,6 +69,7 @@ public class BrindScript : MonoBehaviour
         LuleBGImage.SetActive(false);
         LuleUiImage.SetActive(false);
         LTRT.SetActive(false);
+        OptionImage.SetActive(false);
         ////color
         //colorMenuWHITE.SetActive(false);
         //colorMenuRED.SetActive(false);
@@ -77,6 +80,9 @@ public class BrindScript : MonoBehaviour
         WAVETextWarnigSecondWave.SetActive(false);
         WAVETextFinalWave.SetActive(false);
         WAVETextWarnigFinalWave.SetActive(false);
+
+        //Option
+
         
     }
 
@@ -106,6 +112,7 @@ public class BrindScript : MonoBehaviour
                 //colorMenuYELLOW.SetActive(false);
                 //Hp
                 Hp.SetActive(true);
+                OptionImage.SetActive(true);
                 //Energy
                 EnergyEMP.SetActive(true);
 
@@ -123,6 +130,7 @@ public class BrindScript : MonoBehaviour
                 LuleUiImage.SetActive(false);
                 EnergyImage.SetActive(false);
                 LTRT.SetActive(false);
+                OptionImage.SetActive(false);
                 ////color
                 //colorMenuWHITE.SetActive(false);
                 //colorMenuRED.SetActive(false);
@@ -142,12 +150,14 @@ public class BrindScript : MonoBehaviour
             {
                 StartSelectCoverImage.SetActive(false);
                 LTRT.SetActive(true);
+                OptionImage.SetActive(false);
             }
             
 
             if (gameManagerScript.IsGameStart() == true)
             {
                 LTRT.SetActive(false);
+                OptionImage.SetActive(true);
                 if (gameManagerScript.IsScore() >= 5)
                 {
                     EnergyMIN.SetActive(true);
