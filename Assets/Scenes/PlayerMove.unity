@@ -1962,6 +1962,7 @@ MonoBehaviour:
   gameManager: {fileID: 738859541}
   selectorMenu: {fileID: 738859541}
   panelEffect: {fileID: 475262386}
+  pauseMenuSelector: {fileID: 738859541}
   PauseImage: {fileID: 1682384397}
   Ui: {fileID: 983976558}
 --- !u!114 &738859549
@@ -10561,7 +10562,7 @@ PrefabInstance:
       objectReference: {fileID: 25857555}
     - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: playerHP
-      value: 1
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: HealImage
