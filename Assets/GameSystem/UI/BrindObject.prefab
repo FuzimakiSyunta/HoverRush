@@ -66,3 +66,4 @@ MonoBehaviour:
   WAVETextFinalWave: {fileID: 0}
   WAVETextWarnigFinalWave: {fileID: 0}
   LTRT: {fileID: 0}
+  OptionImage: {fileID: 0}
