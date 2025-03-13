@@ -27,7 +27,7 @@ public class PauseMenuSelector : MonoBehaviour
         pauseSystemScript = pauseSystem.GetComponent<PauseSystem>();
         isOperation = false;
         isTitleBack = false;
-        isOperationSelect = false;
+        isOperationSelect = true;
         isTitleBackSelect = false;
         SelectorImage.SetActive(false);
         OperationImage.SetActive(false);
@@ -59,13 +59,13 @@ public class PauseMenuSelector : MonoBehaviour
     {
         float tri = Input.GetAxis("L_R_Trigger");
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || tri > 0)
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || tri < 0)
         {
             Selector.anchoredPosition = new Vector2(Selector.anchoredPosition.x, upperPosition);
             isOperationSelect = true;
             isTitleBackSelect = false;
         }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || tri < 0)
+        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || tri > 0)
         {
             Selector.anchoredPosition = new Vector2(Selector.anchoredPosition.x, lowerPosition);
             isOperationSelect = false;
