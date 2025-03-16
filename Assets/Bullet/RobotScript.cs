@@ -48,7 +48,7 @@ public class RobotScript : MonoBehaviour
                 else
                 {
                     bulletTimer++;
-                    if (bulletTimer > 120.0f)
+                    if (bulletTimer > 30.0f)
                     {
                         bulletTimer = 0.0f;
                     }

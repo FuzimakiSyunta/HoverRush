@@ -16,7 +16,7 @@ public class BrindScript : MonoBehaviour
     public GameObject StartSelectImage;
     //SelectUI
     public GameObject LuleSelectImage;
-    public GameObject SelectorImage;
+    //public GameObject SelectorImage;
     public GameObject StartSelectCoverImage;
     public GameObject LuleBGImage;
     public GameObject LuleUiImage;
@@ -101,7 +101,7 @@ public class BrindScript : MonoBehaviour
                 //SelectUI
                 StartSelectImage.SetActive(false);
                 LuleSelectImage.SetActive(false);
-                SelectorImage.SetActive(false);
+                //SelectorImage.SetActive(false);
                 StartSelectCoverImage.SetActive(false);
                 LuleBGImage.SetActive(false);
                 LuleUiImage.SetActive(false);
@@ -124,7 +124,7 @@ public class BrindScript : MonoBehaviour
                 StartSelectImage.SetActive(false);
                 //selectorUI
                 LuleSelectImage.SetActive(false);
-                SelectorImage.SetActive(false);
+                //SelectorImage.SetActive(false);
                 StartSelectCoverImage.SetActive(false);
                 LuleBGImage.SetActive(false);
                 LuleUiImage.SetActive(false);
