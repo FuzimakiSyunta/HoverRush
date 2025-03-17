@@ -8,14 +8,14 @@ public class CubeMove : MonoBehaviour
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
-    private PLayerShake playerShakeScript;
+    private PlayerShake playerShakeScript;
     public GameObject playerShake;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        playerShakeScript = playerShake.GetComponent<PLayerShake>();
+        playerShakeScript = playerShake.GetComponent < PlayerShake>();
     }
 
     // Update is called once per frame

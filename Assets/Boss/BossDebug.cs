@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteoriteRotate : MonoBehaviour
+public class BossDebug : MonoBehaviour
 {
-    private float RotateSpeed = 0.8f;
+    private GameObject bossScript;
+    public BossScript bossScriptScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        bossScriptScript = bossScript.GetComponent<BossScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float move = RotateSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.Euler(move, 0, 0); // // Xé≤ÇíÜêSÇ…45ÅãâÒì]
+        
     }
 }
