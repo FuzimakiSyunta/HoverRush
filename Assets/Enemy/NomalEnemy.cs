@@ -106,8 +106,28 @@ public class NomalEnemy : MonoBehaviour
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
-        
+        //敵と貫通弾
+        if (other.gameObject.tag == "PenetrationBullet")
+        {
+            //audioSource.PlayOneShot(DamegeSound);
+            EnemyNowHP -= 40;//一度当たるごとに10をマイナス
+            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            sliderBool = true;
+        }
+
     }
+    void OnTriggerStay(Collider other)
+    {
+        //ボスとレーザー
+        if (other.gameObject.tag == "PlayerLazer")
+        {
+            //audioSource.PlayOneShot(DamegeSound);
+            EnemyNowHP -= 5;//一度当たるごとに10をマイナス
+            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            sliderBool = true;
+        }
+    }
+
 
     public float Speed()
     {

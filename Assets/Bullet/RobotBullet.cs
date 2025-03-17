@@ -5,8 +5,10 @@ using UnityEngine;
 public class RobotBullet : MonoBehaviour
 {
     private Transform target; // オブジェクト2 (ターゲット)
-    public float speed = 13f; // 移動速度
-    public float rotationSpeed = 200f; // 回転速度
+    private float speed = 20f; // 移動速度
+    private float rotationSpeed = 660f; // 回転速度
+    private float SpawnedTimer =  0;
+    
 
     public void SetTarget(Transform targetTransform)
     {
@@ -15,7 +17,7 @@ public class RobotBullet : MonoBehaviour
 
     void Start()
     { 
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 6f);
     }
 
     void Update()
@@ -31,6 +33,14 @@ public class RobotBullet : MonoBehaviour
 
         // ターゲットに向かって移動
         transform.position += transform.forward * speed * Time.deltaTime;
+
+        SpawnedTimer += Time.deltaTime;
+
+        if(SpawnedTimer>=1)
+        {
+            speed = 100f;
+            rotationSpeed = 0;
+        }
     }
     void OnTriggerEnter(Collider other)
     {
