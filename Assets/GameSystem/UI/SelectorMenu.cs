@@ -52,14 +52,6 @@ public class SelectorMenu : MonoBehaviour
             if (SettingMENUImage.position.x >= 410.0f)
             {
                 move -= 5.5f;
-                //if (isSeaneEffect)
-                //{
-                //    //SelectorImage.SetActive(false);
-                //    Debug.Log("SelectorImage hidden due to scene effect.");
-                //}else
-                //{
-                //    //SelectorImage.SetActive(true);
-                //}
                 
 
                 StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
@@ -77,7 +69,7 @@ public class SelectorMenu : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow)|| tri > 0)
                     {
-                        //Selector.position += new Vector3(0, -selectormove, 0);
+                        
                         StartFlag = false;
                         ColorMenuFlag = true;
                         
@@ -89,7 +81,7 @@ public class SelectorMenu : MonoBehaviour
                         LuleUiImage.SetActive(false);
                         GAMESTARTImage.SetActive(false);
                         SETTINGImage.SetActive(false);
-                        //SelectorImage.SetActive(false);
+                        
                     }
                 }
                 else
@@ -105,7 +97,7 @@ public class SelectorMenu : MonoBehaviour
                     LuleUiImage.SetActive(false);
                     if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow) || tri < 0&&isSeaneEffect == false)
                     {
-                        //Selector.position += new Vector3(0, selectormove, 0);
+                        
                         ColorMenuFlag = false;
                         StartFlag = true;
                     }

@@ -72,7 +72,7 @@ public class PauseMenuSelector : MonoBehaviour
             isTitleBackSelect = true;
         }
 
-        if(isOperation)
+        if(isOperation)//ëÄçÏê‡ñæ
         {
             OperationImage.SetActive(true);
             SelectorImage.SetActive(false);

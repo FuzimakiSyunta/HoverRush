@@ -50,7 +50,6 @@ MonoBehaviour:
   EnergyImage: {fileID: 0}
   StartSelectImage: {fileID: 0}
   LuleSelectImage: {fileID: 0}
-  SelectorImage: {fileID: 0}
   StartSelectCoverImage: {fileID: 0}
   LuleBGImage: {fileID: 0}
   LuleUiImage: {fileID: 0}

@@ -87,19 +87,19 @@ public class PlayerColor : MonoBehaviour
 
             // マテリアルの名前をチェックしてメニューを切り替える
             Material currentMaterial = materialArray[count];
-            if (currentMaterial.name.Contains("StarSparrow_Purple"))
+            if (currentMaterial.name.Contains("StarSparrow_WHITE")|| currentMaterial.name.Contains("StarSparrow_WHITE_1") || currentMaterial.name.Contains("StarSparrow_WHITE_2"))
             {
                 colorMenuWHITE.SetActive(true);
                 colorMenuRED.SetActive(false);
                 colorMenuYELLOW.SetActive(false);
             }
-            else if (currentMaterial.name.Contains("StarSparrow_RED"))
+            else if (currentMaterial.name.Contains("StarSparrow_RED") || currentMaterial.name.Contains("StarSparrow_RED_1") || currentMaterial.name.Contains("StarSparrow_RED_2"))
             {
                 colorMenuWHITE.SetActive(false);
                 colorMenuRED.SetActive(true);
                 colorMenuYELLOW.SetActive(false);
             }
-            else if (currentMaterial.name.Contains("StarSparrow_YELLOW"))
+            else if (currentMaterial.name.Contains("StarSparrow_YELLOW") || currentMaterial.name.Contains("StarSparrow_YELLOW_1") || currentMaterial.name.Contains("StarSparrow_YELLOW_2"))
             {
                 colorMenuWHITE.SetActive(false);
                 colorMenuRED.SetActive(false);
