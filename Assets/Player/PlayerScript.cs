@@ -39,6 +39,7 @@ public class PlayerScript : MonoBehaviour
     public Slider hpSlider;//HPバー（スライダー）
     public bool isDameged = false;
     private bool isHeal=false;
+    public float DamegeCoolTime;
 
     //パーティクル
     public ParticleSystem particle;
@@ -74,6 +75,7 @@ public class PlayerScript : MonoBehaviour
     void Damaged()
     {
         isDameged = true;
+        DamegeCoolTime = 0.0f;
         audioSource.PlayOneShot(DamegeSound);
         // パーティクルシステムのインスタンスを生成する。
         ParticleSystem newParticle = Instantiate(particle);
@@ -123,6 +125,7 @@ public class PlayerScript : MonoBehaviour
         ///ゲームスタートしたら
         if (gameManagerScript.IsGameStart() == true&&gameManagerScript.IsGameClear()==false)
         {
+            DamegeCoolTime += Time.deltaTime;
             //回復UI
             if (gameManagerScript.IsScore() < 15)
             {
@@ -288,64 +291,72 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        //雑魚の弾
-        if (other.gameObject.tag == "EnemyBullet")
+        if (DamegeCoolTime >= 1f)
         {
-            MaxHp -= 10;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            //雑魚の弾
+            if (other.gameObject.tag == "EnemyBullet")
+            {
+                MaxHp -= 10;
+                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+
+            }
+
+            //BossBullet
+            if (other.gameObject.tag == "BossBullet")
+            {
+                MaxHp -= 20;
+                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            }
+
+            //BossExtraBullet
+            if (other.gameObject.tag == "BossExtraBullet")
+            {
+                MaxHp -= 20;
+                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            }
+
+            //ボスのレーザー
+            if (other.gameObject.tag == "Lazer")
+            {
+                MaxHp -= 15;
+                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            }
+
+            //ロボットの弾
+            if (other.gameObject.tag == "RobotBullet")
+            {
+                MaxHp -= 10;
+                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            }
+
+
+            if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
+                || other.gameObject.tag == "RobotBullet")
+            {
+                Damaged();
+            }
+            else
+            {
+                isDameged = false;
+
+            }
+        }
             
-        }
-
-        //BossBullet
-        if (other.gameObject.tag == "BossBullet")
-        {
-            MaxHp -= 20;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-        }
-        
-        //BossExtraBullet
-        if (other.gameObject.tag == "BossExtraBullet")
-        {
-            MaxHp -= 20;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-        }
-
-        //ボスのレーザー
-        if (other.gameObject.tag == "Lazer")
-        {
-            MaxHp -= 15;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-        }
-
-        //ロボットの弾
-        if (other.gameObject.tag == "RobotBullet")
-        {
-            MaxHp -= 10;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-        }
-
-        //ダメージ
-        if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy"|| other.gameObject.tag == "BossBullet"||other.gameObject.tag == "BossExtraBullet"|| other.gameObject.tag == "Lazer"
-            || other.gameObject.tag == "RobotBullet")
-        {
-            Damaged();
-            
-        }
-        else
-        {
-            isDameged = false;
-        }
 
     }
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (DamegeCoolTime >= 1f)
         {
-            MaxHp -= 5;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-            Damaged();
-            
+            if (other.gameObject.tag == "Enemy")
+            {
+                MaxHp -= 5;
+                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+                Damaged();
+
+            }
         }
+            
         
     }
 
@@ -361,5 +372,9 @@ public class PlayerScript : MonoBehaviour
     public float Speed()
     {
         return MoveSpeed * Time.deltaTime;
+    }
+    public float DamegeCoolTimer()
+    {
+        return DamegeCoolTime;
     }
 }
