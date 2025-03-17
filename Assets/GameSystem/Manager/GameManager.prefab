@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2322298690624262891, guid: 818ef5a4190293c44b81ddf80065c947, type: 3}
   mineEnemy: {fileID: 2898809129046960840, guid: 78d2b3a0e7a4720498be48b1c79c6b40, type: 3}
-  yellowEnemy: {fileID: 1207510094245498474, guid: 92b80e1efdaa7ed48ae02df10a8201ff, type: 3}
+  planeEnemy: {fileID: 0}
   player: {fileID: 0}
   UI: {fileID: 0}
   gameOverText: {fileID: 0}
@@ -99,8 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 8835913089577454385}
-  Selector: {fileID: 0}
-  SelectorImage: {fileID: 0}
   GAMESTARTImage: {fileID: 0}
   SETTINGImage: {fileID: 0}
   ColorMenuFlag: 0
