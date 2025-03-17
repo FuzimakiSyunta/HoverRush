@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeteoriteRotate : MonoBehaviour
 {
-    private float RotateSpeed;
+    private float RotateSpeed = 50.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,8 +14,7 @@ public class MeteoriteRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotateSpeed -= 0.5f;
-        //RotateSpeed -= 0.8f;
-        transform.rotation = Quaternion.Euler(RotateSpeed, 0, 0); // // X²‚ğ’†S‚É45‹‰ñ“]
+        float move = RotateSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Euler(move, 0, 0); // // X²‚ğ’†S‚É45‹‰ñ“]
     }
 }
