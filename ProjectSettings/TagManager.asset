@@ -20,6 +20,9 @@ TagManager:
   - HomingTargrt
   - RobotBullet
   - Pauseable
+  - PlayerLazer
+  - PenetrationBullet
+  - Bomm
   layers:
   - Default
   - TransparentFX
