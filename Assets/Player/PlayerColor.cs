@@ -13,9 +13,9 @@ public class PlayerColor : MonoBehaviour
     private SelectorMenu selectorMenuScript;
     public GameObject selectMenu;
     //メニュー画面
-    public GameObject colorMenuWHITE;
-    public GameObject colorMenuRED;
-    public GameObject colorMenuYELLOW;
+    public GameObject colorMenuNumber_L;
+    public GameObject colorMenuNumber_CENTER;
+    public GameObject colorMenuNumber_R;
 
     //gamemanager
     private GameManager gameManagerScript;
@@ -87,30 +87,30 @@ public class PlayerColor : MonoBehaviour
 
             // マテリアルの名前をチェックしてメニューを切り替える
             Material currentMaterial = materialArray[count];
-            if (currentMaterial.name.Contains("StarSparrow_Purple"))
+            if (currentMaterial.name.Contains("StarSparrow_RED") || currentMaterial.name.Contains("StarSparrow_RED_1") || currentMaterial.name.Contains("StarSparrow_RED_2"))
             {
-                colorMenuWHITE.SetActive(true);
-                colorMenuRED.SetActive(false);
-                colorMenuYELLOW.SetActive(false);
+                colorMenuNumber_L.SetActive(true);
+                colorMenuNumber_CENTER.SetActive(false);
+                colorMenuNumber_R.SetActive(false);
             }
-            else if (currentMaterial.name.Contains("StarSparrow_RED"))
+            else if (currentMaterial.name.Contains("StarSparrow_WHITE") || currentMaterial.name.Contains("StarSparrow_WHITE_1") || currentMaterial.name.Contains("StarSparrow_WHITE_2"))
             {
-                colorMenuWHITE.SetActive(false);
-                colorMenuRED.SetActive(true);
-                colorMenuYELLOW.SetActive(false);
+                colorMenuNumber_L.SetActive(false);
+                colorMenuNumber_CENTER.SetActive(true);
+                colorMenuNumber_R.SetActive(false);
             }
-            else if (currentMaterial.name.Contains("StarSparrow_YELLOW"))
+            else if (currentMaterial.name.Contains("StarSparrow_YELLOW") || currentMaterial.name.Contains("StarSparrow_YELLOW_1") || currentMaterial.name.Contains("StarSparrow_YELLOW_2"))
             {
-                colorMenuWHITE.SetActive(false);
-                colorMenuRED.SetActive(false);
-                colorMenuYELLOW.SetActive(true);
+                colorMenuNumber_L.SetActive(false);
+                colorMenuNumber_CENTER.SetActive(false);
+                colorMenuNumber_R.SetActive(true);
             }
         }
         else
         {
-            colorMenuWHITE.SetActive(false);
-            colorMenuRED.SetActive(false);
-            colorMenuYELLOW.SetActive(false);
+            colorMenuNumber_L.SetActive(false);
+            colorMenuNumber_CENTER.SetActive(false);
+            colorMenuNumber_R.SetActive(false);
         }
     }
 }

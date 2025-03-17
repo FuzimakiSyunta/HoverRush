@@ -108,7 +108,13 @@ public class BossScript : MonoBehaviour
             {
                 BossWaveUpdate();
             }
-           
+
+            //Debag
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                BossBattleTime++;
+            }
+
         }
         // HPが0以下になった場合、自らを消す
         if (wkHP <= 0)
@@ -147,8 +153,29 @@ public class BossScript : MonoBehaviour
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
-        
+
+        //ボスと貫通弾
+        if (other.gameObject.tag == "PenetrationBullet")
+        {
+            audioSource.PlayOneShot(DamegeSound);
+            wkHP -= 20;//一度当たるごとに10をマイナス
+            hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            sliderBool = true;
+        }
     }
+    void OnTriggerStay(Collider other)
+    {
+        //ボスとレーザー
+        if (other.gameObject.tag == "PlayerLazer")
+        {
+            audioSource.PlayOneShot(DamegeSound);
+            wkHP -= 2;//一度当たるごとに30をマイナス
+            hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            //Slider表示
+            sliderBool = true;
+        }
+    }
+
     void FixedUpdate()
     {
         //散弾
@@ -338,5 +365,7 @@ public class BossScript : MonoBehaviour
     {
         return isfadeLazer;
     }
+
+   
 
 }
