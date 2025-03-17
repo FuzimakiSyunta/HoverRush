@@ -51,13 +51,14 @@ public class PanelEffect : MonoBehaviour
 
         // 少し待機（白の状態を維持する時間）
         yield return new WaitForSeconds(2f);
-        gameManagerScript.GameStart();//ゲームスタート
+        
 
         // 白から透明にフェード
         yield return StartCoroutine(FadeColor(endColor, startColor));
         isWhite = false;
         isAlpha = true;
         Allui.SetActive(true);
+        gameManagerScript.GameStart();//ゲームスタート
 
 
         isChangingColor = false; // 色変更フラグをリセット

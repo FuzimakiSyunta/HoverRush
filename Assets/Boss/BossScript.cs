@@ -108,7 +108,13 @@ public class BossScript : MonoBehaviour
             {
                 BossWaveUpdate();
             }
-           
+
+            //Debag
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                BossBattleTime++;
+            }
+
         }
         // HPが0以下になった場合、自らを消す
         if (wkHP <= 0)
@@ -338,5 +344,7 @@ public class BossScript : MonoBehaviour
     {
         return isfadeLazer;
     }
+
+   
 
 }
