@@ -15,7 +15,7 @@ public class SelectorMenu : MonoBehaviour
     public bool ColorMenuFlag;//セッティングが出せる状態
     public bool StartFlag;//ゲームが始められる状態
     private float move = 5.5f;
-    private float selectormove = 210.0f;
+    //private float selectormove = 210.0f;
     public RectTransform SettingMENUImage;
     public RectTransform StartImage;
     public GameObject LuleBGmage;
