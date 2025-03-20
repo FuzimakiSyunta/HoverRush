@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.HDROutputUtils;
 
 public class PauseSystem : MonoBehaviour
 {
@@ -22,14 +21,12 @@ public class PauseSystem : MonoBehaviour
 
     // Image
     public GameObject PauseImage;
-
     public GameObject Ui;
 
     private bool isPauseOn;
 
     // プレイヤー関連
     public GameObject player; // プレイヤーオブジェクト
-    private Rigidbody playerRigidbody; // プレイヤーのRigidbody
 
     void Start()
     {
@@ -39,9 +36,6 @@ public class PauseSystem : MonoBehaviour
         // PanelEffect
         PanelEffectScript = panelEffect.GetComponent<PanelEffect>();
         pauseMenuSelectorScript = pauseMenuSelector.GetComponent<PauseMenuSelector>();
-
-        // プレイヤーのRigidbody取得
-        playerRigidbody = player.GetComponent<Rigidbody>();
 
         PauseImage.SetActive(false);
         Ui.SetActive(true);
@@ -102,30 +96,6 @@ public class PauseSystem : MonoBehaviour
             {
                 fixedPosition = player.transform.position;
             }
-
-            // Rigidbodyの動作を停止
-            if (playerRigidbody != null)
-            {
-                playerRigidbody.isKinematic = true;
-            }
-        }
-        else
-        {
-            // ポーズ解除時にRigidbodyを再有効化
-            if (playerRigidbody != null)
-            {
-                playerRigidbody.isKinematic = false;
-            }
-        }
-
-        // 一時停止中にゲームオブジェクトを停止する
-        foreach (var obj in GameObject.FindGameObjectsWithTag("Pauseable"))
-        {
-            var rb = obj.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.isKinematic = isPaused;
-            }
         }
     }
 
@@ -133,22 +103,6 @@ public class PauseSystem : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1;
-
-        // プレイヤーの動きを再開
-        if (playerRigidbody != null)
-        {
-            playerRigidbody.isKinematic = false;
-        }
-
-        // 一時停止状態のオブジェクトを元に戻す
-        foreach (var obj in GameObject.FindGameObjectsWithTag("Pauseable"))
-        {
-            var rb = obj.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.isKinematic = false;
-            }
-        }
 
         // UIのリセット
         PauseImage.SetActive(false);

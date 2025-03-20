@@ -4927,7 +4927,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 2, z: 13}
+  m_Size: {x: 10, y: 4.02, z: 13}
   m_Center: {x: 0, y: 0, z: -1}
 --- !u!114 &4914990872261636624
 MonoBehaviour:
@@ -4955,11 +4955,11 @@ MonoBehaviour:
   isLazerWave: 0
   LazerTime: 0
   BossBattleTime: 0
-  bossHP: 4500
+  bossHP: 6000
   hpSlider: {fileID: 6592985435578639482}
   particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
   sliderBool: 0
-  DamegeSound: {fileID: 8300000, guid: 56f911e18ddcdad4fa799e3aa1baf94f, type: 3}
+  DamegeSound: {fileID: 8300000, guid: 8e82cc3bba6228b4eb91908e86149116, type: 3}
 --- !u!95 &483316865853557374
 Animator:
   serializedVersion: 5
@@ -4996,7 +4996,7 @@ MonoBehaviour:
   animator: {fileID: 483316865853557374}
   projectilePrefab: {fileID: 679023749104929143, guid: a068f9dc0dc0bde478effef60f829b15, type: 3}
   target: {fileID: 0}
-  projectileSpeed: 10
+  projectileSpeed: 60
 --- !u!82 &7339872509283239631
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5007,10 +5007,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 56f911e18ddcdad4fa799e3aa1baf94f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8e82cc3bba6228b4eb91908e86149116, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
-  m_Pitch: 2.31
+  m_Volume: 0.624
+  m_Pitch: -0.01
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -5120,7 +5120,7 @@ RectTransform:
   m_GameObject: {fileID: 2566233441241480381}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.466, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 55858077408935798}
@@ -5158,8 +5158,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: e75e7d6253095484ca579c81a9beed2f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5267,7 +5267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6234693134821547111}
-  particle: {fileID: 0}
+  particle: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
 --- !u!54 &6234693134821547111
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10325,7 +10325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4036229365380611171}
-  particle: {fileID: 0}
+  particle: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
 --- !u!54 &4036229365380611171
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10473,7 +10473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 494215733301683701}
-  particle: {fileID: 0}
+  particle: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
 --- !u!54 &494215733301683701
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10582,8 +10582,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5752743789189069451}
   - {fileID: 4159099835398362704}
+  - {fileID: 5752743789189069451}
   m_Father: {fileID: 7465420029334872257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
@@ -15592,7 +15592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3199872199829591015}
-  particle: {fileID: 0}
+  particle: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
 --- !u!54 &3199872199829591015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15887,7 +15887,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -16083,7 +16083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 991314357544618494}
-  particle: {fileID: 0}
+  particle: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
 --- !u!54 &991314357544618494
 Rigidbody:
   m_ObjectHideFlags: 0
