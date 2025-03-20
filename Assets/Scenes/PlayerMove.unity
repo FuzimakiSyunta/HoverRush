@@ -10401,8 +10401,12 @@ PrefabInstance:
       objectReference: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
     - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: bossHP
-      value: 6000
+      value: 60000
       objectReference: {fileID: 0}
+    - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
+      propertyPath: particle
+      value: 
+      objectReference: {fileID: 3931381678866721753, guid: 30a229513bcc34943b4c1a1ca4258be9, type: 3}
     - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: DamegeSound
       value: 

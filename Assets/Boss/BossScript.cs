@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -33,6 +34,7 @@ public class BossScript : MonoBehaviour
     private float MultiBulletCoolTime = 0;
     private float BulletCoolTime = 0;
     private float LazerBulletCoolTime = 0;
+    private float LazerdamegeCoolTime = 0;
 
     //Bossのステータス
     public int bossHP;// ボスの最大HP
@@ -43,9 +45,23 @@ public class BossScript : MonoBehaviour
     private Animator animator;
     private bool StartTime=false;
 
+    //ダメージ表記
+    private float imageDisplayTime = 1.0f; // 画像を表示する時間
+    public GameObject bulletdamageImage; // ダメージを受けた際に表示する画像
+    public GameObject MachinegunDamegeImage;
+    public GameObject PenetrationBulletDamegeImage;
+    public GameObject LazerDamegeImage;
+
+    public void Damage(Collider col)
+    {
+        //　DamageUIをインスタンス化。登場位置は接触したコライダの中心からカメラの方向に少し寄せた位置
+        var obj = Instantiate(bulletdamageImage, col.bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
+    }
+
     //オーディオ
     public AudioClip DamegeSound;
     private AudioSource audioSource;
+
 
     // Start is called before the first frame update
     void Start()
@@ -125,56 +141,162 @@ public class BossScript : MonoBehaviour
             //発生
             newParticle.Play();
             //エフェクト消える
-            Destroy(newParticle.gameObject, 0.5f);
+            Destroy(newParticle.gameObject, 2.5f);
 
             //ボス消える
             gameManagerScript.GameClearStart();//ゲームクリア
             Destroy(gameObject, 0f);
 
         }
-    }
-    
-    void OnTriggerEnter(Collider other)
-    {
-        //ボスと弾
-        if (other.gameObject.tag == "Bullet")
+        ///ダメージ非表示
+        if(gameManagerScript.IsGameOver()==true||gameManagerScript.IsGameClear()==true)
         {
-            audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 30;//一度当たるごとに30をマイナス
-            hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-            //Slider表示
-            sliderBool = true;
+            bulletdamageImage.SetActive(false);
+            MachinegunDamegeImage.SetActive(false);
+            PenetrationBulletDamegeImage.SetActive(false);
+            LazerDamegeImage.SetActive(false);
         }
-        //ボスとマシンガン
-        if (other.gameObject.tag == "Machinegun")
+        if (LazerdamegeCoolTime < 0.5f)
         {
-            audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 10;//一度当たるごとに10をマイナス
-            hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-            sliderBool = true;
+            LazerdamegeCoolTime += Time.deltaTime; // クールタイムを進める
         }
 
-        //ボスと貫通弾
-        if (other.gameObject.tag == "PenetrationBullet")
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        GameObject damageImage = null;
+        int damage = 0;
+
+        // 各タグに応じたダメージ値と画像を設定
+        switch (other.gameObject.tag)
+        {
+            case "Bullet":
+                damage = 300;
+                damageImage = bulletdamageImage;
+                break;
+            case "Machinegun":
+                damage = 100;
+                damageImage = MachinegunDamegeImage;
+                break;
+            case "PenetrationBullet":
+                damage = 400;
+                damageImage = PenetrationBulletDamegeImage;
+                break;
+            
+        }
+        
+
+        if (damageImage != null)
         {
             audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 40;//一度当たるごとに10をマイナス
-            hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            wkHP -= damage;
+            hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
             sliderBool = true;
+
+            // 画像を当たった位置に移動して表示
+            Vector3 hitPosition = other.transform.position;
+            ShowDamageImageAtPosition(damageImage, hitPosition);
         }
     }
+
     void OnTriggerStay(Collider other)
     {
-        //ボスとレーザー
+        // PlayerLazer専用の処理
         if (other.gameObject.tag == "PlayerLazer")
         {
-            audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 2;//一度当たるごとに30をマイナス
-            hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-            //Slider表示
-            sliderBool = true;
+            if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
+            {
+                int damage = 30; // ダメージ値
+                GameObject damageImage = LazerDamegeImage;
+
+                audioSource.PlayOneShot(DamegeSound);
+                wkHP -= damage; // HPを減少
+                hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
+                sliderBool = true;
+
+                // 画像を当たった位置に移動して表示
+                Vector3 hitPosition = other.transform.position;
+                ShowDamageImageAtPosition(damageImage, hitPosition);
+
+                // クールタイムをリセット
+                LazerdamegeCoolTime = 0;
+            }
         }
     }
+    private void ShowDamageImageAtPosition(GameObject damageImage, Vector3 position)
+    {
+        // 表示位置を少し上に調整
+        Vector3 adjustedPosition = position + new Vector3(0, 6.5f, 0);
+        damageImage.transform.position = adjustedPosition; // 調整後の位置に設定
+
+        // 画像を表示する前に透明度をリセット
+        damageImage.SetActive(true);
+        UnityEngine.UI.Image imageComponent = damageImage.GetComponent<UnityEngine.UI.Image>();
+        if (imageComponent != null)
+        {
+            // 現在のフェードアウトを中断し、透明度をリセット
+            StopAllCoroutines(); // 現在のCoroutineを停止
+            Color tempColor = imageComponent.color;
+            tempColor.a = 1.0f; // アルファを最大値（完全表示）に設定
+            imageComponent.color = tempColor;
+
+            MoveImageUpward(damageImage); // 画像を上方向に移動
+            StartCoroutine(ForceHideImageAfterDelay(damageImage, 0.5f)); // 0.5秒後に強制非表示
+            StartCoroutine(FadeOutImage(imageComponent)); // フェードアウトを開始
+        }
+    }
+    private IEnumerator ForceHideImageAfterDelay(GameObject damageImage, float delay)
+    {
+        yield return new WaitForSeconds(delay); // 指定した秒数待機
+        damageImage.SetActive(false); // 画像を非表示
+    }
+
+    private IEnumerator FadeOutImage(UnityEngine.UI.Image imageComponent)
+    {
+        float fadeDuration = imageDisplayTime; // フェードアウトの時間
+        float elapsedTime = 0f;
+
+        Color originalColor = imageComponent.color;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1.0f, 0.0f, elapsedTime / fadeDuration); // アルファ値を徐々に減少
+            originalColor.a = alpha;
+            imageComponent.color = originalColor; // 画像の色を更新
+            yield return null; // 次のフレームまで待機
+        }
+
+        // フェードアウト終了後に画像を非表示
+        imageComponent.gameObject.SetActive(false);
+    }
+
+    private void MoveImageUpward(GameObject damageImage)//上に移動
+    {
+        StartCoroutine(UpwardMovement(damageImage));
+    }
+
+    private IEnumerator UpwardMovement(GameObject damageImage)
+    {
+        float moveDuration = 1.0f; // 移動する時間（秒）
+        float elapsedTime = 0f;
+        Vector3 originalPosition = damageImage.transform.position;
+        Vector3 targetPosition = originalPosition + new Vector3(0, 5.0f, 0); // 目標位置
+
+        while (elapsedTime < moveDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            // 緩やかに位置を補間
+            damageImage.transform.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / moveDuration);
+            yield return null; // 次のフレームまで待機
+        }
+
+        // 最後に位置を目標位置に設定
+        damageImage.transform.position = targetPosition;
+    }
+
+
+
 
     void FixedUpdate()
     {
