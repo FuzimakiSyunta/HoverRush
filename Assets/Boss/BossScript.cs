@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -46,6 +47,7 @@ public class BossScript : MonoBehaviour
     //オーディオ
     public AudioClip DamegeSound;
     private AudioSource audioSource;
+
 
     // Start is called before the first frame update
     void Start()
@@ -125,7 +127,7 @@ public class BossScript : MonoBehaviour
             //発生
             newParticle.Play();
             //エフェクト消える
-            Destroy(newParticle.gameObject, 0.5f);
+            Destroy(newParticle.gameObject, 2.5f);
 
             //ボス消える
             gameManagerScript.GameClearStart();//ゲームクリア
@@ -140,7 +142,7 @@ public class BossScript : MonoBehaviour
         if (other.gameObject.tag == "Bullet")
         {
             audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 30;//一度当たるごとに30をマイナス
+            wkHP -= 300;//一度当たるごとに300をマイナス
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             //Slider表示
             sliderBool = true;
@@ -149,7 +151,7 @@ public class BossScript : MonoBehaviour
         if (other.gameObject.tag == "Machinegun")
         {
             audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 10;//一度当たるごとに10をマイナス
+            wkHP -= 100;//一度当たるごとに100をマイナス
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
@@ -158,7 +160,7 @@ public class BossScript : MonoBehaviour
         if (other.gameObject.tag == "PenetrationBullet")
         {
             audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 40;//一度当たるごとに10をマイナス
+            wkHP -= 400;//一度当たるごとに400をマイナス
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
@@ -169,7 +171,7 @@ public class BossScript : MonoBehaviour
         if (other.gameObject.tag == "PlayerLazer")
         {
             audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 2;//一度当たるごとに30をマイナス
+            wkHP -= 30;//一度当たるごとに300をマイナス
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             //Slider表示
             sliderBool = true;

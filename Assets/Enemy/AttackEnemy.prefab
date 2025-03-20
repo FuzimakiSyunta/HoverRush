@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemybullet: {fileID: 3732666458205294365, guid: 3ad2e16555e940043898b10fea281d0c, type: 3}
-  enemyHP: 40
+  enemyHP: 400
   hpSlider: {fileID: 590065527923438734}
   particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
   sliderBool: 0
