@@ -4,36 +4,34 @@ using UnityEngine;
 
 public class BrindScript : MonoBehaviour
 {
-    //gamemanager
+    // GameManager
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
-    //Boss
+    // Boss and Enemy
     public GameObject boss;
     public GameObject bossBullet;
-    //Enemy
     public GameObject EnergyImage;
+
+    // SelectUI
     public GameObject StartSelectImage;
-    //SelectUI
     public GameObject LuleSelectImage;
-    //public GameObject SelectorImage;
     public GameObject StartSelectCoverImage;
     public GameObject LuleBGImage;
     public GameObject LuleUiImage;
 
-    ////ColorChengeUI
-    //public GameObject colorMenuWHITE;
-    //public GameObject colorMenuRED;
-    //public GameObject colorMenuYELLOW;
-
-    //hp
+    // UI Elements
     public GameObject Hp;
-    //Energy
+    public GameObject A_Select;
+    public GameObject OptionImage;
+
+    // Energy Levels
     public GameObject EnergyEMP;
     public GameObject EnergyMIN;
     public GameObject EnergyMID;
     public GameObject EnergyMAX;
-    //Wavetext
+
+    // Wave Texts
     public GameObject WAVETextFirst;
     public GameObject WAVETextWarnigFarstWave;
     public GameObject WAVETextSecond;
@@ -41,138 +39,76 @@ public class BrindScript : MonoBehaviour
     public GameObject WAVETextFinalWave;
     public GameObject WAVETextWarnigFinalWave;
 
-    //LTRT
-    public GameObject LTRT;
-    
-    //Option
-    public GameObject OptionImage;
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        //gamemanager
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        //boss
-        boss.SetActive(false);
-        bossBullet.SetActive(false);
-        //enemy
-        EnergyImage.SetActive(false);
-        Hp.SetActive(false);
-        //Energy
-        EnergyEMP.SetActive(false);
-        EnergyMIN.SetActive(false);
-        EnergyMID.SetActive(false);
-        EnergyMAX.SetActive(false);
-        //Lule
+
+        // Initialize Elements
+        SetActiveForObjects(false, boss, bossBullet, EnergyImage, Hp, EnergyEMP, EnergyMIN, EnergyMID, EnergyMAX,
+                            WAVETextWarnigFarstWave, WAVETextSecond, WAVETextWarnigSecondWave, WAVETextFinalWave, WAVETextWarnigFinalWave,
+                            A_Select, OptionImage, LuleBGImage, LuleUiImage);
+
         StartSelectCoverImage.SetActive(true);
-        LuleBGImage.SetActive(false);
-        LuleUiImage.SetActive(false);
-        LTRT.SetActive(false);
-        OptionImage.SetActive(false);
-        ////color
-        //colorMenuWHITE.SetActive(false);
-        //colorMenuRED.SetActive(false);
-        //colorMenuYELLOW.SetActive(false);
-        //Wave
-        WAVETextWarnigFarstWave.SetActive(false);
-        WAVETextSecond.SetActive(false);
-        WAVETextWarnigSecondWave.SetActive(false);
-        WAVETextFinalWave.SetActive(false);
-        WAVETextWarnigFinalWave.SetActive(false);
-
-        //Option
-
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsGameClear()==false)
+        if (!gameManagerScript.IsGameClear())
         {
-            if (gameManagerScript.IsGameStart() == true && gameManagerScript.IsGameOver() == false)//gamestart
-            {
-                //Boss
-                boss.SetActive(true);
-                bossBullet.SetActive(true);
-                //enemy
-                EnergyImage.SetActive(true);
-                //SelectUI
-                StartSelectImage.SetActive(false);
-                LuleSelectImage.SetActive(false);
-                //SelectorImage.SetActive(false);
-                StartSelectCoverImage.SetActive(false);
-                LuleBGImage.SetActive(false);
-                LuleUiImage.SetActive(false);
-                LTRT.SetActive(false);
-                ////color
-                //colorMenuWHITE.SetActive(false);
-                //colorMenuRED.SetActive(false);
-                //colorMenuYELLOW.SetActive(false);
-                //Hp
-                Hp.SetActive(true);
-                OptionImage.SetActive(true);
-                //Energy
-                EnergyEMP.SetActive(true);
-
-            }
-            if (gameManagerScript.IsGameOver() == true)//gamestart
-            {
-                boss.SetActive(false);
-                EnergyImage.SetActive(false);
-                StartSelectImage.SetActive(false);
-                //selectorUI
-                LuleSelectImage.SetActive(false);
-                //SelectorImage.SetActive(false);
-                StartSelectCoverImage.SetActive(false);
-                LuleBGImage.SetActive(false);
-                LuleUiImage.SetActive(false);
-                EnergyImage.SetActive(false);
-                LTRT.SetActive(false);
-                OptionImage.SetActive(false);
-                ////color
-                //colorMenuWHITE.SetActive(false);
-                //colorMenuRED.SetActive(false);
-                //colorMenuYELLOW.SetActive(false);
-                //Hp
-                Hp.SetActive(false);
-                //Wave
-                WAVETextWarnigFarstWave.SetActive(false);
-                WAVETextSecond.SetActive(false);
-                WAVETextWarnigSecondWave.SetActive(false);
-                WAVETextFinalWave.SetActive(false);
-                WAVETextWarnigFinalWave.SetActive(false);
-            }
-
-
-            if (gameManagerScript.IsOpenSelector() == true)//selectormenu
-            {
-                StartSelectCoverImage.SetActive(false);
-                LTRT.SetActive(true);
-                OptionImage.SetActive(false);
-            }
-            
-
-            if (gameManagerScript.IsGameStart() == true)
-            {
-                LTRT.SetActive(false);
-                OptionImage.SetActive(true);
-                if (gameManagerScript.IsScore() >= 5)
-                {
-                    EnergyMIN.SetActive(true);
-                }
-                if (gameManagerScript.IsScore() >= 10)
-                {
-                    EnergyMID.SetActive(true);
-                }
-                if (gameManagerScript.IsScore() >= 15)
-                {
-                    EnergyMAX.SetActive(true);
-                }
-            }
+            HandleGameStart();
+            HandleGameOver();
+            HandleSelectorMenu();
+            HandleEnergyLevels();
         }
-        
-        
+    }
+
+    private void HandleGameStart()
+    {
+        if (gameManagerScript.IsGameStart() && !gameManagerScript.IsGameOver())
+        {
+            SetActiveForObjects(true, boss, bossBullet, EnergyImage, Hp, EnergyEMP, OptionImage);
+            SetActiveForObjects(false, StartSelectImage, LuleSelectImage, StartSelectCoverImage, A_Select, LuleBGImage, LuleUiImage);
+        }
+    }
+
+    private void HandleGameOver()
+    {
+        if (gameManagerScript.IsGameOver())
+        {
+            SetActiveForObjects(false, boss, bossBullet, EnergyImage, StartSelectImage, LuleSelectImage, StartSelectCoverImage,
+                                A_Select, OptionImage, Hp, WAVETextWarnigFarstWave, WAVETextSecond, WAVETextWarnigSecondWave,
+                                WAVETextFinalWave, WAVETextWarnigFinalWave);
+        }
+    }
+
+    private void HandleSelectorMenu()
+    {
+        if (gameManagerScript.IsOpenSelector())
+        {
+            StartSelectCoverImage.SetActive(false);
+            SetActiveForObjects(true, A_Select);
+            SetActiveForObjects(false, OptionImage);
+        }
+    }
+
+    private void HandleEnergyLevels()//energy
+    {
+        if (gameManagerScript.IsGameStart())
+        {
+            SetActiveForObjects(false, A_Select);
+            SetActiveForObjects(true, OptionImage);
+
+            if (gameManagerScript.IsScore() >= 5) EnergyMIN.SetActive(true);
+            if (gameManagerScript.IsScore() >= 10) EnergyMID.SetActive(true);
+            if (gameManagerScript.IsScore() >= 15) EnergyMAX.SetActive(true);
+        }
+    }
+
+    private void SetActiveForObjects(bool state, params GameObject[] objects)
+    {
+        foreach (GameObject obj in objects)
+        {
+            if (obj != null) obj.SetActive(state);
+        }
     }
 }
