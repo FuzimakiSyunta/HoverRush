@@ -94,7 +94,7 @@ public class NomalEnemy : MonoBehaviour
         if (other.gameObject.tag == "Bullet")
         {
             //audioSource.PlayOneShot(DamegeSound);
-            EnemyNowHP -= 20;//一度当たるごとに20をマイナス
+            EnemyNowHP -= 200;//一度当たるごとに200をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
@@ -102,7 +102,7 @@ public class NomalEnemy : MonoBehaviour
         if (other.gameObject.tag == "Machinegun")
         {
             //audioSource.PlayOneShot(DamegeSound);
-            EnemyNowHP -= 15;//一度当たるごとに10をマイナス
+            EnemyNowHP -= 150;//一度当たるごとに150をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
@@ -110,7 +110,7 @@ public class NomalEnemy : MonoBehaviour
         if (other.gameObject.tag == "PenetrationBullet")
         {
             //audioSource.PlayOneShot(DamegeSound);
-            EnemyNowHP -= 40;//一度当たるごとに10をマイナス
+            EnemyNowHP -= 400;//一度当たるごとに400をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
@@ -122,7 +122,7 @@ public class NomalEnemy : MonoBehaviour
         if (other.gameObject.tag == "PlayerLazer")
         {
             //audioSource.PlayOneShot(DamegeSound);
-            EnemyNowHP -= 5;//一度当たるごとに10をマイナス
+            EnemyNowHP -= 30;//一度当たるごとに30をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }

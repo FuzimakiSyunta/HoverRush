@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BrindScript : MonoBehaviour
@@ -8,86 +9,93 @@ public class BrindScript : MonoBehaviour
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
-    // Boss and Enemy
+    // Boss
     public GameObject boss;
     public GameObject bossBullet;
-    public GameObject EnergyImage;
-
-    // SelectUI
-    public GameObject StartSelectImage;
-    public GameObject LuleSelectImage;
-    public GameObject StartSelectCoverImage;
-    public GameObject LuleBGImage;
-    public GameObject LuleUiImage;
-
-    // UI Elements
-    public GameObject Hp;
-    public GameObject A_Select;
-    public GameObject OptionImage;
-
-    // Energy Levels
-    public GameObject EnergyEMP;
+    //開始前UI
+    public GameObject StartTitleUi;
+    //開始後UI
+    public GameObject StartUi;
+    //GameOver&GameClear
+    public GameObject ClearGameOverUI;
+    //Energy
+    public GameObject AllEnergy;
     public GameObject EnergyMIN;
     public GameObject EnergyMID;
     public GameObject EnergyMAX;
+    //Selector
+    public GameObject Selector;
+    //最初のタイトル
+    public GameObject TitleUi;
+    //
+    public GameObject GameClear;
+    public GameObject GameOver;
+    //
+    public GameObject OptionButton;
 
-    // Wave Texts
-    public GameObject WAVETextFirst;
-    public GameObject WAVETextWarnigFarstWave;
-    public GameObject WAVETextSecond;
-    public GameObject WAVETextWarnigSecondWave;
-    public GameObject WAVETextFinalWave;
-    public GameObject WAVETextWarnigFinalWave;
 
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
 
         // Initialize Elements
-        SetActiveForObjects(false, boss, bossBullet, EnergyImage, Hp, EnergyEMP, EnergyMIN, EnergyMID, EnergyMAX,
-                            WAVETextWarnigFarstWave, WAVETextSecond, WAVETextWarnigSecondWave, WAVETextFinalWave, WAVETextWarnigFinalWave,
-                            A_Select, OptionImage, LuleBGImage, LuleUiImage);
-
-        StartSelectCoverImage.SetActive(true);
+        SetActiveForObjects(false, boss, bossBullet, StartUi,GameOver,GameClear,ClearGameOverUI,OptionButton, AllEnergy);
+        SetActiveForObjects(true, StartTitleUi);
     }
 
     void Update()
     {
-        if (!gameManagerScript.IsGameClear())
+        // ゲーム開始状態の確認
+        if (gameManagerScript.IsGameStart())
         {
-            HandleGameStart();
-            HandleGameOver();
-            HandleSelectorMenu();
-            HandleEnergyLevels();
+            if (!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
+            {
+                SetActiveForObjects(false, StartTitleUi, ClearGameOverUI);
+                SetActiveForObjects(true, boss, bossBullet, StartUi, OptionButton, AllEnergy);
+                HandleEnergyLevels(); // エネルギー管理
+            }
         }
+
+        // セレクタの状態確認
+        if (gameManagerScript.IsOpenSelector())
+        {
+            SetActiveForObjects(true, Selector); // Selector画像を有効化
+        }
+        else
+        {
+            SetActiveForObjects(false, Selector); // セレクタが閉じた場合は非表示
+        }
+
+
+        // ゲームの終了/クリア処理
+        HandleGameOver(); // GameOverロジック
+        HandleGameClear(); // GameClearロジック
     }
 
-    private void HandleGameStart()
-    {
-        if (gameManagerScript.IsGameStart() && !gameManagerScript.IsGameOver())
-        {
-            SetActiveForObjects(true, boss, bossBullet, EnergyImage, Hp, EnergyEMP, OptionImage);
-            SetActiveForObjects(false, StartSelectImage, LuleSelectImage, StartSelectCoverImage, A_Select, LuleBGImage, LuleUiImage);
-        }
-    }
 
     private void HandleGameOver()
     {
         if (gameManagerScript.IsGameOver())
         {
-            SetActiveForObjects(false, boss, bossBullet, EnergyImage, StartSelectImage, LuleSelectImage, StartSelectCoverImage,
-                                A_Select, OptionImage, Hp, WAVETextWarnigFarstWave, WAVETextSecond, WAVETextWarnigSecondWave,
-                                WAVETextFinalWave, WAVETextWarnigFinalWave);
+            // GameOver画面を表示
+            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX);
+            SetActiveForObjects(true, GameOver);
+
+            // デバッグ用ログ
+            Debug.Log("ゲームオーバー: GameOver画面を表示しました。");
         }
     }
 
-    private void HandleSelectorMenu()
+    private void HandleGameClear()
     {
-        if (gameManagerScript.IsOpenSelector())
+        if (gameManagerScript.IsGameClear())
         {
-            StartSelectCoverImage.SetActive(false);
-            SetActiveForObjects(true, A_Select);
-            SetActiveForObjects(false, OptionImage);
+            // GameClear画面を表示
+            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX);
+            SetActiveForObjects(true, GameClear);
+
+            // デバッグ用ログ
+            Debug.Log("ゲームクリア: GameClear画面を表示しました。");
         }
     }
 
@@ -95,9 +103,6 @@ public class BrindScript : MonoBehaviour
     {
         if (gameManagerScript.IsGameStart())
         {
-            SetActiveForObjects(false, A_Select);
-            SetActiveForObjects(true, OptionImage);
-
             if (gameManagerScript.IsScore() >= 5) EnergyMIN.SetActive(true);
             if (gameManagerScript.IsScore() >= 10) EnergyMID.SetActive(true);
             if (gameManagerScript.IsScore() >= 15) EnergyMAX.SetActive(true);

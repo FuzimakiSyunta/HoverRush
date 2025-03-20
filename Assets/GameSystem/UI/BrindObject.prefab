@@ -47,22 +47,15 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   boss: {fileID: 0}
   bossBullet: {fileID: 389623457992006024, guid: 362ef3d617463dc4cbbd0a9266f0490c, type: 3}
-  EnergyImage: {fileID: 0}
-  StartSelectImage: {fileID: 0}
-  LuleSelectImage: {fileID: 0}
-  StartSelectCoverImage: {fileID: 0}
-  LuleBGImage: {fileID: 0}
-  LuleUiImage: {fileID: 0}
-  Hp: {fileID: 0}
-  A_Select: {fileID: 0}
-  OptionImage: {fileID: 0}
-  EnergyEMP: {fileID: 0}
+  StartTitleUi: {fileID: 0}
+  StartUi: {fileID: 0}
+  ClearGameOverUI: {fileID: 0}
+  AllEnergy: {fileID: 0}
   EnergyMIN: {fileID: 0}
   EnergyMID: {fileID: 0}
   EnergyMAX: {fileID: 0}
-  WAVETextFirst: {fileID: 0}
-  WAVETextWarnigFarstWave: {fileID: 0}
-  WAVETextSecond: {fileID: 0}
-  WAVETextWarnigSecondWave: {fileID: 0}
-  WAVETextFinalWave: {fileID: 0}
-  WAVETextWarnigFinalWave: {fileID: 0}
+  Selector: {fileID: 0}
+  TitleUi: {fileID: 0}
+  GameClear: {fileID: 0}
+  GameOver: {fileID: 0}
+  OptionButton: {fileID: 0}
