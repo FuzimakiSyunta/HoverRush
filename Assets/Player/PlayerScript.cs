@@ -390,7 +390,7 @@ public class PlayerScript : MonoBehaviour
             //ロボットの弾
             if (other.gameObject.tag == "RobotBullet")
             {
-                MaxHp -= 10;
+                MaxHp -= 20;
                 hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             }
 

@@ -158,7 +158,7 @@ public class BossScript : MonoBehaviour
         if (other.gameObject.tag == "PenetrationBullet")
         {
             audioSource.PlayOneShot(DamegeSound);
-            wkHP -= 20;//一度当たるごとに10をマイナス
+            wkHP -= 40;//一度当たるごとに10をマイナス
             hpSlider.value = (float)wkHP / (float)bossHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
         }
