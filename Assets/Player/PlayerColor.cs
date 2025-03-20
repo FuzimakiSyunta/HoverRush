@@ -42,7 +42,7 @@ public class PlayerColor : MonoBehaviour
             
             if (canInput)
             {
-                if (Input.GetKeyDown(KeyCode.LeftArrow) || dph < 0 && previousDph >= 0)
+                if (Input.GetKeyDown(KeyCode.RightArrow) || dph > 0 && previousDph >= 0)
                 {
                     count++;
                     if (count > materialArray.Length - 1)
@@ -53,7 +53,7 @@ public class PlayerColor : MonoBehaviour
                     canInput = false;
                 }
 
-                if (Input.GetKeyDown(KeyCode.RightArrow) || dph > 0 && previousDph <= 0)
+                if (Input.GetKeyDown(KeyCode.LeftArrow) || dph < 0 && previousDph <= 0)
                 {
                     count--;
                     if (count < 0)
@@ -89,14 +89,14 @@ public class PlayerColor : MonoBehaviour
             Material currentMaterial = materialArray[count];
             if (currentMaterial.name.Contains("StarSparrow_RED") || currentMaterial.name.Contains("StarSparrow_RED_1") || currentMaterial.name.Contains("StarSparrow_RED_2"))
             {
-                colorMenuNumber_L.SetActive(true);
-                colorMenuNumber_CENTER.SetActive(false);
+                colorMenuNumber_L.SetActive(false);
+                colorMenuNumber_CENTER.SetActive(true);
                 colorMenuNumber_R.SetActive(false);
             }
             else if (currentMaterial.name.Contains("StarSparrow_WHITE") || currentMaterial.name.Contains("StarSparrow_WHITE_1") || currentMaterial.name.Contains("StarSparrow_WHITE_2"))
             {
-                colorMenuNumber_L.SetActive(false);
-                colorMenuNumber_CENTER.SetActive(true);
+                colorMenuNumber_L.SetActive(true);
+                colorMenuNumber_CENTER.SetActive(false);
                 colorMenuNumber_R.SetActive(false);
             }
             else if (currentMaterial.name.Contains("StarSparrow_YELLOW") || currentMaterial.name.Contains("StarSparrow_YELLOW_1") || currentMaterial.name.Contains("StarSparrow_YELLOW_2"))
