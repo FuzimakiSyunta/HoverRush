@@ -12,6 +12,7 @@ public class BrindScript : MonoBehaviour
     // Boss
     public GameObject boss;
     public GameObject bossBullet;
+    public GameObject RobotBullet;
     //開始前UI
     public GameObject StartTitleUi;
     //開始後UI

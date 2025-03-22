@@ -444,43 +444,24 @@ public class BossScript : MonoBehaviour
 
     void BossWaveUpdate()//一対一のアニメーション
     {
-        if (BossBattleTime > 20 && BossBattleTime <= 40)
+        if (BossBattleTime > 20 && BossBattleTime <= 131) // 共通範囲
         {
-            animator.SetBool("isMove", true);
+            animator.SetBool("isMove", BossBattleTime <= 40 || BossBattleTime >= 131);
+            animator.SetBool("isLazer", BossBattleTime >= 60 && BossBattleTime < 80);
+            animator.SetBool("isTransform", BossBattleTime >= 80 && BossBattleTime < 100);
+            animator.SetBool("isRobotStay", BossBattleTime >= 85 && BossBattleTime < 100);
+            animator.SetBool("isAirTransform", BossBattleTime >= 100 && BossBattleTime < 103);
+            animator.SetBool("FinalWave", BossBattleTime >= 101 && BossBattleTime < 131);
+            animator.SetBool("isFinalBullet", BossBattleTime >= 131);
         }
-        if (BossBattleTime >= 40 && BossBattleTime < 60)
-        {
-            animator.SetBool("isMove", false);
-        }
+
         if (BossBattleTime >= 60 && BossBattleTime < 80)
         {
-            animator.SetBool("isLazer", true);
             isLazerWave = true;
         }
         if (BossBattleTime >= 80 && BossBattleTime < 100)
         {
-            animator.SetBool("isLazer", false);
-            animator.SetBool("isTransform",true);
             isLazerWave = false;
-        }
-        if (BossBattleTime >= 85&& BossBattleTime < 100)
-        {
-            animator.SetBool("isRobotStay", true);
-        }
-        if (BossBattleTime >= 100&& BossBattleTime < 103)
-        {
-            animator.SetBool("isAirTransform", true);
-            animator.SetBool("isRobotStay", false);
-        }
-        if (BossBattleTime >= 101)
-        {
-            animator.SetBool("FinalWave", true);
-        }
-        if (BossBattleTime >= 131)
-        {
-            animator.SetBool("FinalWave", false);
-            animator.SetBool("isMove", true);
-            animator.SetBool("isFinalBullet", true);
         }
     }
 
