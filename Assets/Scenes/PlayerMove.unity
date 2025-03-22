@@ -721,6 +721,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237460724}
   m_CullTransparentMesh: 1
+--- !u!20 &295491319 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8513310863869388048, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+  m_PrefabInstance: {fileID: 7627123270068408356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &302970272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,10 +1028,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1898,7 +1903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22365e00e46e6324abdbeead937e990a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 295491319}
   subCamera: {fileID: 636607176}
   selectMenu: {fileID: 738859541}
 --- !u!4 &707850056
@@ -2783,14 +2788,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2.47464
       objectReference: {fileID: 0}
-    - target: {fileID: 143509326472015035, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
+    - target: {fileID: 216706829806221018, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorBack_3
       objectReference: {fileID: 0}
     - target: {fileID: 444271049956320451, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ecbd3ed31fe9469419b1061c4ffaed68, type: 2}
+    - target: {fileID: 668861530464868170, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorBack_2
+      objectReference: {fileID: 0}
     - target: {fileID: 1214525769010176643, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2798,10 +2807,6 @@ PrefabInstance:
     - target: {fileID: 1288615906448226483, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.47464
-      objectReference: {fileID: 0}
-    - target: {fileID: 1288615906448226483, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1466150856877663743, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2815,33 +2820,29 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2.47464
       objectReference: {fileID: 0}
-    - target: {fileID: 1957304500149469977, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
+    - target: {fileID: 2025056267325277372, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorBack_1
       objectReference: {fileID: 0}
     - target: {fileID: 3013768361851259664, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.47464
       objectReference: {fileID: 0}
-    - target: {fileID: 3013768361851259664, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3522470564061102380, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.47464
       objectReference: {fileID: 0}
-    - target: {fileID: 3522470564061102380, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
+    - target: {fileID: 3564150302455449562, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorFlont_3
       objectReference: {fileID: 0}
     - target: {fileID: 3927021402538791316, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ecbd3ed31fe9469419b1061c4ffaed68, type: 2}
-    - target: {fileID: 4312933638106529326, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
+    - target: {fileID: 4053275767398851284, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorFlont_1
       objectReference: {fileID: 0}
     - target: {fileID: 4312933638106529326, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2887,37 +2888,41 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ecbd3ed31fe9469419b1061c4ffaed68, type: 2}
+    - target: {fileID: 4472054112093321504, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorCenter
+      objectReference: {fileID: 0}
     - target: {fileID: 4575443807158875012, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ecbd3ed31fe9469419b1061c4ffaed68, type: 2}
+    - target: {fileID: 5143622738656747954, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorFlont_2
+      objectReference: {fileID: 0}
     - target: {fileID: 5186081969138786247, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ecbd3ed31fe9469419b1061c4ffaed68, type: 2}
+    - target: {fileID: 5219512818302317173, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorBack_4
+      objectReference: {fileID: 0}
     - target: {fileID: 5372901203990287885, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.47464
       objectReference: {fileID: 0}
-    - target: {fileID: 5372901203990287885, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
+    - target: {fileID: 6326551080832324376, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+      propertyPath: m_Name
+      value: FloorFlont_4
       objectReference: {fileID: 0}
     - target: {fileID: 6435149178956854033, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.47464
       objectReference: {fileID: 0}
-    - target: {fileID: 6435149178956854033, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6656486369739559068, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.47464
-      objectReference: {fileID: 0}
-    - target: {fileID: 6656486369739559068, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6744132108331504970, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2927,17 +2932,9 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2.47464
       objectReference: {fileID: 0}
-    - target: {fileID: 6815344464343098958, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7788323410421508204, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
       propertyPath: m_Name
       value: Floors
-      objectReference: {fileID: 0}
-    - target: {fileID: 7788323410421508204, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
-      propertyPath: m_TagString
-      value: Floor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4822,10 +4819,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -4884,7 +4881,7 @@ GameObject:
   - component: {fileID: 1890007847}
   - component: {fileID: 1890007846}
   m_Layer: 5
-  m_Name: Effect
+  m_Name: SceneEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5001,7 +4998,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0}
   m_LocalPosition: {x: 0.27, y: 0.63, z: 10.65}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5609174, y: 2.5609174, z: 2.5609174}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5027,7 +5024,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 91c2d7775142540478649cc9f0abb368, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5334,7 +5331,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -13228,9 +13225,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 95685321}
     - target: {fileID: 9018478937149433951, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: selectMenu
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 9018478937149433951, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
+    - target: {fileID: 9018478937149433951, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: cameraOffset.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018478937149433951, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: cameraOffset.z
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9084022448349249456, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
