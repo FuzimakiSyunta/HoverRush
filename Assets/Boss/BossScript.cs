@@ -249,7 +249,8 @@ public class BossScript : MonoBehaviour
     private IEnumerator ForceHideImageAfterDelay(GameObject damageImage, float delay)
     {
         yield return new WaitForSeconds(delay); // 指定した秒数待機
-        damageImage.SetActive(false); // 画像を非表示
+        damageImage.SetActive(false); // 単発ダメージ画像を非表示
+        LazerDamegeImage.SetActive(false);// レーザーダメージ画像を非表示
     }
 
     private IEnumerator FadeOutImage(UnityEngine.UI.Image imageComponent)
