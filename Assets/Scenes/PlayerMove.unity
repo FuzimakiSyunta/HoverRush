@@ -10733,34 +10733,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 351203095087037429, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: particle
-      value: 
-      objectReference: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
-    - target: {fileID: 360564745010139229, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: particle
-      value: 
-      objectReference: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
     - target: {fileID: 2238456086702735711, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 3657259757971900027, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: particle
-      value: 
-      objectReference: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
-    - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: bossHP
-      value: 60000
+    - target: {fileID: 4807976010917223854, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: particle
-      value: 
-      objectReference: {fileID: 3931381678866721753, guid: 30a229513bcc34943b4c1a1ca4258be9, type: 3}
-    - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: DamegeSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 8e82cc3bba6228b4eb91908e86149116, type: 3}
+    - target: {fileID: 4807976010917223854, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: LazerDamegeImage
       value: 
@@ -10774,21 +10758,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 58103496}
     - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: PlayerLazerDamegeImage
-      value: 
-      objectReference: {fileID: 1399593017}
-    - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: PenetrationBulletDamegeImage
       value: 
       objectReference: {fileID: 2379852}
-    - target: {fileID: 5567047900890259462, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: particle
-      value: 
-      objectReference: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
-    - target: {fileID: 5575230866890617690, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 5601114726974446426, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10833,34 +10805,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6514422283263536146, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: m_Size.y
-      value: 4.02
+    - target: {fileID: 6478222963675320090, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 6672581951515808865, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: particle
-      value: 
-      objectReference: {fileID: 4420587825053408745, guid: 7511f46c0ccecf548bfcb98e22aa409d, type: 3}
-    - target: {fileID: 7339872509283239631, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: m_Pitch
-      value: -0.01
+    - target: {fileID: 6478222963675320090, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 7339872509283239631, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: m_Volume
-      value: 0.624
-      objectReference: {fileID: 0}
-    - target: {fileID: 7339872509283239631, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8e82cc3bba6228b4eb91908e86149116, type: 3}
     - target: {fileID: 7638775686597293998, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 2032611910}
-    - target: {fileID: 7638775686597293998, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
-      propertyPath: projectileSpeed
-      value: 60
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
