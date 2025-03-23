@@ -38,6 +38,12 @@ public class DamageScript : MonoBehaviour
             case "PlayerLazer":
                 StartCoroutine(DamageEffectCoroutine());
                 break;
+            case "PlayerLazer_L":
+                StartCoroutine(DamageEffectCoroutine());
+                break;
+            case "PlayerLazer_R":
+                StartCoroutine(DamageEffectCoroutine());
+                break;
         }
     }
 

@@ -126,7 +126,7 @@ public class EnemyScript : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         //ボスとレーザー
-        if (other.gameObject.tag == "PlayerLazer")
+        if (other.gameObject.tag == "PlayerLazer" || other.gameObject.tag == "PlayerLazer_L" || other.gameObject.tag == "PlayerLazer_R")
         {
             //audioSource.PlayOneShot(DamegeSound);
             EnemyNowHP -= 30;//一度当たるごとに25をマイナス

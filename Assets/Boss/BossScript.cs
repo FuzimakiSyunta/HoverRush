@@ -51,6 +51,10 @@ public class BossScript : MonoBehaviour
     public GameObject MachinegunDamegeImage;
     public GameObject PenetrationBulletDamegeImage;
     public GameObject LazerDamegeImage;
+    public GameObject Lazer_LDamegeImage;
+    public GameObject Lazer_RDamegeImage;
+
+
 
     public void Damage(Collider col)
     {
@@ -156,10 +160,7 @@ public class BossScript : MonoBehaviour
             PenetrationBulletDamegeImage.SetActive(false);
             LazerDamegeImage.SetActive(false);
         }
-        if (LazerdamegeCoolTime < 0.5f)
-        {
-            LazerdamegeCoolTime += Time.deltaTime; // クールタイムを進める
-        }
+        LazerdamegeCoolTime += Time.deltaTime; // クールタイムを進める
 
     }
 
@@ -207,10 +208,52 @@ public class BossScript : MonoBehaviour
         {
             if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
             {
-                int damage = 30; // ダメージ値
+                int damage = 250; // ダメージ値
                 GameObject damageImage = LazerDamegeImage;
 
-                audioSource.PlayOneShot(DamegeSound);
+                //audioSource.PlayOneShot(DamegeSound);
+                wkHP -= damage; // HPを減少
+                hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
+                sliderBool = true;
+
+                // 画像を当たった位置に移動して表示
+                Vector3 hitPosition = other.transform.position;
+                ShowDamageImageAtPosition(damageImage, hitPosition);
+
+                // クールタイムをリセット
+                LazerdamegeCoolTime = 0;
+            }
+        }
+        // PlayerLazer専用の処理
+        if (other.gameObject.tag == "PlayerLazer_L")
+        {
+            if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
+            {
+                int damage = 100; // ダメージ値
+                GameObject damageImage = Lazer_LDamegeImage;
+
+                //audioSource.PlayOneShot(DamegeSound);
+                wkHP -= damage; // HPを減少
+                hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
+                sliderBool = true;
+
+                // 画像を当たった位置に移動して表示
+                Vector3 hitPosition = other.transform.position;
+                ShowDamageImageAtPosition(damageImage, hitPosition);
+
+                // クールタイムをリセット
+                LazerdamegeCoolTime = 0;
+            }
+        }
+        // PlayerLazer専用の処理
+        if (other.gameObject.tag == "PlayerLazer_R")
+        {
+            if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
+            {
+                int damage = 100; // ダメージ値
+                GameObject damageImage = Lazer_RDamegeImage;
+
+                //audioSource.PlayOneShot(DamegeSound);
                 wkHP -= damage; // HPを減少
                 hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
                 sliderBool = true;
@@ -224,6 +267,7 @@ public class BossScript : MonoBehaviour
             }
         }
     }
+
     private void ShowDamageImageAtPosition(GameObject damageImage, Vector3 position)
     {
         // 表示位置を少し上に調整
@@ -253,6 +297,8 @@ public class BossScript : MonoBehaviour
         MachinegunDamegeImage.SetActive(false);
         PenetrationBulletDamegeImage.SetActive(false);
         LazerDamegeImage.SetActive(false);
+        Lazer_RDamegeImage.SetActive(false);
+        Lazer_LDamegeImage.SetActive(false);
     }
     
 
