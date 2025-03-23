@@ -838,6 +838,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &317192654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7238543390217544825, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
+  m_PrefabInstance: {fileID: 1319747335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &323887513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2941,6 +2946,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14259743149ee16448aa8c674f3960e0, type: 3}
+--- !u!1 &1054304305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6133710122035644240, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
+  m_PrefabInstance: {fileID: 1319747335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1102848724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,10 +3451,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4267600496755529812, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea38ec92558906142a08cd058c651045, type: 3}
+    - target: {fileID: 4300314108946220987, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
+      propertyPath: m_Name
+      value: 250Damage
+      objectReference: {fileID: 0}
     - target: {fileID: 4487084017048036794, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9cee0f8b7ee6cc44fb19509786c7a025, type: 3}
+      objectReference: {fileID: 21300000, guid: e1ed21a2f804cb34d82a7e635b277cc6, type: 3}
+    - target: {fileID: 5614878238359178790, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea38ec92558906142a08cd058c651045, type: 3}
+    - target: {fileID: 6133710122035644240, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
+      propertyPath: m_Name
+      value: Damage_R
+      objectReference: {fileID: 0}
     - target: {fileID: 6534081045704351354, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.114631474
@@ -3460,6 +3486,10 @@ PrefabInstance:
     - target: {fileID: 6534081045704351354, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
       propertyPath: m_LocalPosition.z
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238543390217544825, guid: e0202b3664679ea48983d915dd425dd0, type: 3}
+      propertyPath: m_Name
+      value: Damage_L
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10753,6 +10783,14 @@ PrefabInstance:
       propertyPath: bulletdamageImage
       value: 
       objectReference: {fileID: 1478107446}
+    - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
+      propertyPath: Lazer_LDamegeImage
+      value: 
+      objectReference: {fileID: 317192654}
+    - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
+      propertyPath: Lazer_RDamegeImage
+      value: 
+      objectReference: {fileID: 1054304305}
     - target: {fileID: 4914990872261636624, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
       propertyPath: MachinegunDamegeImage
       value: 

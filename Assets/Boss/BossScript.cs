@@ -159,6 +159,8 @@ public class BossScript : MonoBehaviour
             MachinegunDamegeImage.SetActive(false);
             PenetrationBulletDamegeImage.SetActive(false);
             LazerDamegeImage.SetActive(false);
+            Lazer_LDamegeImage.SetActive(false);
+            Lazer_RDamegeImage.SetActive(false);
         }
         LazerdamegeCoolTime += Time.deltaTime; // クールタイムを進める
 
