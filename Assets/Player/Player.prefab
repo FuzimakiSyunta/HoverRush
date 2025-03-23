@@ -337,8 +337,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  selectMenu: {fileID: 0}
   Player: {fileID: 2659194270495719948}
-  rotateSpeed: 0.05
+  cameraBackOffset: {x: 0, y: 5, z: -10}
 --- !u!1 &4939153805180380502
 GameObject:
   m_ObjectHideFlags: 0
