@@ -474,5 +474,4 @@ public class BossScript : MonoBehaviour
     }
 
    
-
 }

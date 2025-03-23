@@ -414,7 +414,7 @@ public class PlayerScript : MonoBehaviour
         //ボスのレーザー
         if (other.gameObject.tag == "Lazer")
         {
-            MaxHp -= 4;
+            MaxHp -= 2;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
     }

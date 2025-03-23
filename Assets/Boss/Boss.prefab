@@ -4955,9 +4955,9 @@ MonoBehaviour:
   isLazerWave: 0
   LazerTime: 0
   BossBattleTime: 0
-  bossHP: 6000
+  bossHP: 60000
   hpSlider: {fileID: 6592985435578639482}
-  particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
+  particle: {fileID: 3931381678866721753, guid: 30a229513bcc34943b4c1a1ca4258be9, type: 3}
   sliderBool: 0
   bulletdamageImage: {fileID: 0}
   MachinegunDamegeImage: {fileID: 0}
@@ -15507,7 +15507,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 1.791, y: -0.42, z: 82.33148}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 164.56401}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 164.56401}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5611508562477550188}
@@ -15998,7 +15998,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: -1.38, y: -0.42, z: 82.33148}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 164.56401}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 164.56401}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5611508562477550188}
@@ -16742,7 +16742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1158561113003540375, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1972534431178057005, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
       propertyPath: m_LocalScale.x
@@ -16800,7 +16800,13 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1211623892807469630, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1158561113003540375, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5550230482328476477}
+    - targetCorrespondingSourceObject: {fileID: 1158561113003540375, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1836029596105062947}
   m_SourcePrefab: {fileID: 100100000, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
 --- !u!4 &4741638483498895871 stripped
 Transform:
@@ -16812,3 +16818,39 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1158561113003540375, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
   m_PrefabInstance: {fileID: 6526409141531864274}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5550230482328476477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370120036301558597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f764d7a2e99181e4e8bb2f3e7e761b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: 3057f5a2b92dd3b47b45415db850c097, type: 2}
+  damageMaterial: {fileID: 2100000, guid: afbc260c87a61c2459d4db3870aa2fe3, type: 2}
+  boss: {fileID: 2238456086702735711}
+--- !u!65 &1836029596105062947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370120036301558597}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 13.479591, y: 4.39, z: 14.1}
+  m_Center: {x: 0, y: -0.026866077, z: 2.1}
