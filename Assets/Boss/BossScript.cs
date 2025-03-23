@@ -149,7 +149,7 @@ public class BossScript : MonoBehaviour
 
         }
         ///ダメージ非表示
-        if(gameManagerScript.IsGameOver()==true||gameManagerScript.IsGameClear()==true)
+        if(gameManagerScript.IsGameOver()||gameManagerScript.IsGameClear())
         {
             bulletdamageImage.SetActive(false);
             MachinegunDamegeImage.SetActive(false);
@@ -246,12 +246,15 @@ public class BossScript : MonoBehaviour
             StartCoroutine(FadeOutImage(imageComponent)); // フェードアウトを開始
         }
     }
-    private IEnumerator ForceHideImageAfterDelay(GameObject damageImage, float delay)
+    private IEnumerator ForceHideImageAfterDelay(GameObject damageImage, float delay)//強制非表示
     {
         yield return new WaitForSeconds(delay); // 指定した秒数待機
-        damageImage.SetActive(false); // 単発ダメージ画像を非表示
-        LazerDamegeImage.SetActive(false);// レーザーダメージ画像を非表示
+        bulletdamageImage.SetActive(false);
+        MachinegunDamegeImage.SetActive(false);
+        PenetrationBulletDamegeImage.SetActive(false);
+        LazerDamegeImage.SetActive(false);
     }
+    
 
     private IEnumerator FadeOutImage(UnityEngine.UI.Image imageComponent)
     {

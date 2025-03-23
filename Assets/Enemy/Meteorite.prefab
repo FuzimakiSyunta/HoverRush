@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f6f6886d19dfe4ca0d93d7be01f6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 400
+  enemyHP: 350
   hpSlider: {fileID: 3323242276378516979}
   particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
   sliderBool: 0
