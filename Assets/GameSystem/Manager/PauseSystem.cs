@@ -81,6 +81,14 @@ public class PauseSystem : MonoBehaviour
                     PauseImage.SetActive(true);
                 }
             }
+            // 操作説明画像が表示されていない時にポーズメニュー解除
+            if (!pauseMenuSelectorScript.IsOperation() &&
+                (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 1")))
+            {
+                DisablePause();
+            }
+
+
         }
     }
 

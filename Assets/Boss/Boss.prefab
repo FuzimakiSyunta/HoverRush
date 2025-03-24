@@ -16834,7 +16834,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: 3057f5a2b92dd3b47b45415db850c097, type: 2}
   damageMaterial: {fileID: 2100000, guid: afbc260c87a61c2459d4db3870aa2fe3, type: 2}
-  boss: {fileID: 2238456086702735711}
 --- !u!65 &1836029596105062947
 BoxCollider:
   m_ObjectHideFlags: 0

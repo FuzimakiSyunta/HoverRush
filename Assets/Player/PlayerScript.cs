@@ -452,4 +452,8 @@ public class PlayerScript : MonoBehaviour
     {
         return DamegeCoolTime;
     }
+    public bool IsHeal()
+    {
+        return isHeal;
+    }
 }
