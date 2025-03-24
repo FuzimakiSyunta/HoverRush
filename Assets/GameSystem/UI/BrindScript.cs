@@ -82,8 +82,7 @@ public class BrindScript : MonoBehaviour
             SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX);
             SetActiveForObjects(true, GameOver);
 
-            // デバッグ用ログ
-            Debug.Log("ゲームオーバー: GameOver画面を表示しました。");
+            
         }
     }
 
@@ -95,8 +94,6 @@ public class BrindScript : MonoBehaviour
             SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX);
             SetActiveForObjects(true, GameClear);
 
-            // デバッグ用ログ
-            Debug.Log("ゲームクリア: GameClear画面を表示しました。");
         }
     }
 
