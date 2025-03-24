@@ -35,6 +35,8 @@ public class BossScript : MonoBehaviour
     private float BulletCoolTime = 0;
     private float LazerBulletCoolTime = 0;
     private float LazerdamegeCoolTime = 0;
+    private float Lazer_RdamegeCoolTime = 0;
+    private float Lazer_LdamegeCoolTime = 0;
 
     //Bossのステータス
     public int bossHP;// ボスの最大HP
@@ -163,7 +165,8 @@ public class BossScript : MonoBehaviour
             Lazer_RDamegeImage.SetActive(false);
         }
         LazerdamegeCoolTime += Time.deltaTime; // クールタイムを進める
-
+        Lazer_RdamegeCoolTime += Time.deltaTime;
+        Lazer_LdamegeCoolTime += Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider other)
@@ -229,7 +232,7 @@ public class BossScript : MonoBehaviour
         // PlayerLazer専用の処理
         if (other.gameObject.tag == "PlayerLazer_L")
         {
-            if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
+            if (Lazer_LdamegeCoolTime >= 0.1f) // クールタイム判定
             {
                 int damage = 100; // ダメージ値
                 GameObject damageImage = Lazer_LDamegeImage;
@@ -244,13 +247,13 @@ public class BossScript : MonoBehaviour
                 ShowDamageImageAtPosition(damageImage, hitPosition);
 
                 // クールタイムをリセット
-                LazerdamegeCoolTime = 0;
+                Lazer_LdamegeCoolTime = 0;
             }
         }
         // PlayerLazer専用の処理
         if (other.gameObject.tag == "PlayerLazer_R")
         {
-            if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
+            if (Lazer_RdamegeCoolTime >= 0.1f) // クールタイム判定
             {
                 int damage = 100; // ダメージ値
                 GameObject damageImage = Lazer_RDamegeImage;
@@ -265,7 +268,7 @@ public class BossScript : MonoBehaviour
                 ShowDamageImageAtPosition(damageImage, hitPosition);
 
                 // クールタイムをリセット
-                LazerdamegeCoolTime = 0;
+                Lazer_RdamegeCoolTime = 0;
             }
         }
     }
