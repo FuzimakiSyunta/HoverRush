@@ -38,7 +38,7 @@ public class WAVETEXTScripti : MonoBehaviour
         if (gameManagerScript.IsGameStart() == true)
         {
             WaveImageActiveTime += Time.deltaTime;
-            if (gameManagerScript.IsBossWaveCount() < 20)
+            if (gameManagerScript.IsGamePlayCount() < 20)
             {
                 if(WaveImageActiveTime <= 3)
                 {
@@ -51,7 +51,7 @@ public class WAVETEXTScripti : MonoBehaviour
                 }
                 
             }
-            if (gameManagerScript.IsBossWaveCount() > 20 && gameManagerScript.IsBossWaveCount() <= 40)
+            if (gameManagerScript.IsGamePlayCount() > 20 && gameManagerScript.IsGamePlayCount() <= 40)
             {
                 if (WaveImageActiveTime <= 23)
                 {
@@ -63,7 +63,7 @@ public class WAVETEXTScripti : MonoBehaviour
                     WAVEText5.SetActive(false);
                 }
             }
-            if (gameManagerScript.IsBossWaveCount() >= 40 && gameManagerScript.IsBossWaveCount() < 60)
+            if (gameManagerScript.IsGamePlayCount() >= 40 && gameManagerScript.IsGamePlayCount() < 60)
             {
                 if (WaveImageActiveTime <= 43)
                 {
@@ -75,7 +75,7 @@ public class WAVETEXTScripti : MonoBehaviour
                     WAVEText5.SetActive(false);
                 }
             }
-            if (gameManagerScript.IsBossWaveCount() >= 60 && gameManagerScript.IsBossWaveCount() < 80)
+            if (gameManagerScript.IsGamePlayCount() >= 60 && gameManagerScript.IsGamePlayCount() < 80)
             {
                 if (WaveImageActiveTime <= 63)
                 {
@@ -87,7 +87,7 @@ public class WAVETEXTScripti : MonoBehaviour
                     WAVEText5.SetActive(false);
                 }
             }
-            if (gameManagerScript.IsBossWaveCount() >= 80 && gameManagerScript.IsBossWaveCount() < 100)
+            if (gameManagerScript.IsGamePlayCount() >= 80 && gameManagerScript.IsGamePlayCount() < 100)
             {
                 if (WaveImageActiveTime <= 83)
                 {
@@ -99,7 +99,7 @@ public class WAVETEXTScripti : MonoBehaviour
                     WAVEText5.SetActive(false);
                 }
             }
-            if (gameManagerScript.IsBossWaveCount() >= 100)
+            if (gameManagerScript.IsGamePlayCount() >= 100)
             {
                 if (WaveImageActiveTime <= 103)
                 {

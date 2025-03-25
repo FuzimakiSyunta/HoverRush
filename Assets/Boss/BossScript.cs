@@ -40,7 +40,7 @@ public class BossScript : MonoBehaviour
 
     //Bossのステータス
     public int bossHP;// ボスの最大HP
-    private int wkHP;  // ボスの現在のHP
+    private int NowHP;  // ボスの現在のHP
     public UnityEngine.UI.Slider hpSlider; //HPバー（スライダー）
     public ParticleSystem particle;
     public bool sliderBool;
@@ -77,7 +77,7 @@ public class BossScript : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         hpSlider.value = (float)bossHP;//HPバーの最初の値（最大HP）を設定
-        wkHP = bossHP; // 現在のHPを最大HPに設定
+        NowHP = bossHP; // 現在のHPを最大HPに設定
         hpSlider.gameObject.SetActive(false);
         sliderBool = false;
         animator.SetBool("isMove", false);
@@ -131,15 +131,9 @@ public class BossScript : MonoBehaviour
                 BossWaveUpdate();
             }
 
-            //Debag
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                BossBattleTime++;
-            }
-
         }
         // HPが0以下になった場合、自らを消す
-        if (wkHP <= 0)
+        if (NowHP <= 0)
         {
             ParticleSystem newParticle = Instantiate(particle);
             //場所固定
@@ -196,8 +190,8 @@ public class BossScript : MonoBehaviour
         if (damageImage != null)
         {
             audioSource.PlayOneShot(DamegeSound);
-            wkHP -= damage;
-            hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
+            NowHP -= damage;
+            hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
             sliderBool = true;
 
             // 画像を当たった位置に移動して表示
@@ -217,8 +211,8 @@ public class BossScript : MonoBehaviour
                 GameObject damageImage = LazerDamegeImage;
 
                 //audioSource.PlayOneShot(DamegeSound);
-                wkHP -= damage; // HPを減少
-                hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
+                NowHP -= damage; // HPを減少
+                hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
                 sliderBool = true;
 
                 // 画像を当たった位置に移動して表示
@@ -238,8 +232,8 @@ public class BossScript : MonoBehaviour
                 GameObject damageImage = Lazer_LDamegeImage;
 
                 //audioSource.PlayOneShot(DamegeSound);
-                wkHP -= damage; // HPを減少
-                hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
+                NowHP -= damage; // HPを減少
+                hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
                 sliderBool = true;
 
                 // 画像を当たった位置に移動して表示
@@ -259,8 +253,8 @@ public class BossScript : MonoBehaviour
                 GameObject damageImage = Lazer_RDamegeImage;
 
                 //audioSource.PlayOneShot(DamegeSound);
-                wkHP -= damage; // HPを減少
-                hpSlider.value = (float)wkHP / (float)bossHP; // HPスライダーを更新
+                NowHP -= damage; // HPを減少
+                hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
                 sliderBool = true;
 
                 // 画像を当たった位置に移動して表示
@@ -544,5 +538,19 @@ public class BossScript : MonoBehaviour
         return isfadeLazer;
     }
 
-   
+    public void BossWaveTime()
+    {
+       BossBattleTime++;
+    }
+
+    public void DownHp()
+    {
+        NowHP -= 800;
+        hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
+    }
+    public void UpHp()
+    {
+        NowHP += 800;
+        hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
+    }
 }

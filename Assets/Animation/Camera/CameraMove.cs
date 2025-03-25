@@ -20,7 +20,7 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsBossWaveCount() >= 77.0f&& gameManagerScript.IsBossWaveCount() <= 101.0f)
+        if(gameManagerScript.IsGamePlayCount() >= 77.0f&& gameManagerScript.IsGamePlayCount() <= 101.0f)
         {
             animator.SetBool("isRobotView", true);
         }else

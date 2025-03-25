@@ -114,4 +114,6 @@ public class BrindScript : MonoBehaviour
             if (obj != null) obj.SetActive(state);
         }
     }
+
+    
 }
