@@ -396,7 +396,7 @@ public class PlayerScript : MonoBehaviour
 
 
             if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
-                || other.gameObject.tag == "RobotBullet")
+                || other.gameObject.tag == "RobotBullet"|| other.gameObject.tag == "FinalLazer")
             {
                 Damaged();
             }
@@ -415,6 +415,12 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "Lazer")
         {
             MaxHp -= 2;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+        //ボスのレーザー
+        if (other.gameObject.tag == "FinalLazer")
+        {
+            MaxHp -= 15;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
     }

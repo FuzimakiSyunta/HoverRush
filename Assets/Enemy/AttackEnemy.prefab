@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -199090207822312409}
   - component: {fileID: 5285757325390402372}
   - component: {fileID: 3317863624083871280}
-  - component: {fileID: -2315957246615526415}
   m_Layer: 0
   m_Name: AttackEnemy
   m_TagString: Enemy
@@ -216,20 +215,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-2315957246615526415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2322298690624262891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c42936b1627ef4d886e5d5550ed8b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 8835913089577454385, guid: 830d57423fbd1c14eb33b370b9878568, type: 3}
-  forceAmount: 20
 --- !u!1 &2659156826341142585
 GameObject:
   m_ObjectHideFlags: 0

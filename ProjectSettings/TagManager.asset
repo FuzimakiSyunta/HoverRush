@@ -25,6 +25,7 @@ TagManager:
   - Bomm
   - PlayerLazer_L
   - PlayerLazer_R
+  - FinalLazer
   layers:
   - Default
   - TransparentFX

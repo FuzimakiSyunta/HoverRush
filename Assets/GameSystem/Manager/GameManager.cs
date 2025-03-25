@@ -258,4 +258,9 @@ public class GameManager : MonoBehaviour
     {
         return BossWaveCount;
     }
+
+    public void BossWaveCountStart()
+    {
+        BossWaveCount++;
+    }
 }
