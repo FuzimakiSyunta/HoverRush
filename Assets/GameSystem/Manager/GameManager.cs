@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     //WAVE
     public int Wave;
-    public float BossWaveCount;
+    public float GamePlayCount;
     private bool BossWaveFlag;
     private int waveModifier;
     
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         titleText.SetActive(true);
         StartButtonImage.SetActive(true);
         Wave = 0;
-        BossWaveCount = 0;
+        GamePlayCount = 0;
         
     }
 
@@ -83,25 +83,25 @@ public class GameManager : MonoBehaviour
             
         if (GameStartFlag == true)
         {
-            BossWaveCount += Time.deltaTime;
+            GamePlayCount += Time.deltaTime;
             
-            if (BossWaveCount>=18&&BossWaveCount <= 40)
+            if (GamePlayCount>=18&&GamePlayCount <= 40)
             {
                 BossWaveFlag = true;
                 
             }
-            if (BossWaveCount >= 40 && BossWaveCount < 60)
+            if (GamePlayCount >= 40 && GamePlayCount < 60)
             {
                 BossWaveFlag = false;
                 Wave = 1;
                
             }
-            if (BossWaveCount >= 58 && BossWaveCount < 80)
+            if (GamePlayCount >= 58 && GamePlayCount < 80)
             {
                 BossWaveFlag = true;
                
             }
-            if (BossWaveCount >= 80 && BossWaveCount < 125)
+            if (GamePlayCount >= 80 && GamePlayCount < 125)
             {
                 BossWaveFlag = false;
                 Wave = 2;
@@ -254,8 +254,13 @@ public class GameManager : MonoBehaviour
     {
         return BossWaveFlag;
     }
-    public float IsBossWaveCount()
+    public float IsGamePlayCount()
     {
-        return BossWaveCount;
+        return GamePlayCount;
+    }
+
+    public void BossWaveCountStart()
+    {
+        GamePlayCount++;
     }
 }

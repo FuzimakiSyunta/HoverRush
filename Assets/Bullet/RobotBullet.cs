@@ -36,7 +36,7 @@ public class RobotBullet : MonoBehaviour
 
         SpawnedTimer += Time.deltaTime;
 
-        if(SpawnedTimer>=1)
+        if(SpawnedTimer>=1f)
         {
             speed = 100f;
             rotationSpeed = 0;

@@ -61,7 +61,7 @@ MonoBehaviour:
   titleText: {fileID: 0}
   StartButtonImage: {fileID: 0}
   Wave: 0
-  BossWaveCount: 0
+  GamePlayCount: 0
 --- !u!114 &2615606037981549832
 MonoBehaviour:
   m_ObjectHideFlags: 0

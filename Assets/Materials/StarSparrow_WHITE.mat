@@ -10,7 +10,7 @@ Material:
   m_Name: StarSparrow_WHITE
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 2100000, guid: 4979484adde16054e8d24d98cb41854d, type: 2}
-  m_ModifiedSerializedProperties: 2
+  m_ModifiedSerializedProperties: 14
   m_ValidKeywords:
   - _EMISSION
   - _METALLICGLOSSMAP
