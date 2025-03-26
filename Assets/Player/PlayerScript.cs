@@ -193,11 +193,11 @@ public class PlayerScript : MonoBehaviour
             }
 
             //キーボード/////////////////////////////////
-            if (Input.GetKey(KeyCode.D)&& transform.position.x <= 10)
+            if (Input.GetKey(KeyCode.D)&& transform.position.x <= 8)
             {
                 transform.position += new Vector3(move, 0, 0);
             }
-            else if (Input.GetKey(KeyCode.A) && transform.position.x >= -10)
+            else if (Input.GetKey(KeyCode.A) && transform.position.x >= -8)
             {
                 transform.position += new Vector3(-move, 0, 0);
             }

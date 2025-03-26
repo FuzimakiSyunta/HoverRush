@@ -7,13 +7,9 @@ public class DamageScript : MonoBehaviour
     public Material damageMaterial; // ダメージ時のマテリアル
     private Renderer objectRenderer;
 
-    public GameObject boss;
-    private BossScript bossScript;
-
     void Start()
     {
         objectRenderer = GetComponent<Renderer>();
-        bossScript = boss.GetComponent<BossScript>();
     }
 
     void OnTriggerEnter(Collider other)
