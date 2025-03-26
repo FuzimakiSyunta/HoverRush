@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
 
             // 出現条件（範囲）を設定
             int[][] Enemyranges = {
-        new int[]{0, 1000 * waveModifier},       // WAVEに応じた出現範囲
+        new int[]{0, 5000 * waveModifier},    // WAVEに応じた出現範囲
         new int[]{100, 150 * waveModifier},   // 範囲2
         new int[]{150, 300 * waveModifier},   // 範囲3
         //new int[]{6000, 6300 * waveModifier},   // 範囲4

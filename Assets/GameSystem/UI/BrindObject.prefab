@@ -59,3 +59,4 @@ MonoBehaviour:
   GameClear: {fileID: 0}
   GameOver: {fileID: 0}
   OptionButton: {fileID: 0}
+  PowerUpImage: {fileID: 0}
