@@ -34,13 +34,18 @@ public class BrindScript : MonoBehaviour
     //
     public GameObject OptionButton;
 
+    public GameObject PowerUpImage;
+    private bool hasPowerUpImageBeenHidden = false;
+
+
 
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
 
         // Initialize Elements
-        SetActiveForObjects(false, boss, bossBullet, StartUi,GameOver,GameClear,ClearGameOverUI,OptionButton, AllEnergy);
+        SetActiveForObjects(false, boss, bossBullet, StartUi, GameOver, GameClear, ClearGameOverUI, OptionButton, AllEnergy);
+        PowerUpImage.SetActive(false); // 個別に制御
         SetActiveForObjects(true, StartTitleUi);
     }
 
@@ -51,7 +56,7 @@ public class BrindScript : MonoBehaviour
         {
             if (!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
             {
-                SetActiveForObjects(false, StartTitleUi, ClearGameOverUI);
+                SetActiveForObjects(false, StartTitleUi, ClearGameOverUI,PowerUpImage);
                 SetActiveForObjects(true, boss, bossBullet, StartUi, OptionButton, AllEnergy);
                 HandleEnergyLevels(); // エネルギー管理
             }
@@ -79,7 +84,7 @@ public class BrindScript : MonoBehaviour
         if (gameManagerScript.IsGameOver())
         {
             // GameOver画面を表示
-            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX);
+            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage);
             SetActiveForObjects(true, GameOver);
 
             
@@ -91,21 +96,39 @@ public class BrindScript : MonoBehaviour
         if (gameManagerScript.IsGameClear())
         {
             // GameClear画面を表示
-            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX);
+            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage);
             SetActiveForObjects(true, GameClear);
 
         }
     }
 
-    private void HandleEnergyLevels()//energy
+    private IEnumerator HidePowerUpImageAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PowerUpImage.SetActive(false);
+        hasPowerUpImageBeenHidden = true; // 非表示にされたことを記録
+    }
+
+
+
+    private void HandleEnergyLevels() // エネルギー管理
     {
         if (gameManagerScript.IsGameStart())
         {
             if (gameManagerScript.IsScore() >= 5) EnergyMIN.SetActive(true);
             if (gameManagerScript.IsScore() >= 10) EnergyMID.SetActive(true);
-            if (gameManagerScript.IsScore() >= 15) EnergyMAX.SetActive(true);
+            if (gameManagerScript.IsScore() >= 15 && !hasPowerUpImageBeenHidden)
+            {
+                EnergyMAX.SetActive(true);
+                PowerUpImage.SetActive(true);
+                // PowerUpImageを2.0秒後に非表示にするコルーチンを開始
+                StartCoroutine(HidePowerUpImageAfterDelay(2.0f));
+
+            }
+
         }
     }
+
 
     private void SetActiveForObjects(bool state, params GameObject[] objects)
     {
