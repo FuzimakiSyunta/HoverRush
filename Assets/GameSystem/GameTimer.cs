@@ -7,6 +7,8 @@ public class GameTimer : MonoBehaviour
     public GameObject gameManager;
     private GameManager gameManagerScript;
     private float gameTime;
+    private float customDeltaTime = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +19,27 @@ public class GameTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsGameStart())
+        customDeltaTime = Time.deltaTime;
+
+        if (gameManagerScript.IsGameStart()&&gameManagerScript.IsGameClear()==false&&gameManagerScript.IsGameOver()==false)
         {
-            gameTime += Time.deltaTime;
+            gameTime += customDeltaTime;
         }
+        
     }
 
     public float IsGameTime()
     {
         return gameTime;
+    }
+
+    public void IsStopTime()
+    {
+        customDeltaTime = 0f;
+    }
+
+    public void IsStartTime()
+    {
+        customDeltaTime = 1f;
     }
 }

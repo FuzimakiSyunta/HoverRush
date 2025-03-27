@@ -28,8 +28,12 @@ public class CameraMove : MonoBehaviour
             animator.SetBool("isRobotView", false);
         }
 
+        if (gameManagerScript.IsGameOver())
+        {
+            animator.SetBool("isGameOver",true);
+        }
 
-        
+
     }
    
 }

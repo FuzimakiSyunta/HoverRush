@@ -79,7 +79,8 @@ public class PauseMenuSelector : MonoBehaviour
             isOperationSelect = true;
             if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 1"))
             {
-                isOperation=false;
+                OperationImage.SetActive(false);
+                isOperation =false;
             }
         }
         else

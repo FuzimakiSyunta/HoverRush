@@ -40,6 +40,7 @@ public class PlayerScript : MonoBehaviour
     private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
     private float MoveSpeed = 18.0f;
+    private float BoostMoveSpeed = 50.0f;
 
     //HP関連
     public GameObject HPSlider;
@@ -107,6 +108,8 @@ public class PlayerScript : MonoBehaviour
     {
         // 時間依存の移動
         float move = MoveSpeed * Time.deltaTime;
+        float boostmove = BoostMoveSpeed * Time.deltaTime;
+
 
         if (selectorMenuScript.IsColorMenuFlag() == true)
         {
@@ -134,6 +137,9 @@ public class PlayerScript : MonoBehaviour
         //L Stick
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
+
+        float LT = Input.GetAxis("LeftTrigger");
+        float RT = Input.GetAxis("RightTrigger");
 
         ///ゲームスタートしたら
         if (gameManagerScript.IsGameStart() == true&&gameManagerScript.IsGameClear()==false)
@@ -183,6 +189,17 @@ public class PlayerScript : MonoBehaviour
                 transform.position += new Vector3(0, 0, -move);
             }
 
+            //緊急回避
+            if (RT > 0 && transform.position.x <= 10)
+            {
+                transform.position += new Vector3(boostmove, 0, 0);
+            }
+            else if (LT > 0 && transform.position.x >= -10)
+            {
+                transform.position += new Vector3(-boostmove, 0, 0);
+            }
+
+            //火
             if (Vstick > 0 || Input.GetKey(KeyCode.W))
             {
                 Fire.SetActive(true);
@@ -209,9 +226,19 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(0, 0, -move);
             }
+
+            //緊急回避
+            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space)&& transform.position.x <= 8)
+            {
+                transform.position += new Vector3(boostmove, 0, 0);
+            }
+            else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space) && transform.position.x >= -8)
+            {
+                transform.position += new Vector3(-boostmove, 0, 0);
+            }
             //////////////////////////////////////////////
 
-            if(transform.position.x > 0)
+            if (transform.position.x > 0)
             {
                 position_R = true;
             }else

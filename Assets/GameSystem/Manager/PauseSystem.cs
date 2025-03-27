@@ -48,7 +48,7 @@ public class PauseSystem : MonoBehaviour
         if (gameManagerScript.IsGameStart() == true && PanelEffectScript.IsAlpha() == true &&
             gameManagerScript.IsGameOver() == false && gameManagerScript.IsGameClear() == false)
         {
-            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown("joystick button 7"))
+            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown("joystick button 7")&& pauseMenuSelectorScript.IsOperation()==false)
             {
                 TogglePause();
                 isPauseOn = true;
@@ -73,7 +73,7 @@ public class PauseSystem : MonoBehaviour
             }
 
             // 操作説明画面
-            if (pauseMenuSelectorScript.IsOperation() == true)
+            if (pauseMenuSelectorScript.IsOperation())
             {
                 PauseImage.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 1"))
@@ -81,12 +81,7 @@ public class PauseSystem : MonoBehaviour
                     PauseImage.SetActive(true);
                 }
             }
-            // 操作説明画像が表示されていない時にポーズメニュー解除
-            if (!pauseMenuSelectorScript.IsOperation() &&
-                (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 1")))
-            {
-                DisablePause();
-            }
+            
 
 
         }

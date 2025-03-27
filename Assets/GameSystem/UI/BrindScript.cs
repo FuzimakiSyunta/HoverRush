@@ -31,9 +31,9 @@ public class BrindScript : MonoBehaviour
     //
     public GameObject GameClear;
     public GameObject GameOver;
-    //
+    //設定ボタン
     public GameObject OptionButton;
-
+    //パワーアップ
     public GameObject PowerUpImage;
     private bool hasPowerUpImageBeenHidden = false;
 
