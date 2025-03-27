@@ -38,7 +38,7 @@ public class SceneScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
-                SceneManager.LoadScene("Clear");
+                SceneManager.LoadScene("Load");
             }
         }
     }

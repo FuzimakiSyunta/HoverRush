@@ -4941,6 +4941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cc8c2f953ae3d4bad2c1eba35e33f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   Robot: {fileID: 5819917138300682132}
   BossAir: {fileID: 5370120036301558597}
   Bossbullet: {fileID: 389623457992006024, guid: 362ef3d617463dc4cbbd0a9266f0490c, type: 3}
@@ -4965,6 +4966,7 @@ MonoBehaviour:
   LazerDamegeImage: {fileID: 0}
   Lazer_LDamegeImage: {fileID: 0}
   Lazer_RDamegeImage: {fileID: 0}
+  DamegeCanvas: {fileID: 0}
   DamegeSound: {fileID: 8300000, guid: 8e82cc3bba6228b4eb91908e86149116, type: 3}
 --- !u!95 &483316865853557374
 Animator:

@@ -8,7 +8,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BossScript : MonoBehaviour
 {
-    private GameObject gameManager;
+    public GameObject gameManager;
     private GameManager gameManagerScript;
 
     public GameObject Robot;
@@ -55,6 +55,8 @@ public class BossScript : MonoBehaviour
     public GameObject LazerDamegeImage;
     public GameObject Lazer_LDamegeImage;
     public GameObject Lazer_RDamegeImage;
+
+    public GameObject DamegeCanvas;
 
 
 
@@ -147,17 +149,10 @@ public class BossScript : MonoBehaviour
             gameManagerScript.GameClearStart();//ゲームクリア
             Destroy(gameObject, 0f);
 
+            DamegeCanvas.SetActive(false);
+
         }
-        ///ダメージ非表示
-        if(gameManagerScript.IsGameOver()||gameManagerScript.IsGameClear())
-        {
-            bulletdamageImage.SetActive(false);
-            MachinegunDamegeImage.SetActive(false);
-            PenetrationBulletDamegeImage.SetActive(false);
-            LazerDamegeImage.SetActive(false);
-            Lazer_LDamegeImage.SetActive(false);
-            Lazer_RDamegeImage.SetActive(false);
-        }
+        
         LazerdamegeCoolTime += Time.deltaTime; // クールタイムを進める
         Lazer_RdamegeCoolTime += Time.deltaTime;
         Lazer_LdamegeCoolTime += Time.deltaTime;
@@ -185,7 +180,8 @@ public class BossScript : MonoBehaviour
                 break;
             
         }
-        
+        // ダメージを受けた際の処理
+        audioSource.PlayOneShot(DamegeSound); // ダメージ音を再生
 
         if (damageImage != null)
         {
@@ -207,10 +203,10 @@ public class BossScript : MonoBehaviour
         {
             if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
             {
-                int damage = 250; // ダメージ値
+                int damage = 150; // ダメージ値
                 GameObject damageImage = LazerDamegeImage;
 
-                //audioSource.PlayOneShot(DamegeSound);
+                audioSource.PlayOneShot(DamegeSound);
                 NowHP -= damage; // HPを減少
                 hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
                 sliderBool = true;
@@ -228,10 +224,10 @@ public class BossScript : MonoBehaviour
         {
             if (Lazer_LdamegeCoolTime >= 0.1f) // クールタイム判定
             {
-                int damage = 100; // ダメージ値
+                int damage = 80; // ダメージ値
                 GameObject damageImage = Lazer_LDamegeImage;
 
-                //audioSource.PlayOneShot(DamegeSound);
+                audioSource.PlayOneShot(DamegeSound);
                 NowHP -= damage; // HPを減少
                 hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
                 sliderBool = true;
@@ -249,10 +245,10 @@ public class BossScript : MonoBehaviour
         {
             if (Lazer_RdamegeCoolTime >= 0.1f) // クールタイム判定
             {
-                int damage = 100; // ダメージ値
+                int damage = 80; // ダメージ値
                 GameObject damageImage = Lazer_RDamegeImage;
 
-                //audioSource.PlayOneShot(DamegeSound);
+                audioSource.PlayOneShot(DamegeSound);
                 NowHP -= damage; // HPを減少
                 hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
                 sliderBool = true;
@@ -343,8 +339,6 @@ public class BossScript : MonoBehaviour
         // 最後に位置を目標位置に設定
         damageImage.transform.position = targetPosition;
     }
-
-
 
 
     void FixedUpdate()
