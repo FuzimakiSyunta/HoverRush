@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Load.unity
     guid: 42572ac6dec7dca45938c68ac01084e3
-  - enabled: 1
-    path: Assets/Scenes/Clear.unity
-    guid: 89ba1c4e32f0c8b428bdfb98524bf8d7
   m_configObjects: {}

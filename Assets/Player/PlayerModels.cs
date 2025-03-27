@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // UIを操作するために必要
 
 public class PlayerModels : MonoBehaviour
 {
     public GameObject[] cubes; // 切り替えるCubeオブジェクトの配列
+    public Image uiImage; // UIのImageコンポーネント
+    public Sprite[] images; // 切り替える画像の配列
+
     private int currentIndex = 0; // 現在表示されているCubeのインデックス
     private bool canInput = true;  // 入力可能かどうかのフラグ
     private float inputCooldown = 0.3f; // クールダウン時間（秒）
@@ -31,35 +35,29 @@ public class PlayerModels : MonoBehaviour
     {
         if (selectorMenuScript.IsColorMenuFlag() == true && gameManagerScript.IsGameStart() == false)
         {
-            // 現在の時間を取得
             float currentTime = Time.time;
 
-            // クールダウン確認
             if (canInput && currentTime - lastInputTime > inputCooldown)
             {
-                // 上下の入力を受け取る
                 float verticalInput = Input.GetAxis("DPadVertical");
 
-                // 上キーで次の見た目に切り替え
                 if (Input.GetKeyDown(KeyCode.UpArrow) || verticalInput > 0)
                 {
-                    currentIndex = (currentIndex + 1) % cubes.Length; // インデックスを進める
+                    currentIndex = (currentIndex + 1) % cubes.Length;
                     UpdateCubeVisibility();
-                    canInput = false; // クールダウン開始
-                    lastInputTime = currentTime; // 最後の入力時間を更新
+                    canInput = false;
+                    lastInputTime = currentTime;
                 }
 
-                // 下キーで前の見た目に切り替え
                 if (Input.GetKeyDown(KeyCode.DownArrow) || verticalInput < 0)
                 {
-                    currentIndex = (currentIndex - 1 + cubes.Length) % cubes.Length; // インデックスを戻す
+                    currentIndex = (currentIndex - 1 + cubes.Length) % cubes.Length;
                     UpdateCubeVisibility();
-                    canInput = false; // クールダウン開始
-                    lastInputTime = currentTime; // 最後の入力時間を更新
+                    canInput = false;
+                    lastInputTime = currentTime;
                 }
             }
 
-            // クールダウンが終了したらcanInputをリセット
             if (currentTime - lastInputTime > inputCooldown)
             {
                 canInput = true;
@@ -69,14 +67,20 @@ public class PlayerModels : MonoBehaviour
 
     void UpdateCubeVisibility()
     {
-        // 全てのCubeを非表示にして、現在のCubeだけ表示
+        // Cubeの切り替え
         for (int i = 0; i < cubes.Length; i++)
         {
             cubes[i].SetActive(i == currentIndex);
         }
+
+        // UIの画像を同期
+        if (uiImage != null && images.Length > currentIndex)
+        {
+            uiImage.sprite = images[currentIndex];
+        }
     }
 
-    // 要素を取得する関数
+    // 現在のインデックスを取得
     public int IsIndex()
     {
         return currentIndex;
