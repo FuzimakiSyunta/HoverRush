@@ -4965,6 +4965,7 @@ MonoBehaviour:
   LazerDamegeImage: {fileID: 0}
   Lazer_LDamegeImage: {fileID: 0}
   Lazer_RDamegeImage: {fileID: 0}
+  DamegeCanvas: {fileID: 0}
   DamegeSound: {fileID: 8300000, guid: 8e82cc3bba6228b4eb91908e86149116, type: 3}
 --- !u!95 &483316865853557374
 Animator:

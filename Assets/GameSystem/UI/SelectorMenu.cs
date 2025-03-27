@@ -21,6 +21,8 @@ public class SelectorMenu : MonoBehaviour
     public GameObject LuleBGmage;
     public GameObject LuleUiImage;
     public GameObject LTRTImage;
+    //«”\•\
+    public GameObject SpecImage;
 
     private bool isSeaneEffect = false;
     
@@ -35,6 +37,8 @@ public class SelectorMenu : MonoBehaviour
         //Lule
         LuleBGmage.SetActive(false);
         LuleUiImage.SetActive(false);
+        //
+        SpecImage.SetActive(false);
 
         
     }
@@ -65,9 +69,10 @@ public class SelectorMenu : MonoBehaviour
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                     LuleBGmage.SetActive(true);
                     LuleUiImage.SetActive(true);
+                    SpecImage.SetActive(false);
 
 
-                    if (Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow)|| tri > 0)
+                    if (Input.GetKeyDown(KeyCode.S)|| tri > 0)
                     {
                         
                         StartFlag = false;
@@ -95,7 +100,8 @@ public class SelectorMenu : MonoBehaviour
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                     LuleBGmage.SetActive(false);
                     LuleUiImage.SetActive(false);
-                    if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow) || tri < 0&&isSeaneEffect == false)
+                    SpecImage.SetActive(true);
+                    if (Input.GetKeyDown(KeyCode.W)||  tri < 0&&isSeaneEffect == false)
                     {
                         
                         ColorMenuFlag = false;

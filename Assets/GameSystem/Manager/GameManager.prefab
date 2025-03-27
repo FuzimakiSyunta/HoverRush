@@ -112,6 +112,7 @@ MonoBehaviour:
   LuleBGmage: {fileID: 0}
   LuleUiImage: {fileID: 0}
   LTRTImage: {fileID: 0}
+  SpecImage: {fileID: 0}
 --- !u!114 &4523889030188054064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,5 +147,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  uiImage: {fileID: 0}
+  images: []
   selectMenu: {fileID: 7291093457700589311}
   gameManager: {fileID: 7291093457700589311}

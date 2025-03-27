@@ -56,6 +56,8 @@ public class BossScript : MonoBehaviour
     public GameObject Lazer_LDamegeImage;
     public GameObject Lazer_RDamegeImage;
 
+    public GameObject DamegeCanvas;
+
 
 
     public void Damage(Collider col)
@@ -149,14 +151,9 @@ public class BossScript : MonoBehaviour
 
         }
         ///ダメージ非表示
-        if(gameManagerScript.IsGameOver()||gameManagerScript.IsGameClear())
+        if(gameManagerScript.IsGameOver()|| gameManagerScript.IsGameClear())
         {
-            bulletdamageImage.SetActive(false);
-            MachinegunDamegeImage.SetActive(false);
-            PenetrationBulletDamegeImage.SetActive(false);
-            LazerDamegeImage.SetActive(false);
-            Lazer_LDamegeImage.SetActive(false);
-            Lazer_RDamegeImage.SetActive(false);
+            DamegeCanvas.SetActive(false);
         }
         LazerdamegeCoolTime += Time.deltaTime; // クールタイムを進める
         Lazer_RdamegeCoolTime += Time.deltaTime;
@@ -207,7 +204,7 @@ public class BossScript : MonoBehaviour
         {
             if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
             {
-                int damage = 250; // ダメージ値
+                int damage = 150; // ダメージ値
                 GameObject damageImage = LazerDamegeImage;
 
                 //audioSource.PlayOneShot(DamegeSound);
@@ -228,7 +225,7 @@ public class BossScript : MonoBehaviour
         {
             if (Lazer_LdamegeCoolTime >= 0.1f) // クールタイム判定
             {
-                int damage = 100; // ダメージ値
+                int damage = 80; // ダメージ値
                 GameObject damageImage = Lazer_LDamegeImage;
 
                 //audioSource.PlayOneShot(DamegeSound);
@@ -249,7 +246,7 @@ public class BossScript : MonoBehaviour
         {
             if (Lazer_RdamegeCoolTime >= 0.1f) // クールタイム判定
             {
-                int damage = 100; // ダメージ値
+                int damage = 80; // ダメージ値
                 GameObject damageImage = Lazer_RDamegeImage;
 
                 //audioSource.PlayOneShot(DamegeSound);
@@ -343,8 +340,6 @@ public class BossScript : MonoBehaviour
         // 最後に位置を目標位置に設定
         damageImage.transform.position = targetPosition;
     }
-
-
 
 
     void FixedUpdate()
