@@ -150,6 +150,7 @@ public class BossScript : MonoBehaviour
             Destroy(gameObject, 0f);
 
             DamegeCanvas.SetActive(false);
+            gameManagerScript.BatteryEnargyUp();
 
         }
         

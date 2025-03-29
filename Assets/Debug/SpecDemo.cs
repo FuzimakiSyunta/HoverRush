@@ -26,7 +26,7 @@ public class SpecDemo : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            gameManagerScript.Score();//スコア上昇
+            gameManagerScript.BatteryEnargyUp();//スコア上昇
         }
 
         if (Input.GetKeyDown(KeyCode.N))

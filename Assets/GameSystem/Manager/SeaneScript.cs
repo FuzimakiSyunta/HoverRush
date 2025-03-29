@@ -7,6 +7,8 @@ public class SceneScript : MonoBehaviour
 {
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    private Result ResultScript;
+    public GameObject result;
     private PauseMenuSelector pauseMenuSelectorScript;
     public GameObject pauseMenuSelector;
 
@@ -14,6 +16,7 @@ public class SceneScript : MonoBehaviour
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
         pauseMenuSelectorScript = pauseMenuSelector.GetComponent<PauseMenuSelector>();
+        ResultScript = result.GetComponent<Result>();
     }
 
     void Update()
@@ -34,7 +37,7 @@ public class SceneScript : MonoBehaviour
         }
 
         // ÉQÅ[ÉÄÉNÉäÉAèàóù
-        if (gameManagerScript.IsGameClear())
+        if (gameManagerScript.IsGameClear()&& ResultScript.IsRankOpen())
         {
             if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {

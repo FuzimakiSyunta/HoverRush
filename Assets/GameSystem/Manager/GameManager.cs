@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private bool GameOverFlag = false;
     private bool GameClearFlag = false;
     private bool GameStartFlag = false;
-    private int score = 0;
+    public int BatteryEnargy = 0;
 
     //WAVE
     public int Wave;
@@ -230,13 +230,13 @@ public class GameManager : MonoBehaviour
     {
         return GameClearFlag;//クリアのフラグ
     }
-    public void Score()//スコア
+    public void BatteryEnargyUp()//スコア&Battery
     {
-        score += 1;
+        BatteryEnargy += 1;
     }
-    public int IsScore()
+    public int IsBatteryEnargy()
     {
-        return score;
+        return BatteryEnargy;
     }
     public void GameStart()//ゲームスタート
     {

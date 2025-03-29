@@ -60,6 +60,7 @@ MonoBehaviour:
   gameClearText: {fileID: 0}
   titleText: {fileID: 0}
   StartButtonImage: {fileID: 0}
+  BatteryEnargy: 0
   Wave: 0
   GamePlayCount: 0
 --- !u!114 &2615606037981549832
@@ -75,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 7291093457700589311}
+  result: {fileID: 0}
   pauseMenuSelector: {fileID: 0}
 --- !u!114 &1515427275701569699
 MonoBehaviour:
