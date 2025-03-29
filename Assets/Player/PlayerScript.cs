@@ -146,18 +146,18 @@ public class PlayerScript : MonoBehaviour
         {
             DamegeCoolTime += Time.deltaTime;
             //回復UI
-            if (gameManagerScript.IsScore() < 15)
+            if (gameManagerScript.IsBatteryEnargy() < 15)
             {
                 isHeal = false;
             }
-            if(gameManagerScript.IsScore() < 15&&isHeal ==false)
+            if(gameManagerScript.IsBatteryEnargy() < 15&&isHeal ==false)
             {
                 HealImage.SetActive(false);
                 NoHealImage.SetActive(true);
             }
             
             ///回復
-            if (gameManagerScript.IsScore() >= 15 && isHeal == false)
+            if (gameManagerScript.IsBatteryEnargy() >= 15 && isHeal == false)
             {
                 HealImage.SetActive(true);
                 NoHealImage.SetActive(false);
@@ -255,11 +255,19 @@ public class PlayerScript : MonoBehaviour
             NoHealImage.SetActive(false);
         }
         //射撃パターン追加  
-        if (gameManagerScript.IsScore()>= 15)
+        if (gameManagerScript.IsBatteryEnargy()>= 15)
         {
-            ShotChenge = 1;
+            ShotChenge = 1;//自機タイプ単発
         }
-        
+        if (gameManagerScript.IsBatteryEnargy() >= 20)
+        {
+            ShotChenge = 2;//自機タイプレーザー
+        }
+        if (gameManagerScript.IsBatteryEnargy() >= 30)
+        {
+            ShotChenge = 3;//自機タイプ貫通弾
+        }
+
     }
     void FixedUpdate()
     {
@@ -270,8 +278,8 @@ public class PlayerScript : MonoBehaviour
         ///ゲームスタートしたら
         if (gameManagerScript.IsGameStart() == true)
         {
-            //見た目0の時
-            if(playerModelsScript.IsIndex() == 0)
+            //自機タイプ単発時
+            if (playerModelsScript.IsIndex() == 0)
             {
                 //遅い弾
                 if (bulletTimer[0] == 0.0f)
@@ -322,11 +330,11 @@ public class PlayerScript : MonoBehaviour
                 }
             }
 
-            //見た目1の時
+            //自機タイプレーザー時
             if (playerModelsScript.IsIndex() == 1)
             {
                 Lazer.SetActive(true);
-                if (ShotChenge >= 1)
+                if (ShotChenge >= 2)
                 {
                     Lazer_R.SetActive(true);
                     Lazer_L.SetActive(true);
@@ -339,7 +347,7 @@ public class PlayerScript : MonoBehaviour
                 Lazer_L.SetActive(false);
             }
 
-            //見た目2の時
+            //自機タイプ貫通時
             if (playerModelsScript.IsIndex() == 2)
             {
                 //貫通弾
@@ -355,7 +363,7 @@ public class PlayerScript : MonoBehaviour
 
                     }
                 }
-                else if(ShotChenge == 0)
+                else if(ShotChenge >= 0 && ShotChenge <= 2)
                 {
                     bulletTimer[0]++;
                     if (bulletTimer[0] > 30.0f)
@@ -364,7 +372,7 @@ public class PlayerScript : MonoBehaviour
                     }
                 }
                 //DamegeRing
-                if (ShotChenge >= 1)
+                if (ShotChenge >= 3)
                 {
                     DamegeRing.SetActive(true);
                     bulletTimer[0]++;

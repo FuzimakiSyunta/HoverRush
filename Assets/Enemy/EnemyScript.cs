@@ -90,7 +90,7 @@ public class EnemyScript : MonoBehaviour
             Destroy(gameObject, 0f);
 
             //スコア上昇
-            gameManagerScript.Score();
+            gameManagerScript.BatteryEnargyUp();
         }
     }
     void OnTriggerEnter(Collider other)

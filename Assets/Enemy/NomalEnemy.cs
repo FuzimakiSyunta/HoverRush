@@ -81,7 +81,7 @@ public class NomalEnemy : MonoBehaviour
             Destroy(newParticle.gameObject, 0.5f);
 
             //スコア上昇
-            gameManagerScript.Score();
+            gameManagerScript.BatteryEnargyUp();
             //敵消える
             Destroy(gameObject, 0f);
 

@@ -9,6 +9,10 @@ public class BrindScript : MonoBehaviour
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
+    //models
+    private PlayerModels playerModelsScript;
+    public GameObject playerModels;
+
     // Boss
     public GameObject boss;
     public GameObject bossBullet;
@@ -17,8 +21,6 @@ public class BrindScript : MonoBehaviour
     public GameObject StartTitleUi;
     //開始後UI
     public GameObject StartUi;
-    //GameOver&GameClear
-    public GameObject ClearGameOverUI;
     //Energy
     public GameObject AllEnergy;
     public GameObject EnergyMIN;
@@ -28,8 +30,7 @@ public class BrindScript : MonoBehaviour
     public GameObject Selector;
     //最初のタイトル
     public GameObject TitleUi;
-    //
-    public GameObject GameClear;
+    //ゲームオーバー
     public GameObject GameOver;
     //設定ボタン
     public GameObject OptionButton;
@@ -42,9 +43,11 @@ public class BrindScript : MonoBehaviour
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        //playerModels
+        playerModelsScript = playerModels.GetComponent<PlayerModels>();
 
         // Initialize Elements
-        SetActiveForObjects(false, boss, bossBullet, StartUi, GameOver, GameClear, ClearGameOverUI, OptionButton, AllEnergy);
+        SetActiveForObjects(false, boss, bossBullet, StartUi, GameOver, OptionButton, AllEnergy);
         PowerUpImage.SetActive(false); // 個別に制御
         SetActiveForObjects(true, StartTitleUi);
     }
@@ -56,7 +59,7 @@ public class BrindScript : MonoBehaviour
         {
             if (!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
             {
-                SetActiveForObjects(false, StartTitleUi, ClearGameOverUI,PowerUpImage);
+                SetActiveForObjects(false, StartTitleUi,GameOver,PowerUpImage);
                 SetActiveForObjects(true, boss, bossBullet, StartUi, OptionButton, AllEnergy);
                 HandleEnergyLevels(); // エネルギー管理
             }
@@ -97,7 +100,6 @@ public class BrindScript : MonoBehaviour
         {
             // GameClear画面を表示
             SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage);
-            SetActiveForObjects(true, GameClear);
 
         }
     }
@@ -115,15 +117,51 @@ public class BrindScript : MonoBehaviour
     {
         if (gameManagerScript.IsGameStart())
         {
-            if (gameManagerScript.IsScore() >= 5) EnergyMIN.SetActive(true);
-            if (gameManagerScript.IsScore() >= 10) EnergyMID.SetActive(true);
-            if (gameManagerScript.IsScore() >= 15 && !hasPowerUpImageBeenHidden)
+            //自機タイプ単発時
+            if (playerModelsScript.IsIndex() == 0)
             {
-                EnergyMAX.SetActive(true);
-                PowerUpImage.SetActive(true);
-                // PowerUpImageを2.0秒後に非表示にするコルーチンを開始
-                StartCoroutine(HidePowerUpImageAfterDelay(2.0f));
+                if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 15 && !hasPowerUpImageBeenHidden)
+                {
+                    EnergyMAX.SetActive(true);
+                    PowerUpImage.SetActive(true);
+                    // PowerUpImageを2.0秒後に非表示にするコルーチンを開始
+                    StartCoroutine(HidePowerUpImageAfterDelay(2.0f));
 
+                }
+            }
+            
+            //自機タイプレーザー時
+            if (playerModelsScript.IsIndex() == 1)
+            {
+                if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 15) EnergyMAX.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 20 && !hasPowerUpImageBeenHidden)
+                {
+
+                    PowerUpImage.SetActive(true);
+                    // PowerUpImageを2.0秒後に非表示にするコルーチンを開始
+                    StartCoroutine(HidePowerUpImageAfterDelay(2.0f));
+
+                }
+            }
+
+            //自機タイプ貫通弾時
+            if (playerModelsScript.IsIndex() == 2)
+            {
+                if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 15) EnergyMAX.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 30 && !hasPowerUpImageBeenHidden)
+                {
+
+                    PowerUpImage.SetActive(true);
+                    // PowerUpImageを2.0秒後に非表示にするコルーチンを開始
+                    StartCoroutine(HidePowerUpImageAfterDelay(2.0f));
+
+                }
             }
 
         }
