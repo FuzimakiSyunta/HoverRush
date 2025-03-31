@@ -41,8 +41,10 @@ public class GameManager : MonoBehaviour
     public float GamePlayCount;
     private bool BossWaveFlag;
     private int waveModifier;
-    
 
+    //ゲーム開始時出現
+    public GameObject SpeedParticle;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +56,10 @@ public class GameManager : MonoBehaviour
         StartButtonImage.SetActive(true);
         Wave = 0;
         GamePlayCount = 0;
+        SpeedParticle.SetActive(false);
         
+        
+
     }
 
     // Update is called once per frame
@@ -70,8 +75,16 @@ public class GameManager : MonoBehaviour
                 titleText.SetActive(false);
                 StartButtonImage.SetActive(false);
                 GameStartFlag = false;
+
+                SpeedParticle.SetActive(false);
+                
+                
             }
+        }else
+        {
+            SpeedParticle.SetActive(true);
         }
+
         if(GameClearFlag==true)
         {
             UI.SetActive(false);
@@ -80,10 +93,13 @@ public class GameManager : MonoBehaviour
             UI.SetActive(true);
         }
 
+
+
             
         if (GameStartFlag == true)
         {
             GamePlayCount += Time.deltaTime;
+            
             
             if (GamePlayCount>=18&&GamePlayCount <= 40)
             {
@@ -108,7 +124,10 @@ public class GameManager : MonoBehaviour
                
             }
             
+
         }
+
+        
         
     }
     private void FixedUpdate()//敵出現

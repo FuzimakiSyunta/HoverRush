@@ -58,6 +58,8 @@ public class PlayerScript : MonoBehaviour
     public AudioClip DamegeSound;
     private AudioSource audioSource;
 
+    public GameObject PlayerPositionObject;
+
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +85,9 @@ public class PlayerScript : MonoBehaviour
         HPSlider.SetActive(true);
         //回復
         isHeal = false;
-        
+
+        PlayerPositionObject.SetActive(false);
+
     }
 
     void Damaged()
@@ -110,12 +114,12 @@ public class PlayerScript : MonoBehaviour
         float move = MoveSpeed * Time.deltaTime;
         float boostmove = BoostMoveSpeed * Time.deltaTime;
 
-
         if (selectorMenuScript.IsColorMenuFlag() == true)
         {
             HealImage.SetActive(false);
             NoHealImage.SetActive(false);
         }
+
         if (gameManagerScript.IsGameOver() == true)
         {
             animator.SetBool("GameOver", true);
@@ -132,6 +136,11 @@ public class PlayerScript : MonoBehaviour
         if(gameManagerScript.IsGameStart() == true)
         {
             HPSlider.SetActive(true);
+            //posObject
+            PlayerPositionObject.SetActive(true);
+        }else
+        {
+            PlayerPositionObject.SetActive(false);
         }
 
         //L Stick
