@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class CameraFOVController : MonoBehaviour
 {
+    //gamemanager
+    private GameManager gameManagerScript;
+    public GameObject gameManager;
+
     public Camera targetCamera; // 操作したいカメラ
     private float targetFOV = 85.0f; // 設定したい視野角
-    private float changeSpeed = 1.0f; // 視野角の変化速度
+    private float changeSpeed = 0.5f; // 視野角の変化速度
+
+    private void Start()
+    {
+        //gamemanager
+        gameManagerScript = gameManager.GetComponent<GameManager>();
+    }
 
     void Update()
     {
-        // 視野角をスムーズに変更
-        targetCamera.fieldOfView = Mathf.Lerp(targetCamera.fieldOfView, targetFOV, changeSpeed * Time.deltaTime);
+        if(gameManagerScript.IsGameStart())
+        {
+            // 視野角をスムーズに変更
+            targetCamera.fieldOfView = Mathf.Lerp(targetCamera.fieldOfView, targetFOV, changeSpeed * Time.deltaTime);
+        }
+        
     }
 
     // 視野角を広げるメソッド

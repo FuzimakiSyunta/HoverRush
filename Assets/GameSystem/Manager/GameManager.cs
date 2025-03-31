@@ -250,7 +250,7 @@ public class GameManager : MonoBehaviour
     {
         return OpenSelector;
     }
-    public bool IsBossWaveStart()
+    public bool IsBossWave()
     {
         return BossWaveFlag;
     }
