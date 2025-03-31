@@ -184,7 +184,7 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(0, 0, move);
             }
-            else if (Vstick < 0 && transform.position.z >= -6.5f)
+            else if (Vstick < 0 && transform.position.z >= -8.5f)
             {
                 transform.position += new Vector3(0, 0, -move);
             }
@@ -222,7 +222,7 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(0, 0, move);
             }
-            else if (Input.GetKey(KeyCode.S) && transform.position.z >= -6.5f)
+            else if (Input.GetKey(KeyCode.S) && transform.position.z >= -8.5f)
             {
                 transform.position += new Vector3(0, 0, -move);
             }

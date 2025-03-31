@@ -1909,6 +1909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 707850056}
   - component: {fileID: 707850055}
+  - component: {fileID: 707850057}
   m_Layer: 0
   m_Name: CameraObject
   m_TagString: Untagged
@@ -1947,6 +1948,19 @@ Transform:
   - {fileID: 636607174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &707850057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707850054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0c3775ef910784cb2aa868fa5cdd57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 636607176}
 --- !u!1 &738859541 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7291093457700589311, guid: 94addd29f9cdc7b44a36623262b6edd7, type: 3}
@@ -14130,7 +14144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2896651794598889986, guid: e78a80d42a608fe4f86f13dd39fa0461, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9178439922039704958, guid: e78a80d42a608fe4f86f13dd39fa0461, type: 3}
       propertyPath: m_Pivot.x
