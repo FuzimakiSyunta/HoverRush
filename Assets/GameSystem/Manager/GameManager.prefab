@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4923610619253180882}
   - component: {fileID: 4523889030188054064}
   - component: {fileID: 5979125558077259600}
+  - component: {fileID: 8752966278169266004}
+  - component: {fileID: 7055533723150397242}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -63,6 +65,7 @@ MonoBehaviour:
   BatteryEnargy: 0
   Wave: 0
   GamePlayCount: 0
+  SpeedParticle: {fileID: 0}
 --- !u!114 &2615606037981549832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 7291093457700589311}
-  result: {fileID: 0}
+  result: {fileID: 7291093457700589311}
   pauseMenuSelector: {fileID: 0}
 --- !u!114 &1515427275701569699
 MonoBehaviour:
@@ -91,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &4923610619253180882
 MonoBehaviour:
@@ -107,8 +111,8 @@ MonoBehaviour:
   gameManager: {fileID: 7291093457700589311}
   GAMESTARTImage: {fileID: 0}
   SETTINGImage: {fileID: 0}
-  ColorMenuFlag: 0
-  StartFlag: 0
+  SettingButtonNowFlag: 0
+  GameStartButtonNowFlag: 0
   SettingMENUImage: {fileID: 0}
   StartImage: {fileID: 0}
   LuleBGmage: {fileID: 0}
@@ -150,6 +154,49 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   uiImage: {fileID: 0}
-  images: []
+  images:
+  - {fileID: 21300000, guid: 7463c601aaf75954f8375ca9e0c9054d, type: 3}
+  - {fileID: 21300000, guid: 8a5615923c7add0439740a1f66a13dca, type: 3}
+  - {fileID: 21300000, guid: 4759e11617bcfc54696495357c28090f, type: 3}
   selectMenu: {fileID: 7291093457700589311}
+  gameManager: {fileID: 7291093457700589311}
+--- !u!114 &8752966278169266004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291093457700589311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26f57e87289c5345a2ea39ccad49a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameTimer: {fileID: 0}
+  gameManager: {fileID: 7291093457700589311}
+  S_rank: {fileID: 0}
+  A_rank: {fileID: 0}
+  B_rank: {fileID: 0}
+  RankImage: {fileID: 0}
+  RankCanvas: {fileID: 0}
+  GameClearImage: {fileID: 0}
+  targetImage: {fileID: 0}
+--- !u!114 &7055533723150397242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291093457700589311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45f353d6618590428bd646d0b87c51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  images:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fadeDuration: 1
+  delayBetweenImages: 1
   gameManager: {fileID: 7291093457700589311}

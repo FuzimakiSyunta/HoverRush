@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 216706829806221018}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.265, y: 79.63769, z: -260}
+  m_LocalPosition: {x: -22.265, y: 79.63769, z: -269.7}
   m_LocalScale: {x: 2.47464, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -119,6 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &668861530464868170
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 668861530464868170}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.265, y: 79.63769, z: -220}
+  m_LocalPosition: {x: -22.265, y: 79.63769, z: -229.7}
   m_LocalScale: {x: 2.47464, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -238,6 +242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &2025056267325277372
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +275,7 @@ Transform:
   m_GameObject: {fileID: 2025056267325277372}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.265, y: 79.63769, z: -180}
+  m_LocalPosition: {x: -22.265, y: 79.63769, z: -189.7}
   m_LocalScale: {x: 2.47464, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -357,6 +365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &3564150302455449562
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &4053275767398851284
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +611,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &4472054112093321504
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &5143622738656747954
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,6 +857,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &5219512818302317173
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +890,7 @@ Transform:
   m_GameObject: {fileID: 5219512818302317173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.265, y: 79.63769, z: -300}
+  m_LocalPosition: {x: -22.265, y: 79.63769, z: -309.7}
   m_LocalScale: {x: 2.47464, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -952,6 +980,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &6326551080832324376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dc73883724c684b9cd073979776386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  startSpeed: 0
+  targetSpeed: 80
+  accelerationTime: 4
 --- !u!1 &6447233831032561321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,11 +1242,11 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3522470564061102380}
   - {fileID: 5372901203990287885}
   - {fileID: 6815344464343098958}
   - {fileID: 1957304500149469977}
   - {fileID: 143509326472015035}
+  - {fileID: 3522470564061102380}
   - {fileID: 1288615906448226483}
   - {fileID: 6656486369739559068}
   - {fileID: 3013768361851259664}
