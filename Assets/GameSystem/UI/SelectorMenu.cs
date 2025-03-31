@@ -12,10 +12,10 @@ public class SelectorMenu : MonoBehaviour
     //public GameObject SelectorImage;
     public GameObject GAMESTARTImage;
     public GameObject SETTINGImage;
-    public bool ColorMenuFlag;//セッティングが出せる状態
-    public bool StartFlag;//ゲームが始められる状態
-    private float move = 5.5f;
-    //private float selectormove = 210.0f;
+    public bool SettingButtonNowFlag;//セッティングが出せる状態
+    public bool GameStartButtonNowFlag;//ゲームが始められる状態
+    private float SelectorMove = 1.0f;
+    private float baseSpeed; // 基本速度を設定
     public RectTransform SettingMENUImage;
     public RectTransform StartImage;
     public GameObject LuleBGmage;
@@ -55,16 +55,19 @@ public class SelectorMenu : MonoBehaviour
             //画像移動
             if (SettingMENUImage.position.x >= 410.0f)
             {
-                move -= 5.5f;
-                
+                // moveを時間に基づいて計算
+                SelectorMove = baseSpeed * Time.deltaTime; // 経過時間を掛けて速度を調整
+                SelectorMove *= -1; // 移動方向を反転
+
+
 
                 StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
                 StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                 
                 //Selector
-                if (ColorMenuFlag == false && isSeaneEffect == false)
+                if (SettingButtonNowFlag == false && isSeaneEffect == false)
                 {
-                    StartFlag = true;
+                    GameStartButtonNowFlag = true;
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                     LuleBGmage.SetActive(true);
@@ -75,8 +78,8 @@ public class SelectorMenu : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.S)|| tri > 0)
                     {
                         
-                        StartFlag = false;
-                        ColorMenuFlag = true;
+                        GameStartButtonNowFlag = false;
+                        SettingButtonNowFlag = true;
                         
                     }
                     if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
@@ -94,7 +97,7 @@ public class SelectorMenu : MonoBehaviour
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
                 }
-                if (ColorMenuFlag == true)
+                if (SettingButtonNowFlag == true)
                 {
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
@@ -104,8 +107,8 @@ public class SelectorMenu : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.W)||  tri < 0&&isSeaneEffect == false)
                     {
                         
-                        ColorMenuFlag = false;
-                        StartFlag = true;
+                        SettingButtonNowFlag = false;
+                        GameStartButtonNowFlag = true;
                     }
                     
                 }
@@ -118,8 +121,8 @@ public class SelectorMenu : MonoBehaviour
             }
             else
             {
-                SettingMENUImage.position += new Vector3(move, 0, 0);
-                StartImage.position += new Vector3(move, 0, 0);
+                SettingMENUImage.position += new Vector3(SelectorMove, 0, 0);
+                StartImage.position += new Vector3(SelectorMove, 0, 0);
                 
             }
         }else
@@ -130,11 +133,11 @@ public class SelectorMenu : MonoBehaviour
     }
     public bool IsColorMenuFlag()
     {
-        return ColorMenuFlag;//SettingボタンのFrag
+        return SettingButtonNowFlag;//SettingボタンのFrag
     }
     public bool IsStartButtonFlag()
     {
-        return StartFlag;//GameStartボタンのFrag
+        return GameStartButtonNowFlag;//GameStartボタンのFrag
     }
 
     public bool IsSeaneEffectFlag()

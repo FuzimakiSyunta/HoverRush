@@ -58,6 +58,8 @@ public class BossScript : MonoBehaviour
 
     public GameObject DamegeCanvas;
 
+    public GameObject EnemyPositionObject;
+
 
 
     public void Damage(Collider col)
@@ -133,6 +135,16 @@ public class BossScript : MonoBehaviour
                 BossWaveUpdate();
             }
 
+            //posObject
+            if (gameManagerScript.IsBossWave())
+            {
+                EnemyPositionObject.SetActive(true);
+            }else
+            {
+                EnemyPositionObject.SetActive(false);
+            }
+            
+
         }
         // HPが0以下になった場合、自らを消す
         if (NowHP <= 0)
@@ -144,6 +156,7 @@ public class BossScript : MonoBehaviour
             newParticle.Play();
             //エフェクト消える
             Destroy(newParticle.gameObject, 2.5f);
+            EnemyPositionObject.SetActive(false);
 
             //ボス消える
             gameManagerScript.GameClearStart();//ゲームクリア
