@@ -37,7 +37,9 @@ public class BrindScript : MonoBehaviour
     //パワーアップ
     public GameObject PowerUpImage;
     private bool hasPowerUpImageBeenHidden = false;
-
+    //回復可能
+    public GameObject HealOkImage;
+    private bool hasHealOkImageBeenHidden = false;
 
 
     void Start()
@@ -49,6 +51,7 @@ public class BrindScript : MonoBehaviour
         // Initialize Elements
         SetActiveForObjects(false, boss, bossBullet, StartUi, GameOver, OptionButton, AllEnergy);
         PowerUpImage.SetActive(false); // 個別に制御
+        HealOkImage.SetActive(false); // 個別に制御
         SetActiveForObjects(true, StartTitleUi);
     }
 
@@ -59,7 +62,7 @@ public class BrindScript : MonoBehaviour
         {
             if (!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
             {
-                SetActiveForObjects(false, StartTitleUi,GameOver,PowerUpImage);
+                SetActiveForObjects(false, StartTitleUi,GameOver,PowerUpImage,HealOkImage);
                 SetActiveForObjects(true, boss, bossBullet, StartUi, OptionButton, AllEnergy);
                 HandleEnergyLevels(); // エネルギー管理
             }
@@ -87,7 +90,7 @@ public class BrindScript : MonoBehaviour
         if (gameManagerScript.IsGameOver())
         {
             // GameOver画面を表示
-            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage);
+            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage,HealOkImage);
             SetActiveForObjects(true, GameOver);
 
             
@@ -99,7 +102,7 @@ public class BrindScript : MonoBehaviour
         if (gameManagerScript.IsGameClear())
         {
             // GameClear画面を表示
-            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage);
+            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage, HealOkImage);
 
         }
     }
@@ -111,7 +114,12 @@ public class BrindScript : MonoBehaviour
         hasPowerUpImageBeenHidden = true; // 非表示にされたことを記録
     }
 
-
+    private IEnumerator HideHealOkImageAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        HealOkImage.SetActive(false);
+        hasHealOkImageBeenHidden = true; // 非表示にされたことを記録
+    }
 
     private void HandleEnergyLevels() // エネルギー管理
     {
@@ -122,13 +130,15 @@ public class BrindScript : MonoBehaviour
             {
                 if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
                 if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 15 && !hasPowerUpImageBeenHidden)
+                if (gameManagerScript.IsBatteryEnargy() >= 15 && !hasPowerUpImageBeenHidden&&!hasHealOkImageBeenHidden)
                 {
                     EnergyMAX.SetActive(true);
                     PowerUpImage.SetActive(true);
+                    HealOkImage.SetActive(true);
                     // PowerUpImageを2.0秒後に非表示にするコルーチンを開始
                     StartCoroutine(HidePowerUpImageAfterDelay(2.0f));
-
+                    // HealOkImageを2.0秒後に非表示にするコルーチンを開始
+                    StartCoroutine(HideHealOkImageAfterDelay(2.0f));
                 }
             }
             
@@ -137,7 +147,13 @@ public class BrindScript : MonoBehaviour
             {
                 if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
                 if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 15) EnergyMAX.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 15&&!hasHealOkImageBeenHidden)
+                {
+                    EnergyMAX.SetActive(true);
+                    HealOkImage.SetActive(true);
+                    // HealOkImageを2.0秒後に非表示にするコルーチンを開始
+                    StartCoroutine(HideHealOkImageAfterDelay(2.0f));
+                }
                 if (gameManagerScript.IsBatteryEnargy() >= 20 && !hasPowerUpImageBeenHidden)
                 {
 
@@ -153,7 +169,13 @@ public class BrindScript : MonoBehaviour
             {
                 if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
                 if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 15) EnergyMAX.SetActive(true);
+                if (gameManagerScript.IsBatteryEnargy() >= 15 && !hasHealOkImageBeenHidden)
+                {
+                    EnergyMAX.SetActive(true);
+                    HealOkImage.SetActive(true);
+                    // HealOkImageを2.0秒後に非表示にするコルーチンを開始
+                    StartCoroutine(HideHealOkImageAfterDelay(2.0f));
+                }
                 if (gameManagerScript.IsBatteryEnargy() >= 30 && !hasPowerUpImageBeenHidden)
                 {
 

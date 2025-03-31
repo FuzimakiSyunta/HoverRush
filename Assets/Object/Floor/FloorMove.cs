@@ -5,28 +5,47 @@ using Unity.VisualScripting;
 
 public class FloorMove : MonoBehaviour
 {
-    private float MoveSpeed = 80.0f;
-    //private float MoveSpeed = 0.8f;
+    //gamemanager
+    private GameManager gameManagerScript;
+    public GameObject gameManager;
+
+    public float startSpeed = 0f;   // 初期速度
+    public float targetSpeed = 80f; // 最終速度
+    public float accelerationTime = 4f; // 加速にかける時間（秒）
+    private float currentSpeed = 0f; // 現在の速度
+    private float timeElapsed = 0f; // 経過時間
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //gamemanager
+        gameManagerScript = gameManager.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 時間依存の移動
-        float move = MoveSpeed * Time.deltaTime;
-
-        Vector3 position = transform.position;
-        
-        transform.position -= new Vector3(0, 0, move);
-        if (transform.position.z <= -165)
+        if (gameManagerScript.IsOpenSelector()) // セレクター画面出現
         {
-            transform.position = new Vector3(0.0f, 0.0f, 165.0f);
+            // 時間を更新
+            timeElapsed = Mathf.Min(timeElapsed + Time.deltaTime, accelerationTime); // accelerationTimeを超えないように制限
+
+            // スピードを徐々に変化させる
+            currentSpeed = Mathf.Lerp(startSpeed, targetSpeed, timeElapsed / accelerationTime);
+
+            // オブジェクトを移動
+            transform.Translate(-Vector3.forward * currentSpeed * Time.deltaTime);
+
+            // 位置が条件に達した場合、座標をリセット
+            if (transform.position.z <= -165f)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, 165f);
+            }
         }
-        
-      
+
+
+
+
     }
 }

@@ -22,38 +22,43 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ロボットに変身したときのアニメーション
-        if(gameManagerScript.IsGamePlayCount() >= 77.0f&& gameManagerScript.IsGamePlayCount() <= 101.0f)
+        if(gameManagerScript.IsGameOver()==false)
         {
-            animator.SetBool("isRobotView", true);
-        }else
+            //ロボットに変身したときのアニメーション
+            if (gameManagerScript.IsGamePlayCount() >= 77.0f && gameManagerScript.IsGamePlayCount() <= 101.0f)
+            {
+                animator.SetBool("isRobotView", true);
+            }
+            else
+            {
+                animator.SetBool("isRobotView", false);
+            }
+
+            //第一ボスウェーブのアニメーション
+            if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 18.0f && gameManagerScript.IsGamePlayCount() <= 58.0f)
+            {
+                animator.SetBool("isBossBulletView", true);
+            }
+            else
+            {
+                animator.SetBool("isBossBulletView", false);
+            }
+            //第二ボスウェーブのアニメーション
+            if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 58.0f && gameManagerScript.IsGamePlayCount() < 77.0f)
+            {
+                animator.SetBool("isLazerBossView", true);
+            }
+            else
+            {
+                animator.SetBool("isLazerBossView", false);
+            }
+        }
+        else
         {
             animator.SetBool("isRobotView", false);
-        }
-
-        //第一ボスウェーブのアニメーション
-        if(gameManagerScript.IsBossWave()&& gameManagerScript.IsGamePlayCount() >= 18.0f&&gameManagerScript.IsGamePlayCount() <= 58.0f)
-        {
-            animator.SetBool("isBossBulletView", true);
-        }
-        else
-        {
             animator.SetBool("isBossBulletView", false);
-        }
-        //第二ボスウェーブのアニメーション
-        if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 58.0f && gameManagerScript.IsGamePlayCount() < 77.0f)
-        {
-            animator.SetBool("isLazerBossView", true);
-        }
-        else
-        {
             animator.SetBool("isLazerBossView", false);
-        }
-
-        //ゲームオーバー時のアニメーション
-        if (gameManagerScript.IsGameOver())
-        {
-            animator.SetBool("isGameOver",true);
+            animator.SetBool("isGameOver", true);
         }
 
 

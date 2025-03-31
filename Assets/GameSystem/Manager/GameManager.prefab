@@ -63,6 +63,7 @@ MonoBehaviour:
   BatteryEnargy: 0
   Wave: 0
   GamePlayCount: 0
+  SpeedParticle: {fileID: 0}
 --- !u!114 &2615606037981549832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,8 +108,8 @@ MonoBehaviour:
   gameManager: {fileID: 7291093457700589311}
   GAMESTARTImage: {fileID: 0}
   SETTINGImage: {fileID: 0}
-  ColorMenuFlag: 0
-  StartFlag: 0
+  SettingButtonNowFlag: 0
+  GameStartButtonNowFlag: 0
   SettingMENUImage: {fileID: 0}
   StartImage: {fileID: 0}
   LuleBGmage: {fileID: 0}
