@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using Unity.VisualScripting;
+using static UnityEditor.SceneView;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class PlayerScript : MonoBehaviour
     //models
     private PlayerModels playerModelsScript;
     public GameObject playerModels;
+
+    //カメラ
+    private CameraMove cameraMoveScript;
+    public GameObject cameraMove;
 
     //オブジェクト挿入
     public EnemyScript enemy;
@@ -58,8 +63,6 @@ public class PlayerScript : MonoBehaviour
     public AudioClip DamegeSound;
     private AudioSource audioSource;
 
-    public GameObject PlayerPositionObject;
-
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +75,8 @@ public class PlayerScript : MonoBehaviour
         playerModelsScript = playerModels.GetComponent<PlayerModels>();
         //animation
         animator = GetComponent<Animator>();
+        //camera
+        cameraMoveScript = cameraMove.GetComponent<CameraMove>();
 
         //Hp関連
         audioSource = GetComponent<AudioSource>();
@@ -85,8 +90,6 @@ public class PlayerScript : MonoBehaviour
         HPSlider.SetActive(true);
         //回復
         isHeal = false;
-
-        PlayerPositionObject.SetActive(false);
 
     }
 
@@ -133,14 +136,10 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("GameOver", false);
         }
 
-        if(gameManagerScript.IsGameStart() == true)
+        if (gameManagerScript.IsGameStart() == true)
         {
             HPSlider.SetActive(true);
-            //posObject
-            PlayerPositionObject.SetActive(true);
-        }else
-        {
-            PlayerPositionObject.SetActive(false);
+
         }
 
         //L Stick
@@ -440,7 +439,7 @@ public class PlayerScript : MonoBehaviour
 
 
             if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
-                || other.gameObject.tag == "RobotBullet"|| other.gameObject.tag == "FinalLazer")
+                || other.gameObject.tag == "RobotBullet"|| other.gameObject.tag == "FinalLazer"&&cameraMoveScript.IsAnimation()==false)
             {
                 Damaged();
             }

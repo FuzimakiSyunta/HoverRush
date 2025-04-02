@@ -1496,13 +1496,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636607173}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.124063924, y: -0, z: -0, w: 0.9922743}
-  m_LocalPosition: {x: 0, y: 2.3499997, z: 0}
+  m_LocalRotation: {x: 0.001987783, y: -0, z: -0, w: 0.99999803}
+  m_LocalPosition: {x: 0, y: 0.21, z: 23.81}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 707850056}
-  m_LocalEulerAnglesHint: {x: 14.253, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.228, y: 0, z: 0}
 --- !u!81 &636607175
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5521,11 +5521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c387cd7a0853a6478a0f200cf70950d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1965345101 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 729513188827647672, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-  m_PrefabInstance: {fileID: 7627123270068408356}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1967930502
 GameObject:
   m_ObjectHideFlags: 0
@@ -6463,7 +6458,7 @@ PrefabInstance:
     - target: {fileID: 1952876577195621260, guid: 94addd29f9cdc7b44a36623262b6edd7, type: 3}
       propertyPath: PlayerPositionObject
       value: 
-      objectReference: {fileID: 1965345101}
+      objectReference: {fileID: 0}
     - target: {fileID: 2038203853169467677, guid: 94addd29f9cdc7b44a36623262b6edd7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.265
@@ -6946,7 +6941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829890576610627708, guid: 579eb024630e714468edcb4162bfeaa4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7830,6 +7825,10 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
+    - target: {fileID: 4939153805180380502, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5200763313040247325, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -8042,6 +8041,10 @@ PrefabInstance:
       propertyPath: HealImage
       value: 
       objectReference: {fileID: 2093120191}
+    - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: cameraMove
+      value: 
+      objectReference: {fileID: 636607173}
     - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
