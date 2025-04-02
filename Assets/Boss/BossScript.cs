@@ -357,69 +357,65 @@ public class BossScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        //散弾
+        // 散弾
         if (MultibulletTimer == 0.0f)
         {
             Vector3 position = transform.position;
-            MultiBulletCoolTime++;
-            if (animator.GetBool("isMove")==false && animator.GetBool("isLazer") == false && animator.GetBool("isRobotStay") == false && animator.GetBool("FinalWave") == false)
+            MultiBulletCoolTime += Time.deltaTime; // 時間で加算
+            if (animator.GetBool("isMove") == false && animator.GetBool("isLazer") == false
+                && animator.GetBool("isRobotStay") == false && animator.GetBool("FinalWave") == false)
             {
-                if(MultiBulletCoolTime>= 240)
+                if (MultiBulletCoolTime >= 4.0f) // 240フレームの代わりに秒数で設定
                 {
                     position.y += 0.3f;
                     position.z -= 30.0f;
                     Instantiate(Bossbullet, position, Quaternion.identity);
                     MultibulletTimer = 1.0f;
-
                 }
-                
             }
-           
         }
         else
         {
-            MultibulletTimer++;
-            if (MultibulletTimer > 120.0f)
+            MultibulletTimer += Time.deltaTime; // 時間で加算
+            if (MultibulletTimer > 5.0f) // 120フレームの代わりに秒数で設定
             {
                 MultibulletTimer = 0.0f;
             }
             BulletCoolTime = 0;
         }
 
-        //爆弾ウェーブ
+        // 爆弾ウェーブ
         if (bulletTimer == 0.0f)
         {
             Vector3 positionR = transform.position;
             Vector3 positionL = transform.position;
-            BulletCoolTime++;
-            if (animator.GetBool("isMove") == true&& animator.GetBool("isFinalBullet") == false)
+            BulletCoolTime += Time.deltaTime; // 時間で加算
+            if (animator.GetBool("isMove") == true && animator.GetBool("isFinalBullet") == false)
             {
-                if (BulletCoolTime >= 60)
+                if (BulletCoolTime >= 2f) // 60フレームの代わりに秒数で設定
                 {
                     Instantiate(BossBarstbullet_R, positionR, Quaternion.identity);
                     Instantiate(BossBarstbullet_L, positionL, Quaternion.identity);
                     bulletTimer = 1.0f;
                 }
             }
-
         }
         else
         {
-            bulletTimer++;
-            if (bulletTimer > 45.0f)
+            bulletTimer += Time.deltaTime; // 時間で加算
+            if (bulletTimer > 1.8f) // 30フレームの代わりに秒数で設定
             {
                 bulletTimer = 0.0f;
             }
             MultiBulletCoolTime = 0;
         }
 
-
-        //レーザーウェーブ
+        // レーザーウェーブ
         if (animator.GetBool("isLazer") == true)
         {
-            LazerTime += Time.deltaTime;
-            LazerBulletCoolTime++;
-            if(LazerBulletCoolTime>=60)
+            LazerTime += Time.deltaTime; // 時間で加算
+            LazerBulletCoolTime += Time.deltaTime; // 時間で加算
+            if (LazerBulletCoolTime >= 1.0f) // 60フレームの代わりに秒数で設定
             {
                 if (LazerTime <= 1.0f)
                 {
@@ -436,16 +432,15 @@ public class BossScript : MonoBehaviour
                     LazerTime = 0.0f;
                 }
             }
-
         }
         else
         {
             Lazer_L.SetActive(false);
             Lazer_R.SetActive(false);
-            LazerBulletCoolTime = 0;
+            LazerBulletCoolTime = 0.0f;
         }
 
-        //最終レーザー
+        // 最終レーザー
         if (animator.GetBool("FinalWave") == true)
         {
             BIGLAZER.SetActive(true);
@@ -455,36 +450,34 @@ public class BossScript : MonoBehaviour
             BIGLAZER.SetActive(false);
         }
 
-        //最終爆弾ウェーブ
+        // 最終爆弾ウェーブ
         if (FinalbulletTimer == 0.0f)
         {
             Vector3 positionR = transform.position;
             Vector3 positionL = transform.position;
-            BulletCoolTime++;
+            BulletCoolTime += Time.deltaTime; // 時間で加算
             if (animator.GetBool("isMove") == true && animator.GetBool("isFinalBullet") == true)
             {
-                if (BulletCoolTime >= 60)
+                if (BulletCoolTime >= 2f) // 60フレームの代わりに秒数で設定
                 {
                     Instantiate(FinalBossBarstbullet_R, positionR, Quaternion.identity);
                     Instantiate(FinalBossBarstbullet_L, positionL, Quaternion.identity);
                     FinalbulletTimer = 1.0f;
                 }
             }
-
         }
         else
         {
-            FinalbulletTimer++;
-            if (FinalbulletTimer > 30.0f)
+            FinalbulletTimer += Time.deltaTime; // 時間で加算
+            if (FinalbulletTimer > 1.8f) // 30フレームの代わりに秒数で設定
             {
                 FinalbulletTimer = 0.0f;
             }
-            MultiBulletCoolTime = 0;
+            MultiBulletCoolTime = 0.0f;
         }
 
-
-        //ロボット状態の切り替え
-        if (animator.GetBool("isRobotStay")==true)
+        // ロボット状態の切り替え
+        if (animator.GetBool("isRobotStay") == true)
         {
             BossAir.SetActive(false);
             Robot.SetActive(true);
@@ -494,8 +487,6 @@ public class BossScript : MonoBehaviour
             BossAir.SetActive(true);
             Robot.SetActive(false);
         }
-        
-
     }
 
     void BossWaveUpdate()//一対一のアニメーション

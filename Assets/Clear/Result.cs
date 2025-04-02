@@ -68,19 +68,19 @@ public class Result : MonoBehaviour
                 ///ƒ‰ƒ“ƒN•\Ž¦////////////////////////////////////
                 RankCanvas.SetActive(true);
                 RankImage.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 200)
+                if (gameManagerScript.GetBatteryEnargy() >= 200)
                 {
                     S_rank.SetActive(true);
                     A_rank.SetActive(false);
                     B_rank.SetActive(false);
                 }
-                else if (gameManagerScript.IsBatteryEnargy() >= 130 && gameManagerScript.IsBatteryEnargy() < 200)
+                else if (gameManagerScript.GetBatteryEnargy() >= 130 && gameManagerScript.GetBatteryEnargy() < 200)
                 {
                     S_rank.SetActive(false);
                     A_rank.SetActive(true);
                     B_rank.SetActive(false);
                 }
-                else if (gameManagerScript.IsBatteryEnargy() < 130)
+                else if (gameManagerScript.GetBatteryEnargy() < 130)
                 {
                     S_rank.SetActive(false);
                     A_rank.SetActive(false);
