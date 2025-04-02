@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using Unity.VisualScripting;
+using static UnityEditor.SceneView;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class PlayerScript : MonoBehaviour
     //models
     private PlayerModels playerModelsScript;
     public GameObject playerModels;
+
+    //カメラ
+    private CameraMove cameraMoveScript;
+    public GameObject cameraMove;
 
     //オブジェクト挿入
     public EnemyScript enemy;
@@ -58,8 +63,6 @@ public class PlayerScript : MonoBehaviour
     public AudioClip DamegeSound;
     private AudioSource audioSource;
 
-    public GameObject PlayerPositionObject;
-
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +75,8 @@ public class PlayerScript : MonoBehaviour
         playerModelsScript = playerModels.GetComponent<PlayerModels>();
         //animation
         animator = GetComponent<Animator>();
+        //camera
+        cameraMoveScript = cameraMove.GetComponent<CameraMove>();
 
         //Hp関連
         audioSource = GetComponent<AudioSource>();
@@ -85,8 +90,6 @@ public class PlayerScript : MonoBehaviour
         HPSlider.SetActive(true);
         //回復
         isHeal = false;
-
-        PlayerPositionObject.SetActive(false);
 
     }
 
@@ -133,14 +136,10 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("GameOver", false);
         }
 
-        if(gameManagerScript.IsGameStart() == true)
+        if (gameManagerScript.IsGameStart() == true)
         {
             HPSlider.SetActive(true);
-            //posObject
-            PlayerPositionObject.SetActive(true);
-        }else
-        {
-            PlayerPositionObject.SetActive(false);
+
         }
 
         //L Stick
@@ -155,31 +154,45 @@ public class PlayerScript : MonoBehaviour
         {
             DamegeCoolTime += Time.deltaTime;
             //回復UI
-            if (gameManagerScript.IsBatteryEnargy() < 15)
+            if (gameManagerScript.GetHealBatteryEnargy() < 9)
             {
                 isHeal = false;
-            }
-            if(gameManagerScript.IsBatteryEnargy() < 15&&isHeal ==false)
+            }   
+            if(gameManagerScript.GetHealBatteryEnargy() < 9&&isHeal ==false)
             {
                 HealImage.SetActive(false);
                 NoHealImage.SetActive(true);
             }
-            
+
             ///回復
-            if (gameManagerScript.IsBatteryEnargy() >= 15 && isHeal == false)
+            if (gameManagerScript.GetHealBatteryEnargy() >= 9 && isHeal == false && MaxHp < 400)
             {
                 HealImage.SetActive(true);
                 NoHealImage.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown("joystick button 2"))
                 {
-                    MaxHp = 200;
+                    if (playerHP <= MaxHp)
+                    {
+                        MaxHp = 400; // HPが最大値を超えないように固定
+                    }
+                    else
+                    {
+                        MaxHp += 150; // 通常の増加処理
+                        if (MaxHp > 400)
+                        {
+                            MaxHp = 400; // 400を超えた場合は400にリセット
+                        }
+                    }
+
                     hpSlider.value = (float)MaxHp / (float)playerHP;
                     isHeal = true;
                     HealImage.SetActive(false);
                     NoHealImage.SetActive(true);
+                    gameManagerScript.HealBatteryEnargyReset();
+
                 }
             }
-
+            
             ///コントローラー対応///////////////////////
             if (stick > 0 && transform.position.x <= 10)
             {
@@ -264,15 +277,15 @@ public class PlayerScript : MonoBehaviour
             NoHealImage.SetActive(false);
         }
         //射撃パターン追加  
-        if (gameManagerScript.IsBatteryEnargy()>= 15)
+        if (gameManagerScript.GetBatteryEnargy()>= 15)
         {
             ShotChenge = 1;//自機タイプ単発
         }
-        if (gameManagerScript.IsBatteryEnargy() >= 20)
+        if (gameManagerScript.GetBatteryEnargy() >= 20)
         {
             ShotChenge = 2;//自機タイプレーザー
         }
-        if (gameManagerScript.IsBatteryEnargy() >= 30)
+        if (gameManagerScript.GetBatteryEnargy() >= 30)
         {
             ShotChenge = 3;//自機タイプ貫通弾
         }
@@ -440,7 +453,7 @@ public class PlayerScript : MonoBehaviour
 
 
             if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
-                || other.gameObject.tag == "RobotBullet"|| other.gameObject.tag == "FinalLazer")
+                || other.gameObject.tag == "RobotBullet"|| other.gameObject.tag == "FinalLazer"&&cameraMoveScript.IsAnimation()==false)
             {
                 Damaged();
             }

@@ -26,6 +26,7 @@ TagManager:
   - PlayerLazer_L
   - PlayerLazer_R
   - FinalLazer
+  - Wall
   layers:
   - Default
   - TransparentFX

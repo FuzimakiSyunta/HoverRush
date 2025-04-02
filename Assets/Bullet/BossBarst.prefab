@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5729095766109722887}
+  reflectSpeedMultiplier: 1
 --- !u!1001 &5639834004886427093
 PrefabInstance:
   m_ObjectHideFlags: 0

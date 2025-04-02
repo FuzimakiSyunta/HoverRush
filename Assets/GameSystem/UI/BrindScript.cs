@@ -66,6 +66,12 @@ public class BrindScript : MonoBehaviour
                 SetActiveForObjects(true, boss, bossBullet, StartUi, OptionButton, AllEnergy);
                 HandleEnergyLevels(); // エネルギー管理
             }
+            if (gameManagerScript.GetHealBatteryEnargy() <= 2)
+            {
+                EnergyMIN.SetActive(false);
+                EnergyMID.SetActive(false);
+                EnergyMAX.SetActive(false);
+            }
         }
 
         // セレクタの状態確認
@@ -78,10 +84,34 @@ public class BrindScript : MonoBehaviour
             SetActiveForObjects(false, Selector); // セレクタが閉じた場合は非表示
         }
 
+        if (playerModelsScript.IsIndex() == 0 || playerModelsScript.IsIndex() == 1 || playerModelsScript.IsIndex() == 2)
+        {
+            int healBatteryEnergy = gameManagerScript.GetHealBatteryEnargy();
 
+            // エネルギー状態を切り替え
+            UpdateEnergyState(healBatteryEnergy);
+
+            // エネルギーが最大に達している場合
+            if (healBatteryEnergy >= 9 && !hasHealOkImageBeenHidden)
+            {
+                HealOkImage.SetActive(true);
+                StartCoroutine(HideHealOkImageAfterDelay(2.0f)); // 2秒後に非表示
+            }
+
+        }
         // ゲームの終了/クリア処理
         HandleGameOver(); // GameOverロジック
         HandleGameClear(); // GameClearロジック
+    }
+
+    void UpdateEnergyState(int healBatteryEnergy)
+    {
+        // エネルギーUIの状態を管理
+        EnergyMIN.SetActive(healBatteryEnergy >= 3);
+        EnergyMID.SetActive(healBatteryEnergy >= 6);
+        EnergyMAX.SetActive(healBatteryEnergy >= 9);
+        
+
     }
 
 
@@ -125,36 +155,26 @@ public class BrindScript : MonoBehaviour
     {
         if (gameManagerScript.IsGameStart())
         {
+            
             //自機タイプ単発時
             if (playerModelsScript.IsIndex() == 0)
             {
-                if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 15 && !hasPowerUpImageBeenHidden&&!hasHealOkImageBeenHidden)
+                
+                if (gameManagerScript.GetBatteryEnargy() >= 15 && !hasPowerUpImageBeenHidden)
                 {
-                    EnergyMAX.SetActive(true);
+
                     PowerUpImage.SetActive(true);
-                    HealOkImage.SetActive(true);
                     // PowerUpImageを2.0秒後に非表示にするコルーチンを開始
                     StartCoroutine(HidePowerUpImageAfterDelay(2.0f));
-                    // HealOkImageを2.0秒後に非表示にするコルーチンを開始
-                    StartCoroutine(HideHealOkImageAfterDelay(2.0f));
+
                 }
             }
             
             //自機タイプレーザー時
             if (playerModelsScript.IsIndex() == 1)
             {
-                if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 15&&!hasHealOkImageBeenHidden)
-                {
-                    EnergyMAX.SetActive(true);
-                    HealOkImage.SetActive(true);
-                    // HealOkImageを2.0秒後に非表示にするコルーチンを開始
-                    StartCoroutine(HideHealOkImageAfterDelay(2.0f));
-                }
-                if (gameManagerScript.IsBatteryEnargy() >= 20 && !hasPowerUpImageBeenHidden)
+                
+                if (gameManagerScript.GetBatteryEnargy() >= 20 && !hasPowerUpImageBeenHidden)
                 {
 
                     PowerUpImage.SetActive(true);
@@ -167,16 +187,8 @@ public class BrindScript : MonoBehaviour
             //自機タイプ貫通弾時
             if (playerModelsScript.IsIndex() == 2)
             {
-                if (gameManagerScript.IsBatteryEnargy() >= 5) EnergyMIN.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 10) EnergyMID.SetActive(true);
-                if (gameManagerScript.IsBatteryEnargy() >= 15 && !hasHealOkImageBeenHidden)
-                {
-                    EnergyMAX.SetActive(true);
-                    HealOkImage.SetActive(true);
-                    // HealOkImageを2.0秒後に非表示にするコルーチンを開始
-                    StartCoroutine(HideHealOkImageAfterDelay(2.0f));
-                }
-                if (gameManagerScript.IsBatteryEnargy() >= 30 && !hasPowerUpImageBeenHidden)
+               
+                if (gameManagerScript.GetBatteryEnargy() >= 30 && !hasPowerUpImageBeenHidden)
                 {
 
                     PowerUpImage.SetActive(true);

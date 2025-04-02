@@ -9,6 +9,8 @@ public class CameraMove : MonoBehaviour
     public GameObject gameManager;
     private Animator animator;
 
+    private bool isAnimation=false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,29 +30,35 @@ public class CameraMove : MonoBehaviour
             if (gameManagerScript.IsGamePlayCount() >= 77.0f && gameManagerScript.IsGamePlayCount() <= 101.0f)
             {
                 animator.SetBool("isRobotView", true);
+                isAnimation = true;
             }
             else
             {
                 animator.SetBool("isRobotView", false);
+                isAnimation = false;
             }
 
             //第一ボスウェーブのアニメーション
             if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 18.0f && gameManagerScript.IsGamePlayCount() <= 58.0f)
             {
                 animator.SetBool("isBossBulletView", true);
+                isAnimation = true;
             }
             else
             {
                 animator.SetBool("isBossBulletView", false);
+                isAnimation = false;
             }
             //第二ボスウェーブのアニメーション
             if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 58.0f && gameManagerScript.IsGamePlayCount() < 77.0f)
             {
                 animator.SetBool("isLazerBossView", true);
+                isAnimation = true;
             }
             else
             {
                 animator.SetBool("isLazerBossView", false);
+                isAnimation = false;
             }
         }
         else
@@ -62,6 +70,11 @@ public class CameraMove : MonoBehaviour
         }
 
 
+    }
+
+    public bool IsAnimation()
+    {
+        return isAnimation;//アニメーションしたか
     }
    
 }

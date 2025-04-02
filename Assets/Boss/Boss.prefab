@@ -5007,6 +5007,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 679023749104929143, guid: a068f9dc0dc0bde478effef60f829b15, type: 3}
   target: {fileID: 0}
   projectileSpeed: 60
+  fireRate: 0.5
 --- !u!82 &7339872509283239631
 AudioSource:
   m_ObjectHideFlags: 0
