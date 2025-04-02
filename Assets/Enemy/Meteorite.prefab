@@ -225,9 +225,9 @@ GameObject:
   - component: {fileID: 8150136410196521076}
   - component: {fileID: 5909209246426711722}
   - component: {fileID: 1314916291452446331}
-  - component: {fileID: 1857482927388067906}
   - component: {fileID: -4611333772189731436}
   - component: {fileID: -8815115382741144838}
+  - component: {fileID: 7211123356612663417}
   m_Layer: 0
   m_Name: Meteorite
   m_TagString: Enemy
@@ -314,23 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843d9a1d1c324984f92bfd8dd4a70296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1857482927388067906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2898809129046960840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44f6f6886d19dfe4ca0d93d7be01f6e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHP: 350
-  hpSlider: {fileID: 3323242276378516979}
-  particle: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
-  sliderBool: 0
-  DamegeSound: {fileID: 8300000, guid: 56f911e18ddcdad4fa799e3aa1baf94f, type: 3}
 --- !u!114 &-4611333772189731436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +422,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7211123356612663417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2898809129046960840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2717f006e2a67754f930c0635b29c862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHP: 350
+  hpSlider: {fileID: 3323242276378516979}
+  particle: {fileID: 9087234329132578091}
+  sliderBool: 0
+  DamegeSound: {fileID: 8300000, guid: 56f911e18ddcdad4fa799e3aa1baf94f, type: 3}
 --- !u!1 &7575957361474961641
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +663,11 @@ PrefabInstance:
 --- !u!4 &819383052005173570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4885364616861104048, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
+  m_PrefabInstance: {fileID: 5229600246198886130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &9087234329132578091 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3931381678866721753, guid: 9da5b0e05521d4c4ab9218fd268c5214, type: 3}
   m_PrefabInstance: {fileID: 5229600246198886130}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6549363439558794731

@@ -82,6 +82,8 @@ public class NomalEnemy : MonoBehaviour
 
             //スコア上昇
             gameManagerScript.BatteryEnargyUp();
+            //回復バッテリー上昇
+            gameManagerScript.HealBatteryEnargyUp();
             //敵消える
             Destroy(gameObject, 0f);
 

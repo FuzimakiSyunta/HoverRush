@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
     private bool GameOverFlag = false;
     private bool GameClearFlag = false;
     private bool GameStartFlag = false;
-    public int BatteryEnargy = 0;
+    public int batteryEnargy = 0;//強化用
+    public int healBatteryEnargy = 0;//回復用
 
     //WAVE
     public int Wave;
@@ -57,8 +58,6 @@ public class GameManager : MonoBehaviour
         Wave = 0;
         GamePlayCount = 0;
         SpeedParticle.SetActive(false);
-        
-        
 
     }
 
@@ -249,14 +248,28 @@ public class GameManager : MonoBehaviour
     {
         return GameClearFlag;//クリアのフラグ
     }
-    public void BatteryEnargyUp()//スコア&Battery
+    public void BatteryEnargyUp()
     {
-        BatteryEnargy += 1;
+        batteryEnargy += 1; // エネルギーを増加
     }
-    public int IsBatteryEnargy()
+
+    public int GetBatteryEnargy()
     {
-        return BatteryEnargy;
+        return batteryEnargy; // 現在のエネルギー値を返す
     }
+    public void HealBatteryEnargyReset()
+    {
+        healBatteryEnargy = 0; // バッテリーをリセット
+    }
+    public void HealBatteryEnargyUp()
+    {
+        healBatteryEnargy += 1; // バッテリーを増加
+    }
+    public int GetHealBatteryEnargy()
+    {
+        return healBatteryEnargy; // 現在のエネルギー値を返す
+    }
+
     public void GameStart()//ゲームスタート
     {
         GameStartFlag = true;

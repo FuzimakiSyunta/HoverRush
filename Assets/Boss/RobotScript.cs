@@ -7,69 +7,58 @@ public class RobotScript : MonoBehaviour
     private GameObject gameManager;
     private GameManager gameManagerScript;
 
-    
-
-    private float bulletTimer = 0;
-    //private float BulletCoolTime = 0;
     public Animator animator;
 
-    //public GameObject RobotBullet;
-
-    public GameObject projectilePrefab; // オブジェクト3 (弾) のプレハブ
-    public Transform target; // オブジェクト2 (ターゲット)
+    public GameObject projectilePrefab; // 弾のプレハブ
+    public Transform target; // ターゲット
     public float projectileSpeed = 10f; // 弾の初速度
-    // Start is called before the first frame update
+    public float fireRate = 0.5f; // 弾の発射間隔（秒）
+
+    private bool isFirstShot = true; // 最初の待機を管理するフラグ
+    private float bulletTimer = 0; // タイマーを管理
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        
         animator = GetComponent<Animator>();
-        bulletTimer = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void FixedUpdate()
     {
-        if (animator.GetBool("isRobotStay") == true /*|| animator.GetBool("isRobotStay") == false*/)
+        if (animator.GetBool("isRobotStay") == true && !gameManagerScript.IsGameOver())
         {
-            if (gameManagerScript.IsGameOver() == false)
+            if (isFirstShot)
             {
-                if (bulletTimer == 0.0f)
+                bulletTimer += Time.deltaTime; // 最初の待機時間を計測
+                if (bulletTimer >= 1.5f) // 1秒待機後に弾を発射
                 {
-                    FireProjectile();
-                    bulletTimer = 1.0f;
+                    FireProjectile(); // 最初の弾を発射
+                    bulletTimer = 0; // タイマーをリセット
+                    isFirstShot = false; // 待機を解除
                 }
-                else
-                {
-                    bulletTimer++;
-                    if (bulletTimer > 30.0f)
-                    {
-                        bulletTimer = 0.0f;
-                    }
-                }
-
             }
-
+            else
+            {
+                bulletTimer += Time.deltaTime; // 継続発射用のタイマーを計測
+                if (bulletTimer >= fireRate) // 発射間隔に従って弾を発射
+                {
+                    FireProjectile(); // 弾を発射
+                    bulletTimer = 0; // タイマーをリセット
+                }
+            }
         }
     }
 
     void FireProjectile()
     {
-        // オブジェクト3を生成
+        // 弾を生成
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        // 弾に初速度を付与
+        // 弾にターゲットを設定
         RobotBullet robotbulletScript = projectile.GetComponent<RobotBullet>();
         if (robotbulletScript != null)
         {
             robotbulletScript.SetTarget(target);
         }
     }
-
-
 }
