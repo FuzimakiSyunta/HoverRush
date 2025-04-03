@@ -6,19 +6,26 @@ public class BulletScript : MonoBehaviour
 {
     public Rigidbody rb;
     public ParticleSystem particle;
+    private float moveSpeedZ;
+    private float moveSpeedY;
 
     // Start is called before the first frame update
     void Start()
     {
-        float moveSpeed = 27.0f;
-        rb.velocity = new Vector3(0, 0, moveSpeed);
+        moveSpeedZ = 23.0f;
+        moveSpeedY = -35.0f;
+        rb.velocity = new Vector3(0, moveSpeedY, moveSpeedZ);
         Destroy(gameObject, 1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // 経過時間に基づいてスピードを変化させる
+        float timeFactor = Time.time; // Unityのワールド開始からの時間を取得
+        float newSpeedZ = moveSpeedZ + (timeFactor * 1.1f); // Zスピードが徐々に増加
+        float newSpeedY = moveSpeedY + (timeFactor * 2.0f); // Yスピードが徐々に増加
+        rb.velocity = new Vector3(0, newSpeedY, newSpeedZ);
     }
     void Damaged()
     {

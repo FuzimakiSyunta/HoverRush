@@ -199,8 +199,10 @@ public class GameManager : MonoBehaviour
                         // UŒ‚‰Â”\‚È“G‚ğ¶¬
                         if (Style == 0 && Wave >= 1)
                         {
-                            Instantiate(enemy, positions[i], Quaternion.identity); // “G‚ğ¶¬
+                            GameObject obj = Instantiate(enemy, positions[i], Quaternion.identity); // “G‚ğ¶¬
+                            obj.transform.position = new Vector3(obj.transform.position.x, 6.5f, obj.transform.position.z); // y‚ğİ’è
                         }
+
                         // è¦ÎŒ^‚Ì“G‚ğ¶¬
                         else if (Style == 1)
                         {
