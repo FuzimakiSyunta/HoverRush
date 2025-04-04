@@ -20,11 +20,24 @@ public class MeteoriteEnemy : MonoBehaviour
     public AudioClip DamegeSound;
     private AudioSource audioSource;
 
-    //private float MoveSpeed = 0.05f;
-    //private float BackmoveSpeed = -0.15f;
-    //private float[] bulletTimer = new float[3];
+    //damegeパーティクル
+    public bool isDameged = false;
+    public ParticleSystem damegeParticle;
+    void Damaged()
+    {
+        isDameged = true;
+        //audioSource.PlayOneShot(DamegeSound);
+        // パーティクルシステムのインスタンスを生成する。
+        ParticleSystem newParticle = Instantiate(damegeParticle);
+        // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
+        newParticle.transform.position = this.transform.position;
+        // パーティクルを発生させる。
+        newParticle.Play();
+        // インスタンス化したパーティクルシステムのGameObjectを5秒後に削除する。(任意)
+        // ※第一引数をnewParticleだけにするとコンポーネントしか削除されない。
+        Destroy(newParticle.gameObject, 5.0f);
 
-    // Start is called before the first frame update
+    }
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
@@ -96,6 +109,7 @@ public class MeteoriteEnemy : MonoBehaviour
             EnemyNowHP -= 200;//一度当たるごとに200をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
+            Damaged();
         }
         //敵とマシンガン
         if (other.gameObject.tag == "Machinegun")
@@ -104,6 +118,7 @@ public class MeteoriteEnemy : MonoBehaviour
             EnemyNowHP -= 150;//一度当たるごとに150をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
+            Damaged();
         }
         //敵と貫通弾
         if (other.gameObject.tag == "PenetrationBullet")
@@ -112,18 +127,20 @@ public class MeteoriteEnemy : MonoBehaviour
             EnemyNowHP -= 400;//一度当たるごとに400をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
+            Damaged();
         }
 
     }
     void OnTriggerStay(Collider other)
     {
-        //ボスとレーザー
+        //プレイヤーのレーザー
         if (other.gameObject.tag == "PlayerLazer" || other.gameObject.tag == "PlayerLazer_L" || other.gameObject.tag == "PlayerLazer_R")
         {
             //audioSource.PlayOneShot(DamegeSound);
             EnemyNowHP -= 30;//一度当たるごとに30をマイナス
             hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             sliderBool = true;
+            Damaged();
         }
     }
 
