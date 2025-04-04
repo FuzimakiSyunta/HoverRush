@@ -111,7 +111,6 @@ public class BrindScript : MonoBehaviour
         EnergyMID.SetActive(healBatteryEnergy >= 6);
         EnergyMAX.SetActive(healBatteryEnergy >= 9);
         
-
     }
 
 

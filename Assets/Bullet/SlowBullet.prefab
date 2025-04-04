@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5729095766109722887}
-  particle: {fileID: 4420587825053408745, guid: bb06081b98cc5324bb8b6b2dd2d27da3, type: 3}
+  particle: {fileID: 4420587825053408745, guid: eba9d7f3e09bdc04a882dae7d3377577, type: 3}
 --- !u!1001 &7395768372366708863
 PrefabInstance:
   m_ObjectHideFlags: 0
