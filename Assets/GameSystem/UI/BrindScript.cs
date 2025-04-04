@@ -58,15 +58,20 @@ public class BrindScript : MonoBehaviour
     void Update()
     {
         // ゲーム開始状態の確認
-        if (gameManagerScript.IsGameStart())
+        if (gameManagerScript != null && gameManagerScript.IsGameStart())
         {
             if (!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
             {
-                SetActiveForObjects(false, StartTitleUi,GameOver,PowerUpImage,HealOkImage);
+                SetActiveForObjects(false, StartTitleUi, GameOver, PowerUpImage, HealOkImage);
                 SetActiveForObjects(true, boss, bossBullet, StartUi, OptionButton, AllEnergy);
-                HandleEnergyLevels(); // エネルギー管理
+                HandleEnergyLevels();
+            }else
+            {
+                Destroy(AllEnergy);
+                AllEnergy = null;
             }
-            if (gameManagerScript.GetHealBatteryEnargy() <= 2)
+
+            if (gameManagerScript.GetHealBatteryEnargy() <= 2&& !gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
             {
                 EnergyMIN.SetActive(false);
                 EnergyMID.SetActive(false);
@@ -84,6 +89,7 @@ public class BrindScript : MonoBehaviour
             SetActiveForObjects(false, Selector); // セレクタが閉じた場合は非表示
         }
 
+        //回復UIロジック/////////////////////////////////////////////////////////////////////////////////////////////////
         if (playerModelsScript.IsIndex() == 0 || playerModelsScript.IsIndex() == 1 || playerModelsScript.IsIndex() == 2)
         {
             int healBatteryEnergy = gameManagerScript.GetHealBatteryEnargy();
@@ -97,6 +103,12 @@ public class BrindScript : MonoBehaviour
                 HealOkImage.SetActive(true);
                 StartCoroutine(HideHealOkImageAfterDelay(2.0f)); // 2秒後に非表示
             }
+            // 状態リセットのための条件
+            if (healBatteryEnergy < 9)
+            {
+                hasHealOkImageBeenHidden = false; // フラグをリセット
+            }
+
 
         }
         // ゲームの終了/クリア処理
@@ -106,13 +118,17 @@ public class BrindScript : MonoBehaviour
 
     void UpdateEnergyState(int healBatteryEnergy)
     {
-        // エネルギーUIの状態を管理
-        EnergyMIN.SetActive(healBatteryEnergy >= 3);
-        EnergyMID.SetActive(healBatteryEnergy >= 6);
-        EnergyMAX.SetActive(healBatteryEnergy >= 9);
+        if(!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
+        {
+            // エネルギーUIの状態を管理
+            EnergyMIN.SetActive(healBatteryEnergy >= 3);
+            EnergyMID.SetActive(healBatteryEnergy >= 6);
+            EnergyMAX.SetActive(healBatteryEnergy >= 9);
+        }
         
-
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
 
 
     private void HandleGameOver()

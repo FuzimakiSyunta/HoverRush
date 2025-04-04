@@ -43,6 +43,8 @@ public class BossScript : MonoBehaviour
     private int NowHP;  // ボスの現在のHP
     public UnityEngine.UI.Slider hpSlider; //HPバー（スライダー）
     public ParticleSystem particle;
+    //damegeパーティクル
+    public ParticleSystem damegeParticle;
     public bool sliderBool;
     private Animator animator;
     private bool StartTime=false;
@@ -59,7 +61,8 @@ public class BossScript : MonoBehaviour
     public GameObject DamegeCanvas;
 
     public GameObject EnemyPositionObject;
-
+    //
+    public bool isDameged = false;
 
 
     public void Damage(Collider col)
@@ -102,6 +105,7 @@ public class BossScript : MonoBehaviour
         Robot.SetActive(false);
         BossAir.SetActive(true);
         BIGLAZER.SetActive(false);
+        isDameged = false;
     }
 
     // Update is called once per frame
@@ -172,6 +176,22 @@ public class BossScript : MonoBehaviour
         Lazer_LdamegeCoolTime += Time.deltaTime;
     }
 
+    void Damaged()
+    {
+        isDameged = true;
+        audioSource.PlayOneShot(DamegeSound);
+        // パーティクルシステムのインスタンスを生成する。
+        ParticleSystem newParticle = Instantiate(damegeParticle);
+        // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
+        newParticle.transform.position = this.transform.position;
+        // パーティクルを発生させる。
+        newParticle.Play();
+        // インスタンス化したパーティクルシステムのGameObjectを5秒後に削除する。(任意)
+        // ※第一引数をnewParticleだけにするとコンポーネントしか削除されない。
+        Destroy(newParticle.gameObject, 5.0f);
+
+    }
+
     void OnTriggerEnter(Collider other)
     {
         GameObject damageImage = null;
@@ -183,14 +203,17 @@ public class BossScript : MonoBehaviour
             case "Bullet":
                 damage = 300;
                 damageImage = bulletdamageImage;
+                Damaged();
                 break;
             case "Machinegun":
                 damage = 100;
                 damageImage = MachinegunDamegeImage;
+                Damaged();
                 break;
             case "PenetrationBullet":
                 damage = 400;
                 damageImage = PenetrationBulletDamegeImage;
+                Damaged();
                 break;
             
         }
@@ -229,6 +252,8 @@ public class BossScript : MonoBehaviour
                 Vector3 hitPosition = other.transform.position;
                 ShowDamageImageAtPosition(damageImage, hitPosition);
 
+                Damaged();
+
                 // クールタイムをリセット
                 LazerdamegeCoolTime = 0;
             }
@@ -250,6 +275,8 @@ public class BossScript : MonoBehaviour
                 Vector3 hitPosition = other.transform.position;
                 ShowDamageImageAtPosition(damageImage, hitPosition);
 
+                Damaged();
+
                 // クールタイムをリセット
                 Lazer_LdamegeCoolTime = 0;
             }
@@ -270,6 +297,8 @@ public class BossScript : MonoBehaviour
                 // 画像を当たった位置に移動して表示
                 Vector3 hitPosition = other.transform.position;
                 ShowDamageImageAtPosition(damageImage, hitPosition);
+
+                Damaged();
 
                 // クールタイムをリセット
                 Lazer_RdamegeCoolTime = 0;

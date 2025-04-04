@@ -24,8 +24,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject cameraMove;
 
     //オブジェクト挿入
-    public EnemyScript enemy;
-    public GameObject Fire;
+    public GameObject MachingunFire;
+    public GameObject LazerFire;
+    public GameObject PanetrationFire;
     public GameObject HealImage;
     public GameObject NoHealImage;
     // 攻撃手段///
@@ -45,7 +46,7 @@ public class PlayerScript : MonoBehaviour
     private int ShotChenge = 0;//射撃パターン追加
     private Animator animator;
     private float MoveSpeed = 18.0f;
-    private float BoostMoveSpeed = 50.0f;
+    private float BoostMoveSpeed = 80.0f;
 
     //HP関連
     public GameObject HPSlider;
@@ -173,14 +174,14 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (playerHP <= MaxHp)
                     {
-                        MaxHp = 250; // HPが最大値を超えないように固定
+                        MaxHp = 150; // HPが最大値を超えないように固定
                     }
                     else
                     {
-                        MaxHp += 50; // 通常の増加処理
-                        if (MaxHp > 250)
+                        MaxHp += 100; // 通常の増加処理
+                        if (MaxHp > 150)
                         {
-                            MaxHp = 250; // 250を超えた場合は250にリセット
+                            MaxHp = 150; // 150を超えた場合は150にリセット
                         }
                     }
 
@@ -188,7 +189,9 @@ public class PlayerScript : MonoBehaviour
                     isHeal = true;
                     HealImage.SetActive(false);
                     NoHealImage.SetActive(true);
+                    //バッテリー関連
                     gameManagerScript.HealBatteryEnargyReset();
+                    gameManagerScript.HealCounter();
 
                 }
             }
@@ -224,11 +227,15 @@ public class PlayerScript : MonoBehaviour
             //火
             if (Vstick > 0 || Input.GetKey(KeyCode.W))
             {
-                Fire.SetActive(true);
+                MachingunFire.SetActive(true);
+                LazerFire.SetActive(true);
+                PanetrationFire.SetActive(true);
             }
             else
             {
-                Fire.SetActive(false);
+                MachingunFire.SetActive(false);
+                LazerFire.SetActive(false);
+                PanetrationFire.SetActive(false);
             }
 
             //キーボード/////////////////////////////////

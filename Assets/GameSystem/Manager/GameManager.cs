@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private bool GameStartFlag = false;
     public int batteryEnargy = 0;//強化用
     public int healBatteryEnargy = 0;//回復用
+    private int healcount = 0;//回復回数
 
     //WAVE
     public int Wave;
@@ -58,14 +59,14 @@ public class GameManager : MonoBehaviour
         Wave = 0;
         GamePlayCount = 0;
         SpeedParticle.SetActive(false);
-
+        healcount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        //セレクト
+        //セレクト///////////////////////////////////////////////////////////////////////////////
         if (OpenSelector == false)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
@@ -83,7 +84,11 @@ public class GameManager : MonoBehaviour
         {
             SpeedParticle.SetActive(true);
         }
+        ////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+        //UI全体///////////////
         if(GameClearFlag==true)
         {
             UI.SetActive(false);
@@ -91,10 +96,18 @@ public class GameManager : MonoBehaviour
         {
             UI.SetActive(true);
         }
+        ///////////////////////
+        
 
 
+        ///回復管理/////////////////////////////////////
+        if(healcount>=3)
+        {
+            HealBatteryEnargyReset();
+        }
+        /////////////////////////////////////////////////////
 
-            
+        //ウェーブ管理/////////////////////////
         if (GameStartFlag == true)
         {
             GamePlayCount += Time.deltaTime;
@@ -123,9 +136,8 @@ public class GameManager : MonoBehaviour
                
             }
             
-
         }
-
+        ///////////////////////////////////////
         
         
     }
@@ -270,6 +282,10 @@ public class GameManager : MonoBehaviour
     public int GetHealBatteryEnargy()
     {
         return healBatteryEnargy; // 現在のエネルギー値を返す
+    }
+    public void HealCounter()
+    {
+        healcount += 1;//回復カウント
     }
 
     public void GameStart()//ゲームスタート
