@@ -173,14 +173,14 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (playerHP <= MaxHp)
                     {
-                        MaxHp = 250; // HPが最大値を超えないように固定
+                        MaxHp = 150; // HPが最大値を超えないように固定
                     }
                     else
                     {
-                        MaxHp += 50; // 通常の増加処理
-                        if (MaxHp > 250)
+                        MaxHp += 25; // 通常の増加処理
+                        if (MaxHp > 150)
                         {
-                            MaxHp = 250; // 250を超えた場合は250にリセット
+                            MaxHp = 150; // 150を超えた場合は150にリセット
                         }
                     }
 
