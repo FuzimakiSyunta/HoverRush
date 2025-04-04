@@ -27,14 +27,7 @@ public class SceneScript : MonoBehaviour
             SceneManager.LoadScene("Load");
         }
 
-        // ゲームオーバー処理
-        if (gameManagerScript.IsGameOver())
-        {
-            if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
-            {
-                SceneManager.LoadScene("Load");
-            }
-        }
+        
 
         // ゲームクリア処理
         if (gameManagerScript.IsGameClear()&& ResultScript.IsRankOpen())

@@ -1,45 +1,74 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
     public GameObject gameManager;
     private GameManager gameManagerScript;
-    private float gameTime;
-    private float customDeltaTime = 0f;
 
-    // Start is called before the first frame update
+    private int startTime;
+    private int elapsedTime;
+    public int totalElapsedTime;
+
+    private bool isTimerRunning; // タイマーが進行中かどうかを判定
+
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        gameTime = 0;
+        elapsedTime = 0;
+        totalElapsedTime = 0;
+        isTimerRunning = false; // 初期状態ではタイマー停止
     }
 
-    // Update is called once per frame
     void Update()
     {
-        customDeltaTime = Time.deltaTime;
-
-        if (gameManagerScript.IsGameStart()&&gameManagerScript.IsGameClear()==false&&gameManagerScript.IsGameOver()==false)
+        if (gameManagerScript.IsGameStart() && !isTimerRunning)
         {
-            gameTime += customDeltaTime;
+            // ゲーム開始時にタイマーを開始
+            StartTimer();
         }
-        
+
+        if (isTimerRunning)
+        {
+            // 経過時間を更新
+            elapsedTime = (int)(Time.time - startTime);
+            Debug.Log("経過時間: " + elapsedTime + "秒");
+
+            // ゲームオーバーまたはクリア時にタイマーを停止
+            if (gameManagerScript.IsGameOver() || gameManagerScript.IsGameClear())
+            {
+                StopTimer();
+            }
+        }
     }
 
-    public float IsGameTime()
+    public void StartTimer()
     {
-        return gameTime;
+        if (!isTimerRunning) // 二重呼び出しを防止
+        {
+            startTime = (int)Time.time; // 現在の時間を記録
+            isTimerRunning = true; // タイマー開始
+            Debug.Log("タイマーが開始されました！");
+        }
     }
 
-    public void IsStopTime()
+    public void StopTimer()
     {
-        customDeltaTime = 0f;
+        if (isTimerRunning) // 二重呼び出しを防止
+        {
+            totalElapsedTime = (int)(Time.time - startTime);
+            isTimerRunning = false; // タイマー停止
+            Debug.Log("タイマーが停止しました。総経過時間: " + totalElapsedTime + "秒");
+        }
     }
 
-    public void IsStartTime()
+    public float GetElapsedTime()
     {
-        customDeltaTime = 1f;
+        return elapsedTime;
+    }
+
+    public float GetTotalElapsedTime()
+    {
+        return totalElapsedTime;
     }
 }

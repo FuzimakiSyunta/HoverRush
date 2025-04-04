@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using Unity.VisualScripting;
-using static UnityEditor.SceneView;
+
 
 public class PlayerScript : MonoBehaviour
 {
@@ -478,13 +478,13 @@ public class PlayerScript : MonoBehaviour
         //ボスのレーザー
         if (other.gameObject.tag == "Lazer")
         {
-            MaxHp -= 2;
+            MaxHp -= 3;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
         //ボスのレーザー
         if (other.gameObject.tag == "FinalLazer")
         {
-            MaxHp -= 15;
+            MaxHp -= 4;
             hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
     }
