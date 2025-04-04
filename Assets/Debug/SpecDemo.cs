@@ -58,5 +58,10 @@ public class SpecDemo : MonoBehaviour
         {
             bossScript.UpHp();//BossHp‘‰Á
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            gameManagerScript.HealCounter();//‰ñ•œ‰ñ”‘‰Á
+        }
     }
 }

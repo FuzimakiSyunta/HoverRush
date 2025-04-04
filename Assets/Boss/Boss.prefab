@@ -4960,8 +4960,9 @@ MonoBehaviour:
   bossHP: 60000
   hpSlider: {fileID: 6592985435578639482}
   particle: {fileID: 3931381678866721753, guid: 30a229513bcc34943b4c1a1ca4258be9, type: 3}
-  damegeParticle: {fileID: 0}
   sliderBool: 0
+  damegeParticle: {fileID: 0}
+  lazerDamegeParticle: {fileID: 0}
   bulletdamageImage: {fileID: 0}
   MachinegunDamegeImage: {fileID: 0}
   PenetrationBulletDamegeImage: {fileID: 0}

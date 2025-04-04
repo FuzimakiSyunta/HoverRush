@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
 
 
         ///回復管理/////////////////////////////////////
-        if(healcount>=3)
+        if(healcount>=2)
         {
             HealBatteryEnargyReset();
         }
@@ -287,7 +287,10 @@ public class GameManager : MonoBehaviour
     {
         healcount += 1;//回復カウント
     }
-
+    public int HealCount()
+    {
+        return healcount;
+    }
     public void GameStart()//ゲームスタート
     {
         GameStartFlag = true;

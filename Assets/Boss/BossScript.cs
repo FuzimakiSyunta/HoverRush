@@ -43,11 +43,13 @@ public class BossScript : MonoBehaviour
     private int NowHP;  // ボスの現在のHP
     public UnityEngine.UI.Slider hpSlider; //HPバー（スライダー）
     public ParticleSystem particle;
-    //damegeパーティクル
-    public ParticleSystem damegeParticle;
     public bool sliderBool;
     private Animator animator;
     private bool StartTime=false;
+    //damegeパーティクル
+    public ParticleSystem damegeParticle;
+    //Lazerdamegeパーティクル
+    public ParticleSystem lazerDamegeParticle;
 
     //ダメージ表記
     private float imageDisplayTime = 1.0f; // 画像を表示する時間
@@ -192,6 +194,22 @@ public class BossScript : MonoBehaviour
 
     }
 
+    void LazerDamaged()
+    {
+        isDameged = true;
+        audioSource.PlayOneShot(DamegeSound);
+        // パーティクルシステムのインスタンスを生成する。
+        ParticleSystem newParticle = Instantiate(lazerDamegeParticle);
+        // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
+        newParticle.transform.position = this.transform.position;
+        // パーティクルを発生させる。
+        newParticle.Play();
+        // インスタンス化したパーティクルシステムのGameObjectを5秒後に削除する。(任意)
+        // ※第一引数をnewParticleだけにするとコンポーネントしか削除されない。
+        Destroy(newParticle.gameObject, 5.0f);
+
+    }
+
     void OnTriggerEnter(Collider other)
     {
         GameObject damageImage = null;
@@ -252,7 +270,7 @@ public class BossScript : MonoBehaviour
                 Vector3 hitPosition = other.transform.position;
                 ShowDamageImageAtPosition(damageImage, hitPosition);
 
-                Damaged();
+                LazerDamaged();//damege
 
                 // クールタイムをリセット
                 LazerdamegeCoolTime = 0;
@@ -275,7 +293,7 @@ public class BossScript : MonoBehaviour
                 Vector3 hitPosition = other.transform.position;
                 ShowDamageImageAtPosition(damageImage, hitPosition);
 
-                Damaged();
+                LazerDamaged();//damege
 
                 // クールタイムをリセット
                 Lazer_LdamegeCoolTime = 0;
@@ -298,7 +316,7 @@ public class BossScript : MonoBehaviour
                 Vector3 hitPosition = other.transform.position;
                 ShowDamageImageAtPosition(damageImage, hitPosition);
 
-                Damaged();
+                LazerDamaged();//damege
 
                 // クールタイムをリセット
                 Lazer_RdamegeCoolTime = 0;
