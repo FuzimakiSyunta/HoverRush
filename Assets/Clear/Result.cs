@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
-    //時間
+    // 時間
     public GameObject gameTimer;
     private GameTimer gameTimerScript;
-    //ゲームマネージャー
+
+    // ゲームマネージャー
     public GameObject gameManager;
     private GameManager gameManagerScript;
 
-    //ランク画像
+    // ランク画像
+    public GameObject SS_rank;
     public GameObject S_rank;
     public GameObject A_rank;
     public GameObject B_rank;
@@ -21,15 +23,17 @@ public class Result : MonoBehaviour
 
     private bool isRankOpen = false;
 
-    //ゲームクリア
+    // ゲームクリア
     public GameObject GameClearImage;
 
-    //ゲームクリア表示
+    // ゲームクリア表示
     private float GameClearActiveTime = 0;
 
     public Image[] targetImages; // 複数のImageコンポーネントを操作するための配列
     private float targetAlpha = 0.0f; // 目標の透明度（0.0f～1.0f）
     private float fadeSpeed = 2.0f; // フェード速度
+
+    private bool hasRankDisplayed = false; // ランク画像が表示済みか判定
 
     void Start()
     {
@@ -40,6 +44,11 @@ public class Result : MonoBehaviour
         GameClearActiveTime = 0;
         targetAlpha = 1.0f;
         isRankOpen = false;
+        SS_rank.SetActive(false);
+        S_rank.SetActive(false);
+        A_rank.SetActive(false);
+        B_rank.SetActive(false);
+        hasRankDisplayed = false; // 初期状態では表示されていない
     }
 
     void Update()
@@ -47,6 +56,7 @@ public class Result : MonoBehaviour
         if (gameManagerScript.IsGameClear())
         {
             GameClearActiveTime += Time.deltaTime;
+
             if (GameClearActiveTime <= 2.5f)
             {
                 GameClearImage.SetActive(true);
@@ -61,31 +71,34 @@ public class Result : MonoBehaviour
                 }
                 GameClearImage.SetActive(false);
             }
-            if (GameClearActiveTime >= 3f)
+
+            if (GameClearActiveTime >= 3f && !hasRankDisplayed) // ランク未表示の場合のみ処理実行
             {
                 isRankOpen = true;
                 RankCanvas.SetActive(true);
                 RankImage.SetActive(true);
 
-                int elapsedTime = (int)gameTimerScript.GetTotalElapsedTime();
-                if (elapsedTime <= 120)
+                if (gameTimerScript.GetElapsedTime() <= 145)
+                {
+                    SS_rank.SetActive(true);
+                }
+                else if (gameTimerScript.GetElapsedTime() > 145 && gameTimerScript.GetElapsedTime() <= 140)
                 {
                     S_rank.SetActive(true);
-                    A_rank.SetActive(false);
-                    B_rank.SetActive(false);
                 }
-                else if (elapsedTime > 120 && elapsedTime <= 140)
+                else if (gameTimerScript.GetElapsedTime() > 140 && gameTimerScript.GetElapsedTime() <= 150)
                 {
-                    S_rank.SetActive(false);
                     A_rank.SetActive(true);
-                    B_rank.SetActive(false);
                 }
-                else if (elapsedTime > 140)
+                else if (gameTimerScript.GetElapsedTime() > 150)
                 {
-                    S_rank.SetActive(false);
-                    A_rank.SetActive(false);
                     B_rank.SetActive(true);
                 }
+
+                // ランクが表示された後にタイマーを停止
+                gameTimerScript.StopTimer();
+
+                hasRankDisplayed = true; // ランク表示済みフラグを更新
             }
         }
         else
@@ -94,6 +107,7 @@ public class Result : MonoBehaviour
             GameClearImage.SetActive(false);
             GameClearActiveTime = 0;
             isRankOpen = false;
+            hasRankDisplayed = false; // ゲームクリア終了時はフラグをリセット
         }
     }
 

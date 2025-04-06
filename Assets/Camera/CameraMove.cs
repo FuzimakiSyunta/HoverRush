@@ -7,6 +7,10 @@ public class CameraMove : MonoBehaviour
 {
     private GameManager gameManagerScript;
     public GameObject gameManager;
+
+    // Tutorial
+    private TutorialManager tutorialManagerScript;
+    public GameObject tutorialManager;
     private Animator animator;
 
     private bool isAnimation=false;
@@ -15,10 +19,13 @@ public class CameraMove : MonoBehaviour
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        //tutorial
+        tutorialManagerScript = tutorialManager.GetComponent<TutorialManager>();
         animator = GetComponent<Animator>();
         animator.SetBool("isRobotView", false);
         animator.SetBool("isBossBulletView", false);
         animator.SetBool("isLazerBossView", false);
+        animator.SetBool("isTutorial", false);
     }
 
     // Update is called once per frame
@@ -60,6 +67,15 @@ public class CameraMove : MonoBehaviour
                 animator.SetBool("isLazerBossView", false);
                 isAnimation = false;
             }
+            //チュートリアル
+            if(tutorialManagerScript.IsTutorialOpen())
+            {
+                animator.SetBool("isTutorial", true);
+            }
+            else
+            {
+                animator.SetBool("isTutorial", false);
+            }
         }
         else
         {
@@ -67,6 +83,7 @@ public class CameraMove : MonoBehaviour
             animator.SetBool("isBossBulletView", false);
             animator.SetBool("isLazerBossView", false);
             animator.SetBool("isGameOver", true);
+            animator.SetBool("isTutorial", false);
         }
 
 

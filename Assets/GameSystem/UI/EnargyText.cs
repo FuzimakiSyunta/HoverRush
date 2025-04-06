@@ -19,11 +19,5 @@ public class EnargyText : MonoBehaviour
         // 毎フレーム現在のエネルギー値を取得してテキストに反映
         int currentEnergy = gameManagerScript.GetBatteryEnargy();
         enargyText.text = currentEnergy.ToString();
-
-        //// Fキーが押されたときにエネルギーを増加
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    gameManagerScript.BatteryEnargyUp(); // エネルギーを1増加
-        //}
     }
 }
