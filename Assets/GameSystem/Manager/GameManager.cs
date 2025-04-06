@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     private bool GameStartFlag = false;
     public int batteryEnargy = 0;//強化用
     public int healBatteryEnargy = 0;//回復用
-    private int healcount = 0;//回復回数
+    private int healcount = 4;//回復回数
 
     //WAVE
     public int Wave;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         Wave = 0;
         GamePlayCount = 0;
         SpeedParticle.SetActive(false);
-        healcount = 0;
+        healcount = 4;
     }
 
     // Update is called once per frame
@@ -75,14 +75,8 @@ public class GameManager : MonoBehaviour
                 titleText.SetActive(false);
                 StartButtonImage.SetActive(false);
                 GameStartFlag = false;
-
-                SpeedParticle.SetActive(false);
-                
                 
             }
-        }else
-        {
-            SpeedParticle.SetActive(true);
         }
         ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -101,7 +95,7 @@ public class GameManager : MonoBehaviour
 
 
         ///回復管理/////////////////////////////////////
-        if(healcount>=2)
+        if(healcount<=0)
         {
             HealBatteryEnargyReset();
         }
@@ -111,8 +105,8 @@ public class GameManager : MonoBehaviour
         if (GameStartFlag == true)
         {
             GamePlayCount += Time.deltaTime;
-            
-            
+            SpeedParticle.SetActive(true);
+
             if (GamePlayCount>=18&&GamePlayCount <= 40)
             {
                 BossWaveFlag = true;
@@ -135,7 +129,14 @@ public class GameManager : MonoBehaviour
                 Wave = 2;
                
             }
-            
+            if (GamePlayCount >= 125)
+            {
+                BossWaveFlag = true;
+                Wave = 3;
+            }
+        }else
+        {
+            SpeedParticle.SetActive(false);
         }
         ///////////////////////////////////////
         
@@ -146,7 +147,7 @@ public class GameManager : MonoBehaviour
         if (GameOverFlag == true) return;
         if (GameClearFlag == true) return;
 
-        if (GameStartFlag == true&&BossWaveFlag==false) // ゲームが開始しておりボスウェーブじゃないとき
+        if (GameStartFlag == true)
         {
             int RandomEnemy = Random.Range(0, 15000); // 敵の出現頻度をランダムに決定
             int Style = Random.Range(0, 5); // 敵の種類をランダムに決定
@@ -164,13 +165,17 @@ public class GameManager : MonoBehaviour
             {
                 waveModifier = 3; 
             }
+            else if (Wave == 3)
+            {
+                waveModifier = 4;
+            }
 
             // 出現条件（範囲）を設定
             int[][] Enemyranges = {
         new int[]{0, 5000 * waveModifier},    // WAVEに応じた出現範囲
         new int[]{100, 150 * waveModifier},   // 範囲2
         new int[]{150, 300 * waveModifier},   // 範囲3
-        //new int[]{6000, 6300 * waveModifier},   // 範囲4
+        new int[]{300, 600 * waveModifier},   // 範囲4
         //new int[]{7000, 7100 * waveModifier}    // 範囲5
 
     };
@@ -285,7 +290,7 @@ public class GameManager : MonoBehaviour
     }
     public void HealCounter()
     {
-        healcount += 1;//回復カウント
+        healcount -= 1;//回復カウント
     }
     public int HealCount()
     {
