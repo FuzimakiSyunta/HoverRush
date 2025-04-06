@@ -23,6 +23,5 @@ public class TimerText : MonoBehaviour
         int currentEnergy = (int)gameTimerScript.GetElapsedTime();
         GameTimerText.text = currentEnergy.ToString();
 
-        
     }
 }

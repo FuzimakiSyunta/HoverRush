@@ -43,7 +43,9 @@ public class PlayerScript : MonoBehaviour
 
     //ステータス
     float[] bulletTimer = new float[3];
-    private int ShotChenge = 0;//射撃パターン追加
+    private bool singleShotChenge = false;
+    private bool lazerShotChenge = false;
+    private bool penetrationShotChenge = false;
     private Animator animator;
     private float MoveSpeed = 18.0f;
     private float BoostMoveSpeed = 80.0f;
@@ -205,7 +207,7 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(-move, 0, 0);
             }
-            if (Vstick > 0 && transform.position.z <= 20)
+            if (Vstick > 0 && transform.position.z <= 15)
             {
                 transform.position += new Vector3(0, 0, move);
             }
@@ -218,10 +220,16 @@ public class PlayerScript : MonoBehaviour
             if (RT > 0 && transform.position.x <= 10)
             {
                 transform.position += new Vector3(boostmove, 0, 0);
+                animator.SetBool("isAvoidance", true);
             }
             else if (LT > 0 && transform.position.x >= -10)
             {
                 transform.position += new Vector3(-boostmove, 0, 0);
+                animator.SetBool("isAvoidance", true);
+            }
+            else
+            {
+                animator.SetBool("isAvoidance", false);
             }
 
             //火
@@ -247,7 +255,7 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(-move, 0, 0);
             }
-            if (Input.GetKey(KeyCode.W) && transform.position.z <= 20)
+            if (Input.GetKey(KeyCode.W) && transform.position.z <= 15)
             {
                 transform.position += new Vector3(0, 0, move);
             }
@@ -283,19 +291,20 @@ public class PlayerScript : MonoBehaviour
             HealImage.SetActive(false);
             NoHealImage.SetActive(false);
         }
-        //射撃パターン追加  
-        if (gameManagerScript.GetBatteryEnargy()>= 15)
-        {
-            ShotChenge = 1;//自機タイプ単発
-        }
-        if (gameManagerScript.GetBatteryEnargy() >= 20)
-        {
-            ShotChenge = 2;//自機タイプレーザー
-        }
+        // 射撃パターン追加
         if (gameManagerScript.GetBatteryEnargy() >= 30)
         {
-            ShotChenge = 3;//自機タイプ貫通弾
+            penetrationShotChenge = true; // 自機タイプ貫通弾
         }
+        else if (gameManagerScript.GetBatteryEnargy() >= 25)
+        {
+            singleShotChenge = true; // 自機タイプ単発
+        }
+        else if (gameManagerScript.GetBatteryEnargy() >= 20)
+        {
+            lazerShotChenge = true; // 自機タイプレーザー
+        }
+
 
     }
     void FixedUpdate()
@@ -313,15 +322,11 @@ public class PlayerScript : MonoBehaviour
                 //遅い弾
                 if (bulletTimer[0] == 0.0f)
                 {
-                    if (ShotChenge >= 0)
-                    {
-                        Vector3 position = transform.position;
-                        position.y += 0.3f;
-                        position.z += 1.6f;
-                        Instantiate(bullet, position, Quaternion.identity);
-                        bulletTimer[0] = 1.0f;
-
-                    }
+                    Vector3 position = transform.position;
+                    position.y += 0.3f;
+                    position.z += 1.6f;
+                    Instantiate(bullet, position, Quaternion.identity);
+                    bulletTimer[0] = 1.0f;
                 }
                 else
                 {
@@ -334,7 +339,7 @@ public class PlayerScript : MonoBehaviour
                 if (bulletTimer[1] == 0.0f)
                 {
                     //マシンガン
-                    if (ShotChenge >= 1)
+                    if (singleShotChenge)
                     {
                         //弾発射
                         Vector3 positionR = transform.position;
@@ -363,7 +368,7 @@ public class PlayerScript : MonoBehaviour
             if (playerModelsScript.IsIndex() == 1)
             {
                 Lazer.SetActive(true);
-                if (ShotChenge >= 2)
+                if (lazerShotChenge)
                 {
                     Lazer_R.SetActive(true);
                     Lazer_L.SetActive(true);
@@ -382,17 +387,13 @@ public class PlayerScript : MonoBehaviour
                 //貫通弾
                 if (bulletTimer[0] == 0.0f)
                 {
-                    if (ShotChenge >= 0)
-                    {
-                        Vector3 position = transform.position;
-                        position.y += 0.3f;
-                        position.z += 1.6f;
-                        Instantiate(PenetrationBullet, position, Quaternion.identity);
-                        bulletTimer[0] = 1.0f;
-
-                    }
+                    Vector3 position = transform.position;
+                    position.y += 0.3f;
+                    position.z += 1.6f;
+                    Instantiate(PenetrationBullet, position, Quaternion.identity);
+                    bulletTimer[0] = 1.0f;
                 }
-                else if(ShotChenge >= 0 && ShotChenge <= 2)
+                else
                 {
                     bulletTimer[0]++;
                     if (bulletTimer[0] > 30.0f)
@@ -401,7 +402,7 @@ public class PlayerScript : MonoBehaviour
                     }
                 }
                 //DamegeRing
-                if (ShotChenge >= 3)
+                if (penetrationShotChenge)
                 {
                     DamegeRing.SetActive(true);
                     bulletTimer[0]++;

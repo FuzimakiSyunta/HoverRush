@@ -13,16 +13,22 @@ public class PanelEffect : MonoBehaviour
 
     private SelectorMenu selectorMenuScript;
     public GameObject selectorMenu;
-    private GameManager gameManagerScript;
-    public GameObject gameManager;
+    
     public GameObject Allui;
     private bool isWhite;
     private bool isAlpha;
 
+    // Tutorial
+    private TutorialManager tutorialManagerScript;
+    public GameObject tutorialManager;
+
+
     void Start()
     {
         selectorMenuScript = selectorMenu.GetComponent<SelectorMenu>();
-        gameManagerScript = gameManager.GetComponent<GameManager>();
+        
+        //tutorial
+        tutorialManagerScript = tutorialManager.GetComponent<TutorialManager>();
     }
 
     private void Update()
@@ -58,7 +64,7 @@ public class PanelEffect : MonoBehaviour
         isWhite = false;
         isAlpha = true;
         Allui.SetActive(true);
-        gameManagerScript.GameStart();//ゲームスタート
+        tutorialManagerScript.TutorialStart();//チュートリアル開始
 
 
         isChangingColor = false; // 色変更フラグをリセット

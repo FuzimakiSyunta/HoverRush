@@ -5,30 +5,22 @@ using UnityEngine;
 public class FinalExtraBullet_L : MonoBehaviour
 {
     public Rigidbody rb;
+    public float baseSpeedZ = 15.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        float moveSpeedX = 9.0f;
-        float moveSpeedZ = 25.0f;
-        rb.velocity = new Vector3(-moveSpeedX, 0, -moveSpeedZ);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 3); // 3•bŒã‚ÉƒIƒuƒWƒFƒNƒg‚ð”j‰ó
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (transform.position.x <= -13)
+        // ‘¬“x‚ð‹t•ûŒü‚ÉÝ’è (z ‚Ì•„†‚ð”½“])
+        rb.velocity = new Vector3(0, 0, -(baseSpeedZ + Time.time));
+
+        // x•ûŒü‚Ì§ŒÀ
+        if (transform.position.x >= 13)
         {
             Destroy(gameObject);
         }
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Destroy(this.gameObject);
-        }
-
     }
 }
