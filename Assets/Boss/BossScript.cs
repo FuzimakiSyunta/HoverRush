@@ -214,47 +214,49 @@ public class BossScript : MonoBehaviour
     {
         GameObject damageImage = null;
         int damage = 0;
-
-        // 各タグに応じたダメージ値と画像を設定
-        switch (other.gameObject.tag)
+        if (gameManagerScript.IsBossWave())
         {
-            case "Bullet":
-                damage = 300;
-                damageImage = bulletdamageImage;
-                Damaged();
-                break;
-            case "Machinegun":
-                damage = 100;
-                damageImage = MachinegunDamegeImage;
-                Damaged();
-                break;
-            case "PenetrationBullet":
-                damage = 400;
-                damageImage = PenetrationBulletDamegeImage;
-                Damaged();
-                break;
-            
-        }
-        // ダメージを受けた際の処理
-        audioSource.PlayOneShot(DamegeSound); // ダメージ音を再生
+            // 各タグに応じたダメージ値と画像を設定
+            switch (other.gameObject.tag)
+            {
+                case "Bullet":
+                    damage = 300;
+                    damageImage = bulletdamageImage;
+                    Damaged();
+                    break;
+                case "Machinegun":
+                    damage = 100;
+                    damageImage = MachinegunDamegeImage;
+                    Damaged();
+                    break;
+                case "PenetrationBullet":
+                    damage = 400;
+                    damageImage = PenetrationBulletDamegeImage;
+                    Damaged();
+                    break;
 
-        if (damageImage != null)
-        {
-            audioSource.PlayOneShot(DamegeSound);
-            NowHP -= damage;
-            hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
-            sliderBool = true;
+            }
+            // ダメージを受けた際の処理
+            audioSource.PlayOneShot(DamegeSound); // ダメージ音を再生
 
-            // 画像を当たった位置に移動して表示
-            Vector3 hitPosition = other.transform.position;
-            ShowDamageImageAtPosition(damageImage, hitPosition);
+            if (damageImage != null)
+            {
+                audioSource.PlayOneShot(DamegeSound);
+                NowHP -= damage;
+                hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
+                sliderBool = true;
+
+                // 画像を当たった位置に移動して表示
+                Vector3 hitPosition = other.transform.position;
+                ShowDamageImageAtPosition(damageImage, hitPosition);
+            }
         }
     }
 
     void OnTriggerStay(Collider other)
     {
         // PlayerLazer専用の処理
-        if (other.gameObject.tag == "PlayerLazer")
+        if (other.gameObject.tag == "PlayerLazer"&&gameManagerScript.IsBossWave())
         {
             if (LazerdamegeCoolTime >= 0.1f) // クールタイム判定
             {
@@ -277,7 +279,7 @@ public class BossScript : MonoBehaviour
             }
         }
         // PlayerLazer専用の処理
-        if (other.gameObject.tag == "PlayerLazer_L")
+        if (other.gameObject.tag == "PlayerLazer_L" && gameManagerScript.IsBossWave())
         {
             if (Lazer_LdamegeCoolTime >= 0.1f) // クールタイム判定
             {
@@ -300,7 +302,7 @@ public class BossScript : MonoBehaviour
             }
         }
         // PlayerLazer専用の処理
-        if (other.gameObject.tag == "PlayerLazer_R")
+        if (other.gameObject.tag == "PlayerLazer_R" && gameManagerScript.IsBossWave())
         {
             if (Lazer_RdamegeCoolTime >= 0.1f) // クールタイム判定
             {
@@ -450,7 +452,7 @@ public class BossScript : MonoBehaviour
         else
         {
             bulletTimer += Time.deltaTime; // 時間で加算
-            if (bulletTimer > 1.8f) // 30フレームの代わりに秒数で設定
+            if (bulletTimer > 1.5f) // 30フレームの代わりに秒数で設定
             {
                 bulletTimer = 0.0f;
             }
@@ -516,7 +518,7 @@ public class BossScript : MonoBehaviour
         else
         {
             FinalbulletTimer += Time.deltaTime; // 時間で加算
-            if (FinalbulletTimer > 1.8f) // 30フレームの代わりに秒数で設定
+            if (FinalbulletTimer > 1.5f) // 30フレームの代わりに秒数で設定
             {
                 FinalbulletTimer = 0.0f;
             }

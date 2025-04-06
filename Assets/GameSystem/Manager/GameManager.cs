@@ -75,14 +75,8 @@ public class GameManager : MonoBehaviour
                 titleText.SetActive(false);
                 StartButtonImage.SetActive(false);
                 GameStartFlag = false;
-
-                SpeedParticle.SetActive(false);
-                
                 
             }
-        }else
-        {
-            SpeedParticle.SetActive(true);
         }
         ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -111,8 +105,8 @@ public class GameManager : MonoBehaviour
         if (GameStartFlag == true)
         {
             GamePlayCount += Time.deltaTime;
-            
-            
+            SpeedParticle.SetActive(true);
+
             if (GamePlayCount>=18&&GamePlayCount <= 40)
             {
                 BossWaveFlag = true;
@@ -135,7 +129,13 @@ public class GameManager : MonoBehaviour
                 Wave = 2;
                
             }
-            
+            if (GamePlayCount >= 125)
+            {
+                BossWaveFlag = true;
+            }
+        }else
+        {
+            SpeedParticle.SetActive(false);
         }
         ///////////////////////////////////////
         

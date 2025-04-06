@@ -104,8 +104,8 @@ Transform:
   m_GameObject: {fileID: 1207510094245498474}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5123348, y: 0.0000019073486, z: -11.577011}
-  m_LocalScale: {x: 0.71348, y: 0.53511, z: 0.53511}
+  m_LocalPosition: {x: 0.5123348, y: 0.012591, z: -11.577011}
+  m_LocalScale: {x: 0.58436286, y: 0.43827215, z: 0.43827215}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6726482811597605057}
@@ -590,17 +590,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boost
       objectReference: {fileID: 0}
+    - target: {fileID: 4420587825053408745, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 5590
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420587825053408745, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420587825053408745, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.91539776
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420587825053408745, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.9433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420587825053408745, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7392991395141802766, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.31057
+      value: 0.25045803
       objectReference: {fileID: 0}
     - target: {fileID: 7392991395141802766, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.31057
+      value: 0.25045803
       objectReference: {fileID: 0}
     - target: {fileID: 7392991395141802766, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.31057
+      value: 0.25045803
       objectReference: {fileID: 0}
     - target: {fileID: 7392991395141802766, guid: 4da7a0e0103cebf478df5abef502c5be, type: 3}
       propertyPath: m_LocalPosition.x

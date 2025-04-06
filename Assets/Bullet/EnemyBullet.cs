@@ -9,8 +9,9 @@ public class EnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float moveSpeed = 47.0f;
-        rb.velocity = new Vector3(0, 0, -moveSpeed);
+        float moveSpeedZ = 45.0f;
+        float moveSpeedY = 1.0f;
+        rb.velocity = new Vector3(0, -moveSpeedY, -moveSpeedZ);
         Destroy(gameObject, 5);
     }
 
