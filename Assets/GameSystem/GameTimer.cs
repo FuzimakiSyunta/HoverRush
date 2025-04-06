@@ -24,8 +24,7 @@ public class GameTimer : MonoBehaviour
     {
         if (gameManagerScript.IsGameStart() && !isTimerRunning)
         {
-            // ゲーム開始時にタイマーを開始
-            StartTimer();
+            StartTimer(); // ゲーム開始時にタイマーを開始
         }
 
         if (isTimerRunning)
@@ -33,12 +32,19 @@ public class GameTimer : MonoBehaviour
             // 経過時間を更新
             elapsedTime = (int)(Time.time - startTime);
             Debug.Log("経過時間: " + elapsedTime + "秒");
+        }
 
-            // ゲームオーバーまたはクリア時にタイマーを停止
-            if (gameManagerScript.IsGameOver() || gameManagerScript.IsGameClear())
-            {
-                StopTimer();
-            }
+        if (gameManagerScript.IsGameClear())
+        {
+            // ゲームクリア時にタイマーを継続（タイマー停止処理を実行しない）
+            Debug.Log("ゲームクリア！ タイマー継続中... 現在の経過時間: " + elapsedTime + "秒");
+        }
+
+        if (gameManagerScript.IsGameOver() && isTimerRunning)
+        {
+            // ゲームオーバー時のみタイマー停止
+            StopTimer();
+            Debug.Log("ゲームオーバー。総経過時間: " + totalElapsedTime + "秒");
         }
     }
 
@@ -56,18 +62,18 @@ public class GameTimer : MonoBehaviour
     {
         if (isTimerRunning) // 二重呼び出しを防止
         {
-            totalElapsedTime = (int)(Time.time - startTime);
+            totalElapsedTime = (int)(Time.time - startTime); // 総経過時間を記録
             isTimerRunning = false; // タイマー停止
             Debug.Log("タイマーが停止しました。総経過時間: " + totalElapsedTime + "秒");
         }
     }
 
-    public float GetElapsedTime()
+    public int GetElapsedTime()
     {
         return elapsedTime;
     }
 
-    public float GetTotalElapsedTime()
+    public int GetTotalElapsedTime()
     {
         return totalElapsedTime;
     }
