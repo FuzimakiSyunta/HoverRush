@@ -135,7 +135,10 @@ public class GameManager : MonoBehaviour
                 Wave = 2;
                
             }
-            
+            if (GamePlayCount >= 125)
+            {
+                BossWaveFlag = true;
+            }
         }
         ///////////////////////////////////////
         

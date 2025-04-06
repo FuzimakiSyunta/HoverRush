@@ -5,15 +5,15 @@ using UnityEngine;
 public class BossExtraBulletL : MonoBehaviour
 {
     public Rigidbody rb; // Rigidbodyコンポーネント
-    public float reflectSpeedMultiplier = 2.0f; // 反射後の速度倍率
+    public float reflectSpeedMultiplier = 1.5f; // 反射後の速度倍率
     
 
     private Vector3 currentVelocity; // 弾丸の現在の速度
 
     void Start()
     {
-        float moveSpeedX = 25.0f;
-        float moveSpeedZ = 20.0f;
+        float moveSpeedX = 18.0f;
+        float moveSpeedZ = 15.0f;
 
         currentVelocity = new Vector3(-moveSpeedX, 0, -moveSpeedZ); // 初期速度を設定
         rb.velocity = currentVelocity; // Rigidbodyに速度を設定

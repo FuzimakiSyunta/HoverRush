@@ -205,7 +205,7 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(-move, 0, 0);
             }
-            if (Vstick > 0 && transform.position.z <= 20)
+            if (Vstick > 0 && transform.position.z <= 15)
             {
                 transform.position += new Vector3(0, 0, move);
             }
@@ -247,7 +247,7 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position += new Vector3(-move, 0, 0);
             }
-            if (Input.GetKey(KeyCode.W) && transform.position.z <= 20)
+            if (Input.GetKey(KeyCode.W) && transform.position.z <= 15)
             {
                 transform.position += new Vector3(0, 0, move);
             }
@@ -284,7 +284,7 @@ public class PlayerScript : MonoBehaviour
             NoHealImage.SetActive(false);
         }
         //射撃パターン追加  
-        if (gameManagerScript.GetBatteryEnargy()>= 15)
+        if (gameManagerScript.GetBatteryEnargy()>= 25)
         {
             ShotChenge = 1;//自機タイプ単発
         }
