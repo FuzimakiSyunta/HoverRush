@@ -12,6 +12,7 @@ public class PauseSystem : MonoBehaviour
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
+    
     // PanelEffect
     private PanelEffect PanelEffectScript;
     public GameObject panelEffect;
@@ -35,7 +36,11 @@ public class PauseSystem : MonoBehaviour
 
         // PanelEffect
         PanelEffectScript = panelEffect.GetComponent<PanelEffect>();
+
+        //pauseMenu
         pauseMenuSelectorScript = pauseMenuSelector.GetComponent<PauseMenuSelector>();
+
+        
 
         PauseImage.SetActive(false);
         Ui.SetActive(true);

@@ -176,7 +176,7 @@ public class BrindScript : MonoBehaviour
             if (playerModelsScript.IsIndex() == 0)
             {
                 
-                if (gameManagerScript.GetBatteryEnargy() >= 15 && !hasPowerUpImageBeenHidden)
+                if (gameManagerScript.GetBatteryEnargy() >= 25 && !hasPowerUpImageBeenHidden)
                 {
 
                     PowerUpImage.SetActive(true);

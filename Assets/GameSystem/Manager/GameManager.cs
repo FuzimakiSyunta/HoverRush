@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     private bool GameStartFlag = false;
     public int batteryEnargy = 0;//強化用
     public int healBatteryEnargy = 0;//回復用
-    private int healcount = 0;//回復回数
+    private int healcount = 2;//回復回数
 
     //WAVE
     public int Wave;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         Wave = 0;
         GamePlayCount = 0;
         SpeedParticle.SetActive(false);
-        healcount = 0;
+        healcount = 2;
     }
 
     // Update is called once per frame
@@ -75,14 +75,8 @@ public class GameManager : MonoBehaviour
                 titleText.SetActive(false);
                 StartButtonImage.SetActive(false);
                 GameStartFlag = false;
-
-                SpeedParticle.SetActive(false);
-                
                 
             }
-        }else
-        {
-            SpeedParticle.SetActive(true);
         }
         ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -101,7 +95,7 @@ public class GameManager : MonoBehaviour
 
 
         ///回復管理/////////////////////////////////////
-        if(healcount>=2)
+        if(healcount<=0)
         {
             HealBatteryEnargyReset();
         }
@@ -111,8 +105,8 @@ public class GameManager : MonoBehaviour
         if (GameStartFlag == true)
         {
             GamePlayCount += Time.deltaTime;
-            
-            
+            SpeedParticle.SetActive(true);
+
             if (GamePlayCount>=18&&GamePlayCount <= 40)
             {
                 BossWaveFlag = true;
@@ -135,7 +129,13 @@ public class GameManager : MonoBehaviour
                 Wave = 2;
                
             }
-            
+            if (GamePlayCount >= 125)
+            {
+                BossWaveFlag = true;
+            }
+        }else
+        {
+            SpeedParticle.SetActive(false);
         }
         ///////////////////////////////////////
         
@@ -285,7 +285,7 @@ public class GameManager : MonoBehaviour
     }
     public void HealCounter()
     {
-        healcount += 1;//回復カウント
+        healcount -= 1;//回復カウント
     }
     public int HealCount()
     {
