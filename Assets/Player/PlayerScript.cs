@@ -268,10 +268,16 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space)&& transform.position.x <= 8)
             {
                 transform.position += new Vector3(boostmove, 0, 0);
+                animator.SetBool("isAvoidance", true);
             }
             else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space) && transform.position.x >= -8)
             {
                 transform.position += new Vector3(-boostmove, 0, 0);
+                animator.SetBool("isAvoidance", true);
+            }
+            else
+            {
+                animator.SetBool("isAvoidance", false);
             }
             //////////////////////////////////////////////
 
