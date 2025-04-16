@@ -19,12 +19,12 @@ public class GameManager : MonoBehaviour
     public GameObject hevyplaneEnemy;
     public GameObject blueplaneEnemy;
     public GameObject player;
-    public GameObject UI;
+    public GameObject allUi;
     //text&Image
     public GameObject gameOverText;
     public GameObject gameClearText;
     public GameObject titleText;
-    public GameObject StartButtonImage;
+    public GameObject startButtonImage;
 
     //Select
     private bool OpenSelector = false;
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
             CoolTime[i] = 0;
         }
         titleText.SetActive(true);
-        StartButtonImage.SetActive(true);
+        startButtonImage.SetActive(true);
         Wave = 0;
         GamePlayCount = 0;
         SpeedParticle.SetActive(false);
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
             {
                 OpenSelector = true;
                 titleText.SetActive(false);
-                StartButtonImage.SetActive(false);
+                startButtonImage.SetActive(false);
                 GameStartFlag = false;
                 
             }
@@ -85,10 +85,10 @@ public class GameManager : MonoBehaviour
         //UI‘S‘Ì///////////////
         if(GameClearFlag==true)
         {
-            UI.SetActive(false);
+            allUi.SetActive(false);
         }else
         {
-            UI.SetActive(true);
+            allUi.SetActive(true);
         }
         ///////////////////////
         
