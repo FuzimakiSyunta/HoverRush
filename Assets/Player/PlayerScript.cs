@@ -38,15 +38,11 @@ public class PlayerScript : MonoBehaviour
     public GameObject PenetrationBullet;
     public GameObject DamegeRing;
 
-
-    public bool position_R;
-
     //ステータス
     float[] bulletTimer = new float[3];
     private bool singleShotChenge = false;
     private bool lazerShotChenge = false;
     private bool penetrationShotChenge = false;
-    private Animator animator;
     private float MoveSpeed = 18.0f;
     private float BoostMoveSpeed = 80.0f;
 
@@ -65,6 +61,10 @@ public class PlayerScript : MonoBehaviour
     //オーディオ
     public AudioClip DamegeSound;
     private AudioSource audioSource;
+
+    //アニメーション
+    private Animator animator;
+    
 
 
     // Start is called before the first frame update
@@ -176,14 +176,14 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (playerHP <= MaxHp)
                     {
-                        MaxHp = 150; // HPが最大値を超えないように固定
+                        MaxHp = 120; // HPが最大値を超えないように固定
                     }
                     else
                     {
-                        MaxHp += 100; // 通常の増加処理
-                        if (MaxHp > 150)
+                        MaxHp += 120; // 通常の増加処理
+                        if (MaxHp > 120)
                         {
-                            MaxHp = 150; // 150を超えた場合は150にリセット
+                            MaxHp = 120; // 120を超えた場合は120にリセット
                         }
                     }
 
@@ -216,21 +216,6 @@ public class PlayerScript : MonoBehaviour
                 transform.position += new Vector3(0, 0, -move);
             }
 
-            //緊急回避
-            if (RT > 0 && transform.position.x <= 10)
-            {
-                transform.position += new Vector3(boostmove, 0, 0);
-                animator.SetBool("isAvoidance", true);
-            }
-            else if (LT > 0 && transform.position.x >= -10)
-            {
-                transform.position += new Vector3(-boostmove, 0, 0);
-                animator.SetBool("isAvoidance", true);
-            }
-            else
-            {
-                animator.SetBool("isAvoidance", false);
-            }
 
             //火
             if (Vstick > 0 || Input.GetKey(KeyCode.W))
@@ -264,13 +249,18 @@ public class PlayerScript : MonoBehaviour
                 transform.position += new Vector3(0, 0, -move);
             }
 
-            //緊急回避
-            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space)&& transform.position.x <= 8)
+            //////////////////////////////////////////////
+
+            // 緊急回避
+            bool isRightAvoidance = (RT > 0 || Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space)) && transform.position.x <= 8;
+            bool isLeftAvoidance = (LT > 0 || Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space)) && transform.position.x >= -8;
+
+            if (isRightAvoidance)
             {
                 transform.position += new Vector3(boostmove, 0, 0);
                 animator.SetBool("isAvoidance", true);
             }
-            else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space) && transform.position.x >= -8)
+            else if (isLeftAvoidance)
             {
                 transform.position += new Vector3(-boostmove, 0, 0);
                 animator.SetBool("isAvoidance", true);
@@ -279,17 +269,7 @@ public class PlayerScript : MonoBehaviour
             {
                 animator.SetBool("isAvoidance", false);
             }
-            //////////////////////////////////////////////
 
-            if (transform.position.x > 0)
-            {
-                position_R = true;
-            }else
-            {
-                position_R = false;
-            }
-
-            
 
         }
         else
@@ -517,10 +497,7 @@ public class PlayerScript : MonoBehaviour
         return isDameged;
     }
 
-    public bool IsPotion()
-    {
-        return position_R;
-    }
+    
     public float Speed()
     {
         return MoveSpeed * Time.deltaTime;

@@ -1,12 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class ScaleOnce : MonoBehaviour
+public class ScaleRepeat : MonoBehaviour
 {
     public float scaleFactor = 1.5f; // Šg‘å”{—¦
     public float duration = 0.3f;   // Šg‘åEk¬‚É‚©‚©‚éŠÔ
     private Vector3 originalScale;
-    private bool hasScaled = false; // ‚·‚Å‚ÉŠg‘åk¬‚ªÀs‚³‚ê‚½‚©‚Ç‚¤‚©‚ğŠm”F‚·‚éƒtƒ‰ƒO
     private PlayerScript playerScriptScript;
     public GameObject playerScript;
 
@@ -18,7 +17,7 @@ public class ScaleOnce : MonoBehaviour
 
     void Update()
     {
-        if (playerScriptScript.IsHeal() == true && !hasScaled)
+        if (playerScriptScript.IsHeal()) 
         {
             StartCoroutine(ScaleObject());
         }
@@ -26,8 +25,6 @@ public class ScaleOnce : MonoBehaviour
 
     IEnumerator ScaleObject()
     {
-        hasScaled = true; // ˆê“xÀs‚µ‚½‚ç‚±‚êˆÈãŠg‘åk¬‚ğs‚í‚È‚¢‚æ‚¤‚É‚·‚é
-
         // Šg‘å
         yield return StartCoroutine(ScaleTo(originalScale * scaleFactor, duration));
         // k¬

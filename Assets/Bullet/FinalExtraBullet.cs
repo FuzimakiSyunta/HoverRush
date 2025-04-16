@@ -5,7 +5,7 @@ using UnityEngine;
 public class FinalExtraBullet : MonoBehaviour
 {
     public Rigidbody rb;
-    public float baseSpeedZ = 15.0f;
+    public float baseSpeedZ = 10.0f;
 
     void Start()
     {

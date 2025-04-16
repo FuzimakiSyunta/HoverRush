@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     private bool GameStartFlag = false;
     public int batteryEnargy = 0;//‹­‰»—p
     public int healBatteryEnargy = 0;//‰ñ•œ—p
-    private int healcount = 4;//‰ñ•œ‰ñ”
+    private int healcount = 5;//‰ñ•œ‰ñ”
 
     //WAVE
     public int Wave;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         Wave = 0;
         GamePlayCount = 0;
         SpeedParticle.SetActive(false);
-        healcount = 4;
+        healcount = 5;
     }
 
     // Update is called once per frame
@@ -110,13 +110,11 @@ public class GameManager : MonoBehaviour
             if (GamePlayCount>=18&&GamePlayCount <= 40)
             {
                 BossWaveFlag = true;
-                
             }
             if (GamePlayCount >= 40 && GamePlayCount < 60)
             {
                 BossWaveFlag = false;
                 Wave = 1;
-               
             }
             if (GamePlayCount >= 58 && GamePlayCount < 80)
             {
@@ -211,7 +209,7 @@ public class GameManager : MonoBehaviour
                 if (RandomEnemy >= Enemyranges[i][0] && RandomEnemy <= Enemyranges[i][1])
                 {
                     // CoolTime‚ªˆê’è’lˆÈã‚È‚ç“G‚ğ¶¬
-                    if (CoolTime[i] >= 0.5f)
+                    if (CoolTime[i] >= 0.5f&&Wave<3)
                     {
                         // UŒ‚‰Â”\‚È“G‚ğ¶¬
                         if (Style == 0 && Wave >= 1)
@@ -225,7 +223,7 @@ public class GameManager : MonoBehaviour
                         {
                             Instantiate(mineEnemy, MeteoPositions[i], Quaternion.identity); // è¦Î“G‚ğ¶¬
                         }
-                        // ‹@‘Ì‚Ì“G‚ğ¶¬
+                        // ‰ñ•œ‹@‘Ì‚Ì“G‚ğ¶¬
                         else if (Style == 2)
                         {
                             Instantiate(planeEnemy, positions[i], Quaternion.identity); // ‰©F“G‚ğ¶¬

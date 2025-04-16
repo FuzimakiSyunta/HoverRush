@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WAVETEXTScripti : MonoBehaviour
+public class WaveTextScript : MonoBehaviour
 {
     private GameObject gameManager;
     private GameManager gameManagerScript;

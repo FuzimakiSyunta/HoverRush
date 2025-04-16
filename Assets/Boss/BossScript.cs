@@ -21,7 +21,7 @@ public class BossScript : MonoBehaviour
     public GameObject FinalBossBarstbullet_R;
     public GameObject Lazer_L;
     public GameObject Lazer_R;
-    public GameObject BIGLAZER;
+    public GameObject FinalBossLazer;
     public bool isfadeLazer;
     public bool isLazerWave;
     public float LazerTime;
@@ -96,6 +96,7 @@ public class BossScript : MonoBehaviour
         animator.SetBool("isTransform", false);
         animator.SetBool("FinalWave", false);
         animator.SetBool("isFinalBullet", false);
+        animator.SetBool("isFinalBattle", false);
         bulletTimer = 0;
         MultibulletTimer = 0;
         StartTime = false;
@@ -103,10 +104,10 @@ public class BossScript : MonoBehaviour
         isLazerWave = false;
         Lazer_L.SetActive(false);
         Lazer_R.SetActive(false);
-        BIGLAZER.SetActive(false);
+        FinalBossLazer.SetActive(false);
         Robot.SetActive(false);
         BossAir.SetActive(true);
-        BIGLAZER.SetActive(false);
+        FinalBossLazer.SetActive(false);
         isDameged = false;
     }
 
@@ -138,7 +139,7 @@ public class BossScript : MonoBehaviour
             
             if (BossBattleTime > 20)
             {
-                BossWaveUpdate();
+                UpdateBossWaveState();
             }
 
             //posObject
@@ -492,14 +493,14 @@ public class BossScript : MonoBehaviour
         // 最終レーザー
         if (animator.GetBool("FinalWave") == true)
         {
-            BIGLAZER.SetActive(true);
+            FinalBossLazer.SetActive(true);
         }
         else
         {
-            BIGLAZER.SetActive(false);
+            FinalBossLazer.SetActive(false);
         }
 
-        // 最終爆弾ウェーブ
+        // 最終ウェーブ
         if (FinalbulletTimer == 0.0f)
         {
             Vector3 positionR = transform.position;
@@ -538,46 +539,19 @@ public class BossScript : MonoBehaviour
         }
     }
 
-    void BossWaveUpdate()//一対一のアニメーション
+    void UpdateBossWaveState()//一対一のアニメーション
     {
-        if (BossBattleTime > 20 && BossBattleTime <= 40)
-        {
-            animator.SetBool("isMove", true);
-        }
-        if (BossBattleTime >= 40 && BossBattleTime < 60)
-        {
-            animator.SetBool("isMove", false);
-        }
-        if (BossBattleTime >= 60 && BossBattleTime < 80)
-        {
-            animator.SetBool("isLazer", true);
-            isLazerWave = true;
-        }
-        if (BossBattleTime >= 80 && BossBattleTime < 100)
-        {
-            animator.SetBool("isLazer", false);
-            animator.SetBool("isTransform", true);
-            isLazerWave = false;
-        }
-        if (BossBattleTime >= 85 && BossBattleTime < 100)
-        {
-            animator.SetBool("isRobotStay", true);
-        }
-        if (BossBattleTime >= 100 && BossBattleTime < 103)
-        {
-            animator.SetBool("isAirTransform", true);
-            animator.SetBool("isRobotStay", false);
-        }
-        if (BossBattleTime >= 101)
-        {
-            animator.SetBool("FinalWave", true);
-        }
-        if (BossBattleTime >= 131)
-        {
-            animator.SetBool("FinalWave", false);
-            animator.SetBool("isMove", true);
-            animator.SetBool("isFinalBullet", true);
-        }
+        animator.SetBool("isMove", BossBattleTime > 20 && BossBattleTime <= 40 || BossBattleTime >= 131);
+        animator.SetBool("isLazer", BossBattleTime >= 60 && BossBattleTime < 80);
+        animator.SetBool("isTransform", BossBattleTime >= 80 && BossBattleTime < 100);
+        animator.SetBool("isRobotStay", BossBattleTime >= 85 && BossBattleTime < 100);
+        animator.SetBool("isAirTransform", BossBattleTime >= 100 && BossBattleTime < 103);
+        animator.SetBool("FinalWave", BossBattleTime >= 101 && BossBattleTime < 131);
+        animator.SetBool("isFinalBullet", BossBattleTime >= 131);
+        animator.SetBool("isFinalBattle", BossBattleTime >= 131);
+
+        isLazerWave = (BossBattleTime >= 60 && BossBattleTime < 80);
+
     }
 
 
