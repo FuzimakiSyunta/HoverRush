@@ -98,7 +98,7 @@ public class BrindScript : MonoBehaviour
             UpdateEnergyState(healBatteryEnergy);
 
             // エネルギーが最大に達している場合
-            if (healBatteryEnergy >= 9 && !hasHealOkImageBeenHidden)
+            if (healBatteryEnergy >= 9 && !hasHealOkImageBeenHidden&&gameManagerScript.IsGameOver()==false&&gameManagerScript.IsGameClear()==false)
             {
                 HealOkImage.SetActive(true);
                 StartCoroutine(HideHealOkImageAfterDelay(2.0f)); // 2秒後に非表示
