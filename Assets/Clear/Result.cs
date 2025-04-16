@@ -82,15 +82,15 @@ public class Result : MonoBehaviour
                 {
                     SS_rank.SetActive(true);
                 }
-                else if (gameTimerScript.GetElapsedTime() > 145 && gameTimerScript.GetElapsedTime() <= 140)
+                else if (gameTimerScript.GetElapsedTime() > 145 && gameTimerScript.GetElapsedTime() <= 150)
                 {
                     S_rank.SetActive(true);
                 }
-                else if (gameTimerScript.GetElapsedTime() > 140 && gameTimerScript.GetElapsedTime() <= 150)
+                else if (gameTimerScript.GetElapsedTime() > 150 && gameTimerScript.GetElapsedTime() <= 155)
                 {
                     A_rank.SetActive(true);
                 }
-                else if (gameTimerScript.GetElapsedTime() > 150)
+                else if (gameTimerScript.GetElapsedTime() > 155)
                 {
                     B_rank.SetActive(true);
                 }
