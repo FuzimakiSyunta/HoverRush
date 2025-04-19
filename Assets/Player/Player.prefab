@@ -5014,7 +5014,7 @@ MonoBehaviour:
   HPSlider: {fileID: 0}
   playerHP: 200
   hpSlider: {fileID: 0}
-  isDameged: 0
+  isDamaged: 0
   DamegeCoolTime: 0
   particle: {fileID: 4420587825053408745, guid: 270cae1eaeb14b74aa0d42cd47647778, type: 3}
   DamegeSound: {fileID: 8300000, guid: 526bb23ad0368a749be2520704ae9585, type: 3}

@@ -2,9 +2,9 @@
 
 public class PlayerShake : MonoBehaviour
 {
-    private float amplitude = 0.4f; // 振幅を小さく設定
-    private float frequency = 100f; // 周波数を高く設定
-    private float dampingFactor = 3.95f; // 減衰係数
+    private float amplitude = 0.05f; // 振幅を小さく設定
+    private float frequency = 200f; // 周波数を高く設定
+    private float dampingFactor = 5f; // 減衰係数
     private Vector3 shakeOffset = Vector3.zero; // 揺れのオフセットを保存
     private bool isShaking = false;
     private float shakeStartTime;
@@ -23,7 +23,7 @@ public class PlayerShake : MonoBehaviour
     void Update()
     {
         // ダメージを受けた際にシェイクを開始
-        if (!isShaking && playerScript.IsDamege() && playerScript.DamegeCoolTimer() <= 0.5f)
+        if (!isShaking && playerScript.IsDamage() && playerScript.DamegeCoolTimer() <= 0.5f)
         {
             StartShaking();
         }

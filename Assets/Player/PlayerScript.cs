@@ -51,7 +51,7 @@ public class PlayerScript : MonoBehaviour
     public int playerHP;// プレイヤーの最大HP
     private int MaxHp;// プレイヤーの現在のHP
     public Slider hpSlider;//HPバー（スライダー）
-    public bool isDameged = false;
+    public bool isDamaged = false;
     private bool isHeal=false;
     public float DamegeCoolTime;
 
@@ -89,7 +89,7 @@ public class PlayerScript : MonoBehaviour
         {
             bulletTimer[i] = 0.0f;
         }
-        isDameged = false;
+        isDamaged = false;
         HPSlider.SetActive(true);
         //回復
         isHeal = false;
@@ -98,7 +98,7 @@ public class PlayerScript : MonoBehaviour
 
     void Damaged()
     {
-        isDameged = true;
+        isDamaged = true;
         DamegeCoolTime = 0.0f;
         audioSource.PlayOneShot(DamegeSound);
         // パーティクルシステムのインスタンスを生成する。
@@ -116,6 +116,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // クールダウンタイマーを進行
+        if (DamegeCoolTime < 1.0f) // 1秒間のクールダウン
+        {
+            DamegeCoolTime += Time.deltaTime;
+        }
         // 時間依存の移動
         float move = MoveSpeed * Time.deltaTime;
         float boostmove = BoostMoveSpeed * Time.deltaTime;
@@ -176,14 +181,14 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (playerHP <= MaxHp)
                     {
-                        MaxHp = 120; // HPが最大値を超えないように固定
+                        MaxHp = 180; // HPが最大値を超えないように固定
                     }
                     else
                     {
-                        MaxHp += 120; // 通常の増加処理
-                        if (MaxHp > 120)
+                        MaxHp += 180; // 通常の増加処理
+                        if (MaxHp > 180)
                         {
-                            MaxHp = 120; // 120を超えた場合は120にリセット
+                            MaxHp = 180; // 120を超えた場合は120にリセット
                         }
                     }
 
@@ -414,51 +419,46 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (DamegeCoolTime >= 1f)
+
+        //雑魚の弾
+        if (other.gameObject.tag == "EnemyBullet")
         {
-            //雑魚の弾
-            if (other.gameObject.tag == "EnemyBullet")
-            {
-                MaxHp -= 10;
-                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            MaxHp -= 10;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
 
-            }
-
-            //BossBullet
-            if (other.gameObject.tag == "BossBullet")
-            {
-                MaxHp -= 20;
-                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-            }
-
-            //BossExtraBullet
-            if (other.gameObject.tag == "BossExtraBullet")
-            {
-                MaxHp -= 20;
-                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-            }
-
-            //ロボットの弾
-            if (other.gameObject.tag == "RobotBullet")
-            {
-                MaxHp -= 20;
-                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-            }
-
-
-            if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
-                || other.gameObject.tag == "RobotBullet"|| other.gameObject.tag == "FinalLazer"&&cameraMoveScript.IsAnimation()==false)
-            {
-                Damaged();
-            }
-            else
-            {
-                isDameged = false;
-
-            }
         }
-            
 
+        //BossBullet
+        if (other.gameObject.tag == "BossBullet")
+        {
+            MaxHp -= 20;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+
+        //BossExtraBullet
+        if (other.gameObject.tag == "BossExtraBullet")
+        {
+            MaxHp -= 20;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+
+        //ロボットの弾
+        if (other.gameObject.tag == "RobotBullet")
+        {
+            MaxHp -= 20;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        }
+
+
+        if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
+            || other.gameObject.tag == "RobotBullet" || other.gameObject.tag == "FinalLazer" && cameraMoveScript.IsAnimation() == false)
+        {
+            Damaged();
+        }
+        else
+        {
+            isDamaged = false;
+        }
     }
     void OnTriggerStay(Collider other)
     {
@@ -478,26 +478,23 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (DamegeCoolTime >= 1f)
+        
+        if (other.gameObject.tag == "Enemy")
         {
-            if (other.gameObject.tag == "Enemy")
-            {
-                MaxHp -= 5;
-                hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-                Damaged();
+            MaxHp -= 5;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            Damaged();
 
-            }
         }
             
         
     }
 
-    public bool IsDamege()
+    public bool IsDamage()
     {
-        return isDameged;
+        return isDamaged;
     }
 
-    
     public float Speed()
     {
         return MoveSpeed * Time.deltaTime;
@@ -519,5 +516,19 @@ public class PlayerScript : MonoBehaviour
     {
         MaxHp += 20;
         hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+    }
+
+    public bool IsPenetrationShotChenge()
+    {
+        return penetrationShotChenge;
+    }
+    public bool IsSingleShotChenge()
+    {
+        return singleShotChenge;
+    }
+
+    public bool IsLazerShotChenge()
+    {
+        return lazerShotChenge;
     }
 }
