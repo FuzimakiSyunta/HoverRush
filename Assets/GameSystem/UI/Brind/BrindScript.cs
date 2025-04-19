@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class BrindScript : MonoBehaviour
 {
-    // GameManager
     private GameManager gameManagerScript;
     public GameObject gameManager;
-
     //models
     private PlayerModels playerModelsScript;
     public GameObject playerModels;
@@ -18,7 +15,7 @@ public class BrindScript : MonoBehaviour
     public GameObject bossBullet;
     //public GameObject RobotBullet;
     //開始前UI
-    public GameObject StartTitleUi;
+    public GameObject TitleUi;
     //開始後UI
     public GameObject StartUi;
     //Energy
@@ -28,10 +25,9 @@ public class BrindScript : MonoBehaviour
     public GameObject EnergyMAX;
     //Selector
     public GameObject Selector;
-    //最初のタイトル
-    public GameObject TitleUi;
+    
     //ゲームオーバー
-    public GameObject GameOver;
+    public GameObject PushAGameOver;
     //設定ボタン
     public GameObject OptionButton;
     //パワーアップ
@@ -49,10 +45,10 @@ public class BrindScript : MonoBehaviour
         playerModelsScript = playerModels.GetComponent<PlayerModels>();
 
         // Initialize Elements
-        SetActiveForObjects(false, boss, bossBullet, StartUi, GameOver, OptionButton, AllEnergy);
+        SetActiveForObjects(false, boss, bossBullet, StartUi, PushAGameOver, OptionButton, AllEnergy);
         PowerUpImage.SetActive(false); // 個別に制御
         HealOkImage.SetActive(false); // 個別に制御
-        SetActiveForObjects(true, StartTitleUi);
+        SetActiveForObjects(true, TitleUi);
     }
 
     void Update()
@@ -62,16 +58,17 @@ public class BrindScript : MonoBehaviour
         {
             if (!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
             {
-                SetActiveForObjects(false, StartTitleUi, GameOver, PowerUpImage, HealOkImage);
+                SetActiveForObjects(false, TitleUi, PushAGameOver, PowerUpImage, HealOkImage);
                 SetActiveForObjects(true, boss, bossBullet, StartUi, OptionButton, AllEnergy);
                 HandleEnergyLevels();
-            }else
+            }
+            else
             {
                 Destroy(AllEnergy);
                 AllEnergy = null;
             }
 
-            if (gameManagerScript.GetHealBatteryEnargy() <= 2&& !gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
+            if (gameManagerScript.GetHealBatteryEnargy() <= 2 && !gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
             {
                 EnergyMIN.SetActive(false);
                 EnergyMID.SetActive(false);
@@ -98,7 +95,7 @@ public class BrindScript : MonoBehaviour
             UpdateEnergyState(healBatteryEnergy);
 
             // エネルギーが最大に達している場合
-            if (healBatteryEnergy >= 9 && !hasHealOkImageBeenHidden&&gameManagerScript.IsGameOver()==false&&gameManagerScript.IsGameClear()==false)
+            if (healBatteryEnergy >= 9 && !hasHealOkImageBeenHidden && gameManagerScript.IsGameOver() == false && gameManagerScript.IsGameClear() == false)
             {
                 HealOkImage.SetActive(true);
                 StartCoroutine(HideHealOkImageAfterDelay(2.0f)); // 2秒後に非表示
@@ -118,17 +115,17 @@ public class BrindScript : MonoBehaviour
 
     void UpdateEnergyState(int healBatteryEnergy)
     {
-        if(!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
+        if (!gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
         {
             // エネルギーUIの状態を管理
             EnergyMIN.SetActive(healBatteryEnergy >= 3);
             EnergyMID.SetActive(healBatteryEnergy >= 6);
             EnergyMAX.SetActive(healBatteryEnergy >= 9);
         }
-        
+
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
+
 
 
     private void HandleGameOver()
@@ -136,10 +133,10 @@ public class BrindScript : MonoBehaviour
         if (gameManagerScript.IsGameOver())
         {
             // GameOver画面を表示
-            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage,HealOkImage);
-            SetActiveForObjects(true, GameOver);
+            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX, PowerUpImage, HealOkImage);
+            SetActiveForObjects(true, PushAGameOver);
 
-            
+
         }
     }
 
@@ -148,7 +145,7 @@ public class BrindScript : MonoBehaviour
         if (gameManagerScript.IsGameClear())
         {
             // GameClear画面を表示
-            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX,PowerUpImage, HealOkImage);
+            SetActiveForObjects(false, boss, bossBullet, StartUi, EnergyMIN, EnergyMID, EnergyMAX, PowerUpImage, HealOkImage);
 
         }
     }
@@ -171,11 +168,11 @@ public class BrindScript : MonoBehaviour
     {
         if (gameManagerScript.IsGameStart())
         {
-            
+
             //自機タイプ単発時
             if (playerModelsScript.IsIndex() == 0)
             {
-                
+
                 if (gameManagerScript.GetBatteryEnargy() >= 25 && !hasPowerUpImageBeenHidden)
                 {
 
@@ -185,11 +182,11 @@ public class BrindScript : MonoBehaviour
 
                 }
             }
-            
+
             //自機タイプレーザー時
             if (playerModelsScript.IsIndex() == 1)
             {
-                
+
                 if (gameManagerScript.GetBatteryEnargy() >= 20 && !hasPowerUpImageBeenHidden)
                 {
 
@@ -203,7 +200,7 @@ public class BrindScript : MonoBehaviour
             //自機タイプ貫通弾時
             if (playerModelsScript.IsIndex() == 2)
             {
-               
+
                 if (gameManagerScript.GetBatteryEnargy() >= 30 && !hasPowerUpImageBeenHidden)
                 {
 
@@ -225,6 +222,4 @@ public class BrindScript : MonoBehaviour
             if (obj != null) obj.SetActive(state);
         }
     }
-
-    
 }
