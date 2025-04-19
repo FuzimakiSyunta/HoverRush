@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeteoriteEnemySpeed : MonoBehaviour
 {
-    private float MeteoriteSpeedY = 5.0f;
+   
     private float MeteoriteSpeedZ = 20.0f;
 
     //private float MeteoriteSpeedY = 0.015f;
@@ -18,20 +18,16 @@ public class MeteoriteEnemySpeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ŽžŠÔˆË‘¶‚ÌˆÚ“®
-        float moveY = MeteoriteSpeedY * Time.deltaTime;
+        
         float moveZ = MeteoriteSpeedZ * Time.deltaTime;
 
         //ˆÚ“®
         Vector3 position = transform.position;
 
-        transform.position -= new Vector3(0, moveY, moveZ);
+        transform.position -= new Vector3(0, 0, moveZ);
     }
 
-    public float SpeedY()
-    {
-        return MeteoriteSpeedY * Time.deltaTime;
-    }
+    
     public float SpeedZ()
     {
         return MeteoriteSpeedZ * Time.deltaTime;

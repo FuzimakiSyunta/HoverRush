@@ -48,15 +48,14 @@ MonoBehaviour:
   playerModels: {fileID: 0}
   boss: {fileID: 0}
   bossBullet: {fileID: 389623457992006024, guid: 362ef3d617463dc4cbbd0a9266f0490c, type: 3}
-  StartTitleUi: {fileID: 0}
+  TitleUi: {fileID: 0}
   StartUi: {fileID: 0}
   AllEnergy: {fileID: 0}
   EnergyMIN: {fileID: 0}
   EnergyMID: {fileID: 0}
   EnergyMAX: {fileID: 0}
   Selector: {fileID: 0}
-  TitleUi: {fileID: 0}
-  GameOver: {fileID: 0}
+  PushAGameOver: {fileID: 0}
   OptionButton: {fileID: 0}
   PowerUpImage: {fileID: 0}
   HealOkImage: {fileID: 0}

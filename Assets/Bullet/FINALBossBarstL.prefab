@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6546061714927818172}
   - component: {fileID: 2327427753219100532}
   - component: {fileID: 5729095766109722887}
-  - component: {fileID: 6948350219150745100}
+  - component: {fileID: 6376109212983664306}
   m_Layer: 0
   m_Name: FINALBossBarstL
   m_TagString: BossExtraBullet
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 10}
+  m_LocalScale: {x: 0.4078, y: 0.4078, z: 4.078}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -132,9 +132,9 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6948350219150745100
+--- !u!114 &6376109212983664306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,8 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 679023749104929143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf9970855368a04e96932f64155d168, type: 3}
+  m_Script: {fileID: 11500000, guid: 15a9759b08a78294d9cdf94f526a2960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5729095766109722887}
-  baseSpeedZ: 15
+  lifeTime: 5

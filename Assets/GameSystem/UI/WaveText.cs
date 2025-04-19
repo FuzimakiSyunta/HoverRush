@@ -1,126 +1,46 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class WaveTextScript : MonoBehaviour
 {
-    private GameObject gameManager;
     private GameManager gameManagerScript;
-    //IMAGE
-    public GameObject WAVEText0;
-    public GameObject WAVEText1;
-    public GameObject WAVEText2;
-    public GameObject WAVEText3;
-    public GameObject WAVEText4;
-    public GameObject WAVEText5;
-    //WAVE
-    private float WaveImageActiveTime;
-   
-    // Start is called before the first frame update
+
+    // WAVEごとのテキスト表示オブジェクト（Inspectorで設定）
+    public GameObject[] waveTexts = new GameObject[6];
+
+    // 各WAVEの表示済みフラグ（1回だけ表示するため）
+    private bool[] waveShownFlags = new bool[6];
+
     void Start()
     {
-        gameManager = GameObject.Find("GameManager");
-        gameManagerScript = gameManager.GetComponent<GameManager>();
-        WaveImageActiveTime = 0;
-        WAVEText0.SetActive(false);
-        WAVEText1.SetActive(false);
-        WAVEText2.SetActive(false);
-        WAVEText3.SetActive(false);
-        WAVEText4.SetActive(false);
-        WAVEText5.SetActive(false);
+        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        // 初期化（すべて未表示）
+        for (int i = 0; i < waveTexts.Length; i++)
+        {
+            waveTexts[i].SetActive(false);
+            waveShownFlags[i] = false;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //テキスト
-        if (gameManagerScript.IsGameStart() == true)
+        if (!gameManagerScript.IsGameStart()) return;
+
+        int currentWave = gameManagerScript.IsWave();
+
+        if (currentWave < waveShownFlags.Length && !waveShownFlags[currentWave])
         {
-            WaveImageActiveTime += Time.deltaTime;
-            if (gameManagerScript.IsGamePlayCount() < 20)
-            {
-                if(WaveImageActiveTime <= 3)
-                {
-                    WAVEText0.SetActive(true);
-                    WAVEText1.SetActive(false);
-                    WAVEText2.SetActive(false);
-                    WAVEText3.SetActive(false);
-                    WAVEText4.SetActive(false);
-                    WAVEText5.SetActive(false);
-                }
-                
-            }
-            if (gameManagerScript.IsGamePlayCount() > 20 && gameManagerScript.IsGamePlayCount() <= 40)
-            {
-                if (WaveImageActiveTime <= 23)
-                {
-                    WAVEText0.SetActive(false);
-                    WAVEText1.SetActive(true);
-                    WAVEText2.SetActive(false);
-                    WAVEText3.SetActive(false);
-                    WAVEText4.SetActive(false);
-                    WAVEText5.SetActive(false);
-                }
-            }
-            if (gameManagerScript.IsGamePlayCount() >= 40 && gameManagerScript.IsGamePlayCount() < 60)
-            {
-                if (WaveImageActiveTime <= 43)
-                {
-                    WAVEText0.SetActive(false);
-                    WAVEText1.SetActive(false);
-                    WAVEText2.SetActive(true);
-                    WAVEText3.SetActive(false);
-                    WAVEText4.SetActive(false);
-                    WAVEText5.SetActive(false);
-                }
-            }
-            if (gameManagerScript.IsGamePlayCount() >= 60 && gameManagerScript.IsGamePlayCount() < 80)
-            {
-                if (WaveImageActiveTime <= 63)
-                {
-                    WAVEText0.SetActive(false);
-                    WAVEText1.SetActive(false);
-                    WAVEText2.SetActive(false);
-                    WAVEText3.SetActive(true);
-                    WAVEText4.SetActive(false);
-                    WAVEText5.SetActive(false);
-                }
-            }
-            if (gameManagerScript.IsGamePlayCount() >= 80 && gameManagerScript.IsGamePlayCount() < 100)
-            {
-                if (WaveImageActiveTime <= 83)
-                {
-                    WAVEText0.SetActive(false);
-                    WAVEText1.SetActive(false);
-                    WAVEText2.SetActive(false);
-                    WAVEText3.SetActive(false);
-                    WAVEText4.SetActive(true);
-                    WAVEText5.SetActive(false);
-                }
-            }
-            if (gameManagerScript.IsGamePlayCount() >= 100)
-            {
-                if (WaveImageActiveTime <= 103)
-                {
-                    WAVEText0.SetActive(false);
-                    WAVEText1.SetActive(false);
-                    WAVEText2.SetActive(false);
-                    WAVEText3.SetActive(false);
-                    WAVEText4.SetActive(false);
-                    WAVEText5.SetActive(true);
-                }
-            }
+            StartCoroutine(ShowWaveText(currentWave));
+            waveShownFlags[currentWave] = true;
         }
-        else
-        {
-            //WAVEText
-            WAVEText0.SetActive(false);
-            WAVEText1.SetActive(false);
-            WAVEText2.SetActive(false);
-            WAVEText3.SetActive(false);
-            WAVEText4.SetActive(false);
-            WAVEText5.SetActive(false);
-        }
+    }
+
+    // テキストを2秒だけ表示して消す
+    private IEnumerator ShowWaveText(int waveIndex)
+    {
+        waveTexts[waveIndex].SetActive(true);
+        yield return new WaitForSeconds(2f);
+        waveTexts[waveIndex].SetActive(false);
     }
 }

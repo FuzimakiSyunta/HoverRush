@@ -6,23 +6,31 @@ public class CameraScript : MonoBehaviour
 {
     public Camera mainCamera;
     public Camera subCamera;
+   
     //select
     private SelectorMenu selectorMenuScript;
     public GameObject selectMenu;
+    //Player
+    private PlayerScript playerScriptScript;
+    public GameObject playerScript;
+    //gamemanager
+    private GameManager gameManagerScript;
+    public GameObject gameManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         selectorMenuScript = selectMenu.GetComponent<SelectorMenu>();
+        playerScriptScript = playerScript.GetComponent<PlayerScript>();
+        //gamemanager
+        gameManagerScript = gameManager.GetComponent<GameManager>();
         mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (mainCamera != null && subCamera != null && selectorMenuScript != null)
         {
-            if (selectorMenuScript.IsStartButtonFlag() == true)
+            if (selectorMenuScript.IsStartButtonFlag())
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
                 {
@@ -30,12 +38,16 @@ public class CameraScript : MonoBehaviour
                 }
             }
         }
+
+       
     }
 
     private IEnumerator SwitchCameraAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        mainCamera.enabled = false;//タイトル用カメラ
-        subCamera.enabled = true;//ゲーム用カメラ
+        mainCamera.enabled = false; //タイトル用カメラ
+        subCamera.enabled = true; //ゲーム用カメラ
     }
+
+   
 }
