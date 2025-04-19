@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 2121119799074658664}
   - component: {fileID: 1602627419847961859}
   m_Layer: 0
-  m_Name: hevyEnemy
+  m_Name: CarEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
