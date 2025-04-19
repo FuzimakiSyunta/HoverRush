@@ -237,4 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   subCamera: {fileID: 4449856355073619743}
+  poworUpCamera: {fileID: 0}
   selectMenu: {fileID: 0}
+  playerScript: {fileID: 0}
+  gameManager: {fileID: 0}

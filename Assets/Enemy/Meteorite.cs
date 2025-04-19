@@ -10,6 +10,7 @@ public class Meteorite : MonoBehaviour
         
     }
 
+
     // Update is called once per frame
     void Update()
     {
