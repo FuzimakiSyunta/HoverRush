@@ -51,7 +51,7 @@ public class PlayerScript : MonoBehaviour
     public int playerHP;// プレイヤーの最大HP
     private int MaxHp;// プレイヤーの現在のHP
     public Slider hpSlider;//HPバー（スライダー）
-    public bool isDameged = false;
+    public bool isDamaged = false;
     private bool isHeal=false;
     public float DamegeCoolTime;
 
@@ -89,7 +89,7 @@ public class PlayerScript : MonoBehaviour
         {
             bulletTimer[i] = 0.0f;
         }
-        isDameged = false;
+        isDamaged = false;
         HPSlider.SetActive(true);
         //回復
         isHeal = false;
@@ -98,7 +98,7 @@ public class PlayerScript : MonoBehaviour
 
     void Damaged()
     {
-        isDameged = true;
+        isDamaged = true;
         DamegeCoolTime = 0.0f;
         audioSource.PlayOneShot(DamegeSound);
         // パーティクルシステムのインスタンスを生成する。
@@ -176,14 +176,14 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (playerHP <= MaxHp)
                     {
-                        MaxHp = 120; // HPが最大値を超えないように固定
+                        MaxHp = 180; // HPが最大値を超えないように固定
                     }
                     else
                     {
-                        MaxHp += 120; // 通常の増加処理
-                        if (MaxHp > 120)
+                        MaxHp += 180; // 通常の増加処理
+                        if (MaxHp > 180)
                         {
-                            MaxHp = 120; // 120を超えた場合は120にリセット
+                            MaxHp = 180; // 120を超えた場合は120にリセット
                         }
                     }
 
@@ -453,8 +453,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                isDameged = false;
-
+                isDamaged = false;
             }
         }
             
@@ -492,12 +491,11 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    public bool IsDamege()
+    public bool IsDamage()
     {
-        return isDameged;
+        return isDamaged;
     }
 
-    
     public float Speed()
     {
         return MoveSpeed * Time.deltaTime;
@@ -519,5 +517,19 @@ public class PlayerScript : MonoBehaviour
     {
         MaxHp += 20;
         hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+    }
+
+    public bool IsPenetrationShotChenge()
+    {
+        return penetrationShotChenge;
+    }
+    public bool IsSingleShotChenge()
+    {
+        return singleShotChenge;
+    }
+
+    public bool IsLazerShotChenge()
+    {
+        return lazerShotChenge;
     }
 }

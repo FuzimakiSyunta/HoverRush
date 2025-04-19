@@ -51,12 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b667247b10e6c4cbba7aeef1f0a8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2322298690624262891, guid: 818ef5a4190293c44b81ddf80065c947, type: 3}
-  mineEnemy: {fileID: 2898809129046960840, guid: 78d2b3a0e7a4720498be48b1c79c6b40, type: 3}
-  planeEnemy: {fileID: 1207510094245498474, guid: 92b80e1efdaa7ed48ae02df10a8201ff, type: 3}
-  hevyplaneEnemy: {fileID: 1207510094245498474, guid: 38b4762567caea8479517e2d27bd6f44, type: 3}
-  blueplaneEnemy: {fileID: 1207510094245498474, guid: 74cce6823e8377641a762786c6fb5914, type: 3}
-  player: {fileID: 0}
   UI: {fileID: 0}
   gameOverText: {fileID: 0}
   gameClearText: {fileID: 0}

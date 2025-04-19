@@ -33,10 +33,10 @@ public class BossScript : MonoBehaviour
     public float BossBattleTime = 0;
     private float MultiBulletCoolTime = 0;
     private float BulletCoolTime = 0;
-    private float LazerBulletCoolTime = 0;
     private float LazerdamegeCoolTime = 0;
     private float Lazer_RdamegeCoolTime = 0;
     private float Lazer_LdamegeCoolTime = 0;
+    private bool isDrop;
 
     //Bossのステータス
     public int bossHP;// ボスの最大HP
@@ -109,6 +109,7 @@ public class BossScript : MonoBehaviour
         BossAir.SetActive(true);
         FinalBossLazer.SetActive(false);
         isDameged = false;
+        isDrop = false;
     }
 
     // Update is called once per frame
@@ -442,7 +443,7 @@ public class BossScript : MonoBehaviour
             BulletCoolTime += Time.deltaTime; // 時間で加算
             if (animator.GetBool("isMove") == true && animator.GetBool("isFinalBullet") == false)
             {
-                if (BulletCoolTime >= 2f) // 60フレームの代わりに秒数で設定
+                if (BulletCoolTime >= 2.5f)
                 {
                     Instantiate(BossBarstbullet_R, positionR, Quaternion.identity);
                     Instantiate(BossBarstbullet_L, positionL, Quaternion.identity);
@@ -453,7 +454,7 @@ public class BossScript : MonoBehaviour
         else
         {
             bulletTimer += Time.deltaTime; // 時間で加算
-            if (bulletTimer > 1.5f) // 30フレームの代わりに秒数で設定
+            if (bulletTimer > 2.5f) // 
             {
                 bulletTimer = 0.0f;
             }
@@ -463,32 +464,14 @@ public class BossScript : MonoBehaviour
         // レーザーウェーブ
         if (animator.GetBool("isLazer") == true)
         {
-            LazerTime += Time.deltaTime; // 時間で加算
-            LazerBulletCoolTime += Time.deltaTime; // 時間で加算
-            if (LazerBulletCoolTime >= 1.0f) // 60フレームの代わりに秒数で設定
-            {
-                if (LazerTime <= 1.0f)
-                {
-                    Lazer_L.SetActive(true);
-                    Lazer_R.SetActive(false);
-                }
-                if (LazerTime <= 2.5f && LazerTime > 1.5f)
-                {
-                    Lazer_L.SetActive(false);
-                    Lazer_R.SetActive(true);
-                }
-                if (LazerTime <= 4.0f && LazerTime > 3.0f)
-                {
-                    LazerTime = 0.0f;
-                }
-            }
-        }
-        else
+            Lazer_L.SetActive(true);
+            Lazer_R.SetActive(true);
+        }else
         {
             Lazer_L.SetActive(false);
             Lazer_R.SetActive(false);
-            LazerBulletCoolTime = 0.0f;
         }
+
 
         // 最終レーザー
         if (animator.GetBool("FinalWave") == true)
@@ -525,6 +508,16 @@ public class BossScript : MonoBehaviour
             }
             MultiBulletCoolTime = 0.0f;
         }
+
+        //最終battle
+        if (animator.GetBool("isFinalBattle") == true)
+        {
+            isDrop = true;
+        }else
+        {
+            isDrop = false;
+        }
+
 
         // ロボット状態の切り替え
         if (animator.GetBool("isRobotStay") == true)
@@ -574,5 +567,9 @@ public class BossScript : MonoBehaviour
     {
         NowHP += 800;
         hpSlider.value = (float)NowHP / (float)bossHP; // HPスライダーを更新
+    }
+    public bool IsDrop()
+    {
+        return isDrop;
     }
 }

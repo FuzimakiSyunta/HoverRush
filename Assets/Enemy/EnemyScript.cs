@@ -23,9 +23,6 @@ public class EnemyScript : MonoBehaviour
     public AudioClip DamegeSound;
     private AudioSource audioSource;
 
-    //private float MoveSpeed = 0.05f;
-    //private float BackmoveSpeed = -0.15f;
-
     // Start is called before the first frame update
     void Start()
     {

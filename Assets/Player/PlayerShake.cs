@@ -23,7 +23,7 @@ public class PlayerShake : MonoBehaviour
     void Update()
     {
         // ダメージを受けた際にシェイクを開始
-        if (!isShaking && playerScript.IsDamege() && playerScript.DamegeCoolTimer() <= 0.5f)
+        if (!isShaking && playerScript.IsDamage() && playerScript.DamegeCoolTimer() <= 0.5f)
         {
             StartShaking();
         }
