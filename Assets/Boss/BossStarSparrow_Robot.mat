@@ -13,7 +13,6 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _EMISSION
-  - _METALLICGLOSSMAP
   - _NORMALMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -43,15 +42,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: c600825b725b90d44b2f76af56090d44, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: -0.6, y: 1.18}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: dcd3f45167fe81e4d9f9c4816eaa0321, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9807182e5591a1d40a07d0fc55202c06, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: -0.6, y: 1.18}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 9c6df97ed7064654ea974c842c85ea3d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -69,7 +68,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.533
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -82,5 +81,5 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 0.0662046, g: 0, b: 0.004154013, a: 1}
+    - _EmissionColor: {r: 8.562676, g: 2.5141325, b: 18.379171, a: 1}
   m_BuildTextureStacks: []

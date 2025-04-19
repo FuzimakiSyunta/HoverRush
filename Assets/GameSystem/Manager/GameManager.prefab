@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 2615606037981549832}
   - component: {fileID: 1515427275701569699}
   - component: {fileID: 4923610619253180882}
-  - component: {fileID: 4523889030188054064}
-  - component: {fileID: 5979125558077259600}
   - component: {fileID: 1688728811201986921}
   - component: {fileID: 2005419534603504357}
   m_Layer: 0
@@ -51,12 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b667247b10e6c4cbba7aeef1f0a8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2322298690624262891, guid: 818ef5a4190293c44b81ddf80065c947, type: 3}
-  mineEnemy: {fileID: 2898809129046960840, guid: 78d2b3a0e7a4720498be48b1c79c6b40, type: 3}
-  planeEnemy: {fileID: 1207510094245498474, guid: 92b80e1efdaa7ed48ae02df10a8201ff, type: 3}
-  hevyplaneEnemy: {fileID: 1207510094245498474, guid: 38b4762567caea8479517e2d27bd6f44, type: 3}
-  blueplaneEnemy: {fileID: 1207510094245498474, guid: 74cce6823e8377641a762786c6fb5914, type: 3}
-  player: {fileID: 0}
   UI: {fileID: 0}
   gameOverText: {fileID: 0}
   gameClearText: {fileID: 0}
@@ -120,47 +112,6 @@ MonoBehaviour:
   LuleUiImage: {fileID: 0}
   LTRTImage: {fileID: 0}
   SpecImage: {fileID: 0}
---- !u!114 &4523889030188054064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7291093457700589311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b807d33461cca48bd12cad00fa1980, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WAVEText0: {fileID: 0}
-  WAVEText1: {fileID: 0}
-  WAVEText2: {fileID: 0}
-  WAVEText3: {fileID: 0}
-  WAVEText4: {fileID: 0}
-  WAVEText5: {fileID: 0}
---- !u!114 &5979125558077259600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7291093457700589311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c5b012db302b654e8e0a50d39b3a62a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cubes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  uiImage: {fileID: 0}
-  images:
-  - {fileID: 21300000, guid: 7463c601aaf75954f8375ca9e0c9054d, type: 3}
-  - {fileID: 21300000, guid: 8a5615923c7add0439740a1f66a13dca, type: 3}
-  - {fileID: 21300000, guid: 4759e11617bcfc54696495357c28090f, type: 3}
-  selectMenu: {fileID: 7291093457700589311}
-  gameManager: {fileID: 7291093457700589311}
 --- !u!114 &1688728811201986921
 MonoBehaviour:
   m_ObjectHideFlags: 0
