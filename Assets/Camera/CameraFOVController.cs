@@ -9,7 +9,7 @@ public class CameraFOVController : MonoBehaviour
     public GameObject gameManager;
 
     public Camera targetCamera; // ‘€ì‚µ‚½‚¢ƒJƒƒ‰
-    private float targetFOV = 85.0f; // İ’è‚µ‚½‚¢‹–ìŠp
+    private float targetFOV = 90.0f; // İ’è‚µ‚½‚¢‹–ìŠp
     private float changeSpeed = 0.5f; // ‹–ìŠp‚Ì•Ï‰»‘¬“x
 
     private void Start()
