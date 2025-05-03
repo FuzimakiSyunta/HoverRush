@@ -146,8 +146,8 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                bulletTimer[0]++;
-                if (bulletTimer[0] > 90.0f)
+                bulletTimer[0]+= Time.deltaTime;
+                if (bulletTimer[0] > 2.0f)
                 {
                     bulletTimer[0] = 0.0f;
                 }

@@ -13,7 +13,7 @@ public class EnemySpawnManager : MonoBehaviour
     public GameObject meteoriteEnemy;
     public GameObject healPlaneEnemy;
     public GameObject hoverCarEnemy;
-    public GameObject powerCarEnemy;
+    public GameObject FinalAttackPlaneEnemy;
 
     //敵出現
     private int currentPatternIndex = 0;
@@ -46,7 +46,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         if (gameManagerScript.IsGameOver() || gameManagerScript.IsGameClear()) return;
 
-        if (gameManagerScript.IsGameStart()&&gameManagerScript.IsWave()<=2)
+        if (gameManagerScript.IsGameStart()&&gameManagerScript.IsWave()<=3)
         {
             // WAVEの値に応じてスポーンクールタイムを変更
             int currentWave = gameManagerScript.IsWave();
@@ -75,7 +75,7 @@ public class EnemySpawnManager : MonoBehaviour
                 List<GameObject> enemyTypes = new List<GameObject> { attackEnemy, meteoriteEnemy, healPlaneEnemy };
 
                 if (gameManagerScript.IsWave() >= 2) enemyTypes.Add(hoverCarEnemy);
-                if (gameManagerScript.IsWave() >= 3) enemyTypes.Add(powerCarEnemy);
+                if (gameManagerScript.IsWave() >= 3) enemyTypes.Add(FinalAttackPlaneEnemy);
 
                 // ランダムな種類の敵を出現
                 foreach (var pos in enemyPatterns[currentPatternIndex])
@@ -92,6 +92,11 @@ public class EnemySpawnManager : MonoBehaviour
                     if (enemyTypes[randomEnemyIndex] == meteoriteEnemy)
                     {
                         newEnemy.transform.position = new Vector3(pos.x, 3.0f, pos.z);
+                    }
+                    // `powerCarEnemy` のみ y 座標を 3 に変更
+                    if (enemyTypes[randomEnemyIndex] == FinalAttackPlaneEnemy)
+                    {
+                        newEnemy.transform.position = new Vector3(pos.x, 5.5f, pos.z);
                     }
                 }
             }
