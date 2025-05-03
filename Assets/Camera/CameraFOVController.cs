@@ -9,7 +9,7 @@ public class CameraFOVController : MonoBehaviour
     public GameObject gameManager;
 
     public Camera targetCamera; // ‘€ì‚µ‚½‚¢ƒJƒƒ‰
-    private float targetFOV = 85.0f; // İ’è‚µ‚½‚¢‹–ìŠp
+    private float targetFOV = 90.0f; // İ’è‚µ‚½‚¢‹–ìŠp
     private float changeSpeed = 0.5f; // ‹–ìŠp‚Ì•Ï‰»‘¬“x
 
     private void Start()
@@ -32,13 +32,13 @@ public class CameraFOVController : MonoBehaviour
     public void IncreaseFOV(float amount)
     {
         targetFOV += amount; // FOV‚ğ‘‰Á
-        targetFOV = Mathf.Clamp(targetFOV, 30.0f, 85.0f); // FOV‚Ì”ÍˆÍ‚ğ§ŒÀ
+        targetFOV = Mathf.Clamp(targetFOV, 30.0f, 90.0f); // FOV‚Ì”ÍˆÍ‚ğ§ŒÀ
     }
 
     // ‹–ìŠp‚ğ‹·‚ß‚éƒƒ\ƒbƒh
     public void DecreaseFOV(float amount)
     {
         targetFOV -= amount; // FOV‚ğŒ¸­
-        targetFOV = Mathf.Clamp(targetFOV, 30.0f, 85.0f); // FOV‚Ì”ÍˆÍ‚ğ§ŒÀ
+        targetFOV = Mathf.Clamp(targetFOV, 30.0f, 90.0f); // FOV‚Ì”ÍˆÍ‚ğ§ŒÀ
     }
 }

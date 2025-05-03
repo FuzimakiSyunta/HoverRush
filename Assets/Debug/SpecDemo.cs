@@ -29,7 +29,7 @@ public class SpecDemo : MonoBehaviour
             gameManagerScript.BatteryEnargyUp();//スコア上昇
         }
 
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKey(KeyCode.N))
         {
             bossScript.BossWaveTime();//ボス戦時間操作
         }
@@ -44,7 +44,7 @@ public class SpecDemo : MonoBehaviour
             playerScript.DownHp();//PlayerHp減少
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             playerScript.UpHp();//PlayerHp増加
         }

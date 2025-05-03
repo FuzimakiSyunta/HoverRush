@@ -52,7 +52,7 @@ MonoBehaviour:
   Enemybullet: {fileID: 3732666458205294365, guid: 3ad2e16555e940043898b10fea281d0c, type: 3}
   enemyHP: 400
   hpSlider: {fileID: 590065527923438734}
-  particle: {fileID: 2348913428714998996, guid: d5953e189f435d04aa1876359d94fb15, type: 3}
+  particle: {fileID: 4420587825053408745, guid: 9ab10a84cc1ce49419cda86e7ba4bc2e, type: 3}
   sliderBool: 0
   DamegeSound: {fileID: 8300000, guid: 56f911e18ddcdad4fa799e3aa1baf94f, type: 3}
 --- !u!65 &5619656269080463713
@@ -74,8 +74,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.99, y: 12.17, z: 12.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8.99, y: 16.8, z: 12.5}
+  m_Center: {x: 0, y: -1.9, z: 0}
 --- !u!54 &-199090207822312409
 Rigidbody:
   m_ObjectHideFlags: 0

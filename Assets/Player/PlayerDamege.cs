@@ -4,64 +4,110 @@ using UnityEngine.UI;
 
 public class PlayerDamage : MonoBehaviour
 {
-    public GameObject player; // プレイヤーオブジェクト
-    private PlayerScript playerScript; // プレイヤースクリプト参照
-    public GameObject pausesystem; // PauseSystemオブジェクト
-    private PauseSystem pauseSystemScript; // PauseSystemのスクリプト
+    public GameObject player;
+    private PlayerScript playerScript;
 
-    public RawImage damageImage; // ダメージエフェクト用の画像（赤色）
+    public GameObject pausesystem;
+    private PauseSystem pauseSystemScript;
+
+    public RawImage damageImage;
+
+    private Coroutine fadeCoroutine = null;
+    private Coroutine blinkCoroutine = null;
 
     void Start()
     {
         playerScript = player.GetComponent<PlayerScript>();
-        pauseSystemScript = pausesystem.GetComponent<PauseSystem>(); // PauseSystemのスクリプトを取得
-        damageImage.color = new Color(1f, 0f, 0f, 0f); // 最初は透明
+        pauseSystemScript = pausesystem.GetComponent<PauseSystem>();
+        damageImage.color = new Color(1f, 0f, 0f, 0f);
     }
 
     void Update()
     {
-        if (playerScript.IsDamage()) // ダメージ発生時
+        // tookDamageフラグが立っていたら毎回演出を行う
+        if (playerScript.IsTookDamage())
         {
-            StartCoroutine(FadeOutDamageImage()); // フェードアウト処理を開始
-            StartCoroutine(HitStopEffect()); // ヒットストップ処理を開始
+            // 前のフェード演出があれば止める
+            if (fadeCoroutine != null)
+            {
+                StopCoroutine(fadeCoroutine);
+                fadeCoroutine = null;
+            }
+
+            StartCoroutine(HandleDamageEffect());
+
+            // フラグリセット（PlayerScript側に実装が必要）
+            playerScript.ResetDamageFlag();
+        }
+
+        // レーザー接触時の点滅演出
+        if (playerScript.IsTouchingLaser())
+        {
+            if (blinkCoroutine == null)
+            {
+                blinkCoroutine = StartCoroutine(BlinkDamageImage());
+            }
+        }
+        else
+        {
+            if (blinkCoroutine != null)
+            {
+                StopCoroutine(blinkCoroutine);
+                blinkCoroutine = null;
+                damageImage.color = new Color(1f, 0f, 0f, 0f); // 元に戻す
+            }
         }
     }
 
-    // ダメージ画像をフェードアウトさせる処理
+    IEnumerator HandleDamageEffect()
+    {
+        // 即赤くする
+        damageImage.color = new Color(1f, 0f, 0f, 0.5f);
+
+        fadeCoroutine = StartCoroutine(FadeOutDamageImage());
+        StartCoroutine(HitStopEffect());
+        yield return null;
+    }
+
     IEnumerator FadeOutDamageImage()
     {
-        damageImage.color = new Color(1f, 0f, 0f, 0.5f); // 赤い画像を表示
-
-        float duration = 1f; // フェードアウトにかかる時間
+        float duration = 0.5f;
         float elapsed = 0f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float alpha = Mathf.Lerp(0.5f, 0f, elapsed / duration); // Alpha値を徐々に減少
-            damageImage.color = new Color(1f, 0f, 0f, alpha); // 赤色を維持しながら透明度を変更
-            yield return null; // フレームごとに待機
+            float alpha = Mathf.Lerp(0.5f, 0f, elapsed / duration);
+            damageImage.color = new Color(1f, 0f, 0f, alpha);
+            yield return null;
         }
 
-        // 完全に透明に設定
         damageImage.color = new Color(1f, 0f, 0f, 0f);
+        fadeCoroutine = null;
     }
 
-    // ヒットストップ処理
     IEnumerator HitStopEffect()
     {
         if (!pauseSystemScript.IsPaused())
         {
-            Time.timeScale = 0.1f; // 一瞬だけスロー
-            yield return new WaitForSecondsRealtime(0.25f); // 0.25秒リアルタイムで待機
-            // ゲームスピードを元に戻す
+            Time.timeScale = 0.1f;
+            yield return new WaitForSecondsRealtime(0.25f);
             Time.timeScale = 1f;
         }
         else
         {
-            // ポーズ中は時間を元に戻さない
             Time.timeScale = 0f;
+        }
+    }
 
+    IEnumerator BlinkDamageImage()
+    {
+        while (true)
+        {
+            damageImage.color = new Color(1f, 0f, 0f, 0.5f);
+            yield return new WaitForSeconds(0.1f);
+            damageImage.color = new Color(1f, 0f, 0f, 0f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

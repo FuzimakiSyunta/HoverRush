@@ -7,12 +7,15 @@ public class HealOkMove : MonoBehaviour
     public GameObject gameManager; // GameManagerオブジェクト
     private GameManager gameManagerScript; // GameManagerのスクリプト
     private Animator healOkAnimation; // HealOkのアニメーションコンポーネント
+    public GameObject pauseSystem; // PauseSystemオブジェクト
+    private PauseSystem pauseSystemScript; // PauseSystemのスクリプト
 
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
         healOkAnimation = GetComponent<Animator>(); // Animator
+        pauseSystemScript = pauseSystem.GetComponent<PauseSystem>(); // PauseSystemのスクリプト取得
     }
 
     // Update is called once per frame
@@ -25,7 +28,7 @@ public class HealOkMove : MonoBehaviour
     private void PlayHealOkAnimation()
     {
         int healBatteryEnergy = gameManagerScript.GetHealBatteryEnargy();
-        if (healBatteryEnergy >= 9)
+        if (healBatteryEnergy >= 9&&!pauseSystemScript.IsPaused())
         {
             healOkAnimation.SetBool("isHealOk", true);  // HealOkのアニメーションを再生
         }
