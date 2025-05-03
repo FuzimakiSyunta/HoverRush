@@ -58,4 +58,4 @@ MonoBehaviour:
   PushAGameOver: {fileID: 0}
   OptionButton: {fileID: 0}
   PowerUpImage: {fileID: 0}
-  HealOkImage: {fileID: 0}
+  HealOk: {fileID: 0}

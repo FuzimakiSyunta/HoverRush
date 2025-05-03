@@ -27,6 +27,7 @@ TagManager:
   - PlayerLazer_R
   - FinalLazer
   - Wall
+  - Piller
   layers:
   - Default
   - TransparentFX

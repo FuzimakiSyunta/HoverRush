@@ -33,11 +33,11 @@ public class TutorialManager : MonoBehaviour
                 Button[i].gameObject.SetActive(true);
             }
             // Enterキーが押された場合に切り替えを実行
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
                 SwitchImage();
             }
-            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 2"))
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 2"))
             {
                 istutorialOpen = false;
                 gameManagerScript.GameStart();//ゲーム開始

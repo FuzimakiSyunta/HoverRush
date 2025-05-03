@@ -67,43 +67,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //セレクト///////////////////////////////////////////////////////////////////////////////
-        if (isSelectorOpened == false)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
-            {
-                isSelectorOpened = true;
-                titleText.SetActive(false);
-                StartButtonImage.SetActive(false);
-                GameStartFlag = false;
-                
-            }
-        }
-        ////////////////////////////////////////////////////////////////////////////////////////
+
+        //セレクト
+        OffSelect();
 
 
+        //UI全体
+        Allui();
 
-        //UI全体///////////////
-        if(GameClearFlag==true)
-        {
-            UI.SetActive(false);
-        }else
-        {
-            UI.SetActive(true);
-        }
-        ///////////////////////
-        
+        //回復管理
+        HwalManager();
 
 
-        ///回復管理/////////////////////////////////////
-        if(healcount<=0)
-        {
-            HealBatteryEnargyReset();
-        }
-        /////////////////////////////////////////////////////
+        //ウェーブ管理
+        WaveManager();
+    }
 
-        //ウェーブ管理/////////////////////////
+    void WaveManager()
+    {
         if (GameStartFlag)
         {
             GamePlayCount += Time.deltaTime;
@@ -133,7 +114,42 @@ public class GameManager : MonoBehaviour
         {
             SpeedParticle.SetActive(false);
         }
-        ///////////////////////////////////////
+    }
+
+    void OffSelect()
+    {
+        if (isSelectorOpened == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
+            {
+                isSelectorOpened = true;
+                titleText.SetActive(false);
+                StartButtonImage.SetActive(false);
+                GameStartFlag = false;
+
+            }
+        }
+    }
+
+    void Allui()
+    {
+        //UI全体///////////////
+        if (GameClearFlag == true)
+        {
+            UI.SetActive(false);
+        }
+        else
+        {
+            UI.SetActive(true);
+        }
+    }
+
+    void HwalManager()
+    {
+        if (healcount <= 0)
+        {
+            HealBatteryEnargyReset();
+        }
     }
    
     public void GameOverStart()//ゲームオーバー
@@ -213,4 +229,9 @@ public class GameManager : MonoBehaviour
     {
         return Wave;
     }
+    public float[] GetBossStartTimes()
+    {
+        return bossStartTimes;
+    }
+
 }
