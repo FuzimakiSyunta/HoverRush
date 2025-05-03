@@ -26,6 +26,7 @@ public class CameraMove : MonoBehaviour
         animator.SetBool("isBossBulletView", false);
         animator.SetBool("isLazerBossView", false);
         animator.SetBool("isTutorial", false);
+        animator.SetBool("isFinalBattle", false);
     }
 
     // Update is called once per frame
@@ -67,8 +68,19 @@ public class CameraMove : MonoBehaviour
                 animator.SetBool("isLazerBossView", false);
                 isAnimation = false;
             }
+            //最終ボスウェーブのアニメーション
+            if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 124.0f)
+            {
+                animator.SetBool("isFinalBattle", true);
+                isAnimation = true;
+            }
+            else
+            {
+                animator.SetBool("isFinalBattle", false);
+                isAnimation = false;
+            }
             //チュートリアル
-            if(tutorialManagerScript.IsTutorialOpen())
+            if (tutorialManagerScript.IsTutorialOpen())
             {
                 animator.SetBool("isTutorial", true);
             }

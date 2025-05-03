@@ -54,8 +54,8 @@ MonoBehaviour:
   gameClearText: {fileID: 0}
   titleText: {fileID: 0}
   StartButtonImage: {fileID: 0}
-  batteryEnargy: 0
-  healBatteryEnargy: 0
+  batteryEnergy: 0
+  healBatteryEnergy: 0
   Wave: 0
   GamePlayCount: 0
   SpeedParticle: {fileID: 0}

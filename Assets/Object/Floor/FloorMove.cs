@@ -32,7 +32,24 @@ public class FloorMove : MonoBehaviour
             timeElapsed = Mathf.Min(timeElapsed + Time.deltaTime, accelerationTime); // accelerationTimeを超えないように制限
 
             // スピードを徐々に変化させる
-            currentSpeed = Mathf.Lerp(startSpeed, targetSpeed, timeElapsed / accelerationTime);
+            if (timeElapsed <= accelerationTime)
+            {
+                currentSpeed = Mathf.Lerp(startSpeed, targetSpeed, timeElapsed / accelerationTime); // 加速
+            }
+            else if (timeElapsed <= 125f)
+            {
+                currentSpeed = targetSpeed; // 等速維持（125秒まで）
+            }
+            else if (timeElapsed <= 125f + 3f) // 3秒かけて減速
+            {
+                float decelT = (timeElapsed - 125f) / 3f;
+                currentSpeed = Mathf.Lerp(targetSpeed, 0f, decelT); // 減速
+            }
+            else
+            {
+                currentSpeed = 0f; // 停止
+            }
+
 
             // オブジェクトを移動
             transform.Translate(-Vector3.forward * currentSpeed * Time.deltaTime);

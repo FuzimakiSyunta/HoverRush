@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using Unity.VisualScripting;
+using System;
 
 
 public class PlayerScript : MonoBehaviour
@@ -10,6 +11,10 @@ public class PlayerScript : MonoBehaviour
     //gamemanager
     private GameManager gameManagerScript;
     public GameObject gameManager;
+
+    //boss
+    private BossScript bossScript;
+    public GameObject boss;
 
     //select
     private SelectorMenu selectorMenuScript;
@@ -44,19 +49,34 @@ public class PlayerScript : MonoBehaviour
     private bool lazerShotChenge = false;
     private bool penetrationShotChenge = false;
     private float MoveSpeed = 18.0f;
-    private float BoostMoveSpeed = 80.0f;
+  
+    //上昇
+    private float verticalSpeed = 0f; // 上下方向の速度
+    private float jumpPower = 50f;    // 上昇の勢い
+    private float gravity = 9.8f;     // 重力（手を離したときのゆっくり下降）
+    private float maxHeight = 5.6f;    // 上昇できる最大Y座標
+    private float minHeight = 0.5f;     // 降下できる最小Y座標
 
     //HP関連
     public GameObject HPSlider;
-    public int playerHP;// プレイヤーの最大HP
-    private int MaxHp;// プレイヤーの現在のHP
+    public int maxHp;// プレイヤーの最大HP
+    private int currentHp;// プレイヤーの現在のHP
     public Slider hpSlider;//HPバー（スライダー）
     public bool isDamaged = false;
+    private bool damaged = false; // ←新規に追加（1フレームだけ使う）
     private bool isHeal=false;
     public float DamegeCoolTime;
 
     //パーティクル
-    public ParticleSystem particle;
+    public ParticleSystem DamageParticle;
+    public ParticleSystem LazerParticle;
+    public GameObject HoverParticle;
+    public GameObject SmokeParticle;
+
+    public float particleCooldown = 0.2f; // パーティクル再生間隔（秒）
+    public float damageCooldown = 0.2f;
+    private float particleTimer = 0f;
+    private float damageTimer = 0f;
 
     //オーディオ
     public AudioClip DamegeSound;
@@ -67,12 +87,25 @@ public class PlayerScript : MonoBehaviour
 
     private bool isMoveActive = false;
 
+    //ポジションリング
+    public GameObject positionRing;
+
+    //回復
+    private const int MaxHealHp = 300;
+    private const int HealAmount = 150;
+
+
+    // プレイヤーがレーザーに触れているかどうかのフラグ
+    private bool isTouchingLaser = false;
+    private bool tookDamage = false; // ダメージ判定フラグ（演出用）
 
     // Start is called before the first frame update
     void Start()
     {
         //gamemanager
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        //boss 
+        bossScript = boss.GetComponent<BossScript>();
         //selector
         selectorMenuScript = selectMenu.GetComponent<SelectorMenu>();
         //playerModels
@@ -84,8 +117,8 @@ public class PlayerScript : MonoBehaviour
 
         //Hp関連
         audioSource = GetComponent<AudioSource>();
-        hpSlider.value = (float)playerHP;//HPバーの最初の値（最大HP）を設定
-        MaxHp = playerHP; // 現在のHPを最大HPに設定
+        hpSlider.value = (float)maxHp;//HPバーの最初の値（最大HP）を設定
+        currentHp = maxHp; // 現在のHPを最大HPに設定
         for (int i = 0; i < 3; i++)
         {
             bulletTimer[i] = 0.0f;
@@ -94,16 +127,21 @@ public class PlayerScript : MonoBehaviour
         HPSlider.SetActive(true);
         //回復
         isHeal = false;
-
+        DamegeCoolTime = 0;
+        //hover
+        HoverParticle.SetActive(false);
+        //ポジションリング
+        positionRing.SetActive(false);
     }
 
     void Damaged()
     {
         isDamaged = true;
         DamegeCoolTime = 0.0f;
+        gameManagerScript.BatteryEnargyDown(); // ダメージを受けたらバッテリーエネルギーを減少させる
         audioSource.PlayOneShot(DamegeSound);
         // パーティクルシステムのインスタンスを生成する。
-        ParticleSystem newParticle = Instantiate(particle);
+        ParticleSystem newParticle = Instantiate(DamageParticle);
         // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
         newParticle.transform.position = this.transform.position;
         // パーティクルを発生させる。
@@ -114,18 +152,63 @@ public class PlayerScript : MonoBehaviour
         
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
-        // クールダウンタイマーを進行
-        if (DamegeCoolTime < 1.0f) // 1秒間のクールダウン
-        {
-            DamegeCoolTime += Time.deltaTime;
-        }
-        // 時間依存の移動
-        float move = MoveSpeed * Time.deltaTime;
-        float boostmove = BoostMoveSpeed * Time.deltaTime;
+        //ダメージクールタイム
+        DamegeCoolTimeActive();
+        //プレイヤー関連UI
+        ImageActive();
 
+
+        ///ゲームスタートしたら
+        if (gameManagerScript.IsGameStart() == true && gameManagerScript.IsGameClear() == false)
+        {
+            //プレイヤー移動
+            PlayerMove();
+            //プレイヤー回復
+            PlayerHeal();
+            //回避
+            //Avoidance();
+            // 射撃パターン
+            ShotPattern();
+            //ホバーモード
+            HoverMode();
+            //ポジションリング
+            positionRing.SetActive(true);
+            // タイマーを更新
+            particleTimer += Time.deltaTime;
+            damageTimer += Time.deltaTime;
+        }
+        else
+        {
+            HealImage.SetActive(false);
+            NoHealImage.SetActive(false);
+            positionRing.SetActive(false);
+            SmokeParticle.SetActive(false);
+        }
+        // HPが100以下なら煙を出す、それ以上なら止める
+        if (currentHp <= 100)
+        {
+            if (!SmokeParticle.activeSelf)
+            {
+                SmokeParticle.SetActive(true);
+            }
+        }
+        else
+        {
+            if (SmokeParticle.activeSelf)
+            {
+                SmokeParticle.SetActive(false);
+            }
+        }
+
+    }
+
+    void ImageActive()
+    {
         if (selectorMenuScript.IsColorMenuFlag() == true)
         {
             HealImage.SetActive(false);
@@ -150,164 +233,220 @@ public class PlayerScript : MonoBehaviour
             HPSlider.SetActive(true);
 
         }
+    }
 
+    void PlayerHeal()
+    {
+        //回復UI
+        if (gameManagerScript.GetHealBatteryEnargy() < 9)
+        {
+            isHeal = false;
+        }
+        if (gameManagerScript.GetHealBatteryEnargy() < 9 && isHeal == false)
+        {
+            HealImage.SetActive(false);
+            NoHealImage.SetActive(true);
+        }
+
+        ///回復
+        if (gameManagerScript.GetHealBatteryEnargy() >= 9 && isHeal == false && currentHp < 500)
+        {
+            HealImage.SetActive(true);
+            NoHealImage.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown("joystick button 2"))
+            {
+                if (maxHp <= currentHp)
+                {
+                    currentHp = MaxHealHp; // HPが最大値を超えないように固定
+                }
+                else
+                {
+                    currentHp += HealAmount; // 通常の増加処理
+                    if (currentHp > MaxHealHp)
+                    {
+                        currentHp = MaxHealHp; // 300を超えた場合は300にリセット
+                    }
+                }
+
+                hpSlider.value = (float)currentHp / (float)maxHp;
+                isHeal = true;
+                HealImage.SetActive(false);
+                NoHealImage.SetActive(true);
+                //バッテリー関連
+                gameManagerScript.HealBatteryEnargyReset();
+                gameManagerScript.HealCounter();
+
+            }
+        }
+    }
+
+    void PlayerMove()
+    {
+        // 時間依存の移動
+        float move = MoveSpeed * Time.deltaTime;
         //L Stick
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
 
-        float LT = Input.GetAxis("LeftTrigger");
-        float RT = Input.GetAxis("RightTrigger");
+        DamegeCoolTime += Time.deltaTime;
 
-        ///ゲームスタートしたら
-        if (gameManagerScript.IsGameStart() == true&&gameManagerScript.IsGameClear()==false)
+        
+
+        ///コントローラー対応///////////////////////
+        if (stick > 0 && transform.position.x <= 10)
         {
-            DamegeCoolTime += Time.deltaTime;
-            //回復UI
-            if (gameManagerScript.GetHealBatteryEnargy() < 9)
-            {
-                isHeal = false;
-            }   
-            if(gameManagerScript.GetHealBatteryEnargy() < 9&&isHeal ==false)
-            {
-                HealImage.SetActive(false);
-                NoHealImage.SetActive(true);
-            }
+            transform.position += new Vector3(move, 0, 0);
+        }
+        else if (stick < 0 && transform.position.x >= -10)
+        {
+            transform.position += new Vector3(-move, 0, 0);
+        }
+        if (Vstick > 0 && transform.position.z <= 15)
+        {
+            transform.position += new Vector3(0, 0, move);
+        }
+        else if (Vstick < 0 && transform.position.z >= -8.5f)
+        {
+            transform.position += new Vector3(0, 0, -move);
+        }
 
-            ///回復
-            if (gameManagerScript.GetHealBatteryEnargy() >= 9 && isHeal == false && MaxHp < 500)
-            {
-                HealImage.SetActive(true);
-                NoHealImage.SetActive(false);
-                if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown("joystick button 2"))
-                {
-                    if (playerHP <= MaxHp)
-                    {
-                        MaxHp = 500; // HPが最大値を超えないように固定
-                    }
-                    else
-                    {
-                        MaxHp += 250; // 通常の増加処理
-                        if (MaxHp > 500)
-                        {
-                            MaxHp = 500; // 500を超えた場合は500にリセット
-                        }
-                    }
-
-                    hpSlider.value = (float)MaxHp / (float)playerHP;
-                    isHeal = true;
-                    HealImage.SetActive(false);
-                    NoHealImage.SetActive(true);
-                    //バッテリー関連
-                    gameManagerScript.HealBatteryEnargyReset();
-                    gameManagerScript.HealCounter();
-
-                }
-            }
-            
-            ///コントローラー対応///////////////////////
-            if (stick > 0 && transform.position.x <= 10)
-            {
-                transform.position += new Vector3(move, 0, 0);
-            }
-            else if (stick < 0 && transform.position.x >= -10)
-            {
-                transform.position += new Vector3(-move, 0, 0);
-            }
-            if (Vstick > 0 && transform.position.z <= 15)
-            {
-                transform.position += new Vector3(0, 0, move);
-            }
-            else if (Vstick < 0 && transform.position.z >= -8.5f)
-            {
-                transform.position += new Vector3(0, 0, -move);
-            }
-
-            //移動フラグ
-            if(stick>0||stick<0||Vstick>0||Vstick<0|| Input.GetKey(KeyCode.D)|| (Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.S)))
-            {
-                isMoveActive = true;
-            }else
-            {
-                isMoveActive = false;
-            }
-
-
-            //火
-            if (Vstick > 0 || Input.GetKey(KeyCode.W))
-            {
-                MachingunFire.SetActive(true);
-                LazerFire.SetActive(true);
-                PanetrationFire.SetActive(true);
-            }
-            else
-            {
-                MachingunFire.SetActive(false);
-                LazerFire.SetActive(false);
-                PanetrationFire.SetActive(false);
-            }
-
-            //キーボード/////////////////////////////////
-            if (Input.GetKey(KeyCode.D)&& transform.position.x <= 8)
-            {
-                transform.position += new Vector3(move, 0, 0);
-            }
-            else if (Input.GetKey(KeyCode.A) && transform.position.x >= -8)
-            {
-                transform.position += new Vector3(-move, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.W) && transform.position.z <= 15)
-            {
-                transform.position += new Vector3(0, 0, move);
-            }
-            else if (Input.GetKey(KeyCode.S) && transform.position.z >= -8.5f)
-            {
-                transform.position += new Vector3(0, 0, -move);
-            }
-
-            //////////////////////////////////////////////
-
-            // 緊急回避
-            bool isRightAvoidance = (RT > 0 || Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space)) && transform.position.x <= 8;
-            bool isLeftAvoidance = (LT > 0 || Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space)) && transform.position.x >= -8;
-
-            if (isRightAvoidance)
-            {
-                transform.position += new Vector3(boostmove, 0, 0);
-                animator.SetBool("isAvoidance", true);
-            }
-            else if (isLeftAvoidance)
-            {
-                transform.position += new Vector3(-boostmove, 0, 0);
-                animator.SetBool("isAvoidance", true);
-            }
-            else
-            {
-                animator.SetBool("isAvoidance", false);
-            }
-
-
+        //移動フラグ
+        if (stick > 0 || stick < 0 || Vstick > 0 || Vstick < 0 || Input.GetKey(KeyCode.D) || (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)))
+        {
+            isMoveActive = true;
         }
         else
         {
-            HealImage.SetActive(false);
-            NoHealImage.SetActive(false);
+            isMoveActive = false;
         }
+
+
+        //火
+        if (Vstick > 0 || Input.GetKey(KeyCode.W))
+        {
+            MachingunFire.SetActive(true);
+            LazerFire.SetActive(true);
+            PanetrationFire.SetActive(true);
+        }
+        else
+        {
+            MachingunFire.SetActive(false);
+            LazerFire.SetActive(false);
+            PanetrationFire.SetActive(false);
+        }
+
+        //キーボード/////////////////////////////////
+        if (Input.GetKey(KeyCode.D) && transform.position.x <= 8)
+        {
+            transform.position += new Vector3(move, 0, 0);
+        }
+        else if (Input.GetKey(KeyCode.A) && transform.position.x >= -8)
+        {
+            transform.position += new Vector3(-move, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.W) && transform.position.z <= 15)
+        {
+            transform.position += new Vector3(0, 0, move);
+        }
+        else if (Input.GetKey(KeyCode.S) && transform.position.z >= -8.5f)
+        {
+            transform.position += new Vector3(0, 0, -move);
+        }
+
+        //////////////////////////////////////////////
+
+    }
+
+    void HoverMode()
+    {
+        
+
+        float LT = Input.GetAxis("LeftTrigger");
+        float RT = Input.GetAxis("RightTrigger");
+        // 地面のY座標制限
+        Vector3 pos = transform.position;
+
+        // Spaceキーで上昇
+        if (RT>0||Input.GetKey(KeyCode.Space) && pos.y < maxHeight)
+        {
+            verticalSpeed = jumpPower;
+            
+        }
+        else
+        {
+            verticalSpeed -= gravity * Time.deltaTime; // 重力による減速（ゆっくり下降）
+            
+        }
+
+        // 実際にY軸に反映
+        pos.y += verticalSpeed * Time.deltaTime;
+
+        // Y座標制限
+        if (pos.y < minHeight)
+        {
+            pos.y = minHeight;
+            verticalSpeed = 0f;
+            HoverParticle.SetActive(false);
+        }
+        else if (pos.y > maxHeight)
+        {
+            pos.y = maxHeight;
+            verticalSpeed = 0f;
+            HoverParticle.SetActive(true);
+        }
+
+        transform.position = pos;
+
+    }
+
+    void DamegeCoolTimeActive()
+    {
+        // クールダウンタイマーを進行
+        if (DamegeCoolTime < 1.0f) // 1秒間のクールダウン
+        {
+            DamegeCoolTime += Time.deltaTime;
+        }
+    }
+
+    
+
+    void ShotPattern()
+    {
         // 射撃パターン追加
         if (gameManagerScript.GetBatteryEnargy() >= 30)
         {
             penetrationShotChenge = true; // 自機タイプ貫通弾
         }
-        else if (gameManagerScript.GetBatteryEnargy() >= 25)
+        else if (gameManagerScript.GetBatteryEnargy() < 30)
+        {
+            penetrationShotChenge = false; // 自機タイプ貫通弾
+            DamegeRing.SetActive(false);
+        }
+
+        if (gameManagerScript.GetBatteryEnargy() >= 25)
         {
             singleShotChenge = true; // 自機タイプ単発
         }
-        else if (gameManagerScript.GetBatteryEnargy() >= 20)
+        else if (gameManagerScript.GetBatteryEnargy() < 25)
+        {
+            singleShotChenge = false; // 自機タイプ単発
+        }
+        if (gameManagerScript.GetBatteryEnargy() >= 20)
         {
             lazerShotChenge = true; // 自機タイプレーザー
         }
+        else if (gameManagerScript.GetBatteryEnargy() < 20)
+        {
+            lazerShotChenge = false; // 自機タイプレーザー
+        }
 
+        ////ホバーモード
+        //if (gameManagerScript.GetBatteryEnargy() >= 100)
+        //{
 
+        //}
     }
+
     void FixedUpdate()
     {
         if (gameManagerScript.IsGameOver() == true)
@@ -421,7 +560,7 @@ public class PlayerScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (MaxHp <= 0)
+        if (currentHp <= 0)
         {
            gameManagerScript.GameOverStart();
            Destroy(gameObject, 1);
@@ -429,39 +568,48 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        tookDamage = false; // ここで毎回初期化
+
+        string tag = other.gameObject.tag;
 
         //雑魚の弾
         if (other.gameObject.tag == "EnemyBullet")
         {
-            MaxHp -= 10;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
-
+            currentHp -= 10;
+            tookDamage = true;
         }
 
         //BossBullet
         if (other.gameObject.tag == "BossBullet")
         {
-            MaxHp -= 20;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            currentHp -= 20;
+          
+            tookDamage = true;
         }
 
         //BossExtraBullet
         if (other.gameObject.tag == "BossExtraBullet")
         {
-            MaxHp -= 8;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            currentHp -= 8;
+            tookDamage = true;
         }
 
         //ロボットの弾
         if (other.gameObject.tag == "RobotBullet")
         {
-            MaxHp -= 20;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            currentHp -= 20;
+            tookDamage = true;
+        }
+
+        // ダメージ受けたらスライダー更新
+        if (tookDamage)
+        {
+            hpSlider.value = (float)currentHp / (float)maxHp;
         }
 
 
         if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
-            || other.gameObject.tag == "RobotBullet" || other.gameObject.tag == "FinalLazer" && cameraMoveScript.IsAnimation() == false)
+            || other.gameObject.tag == "RobotBullet" || other.gameObject.tag == "FinalLazer"|| other.gameObject.tag == "Piller" && cameraMoveScript.IsAnimation() == false)
         {
             Damaged();
         }
@@ -472,37 +620,88 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        //ボスのレーザー
-        if (other.gameObject.tag == "Lazer")
+        if (other.gameObject.CompareTag("Lazer") || other.gameObject.CompareTag("FinalLazer"))
         {
-            MaxHp -= 3;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            // レーザーに触れているフラグを立てる
+            SetLaserHit(true);
+
+            // ダメージ処理（0.1秒ごと）
+            if (damageTimer >= damageCooldown)
+            {
+                if (other.gameObject.CompareTag("Lazer"))
+                {
+                    currentHp -= 4;
+                }
+                else if (other.gameObject.CompareTag("FinalLazer"))
+                {
+                    currentHp -= 6;
+                }
+
+                hpSlider.value = (float)currentHp / (float)maxHp;
+                damageTimer = 0f; // タイマーリセット
+            }
+
+            //  パーティクル処理
+            if (particleTimer >= particleCooldown)
+            {
+                ParticleSystem newParticle = Instantiate(LazerParticle, transform.position, Quaternion.identity);
+                newParticle.Play();
+                Destroy(newParticle.gameObject, 5.0f);
+
+                particleTimer = 0f; // タイマーリセット
+            }
         }
-        //ボスのレーザー
-        if (other.gameObject.tag == "FinalLazer")
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Lazer") || other.CompareTag("FinalLazer"))
         {
-            MaxHp -= 4;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            SetLaserHit(false); // 離れたとき
         }
     }
 
     void OnCollisionEnter(Collision other)
     {
-        
+        tookDamage = false; // ここで毎回初期化
+
+        string tag = other.gameObject.tag;
         if (other.gameObject.tag == "Enemy")
         {
-            MaxHp -= 5;
-            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            currentHp -= 5;
+            hpSlider.value = (float)currentHp / (float)maxHp;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             Damaged();
 
         }
-            
-        
     }
 
+
+    public void SetLaserHit(bool v)
+    {
+        isTouchingLaser = v;
+    }
+
+    // 他スクリプトから呼べる参照用メソッド
+    public bool IsTouchingLaser()
+    {
+        return isTouchingLaser;
+    }
     public bool IsDamage()
     {
         return isDamaged;
+    }
+    public void SetTookDamage(bool val)
+    {
+        tookDamage = val;
+    }
+
+    public bool IsTookDamage()
+    {
+        return tookDamage;
+    }
+
+    public void ResetDamageFlag()
+    {
+        tookDamage = false;
     }
 
     public float Speed()
@@ -519,13 +718,13 @@ public class PlayerScript : MonoBehaviour
     }
     public void DownHp()
     {
-        MaxHp -= 20;
-        hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        currentHp -= 20;
+        hpSlider.value = (float)currentHp / (float)maxHp;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
     }
     public void UpHp()
     {
-        MaxHp += 20;
-        hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+        currentHp += 20;
+        hpSlider.value = (float)currentHp / (float)maxHp;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
     }
 
     public bool IsPenetrationShotChenge()
