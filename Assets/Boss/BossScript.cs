@@ -63,8 +63,10 @@ public class BossScript : MonoBehaviour
     public GameObject DamegeCanvas;
 
     public GameObject EnemyPositionObject;
-    //
+    //ダメージフラグ
     public bool isDameged = false;
+
+
 
 
     public void Damage(Collider col)
@@ -415,7 +417,8 @@ public class BossScript : MonoBehaviour
             Vector3 position = transform.position;
             MultiBulletCoolTime += Time.deltaTime; // 時間で加算
             if (animator.GetBool("isMove") == false && animator.GetBool("isLazer") == false
-                && animator.GetBool("isRobotStay") == false && animator.GetBool("FinalWave") == false)
+                && animator.GetBool("isRobotStay") == false && animator.GetBool("FinalWave") == false
+                && isFinalBattle == false)
             {
                 if (MultiBulletCoolTime >= 4.0f) // 240フレームの代わりに秒数で設定
                 {
@@ -442,7 +445,7 @@ public class BossScript : MonoBehaviour
             Vector3 positionR = transform.position;
             Vector3 positionL = transform.position;
             BulletCoolTime += Time.deltaTime; // 時間で加算
-            if (animator.GetBool("isMove") == true && animator.GetBool("isFinalBullet") == false)
+            if (animator.GetBool("isMove") == true && animator.GetBool("isFinalBattle") == false)
             {
                 if (BulletCoolTime >= 2.5f)
                 {
@@ -467,25 +470,24 @@ public class BossScript : MonoBehaviour
         {
             Lazer_L.SetActive(true);
             Lazer_R.SetActive(true);
-        }else
+        }
+        else
         {
             Lazer_L.SetActive(false);
             Lazer_R.SetActive(false);
         }
 
-
         // 最終レーザー
         if (animator.GetBool("FinalWave") == true)
         {
-            FinalBossLazer.SetActive(true);
+            StartCoroutine(ActivateFinalLazer());
         }
         else
         {
             FinalBossLazer.SetActive(false);
         }
 
-
-        //最終battle
+        // 最終バトル
         if (animator.GetBool("isFinalBattle") == true)
         {
             isFinalBattle = true;
@@ -495,14 +497,12 @@ public class BossScript : MonoBehaviour
             isFinalBattle = false;
         }
 
-        if(isFinalBattle)
+        if (isFinalBattle)
         {
             FinalRobot.SetActive(true);
             BossAir.SetActive(false);
             BossAir.transform.position = new Vector3(transform.position.x, 6.0f, transform.position.z);
-            HpCanvas.transform.position = new Vector3(transform.position.x, 6.0f, transform.position.z);
         }
-
 
         // ロボット状態の切り替え
         if (animator.GetBool("isRobotStay") == true)
@@ -515,6 +515,14 @@ public class BossScript : MonoBehaviour
             BossAir.SetActive(true);
             Robot.SetActive(false);
         }
+    }
+
+    
+
+    private IEnumerator ActivateFinalLazer()
+    {
+        yield return new WaitForSeconds(4f); // 4秒待つ
+        FinalBossLazer.SetActive(true);
     }
 
     void UpdateBossWaveState()//一対一のアニメーション
