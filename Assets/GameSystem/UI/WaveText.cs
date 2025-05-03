@@ -3,24 +3,20 @@ using UnityEngine;
 
 public class WaveTextScript : MonoBehaviour
 {
+    
+    public GameObject[] leftImages;
+    public GameObject[] rightImages;
+
+    
+    public AnimationCurve moveCurve;
+    public float moveDuration = 2f;
+
     private GameManager gameManagerScript;
-
-    // WAVEごとのテキスト表示オブジェクト（Inspectorで設定）
-    public GameObject[] waveTexts = new GameObject[6];
-
-    // 各WAVEの表示済みフラグ（1回だけ表示するため）
     private bool[] waveShownFlags = new bool[6];
 
     void Start()
     {
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-        // 初期化（すべて未表示）
-        for (int i = 0; i < waveTexts.Length; i++)
-        {
-            waveTexts[i].SetActive(false);
-            waveShownFlags[i] = false;
-        }
     }
 
     void Update()
@@ -28,19 +24,76 @@ public class WaveTextScript : MonoBehaviour
         if (!gameManagerScript.IsGameStart()) return;
 
         int currentWave = gameManagerScript.IsWave();
+        TryStartWaveAnimation(currentWave);
+    }
 
-        if (currentWave < waveShownFlags.Length && !waveShownFlags[currentWave])
+    /// <summary>
+    /// Wave番号に応じてアニメーションを開始する
+    /// </summary>
+    private void TryStartWaveAnimation(int waveIndex)
+    {
+        if (waveIndex < 0 || waveIndex >= waveShownFlags.Length) return;
+        if (waveShownFlags[waveIndex]) return;
+
+        GameObject left = GetImage(leftImages, waveIndex);
+        GameObject right = GetImage(rightImages, waveIndex);
+
+        if (left != null && right != null)
         {
-            StartCoroutine(ShowWaveText(currentWave));
-            waveShownFlags[currentWave] = true;
+            StartCoroutine(PlayWaveAnimation(left, right));
+            waveShownFlags[waveIndex] = true;
         }
     }
 
-    // テキストを2秒だけ表示して消す
-    private IEnumerator ShowWaveText(int waveIndex)
+    /// <summary>
+    /// 指定インデックスの画像を配列から取得
+    /// </summary>
+    private GameObject GetImage(GameObject[] images, int index)
     {
-        waveTexts[waveIndex].SetActive(true);
-        yield return new WaitForSeconds(2f);
-        waveTexts[waveIndex].SetActive(false);
+        if (index >= 0 && index < images.Length) return images[index];
+        return null;
     }
+
+    /// <summary>
+    /// 2つの画像を中央ですれ違わせるアニメーション
+    /// </summary>
+    private IEnumerator PlayWaveAnimation(GameObject leftImage, GameObject rightImage)
+    {
+        float elapsed = 0f;
+
+        Transform leftTransform = leftImage.transform;
+        Transform rightTransform = rightImage.transform;
+
+        leftImage.SetActive(true);
+        rightImage.SetActive(true);
+
+        // Y位置とZ位置を保ったまま、X座標だけ移動させる
+        Vector3 leftStart = new Vector3(-2000f, leftTransform.localPosition.y, leftTransform.localPosition.z);
+        Vector3 leftEnd = new Vector3(2000f, leftTransform.localPosition.y, leftTransform.localPosition.z);
+
+        Vector3 rightStart = new Vector3(2000f, rightTransform.localPosition.y, rightTransform.localPosition.z);
+        Vector3 rightEnd = new Vector3(-2000f, rightTransform.localPosition.y, rightTransform.localPosition.z);
+
+        leftTransform.localPosition = leftStart;
+        rightTransform.localPosition = rightStart;
+
+        while (elapsed < moveDuration)
+        {
+            float t = elapsed / moveDuration;
+            float curveT = moveCurve.Evaluate(t);
+
+            leftTransform.localPosition = Vector3.Lerp(leftStart, leftEnd, curveT);
+            rightTransform.localPosition = Vector3.Lerp(rightStart, rightEnd, curveT);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        leftTransform.localPosition = leftEnd;
+        rightTransform.localPosition = rightEnd;
+
+        leftImage.SetActive(false);
+        rightImage.SetActive(false);
+    }
+
 }
