@@ -25,6 +25,8 @@ public class PlayerDamage : MonoBehaviour
             StartCoroutine(FadeOutDamageImage()); // フェードアウト処理を開始
             StartCoroutine(HitStopEffect()); // ヒットストップ処理を開始
         }
+        
+
     }
 
     // ダメージ画像をフェードアウトさせる処理
@@ -32,7 +34,7 @@ public class PlayerDamage : MonoBehaviour
     {
         damageImage.color = new Color(1f, 0f, 0f, 0.5f); // 赤い画像を表示
 
-        float duration = 1f; // フェードアウトにかかる時間
+        float duration = 0.5f; // フェードアウトにかかる時間
         float elapsed = 0f;
 
         while (elapsed < duration)

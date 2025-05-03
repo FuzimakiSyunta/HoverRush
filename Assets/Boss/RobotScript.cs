@@ -31,7 +31,7 @@ public class RobotScript : MonoBehaviour
             if (isFirstShot)
             {
                 bulletTimer += Time.deltaTime; // 最初の待機時間を計測
-                if (bulletTimer >= 1.5f) // 1秒待機後に弾を発射
+                if (bulletTimer >= 2.5f) // 待機後に弾を発射
                 {
                     FireProjectile(); // 最初の弾を発射
                     bulletTimer = 0; // タイマーをリセット

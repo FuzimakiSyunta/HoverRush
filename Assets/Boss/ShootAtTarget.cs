@@ -22,7 +22,7 @@ public class ShootAtTarget : MonoBehaviour
         if (bossScript != null && bossScript.IsFinalBattle() && !IsInvoking(nameof(FireOnce)))
         {
             Debug.Log("Final BattleäJénÅIíeÇî≠éÀÇµÇ‹Ç∑");
-            InvokeRepeating(nameof(FireOnce), 0f, fireInterval);
+            InvokeRepeating(nameof(FireOnce), 3f, fireInterval);
         }
     }
 
