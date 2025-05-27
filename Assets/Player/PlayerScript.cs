@@ -669,6 +669,7 @@ public class PlayerScript : MonoBehaviour
         {
             currentHp -= 5;
             hpSlider.value = (float)currentHp / (float)maxHp;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            tookDamage = true;
             Damaged();
 
         }

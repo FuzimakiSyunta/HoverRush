@@ -1,40 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealOkMove : MonoBehaviour
 {
-    public GameObject gameManager; // GameManagerオブジェクト
-    private GameManager gameManagerScript; // GameManagerのスクリプト
-    private Animator healOkAnimation; // HealOkのアニメーションコンポーネント
-    public GameObject pauseSystem; // PauseSystemオブジェクト
-    private PauseSystem pauseSystemScript; // PauseSystemのスクリプト
+    public GameObject gameManager;
+    private GameManager gameManagerScript;
 
-    // Start is called before the first frame update
+    public GameObject pauseSystem;
+    private PauseSystem pauseSystemScript;
+
+    public GameObject Stunby; // 点滅用オブジェクト1
+    public GameObject HealOk; // 点滅用オブジェクト2
+
+    public float switchInterval = 0.5f;
+
+    private float timer = 0f;
+    private bool showingStunby = true;
+
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        healOkAnimation = GetComponent<Animator>(); // Animator
-        pauseSystemScript = pauseSystem.GetComponent<PauseSystem>(); // PauseSystemのスクリプト取得
+        pauseSystemScript = pauseSystem.GetComponent<PauseSystem>();
+
+        // 初期は非表示
+        Stunby.SetActive(false);
+        HealOk.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        PlayHealOkAnimation();
-    }
-
-    // HealOkのアニメーションを再生するメソッド
-    private void PlayHealOkAnimation()
-    {
         int healBatteryEnergy = gameManagerScript.GetHealBatteryEnargy();
-        if (healBatteryEnergy >= 9&&!pauseSystemScript.IsPaused())
+
+        // 回復不可 or ポーズ中 → 両方非表示
+        if (pauseSystemScript.IsPaused() || healBatteryEnergy < 9)
         {
-            healOkAnimation.SetBool("isHealOk", true);  // HealOkのアニメーションを再生
+            Stunby.SetActive(false);
+            HealOk.SetActive(false);
+            return;
         }
-        else
+
+        // 回復可能 → 0.5秒ごとに交互に点滅
+        timer += Time.deltaTime;
+        if (timer >= switchInterval)
         {
-            healOkAnimation.SetBool("isHealOk",false); 
+            timer = 0f;
+            showingStunby = !showingStunby;
         }
+
+        Stunby.SetActive(showingStunby);
+        HealOk.SetActive(!showingStunby);
     }
 }
