@@ -33,8 +33,6 @@ public class BrindScript : MonoBehaviour
     //パワーアップ
     public GameObject PowerUpImage;
     private bool hasPowerUpImageBeenHidden = false;
-    //HealOk
-    public GameObject HealOk;
 
 
 
@@ -59,13 +57,13 @@ public class BrindScript : MonoBehaviour
             {
                 SetActiveForObjects(false, TitleUi, PushAGameOver, PowerUpImage);
                 SetActiveForObjects(true, boss, bossBullet, StartUi, OptionButton, AllEnergy);
-                HealOk.SetActive(true); // HealOkを表示にする
+               
                 HandleEnergyLevels();
             }
             else
             {
                 Destroy(AllEnergy);
-                HealOk.SetActive(false); // HealOkを非表示にする
+           
                 AllEnergy = null;
             }
 

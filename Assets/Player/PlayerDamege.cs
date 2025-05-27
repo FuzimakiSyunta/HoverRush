@@ -65,7 +65,7 @@ public class PlayerDamage : MonoBehaviour
         damageImage.color = new Color(1f, 0f, 0f, 0.5f);
 
         fadeCoroutine = StartCoroutine(FadeOutDamageImage());
-        StartCoroutine(HitStopEffect());
+        //StartCoroutine(HitStopEffect());
         yield return null;
     }
 
@@ -86,19 +86,19 @@ public class PlayerDamage : MonoBehaviour
         fadeCoroutine = null;
     }
 
-    IEnumerator HitStopEffect()
-    {
-        if (!pauseSystemScript.IsPaused())
-        {
-            Time.timeScale = 0.1f;
-            yield return new WaitForSecondsRealtime(0.25f);
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            Time.timeScale = 0f;
-        }
-    }
+    //IEnumerator HitStopEffect()
+    //{
+    //    if (!pauseSystemScript.IsPaused())
+    //    {
+    //        Time.timeScale = 0.1f;
+    //        yield return new WaitForSecondsRealtime(0.25f);
+    //        Time.timeScale = 1f;
+    //    }
+    //    else
+    //    {
+    //        Time.timeScale = 0f;
+    //    }
+    //}
 
     IEnumerator BlinkDamageImage()
     {
