@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0048061665, g: 0.0009710453, b: 0.04832603, a: 1}
+  m_IndirectSpecularColor: {r: 0.004871374, g: 0.0009841938, b: 0.048980795, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3582,13 +3582,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781565020}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.91801953, y: -0.019719193, z: 0.008034068, w: -0.39596325}
-  m_LocalPosition: {x: -0.47545817, y: 3.2524097, z: -4.9959226}
+  m_LocalRotation: {x: -0.9346547, y: -0.01934404, z: 0.00889949, w: -0.35491845}
+  m_LocalPosition: {x: -0.49, y: 14.29, z: 5.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 46.662, y: 1259.928, z: 177.508}
+  m_LocalEulerAnglesHint: {x: 41.59, y: 1260.223, z: 177.713}
 --- !u!114 &781565023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3601,7 +3601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f45e2c8b24593d41be7441bf8d4c05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 30
+  duration: 60
 --- !u!1 &787997457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5617,11 +5617,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104113074}
   m_CullTransparentMesh: 1
---- !u!1 &1111755468 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8533445136741263713, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-  m_PrefabInstance: {fileID: 7627123270068408356}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1124388806
 GameObject:
   m_ObjectHideFlags: 0
@@ -5974,11 +5969,6 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!1 &1190939430 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3940610947203519119, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-  m_PrefabInstance: {fileID: 7627123270068408356}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1203450653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3923924220720877011, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
@@ -6621,8 +6611,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!1 &1441757050 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6335154078250263628, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-  m_PrefabInstance: {fileID: 5708447517962268947}
+  m_CorrespondingSourceObject: {fileID: 6277477780380515849, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+  m_PrefabInstance: {fileID: 7627123270068408356}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1452180489 stripped
 GameObject:
@@ -7902,11 +7892,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646651065}
   m_CullTransparentMesh: 1
---- !u!1 &1647692712 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1812954480156300376, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-  m_PrefabInstance: {fileID: 7627123270068408356}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1647844297
 GameObject:
   m_ObjectHideFlags: 0
@@ -10348,11 +10333,6 @@ MonoBehaviour:
   Stunby: {fileID: 1275758901}
   HealOk: {fileID: 1595329233}
   switchInterval: 0.5
---- !u!4 &321847940436885100 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-  m_PrefabInstance: {fileID: 5708447517962268947}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &521638176811056460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11465,8 +11445,8 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: fc10eb70299c78549a0eab4ba0fb9015, type: 3}
 --- !u!1 &1097961676015019222 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4507071309183633403, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-  m_PrefabInstance: {fileID: 5708447517962268947}
+  m_CorrespondingSourceObject: {fileID: 4501555224661155262, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+  m_PrefabInstance: {fileID: 7627123270068408356}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1770588728170230404 stripped
 GameObject:
@@ -11642,383 +11622,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ad81b574e61c14a9f3c47ac7b359a3, type: 3}
---- !u!1001 &5708447517962268947
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1770588728170230411}
-    m_Modifications:
-    - target: {fileID: 943730810079487318, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 943730810079487318, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 943730810079487318, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 943730810079487318, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 943730810079487318, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 2382725192738938700, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2382725192738938700, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2382725192738938700, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 2382725192738938700, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 2382725192738938700, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 2466464709920404184, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2466464709920404184, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2466464709920404184, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 2466464709920404184, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 2466464709920404184, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 2675651606732770984, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2675651606732770984, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2675651606732770984, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 2675651606732770984, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 2675651606732770984, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 2980971266963326547, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2980971266963326547, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2980971266963326547, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 2980971266963326547, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 2980971266963326547, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 2983214165952706674, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2983214165952706674, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2983214165952706674, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 2983214165952706674, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 2983214165952706674, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 2983214165952706674, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: materialArray.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3c3062b7828b62e48abaf0752f63a89b, type: 2}
-    - target: {fileID: 2983214165952706674, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: materialArray.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3c4c4af586d2a254ca0cb4bacfcb1b52, type: 2}
-    - target: {fileID: 2983214165952706674, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: materialArray.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: 21aa7c6ea6acfed429f70fb25280746a, type: 2}
-    - target: {fileID: 3001128830157470997, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641312531604835864, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 3641312531604835864, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 3641312531604835864, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 3641312531604835864, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 3641312531604835864, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 4015121547059240136, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4015121547059240136, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4015121547059240136, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 4015121547059240136, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 4015121547059240136, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 4507071309183633403, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_Name
-      value: LazerPlane
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507071309183633403, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737402518048532379, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4737402518048532379, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4737402518048532379, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 4737402518048532379, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 4737402518048532379, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 4884686494749493573, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4884686494749493573, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4884686494749493573, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 4884686494749493573, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 4884686494749493573, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 6077654939258972755, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6077654939258972755, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6077654939258972755, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 6077654939258972755, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 6077654939258972755, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303825169974137498, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7484167276149757925, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 7484167276149757925, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 7484167276149757925, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 7484167276149757925, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 7484167276149757925, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 7775967949907162880, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 7775967949907162880, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 7775967949907162880, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 7775967949907162880, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 7775967949907162880, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 7806052512869340488, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 7806052512869340488, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 7806052512869340488, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 7806052512869340488, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 7806052512869340488, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 9014623300914703225, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 9014623300914703225, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 9014623300914703225, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 9014623300914703225, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 9014623300914703225, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 34370dddbc119e944b3f5ac8abf32ff8, type: 3}
 --- !u!1001 &6525891354241690188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12323,30 +11926,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1485532156}
     m_Modifications:
-    - target: {fileID: 52968321289280302, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 188061592331325112, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 188061592331325112, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 188061592331325112, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 188061592331325112, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 188061592331325112, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
     - target: {fileID: 443961831284459344, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -12364,26 +11943,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 910861922}
     - target: {fileID: 443961831284459344, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 488698888647451009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 488698888647451009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 488698888647451009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 488698888647451009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 488698888647451009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -12447,6 +12006,26 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
+    - target: {fileID: 1003220739444490003, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: selectMenu
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 1003220739444490003, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 1003220739444490003, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_L
+      value: 
+      objectReference: {fileID: 822099993}
+    - target: {fileID: 1003220739444490003, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_R
+      value: 
+      objectReference: {fileID: 910861922}
+    - target: {fileID: 1003220739444490003, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_CENTER
+      value: 
+      objectReference: {fileID: 95685321}
     - target: {fileID: 1169650708575093006, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -12487,10 +12066,6 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 1419637137745544985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1558026720033145804, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -12508,26 +12083,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 910861922}
     - target: {fileID: 1558026720033145804, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 1660658272891839454, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 1660658272891839454, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 1660658272891839454, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 1660658272891839454, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 1660658272891839454, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -12551,14 +12106,6 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 1721847629081029795, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1721847629081029795, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.atime1
-      value: 33346
-      objectReference: {fileID: 0}
     - target: {fileID: 1727679933431089079, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -12576,34 +12123,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 910861922}
     - target: {fileID: 1727679933431089079, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 1799259347926572451, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812954480156300376, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: m_Name
-      value: PlayerShade
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889508983549911633, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 1889508983549911633, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 1889508983549911633, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 1889508983549911633, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 1889508983549911633, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -12611,30 +12130,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DamegeFieldPlane
       objectReference: {fileID: 0}
-    - target: {fileID: 1963918126099126637, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2074193054261441696, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2074193054261441696, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2074193054261441696, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 2074193054261441696, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 2074193054261441696, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
     - target: {fileID: 2109818904335545326, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -12695,63 +12190,43 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 2322913259148551082, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2442580653734200585, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 2322913259148551082, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2442580653734200585, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 2322913259148551082, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2442580653734200585, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 2322913259148551082, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2442580653734200585, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 2322913259148551082, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2442580653734200585, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 2413258957765992649, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2508027033357002909, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 2413258957765992649, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2508027033357002909, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 2413258957765992649, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2508027033357002909, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 2413258957765992649, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2508027033357002909, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 2413258957765992649, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 2553648954581341122, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2553648954581341122, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 2553648954581341122, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 2553648954581341122, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 2553648954581341122, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 2508027033357002909, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -12799,6 +12274,66 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
+    - target: {fileID: 2726150210773783789, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: selectMenu
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 2726150210773783789, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 2726150210773783789, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_L
+      value: 
+      objectReference: {fileID: 822099993}
+    - target: {fileID: 2726150210773783789, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_R
+      value: 
+      objectReference: {fileID: 910861922}
+    - target: {fileID: 2726150210773783789, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_CENTER
+      value: 
+      objectReference: {fileID: 95685321}
+    - target: {fileID: 2995571755285979703, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: selectMenu
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 2995571755285979703, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 2995571755285979703, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_L
+      value: 
+      objectReference: {fileID: 822099993}
+    - target: {fileID: 2995571755285979703, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_R
+      value: 
+      objectReference: {fileID: 910861922}
+    - target: {fileID: 2995571755285979703, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_CENTER
+      value: 
+      objectReference: {fileID: 95685321}
+    - target: {fileID: 3002317977966828566, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: selectMenu
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 3002317977966828566, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 3002317977966828566, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_L
+      value: 
+      objectReference: {fileID: 822099993}
+    - target: {fileID: 3002317977966828566, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_R
+      value: 
+      objectReference: {fileID: 910861922}
+    - target: {fileID: 3002317977966828566, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: colorMenuNumber_CENTER
+      value: 
+      objectReference: {fileID: 95685321}
     - target: {fileID: 3043351412506457562, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -12859,26 +12394,6 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 3237237495363417124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 3237237495363417124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 3237237495363417124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 3237237495363417124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 3237237495363417124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
     - target: {fileID: 3452197928413349447, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -12899,23 +12414,23 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 3466343010773062009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3637892197815784541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 3466343010773062009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3637892197815784541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 3466343010773062009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3637892197815784541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 3466343010773062009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3637892197815784541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 3466343010773062009, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3637892197815784541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -12943,10 +12458,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MAchineGunPlane
       objectReference: {fileID: 0}
-    - target: {fileID: 3770428072459988943, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3851633343373045525, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -12967,23 +12478,23 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 3879099417418974503, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3984694046730618509, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 3879099417418974503, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3984694046730618509, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 3879099417418974503, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3984694046730618509, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 3879099417418974503, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3984694046730618509, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 3879099417418974503, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 3984694046730618509, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13027,26 +12538,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4183958307112292959, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4183958307112292959, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4183958307112292959, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 4183958307112292959, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 4183958307112292959, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
     - target: {fileID: 4381573539072520063, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -13087,50 +12578,26 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 4616842701929859706, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4704655928653741534, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 4616842701929859706, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4704655928653741534, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 4616842701929859706, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4704655928653741534, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 4616842701929859706, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4704655928653741534, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 4616842701929859706, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4704655928653741534, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 4720586525446187940, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4720586525446187940, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 4720586525446187940, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 4720586525446187940, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 4720586525446187940, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 4729042638305908626, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4784714870428747657, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -13151,43 +12618,23 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 4890052391540889149, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4845043776729944832, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 4890052391540889149, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4845043776729944832, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 4890052391540889149, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4845043776729944832, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 4890052391540889149, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4845043776729944832, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 4890052391540889149, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 5200763313040247325, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 5200763313040247325, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 5200763313040247325, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 5200763313040247325, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 5200763313040247325, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 4845043776729944832, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13208,46 +12655,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 910861922}
     - target: {fileID: 5337612349014628322, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 5459506753770902135, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 5459506753770902135, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 5459506753770902135, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 5459506753770902135, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 5459506753770902135, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 5477529924163323432, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 5477529924163323432, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 5477529924163323432, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 5477529924163323432, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 5477529924163323432, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13291,43 +12698,23 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 5975902674592621551, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 6101466201381695510, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 5975902674592621551, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 6101466201381695510, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 5975902674592621551, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 6101466201381695510, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 5975902674592621551, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 6101466201381695510, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 5975902674592621551, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 6044609153915866188, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6044609153915866188, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6044609153915866188, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 6044609153915866188, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 6044609153915866188, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 6101466201381695510, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13348,26 +12735,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 910861922}
     - target: {fileID: 6160521138078645297, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 6173168379937719541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6173168379937719541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6173168379937719541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 6173168379937719541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 6173168379937719541, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13375,10 +12742,6 @@ PrefabInstance:
       propertyPath: boss
       value: 
       objectReference: {fileID: 1736841748}
-    - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: maxHp
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: HPSlider
       value: 
@@ -13408,22 +12771,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 651588144}
     - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: positionRing
-      value: 
-      objectReference: {fileID: 1647692712}
-    - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: HoverParticle
-      value: 
-      objectReference: {fileID: 1190939430}
-    - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: LazerParticle
-      value: 
-      objectReference: {fileID: 4420587825053408745, guid: b03a08570c5045a44b24d9ce1d531a44, type: 3}
-    - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: SmokeParticle
-      value: 
-      objectReference: {fileID: 1111755468}
-    - target: {fileID: 6251006912960470985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: DamageParticle
       value: 
       objectReference: {fileID: 1368096948050383225, guid: 3ada173266172004db3186964ca40d49, type: 3}
@@ -13447,10 +12794,6 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 6375935860061565381, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6420368372148688538, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -13491,26 +12834,6 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 6596768652740943923, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6596768652740943923, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6596768652740943923, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 6596768652740943923, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 6596768652740943923, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
     - target: {fileID: 6799168816726323639, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -13528,26 +12851,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 910861922}
     - target: {fileID: 6799168816726323639, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 6808113858988302212, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6808113858988302212, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 6808113858988302212, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 6808113858988302212, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 6808113858988302212, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13571,26 +12874,6 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 7337082702780954476, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 7337082702780954476, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 7337082702780954476, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 7337082702780954476, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 7337082702780954476, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
     - target: {fileID: 7341440165422127678, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -13611,23 +12894,23 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 7383065093606748516, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7433740552380075424, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 7383065093606748516, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7433740552380075424, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 7383065093606748516, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7433740552380075424, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 7383065093606748516, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7433740552380075424, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 7383065093606748516, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7433740552380075424, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13671,43 +12954,43 @@ PrefabInstance:
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 7949859205372271124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7718361067298778437, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 7949859205372271124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7718361067298778437, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 7949859205372271124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7718361067298778437, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 7949859205372271124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7718361067298778437, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 7949859205372271124, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7718361067298778437, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
-    - target: {fileID: 8006583809277620366, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7827329542491131661, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 8006583809277620366, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7827329542491131661, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 8006583809277620366, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7827329542491131661, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 8006583809277620366, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7827329542491131661, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 8006583809277620366, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 7827329542491131661, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13728,46 +13011,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 910861922}
     - target: {fileID: 8043383283345212919, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 8287630356154094579, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 8287630356154094579, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 8287630356154094579, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 8287630356154094579, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 8287630356154094579, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_CENTER
-      value: 
-      objectReference: {fileID: 95685321}
-    - target: {fileID: 8291434687412193697, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: selectMenu
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 8291434687412193697, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 738859541}
-    - target: {fileID: 8291434687412193697, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_L
-      value: 
-      objectReference: {fileID: 822099993}
-    - target: {fileID: 8291434687412193697, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      propertyPath: colorMenuNumber_R
-      value: 
-      objectReference: {fileID: 910861922}
-    - target: {fileID: 8291434687412193697, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13839,23 +13082,23 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 9084022448349249456, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 9074342001696010556, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 9084022448349249456, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 9074342001696010556, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
-    - target: {fileID: 9084022448349249456, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 9074342001696010556, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_L
       value: 
       objectReference: {fileID: 822099993}
-    - target: {fileID: 9084022448349249456, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 9074342001696010556, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_R
       value: 
       objectReference: {fileID: 910861922}
-    - target: {fileID: 9084022448349249456, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+    - target: {fileID: 9074342001696010556, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: colorMenuNumber_CENTER
       value: 
       objectReference: {fileID: 95685321}
@@ -13880,12 +13123,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 95685321}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1419637137745544985, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4013187002375706802, guid: 77c35af8850608e4d932097efc28345c, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 321847940436885100}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77c35af8850608e4d932097efc28345c, type: 3}
 --- !u!1001 &8928513935942138434

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealOkMove : MonoBehaviour
+public class Heal : MonoBehaviour
 {
     public GameObject gameManager;
     private GameManager gameManagerScript;
@@ -34,7 +34,7 @@ public class HealOkMove : MonoBehaviour
         int healBatteryEnergy = gameManagerScript.GetHealBatteryEnargy();
 
         // 回復不可 or ポーズ中 → 両方非表示
-        if (pauseSystemScript.IsPaused() || healBatteryEnergy < 9)
+        if (pauseSystemScript.IsPaused() || healBatteryEnergy < 9||gameManagerScript.IsGameClear()||gameManagerScript.IsGameOver())
         {
             Stunby.SetActive(false);
             HealOk.SetActive(false);
