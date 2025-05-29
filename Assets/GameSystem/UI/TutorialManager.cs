@@ -12,10 +12,14 @@ public class TutorialManager : MonoBehaviour
     private int currentIndex = 0;
 
     private bool istutorialOpen;
+    //チュートリアルが開かれたか
+    public bool IsTutorialCheck = true;
+
     // Start is called before the first frame update
     void Start()
     {
         istutorialOpen = false;
+        IsTutorialCheck=true; // チュートリアルが開かれたかのフラグを初期化
         gameManagerScript = gameManager.GetComponent<GameManager>();
     }
 
@@ -37,10 +41,11 @@ public class TutorialManager : MonoBehaviour
             {
                 SwitchImage();
             }
-            if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 2"))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 2"))
             {
                 istutorialOpen = false;
                 gameManagerScript.GameStart();//ゲーム開始
+                IsTutorialCheck = false; // チュートリアルが終了したのでフラグをリセット
             }
         }
         else
@@ -74,6 +79,10 @@ public class TutorialManager : MonoBehaviour
     }
     public void TutorialStart()
     {
-        istutorialOpen=true;
+        istutorialOpen = true;
+    }
+    public bool IsTutorialCheckOpen()
+    {
+        return IsTutorialCheck;
     }
 }

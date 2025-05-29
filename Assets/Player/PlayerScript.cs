@@ -96,6 +96,9 @@ public class PlayerScript : MonoBehaviour
     private const int MaxHealHp = 300;
     private const int HealAmount = 150;
 
+    //シールド
+    private bool isShieldActive = false; // シールドがアクティブかどうかのフラグ
+
 
     // プレイヤーがレーザーに触れているかどうかのフラグ
     private bool isTouchingLaser = false;
@@ -597,14 +600,14 @@ public class PlayerScript : MonoBehaviour
         string tag = other.gameObject.tag;
 
         //雑魚の弾
-        if (other.gameObject.tag == "EnemyBullet")
+        if (other.gameObject.tag == "EnemyBullet"&& !isShieldActive)
         {
             currentHp -= 10;
             tookDamage = true;
         }
 
         //BossBullet
-        if (other.gameObject.tag == "BossBullet")
+        if (other.gameObject.tag == "BossBullet" && !isShieldActive)
         {
             currentHp -= 20;
           
@@ -612,28 +615,38 @@ public class PlayerScript : MonoBehaviour
         }
 
         //BossExtraBullet
-        if (other.gameObject.tag == "BossExtraBullet")
+        if (other.gameObject.tag == "BossExtraBullet" && !isShieldActive)
         {
             currentHp -= 8;
             tookDamage = true;
         }
 
         //ロボットの弾
-        if (other.gameObject.tag == "RobotBullet")
+        if (other.gameObject.tag == "RobotBullet" && !isShieldActive)
         {
             currentHp -= 20;
             tookDamage = true;
         }
 
+        //必殺技
+        if (other.gameObject.tag == "FinalBomm" && !isShieldActive)
+        {
+            currentHp -= 100;
+            hpSlider.value = (float)currentHp / (float)maxHp;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            tookDamage = true;
+            
+        }
+
         // ダメージ受けたらスライダー更新
-        if (tookDamage)
+        if (tookDamage&&!isShieldActive)
         {
             hpSlider.value = (float)currentHp / (float)maxHp;
         }
 
 
         if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
-            || other.gameObject.tag == "RobotBullet" || other.gameObject.tag == "FinalLazer"|| other.gameObject.tag == "Piller" && cameraMoveScript.IsAnimation() == false)
+            || other.gameObject.tag == "RobotBullet" || other.gameObject.tag == "FinalLazer"|| other.gameObject.tag == "Piller" && cameraMoveScript.IsAnimation() == false||other.gameObject.tag == "FinalBomm"
+            && !isShieldActive)
         {
             Damaged();
         }
@@ -644,6 +657,15 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
+        //シールド
+        if (other.gameObject.tag == "Shield")
+        {
+            isShieldActive = true; // シールドがアクティブになる
+        }
+        else
+        {
+            isShieldActive = false; // シールドがアクティブでない場合
+        }
         if (other.gameObject.CompareTag("Lazer") || other.gameObject.CompareTag("FinalLazer"))
         {
             // レーザーに触れているフラグを立てる
@@ -660,6 +682,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     currentHp -= 6;
                 }
+                
 
                 hpSlider.value = (float)currentHp / (float)maxHp;
                 damageTimer = 0f; // タイマーリセット
@@ -697,6 +720,8 @@ public class PlayerScript : MonoBehaviour
             Damaged();
 
         }
+
+        
     }
 
 

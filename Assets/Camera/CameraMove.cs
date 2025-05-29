@@ -16,17 +16,21 @@ public class CameraMove : MonoBehaviour
     private bool isAnimation=false;
     private bool wasAnimation = false; // 前回の状態
 
+    //Swich
+    private bool isCameraSwitch = false;
+
     private void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
         tutorialManagerScript = tutorialManager.GetComponent<TutorialManager>();
         animator = GetComponent<Animator>();
         // 初期状態のアニメーションを設定
-        animator.SetBool("isRobotView", false);
-        animator.SetBool("isBossBulletView", false);
-        animator.SetBool("isLazerBossView", false);
-        animator.SetBool("isFinalBattle", false);
+        //animator.SetBool("isRobotView", false);
+        //animator.SetBool("isBossBulletView", false);
+        //animator.SetBool("isLazerBossView", false);
+        //animator.SetBool("isFinalBattle", false);
         animator.SetBool("isTutorial", false);
+        isCameraSwitch = false; // 初期状態ではカメラスイッチを有効にする
     }
 
     void Update()
@@ -35,55 +39,66 @@ public class CameraMove : MonoBehaviour
         {
             bool newIsAnimation = false;
 
-            // 各アニメーションチェック（true にするタイミング）
-            if (gameManagerScript.IsGamePlayCount() >= 77.0f && gameManagerScript.IsGamePlayCount() <= 101.0f)
-            {
-                animator.SetBool("isRobotView", true);
-                newIsAnimation = true;
-            }
-            else
-            {
-                animator.SetBool("isRobotView", false);
-            }
+            //// 各アニメーションチェック（true にするタイミング）
+            //if (gameManagerScript.IsGamePlayCount() >= 77.0f && gameManagerScript.IsGamePlayCount() <= 101.0f)
+            //{
+            //    animator.SetBool("isRobotView", true);
+            //    newIsAnimation = true;
+            //}
+            //else
+            //{
+            //    animator.SetBool("isRobotView", false);
+            //}
 
-            if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 18.0f && gameManagerScript.IsGamePlayCount() <= 58.0f)
-            {
-                animator.SetBool("isBossBulletView", true);
-                newIsAnimation = true;
-            }
-            else
-            {
-                animator.SetBool("isBossBulletView", false);
-            }
+            //if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 18.0f && gameManagerScript.IsGamePlayCount() <= 58.0f)
+            //{
+            //    animator.SetBool("isBossBulletView", true);
+            //    newIsAnimation = true;
+            //}
+            //else
+            //{
+            //    animator.SetBool("isBossBulletView", false);
+            //}
 
-            if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 58.0f && gameManagerScript.IsGamePlayCount() < 77.0f)
-            {
-                animator.SetBool("isLazerBossView", true);
-                newIsAnimation = true;
-            }
-            else
-            {
-                animator.SetBool("isLazerBossView", false);
-            }
+            //if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 58.0f && gameManagerScript.IsGamePlayCount() < 77.0f)
+            //{
+            //    animator.SetBool("isLazerBossView", true);
+            //    newIsAnimation = true;
+            //}
+            //else
+            //{
+            //    animator.SetBool("isLazerBossView", false);
+            //}
 
-            if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 124.0f)
-            {
-                animator.SetBool("isFinalBattle", true);
-                newIsAnimation = true;
-            }
-            else
-            {
-                animator.SetBool("isFinalBattle", false);
-            }
+            //if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 124.0f)
+            //{
+            //    animator.SetBool("isFinalBattle", true);
+            //    newIsAnimation = true;
+            //}
+            //else
+            //{
+            //    animator.SetBool("isFinalBattle", false);
+            //}
 
             if (tutorialManagerScript.IsTutorialOpen())
             {
                 animator.SetBool("isTutorial", true);
+
             }
             else
             {
                 animator.SetBool("isTutorial", false);
             }
+
+            if (!tutorialManagerScript.IsTutorialCheckOpen())
+            {
+                isCameraSwitch = true; // チュートリアル中はカメラスイッチを無効にする
+            }
+            else
+            {
+                isCameraSwitch = false; // チュートリアルが終了したらカメラスイッチを有効にする
+            }
+
 
             //// アニメーション状態が false→true になった瞬間を検知
             //if (!wasAnimation && newIsAnimation)
@@ -96,10 +111,10 @@ public class CameraMove : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isRobotView", false);
-            animator.SetBool("isBossBulletView", false);
-            animator.SetBool("isLazerBossView", false);
-            animator.SetBool("isGameOver", true);
+            //animator.SetBool("isRobotView", false);
+            //animator.SetBool("isBossBulletView", false);
+            //animator.SetBool("isLazerBossView", false);
+            //animator.SetBool("isGameOver", true);
             animator.SetBool("isTutorial", false);
         }
     }
@@ -117,4 +132,8 @@ public class CameraMove : MonoBehaviour
         return isAnimation;
     }
 
+    public bool IsCameraSwitch()
+    {
+        return isCameraSwitch;
+    }
 }
