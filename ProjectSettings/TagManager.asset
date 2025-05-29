@@ -29,6 +29,8 @@ TagManager:
   - Wall
   - Piller
   - Explosion
+  - FinalBomm
+  - Shield
   layers:
   - Default
   - TransparentFX

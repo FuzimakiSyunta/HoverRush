@@ -63,5 +63,25 @@ public class SpecDemo : MonoBehaviour
         {
             gameManagerScript.HealCounter();//回復回数増加
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Time.timeScale += 0.5f;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 10f); 
+            Debug.Log("TimeScaleを上昇: " + Time.timeScale);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Time.timeScale -= 0.5f;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 5f); // 0以下にならないように
+            Debug.Log("TimeScaleを減少: " + Time.timeScale);
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Time.timeScale = 1.0f; // 通常速度に戻す
+            Debug.Log("TimeScaleリセット: " + Time.timeScale);
+        }
     }
 }

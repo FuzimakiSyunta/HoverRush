@@ -196,6 +196,10 @@ public class GameManager : MonoBehaviour
     {
         healBatteryEnergy += 1; // バッテリーを増加
     }
+    public void ShieldBatteryEnargy()
+    {
+        batteryEnergy -= 100; // バッテリーを-100
+    }
     public int GetHealBatteryEnargy()
     {
         return healBatteryEnergy; // 現在のエネルギー値を返す
