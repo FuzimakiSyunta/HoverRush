@@ -14,72 +14,68 @@ public class CameraMove : MonoBehaviour
     private Animator animator;
 
     private bool isAnimation=false;
+    private bool wasAnimation = false; // 前回の状態
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        //tutorial
         tutorialManagerScript = tutorialManager.GetComponent<TutorialManager>();
         animator = GetComponent<Animator>();
+        // 初期状態のアニメーションを設定
         animator.SetBool("isRobotView", false);
         animator.SetBool("isBossBulletView", false);
         animator.SetBool("isLazerBossView", false);
-        animator.SetBool("isTutorial", false);
         animator.SetBool("isFinalBattle", false);
+        animator.SetBool("isTutorial", false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsGameOver()==false)
+        if (!gameManagerScript.IsGameOver()&&!gameManagerScript.IsGameClear())
         {
-            //ロボットに変身したときのアニメーション
+            bool newIsAnimation = false;
+
+            // 各アニメーションチェック（true にするタイミング）
             if (gameManagerScript.IsGamePlayCount() >= 77.0f && gameManagerScript.IsGamePlayCount() <= 101.0f)
             {
                 animator.SetBool("isRobotView", true);
-                isAnimation = true;
+                newIsAnimation = true;
             }
             else
             {
                 animator.SetBool("isRobotView", false);
-                isAnimation = false;
             }
 
-            //第一ボスウェーブのアニメーション
             if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 18.0f && gameManagerScript.IsGamePlayCount() <= 58.0f)
             {
                 animator.SetBool("isBossBulletView", true);
-                isAnimation = true;
+                newIsAnimation = true;
             }
             else
             {
                 animator.SetBool("isBossBulletView", false);
-                isAnimation = false;
             }
-            //第二ボスウェーブのアニメーション
+
             if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 58.0f && gameManagerScript.IsGamePlayCount() < 77.0f)
             {
                 animator.SetBool("isLazerBossView", true);
-                isAnimation = true;
+                newIsAnimation = true;
             }
             else
             {
                 animator.SetBool("isLazerBossView", false);
-                isAnimation = false;
             }
-            //最終ボスウェーブのアニメーション
+
             if (gameManagerScript.IsBossWave() && gameManagerScript.IsGamePlayCount() >= 124.0f)
             {
                 animator.SetBool("isFinalBattle", true);
-                isAnimation = true;
+                newIsAnimation = true;
             }
             else
             {
                 animator.SetBool("isFinalBattle", false);
-                isAnimation = false;
             }
-            //チュートリアル
+
             if (tutorialManagerScript.IsTutorialOpen())
             {
                 animator.SetBool("isTutorial", true);
@@ -88,6 +84,15 @@ public class CameraMove : MonoBehaviour
             {
                 animator.SetBool("isTutorial", false);
             }
+
+            //// アニメーション状態が false→true になった瞬間を検知
+            //if (!wasAnimation && newIsAnimation)
+            //{
+            //    StartCoroutine(PauseGameForSeconds(2f));
+            //}
+
+            wasAnimation = newIsAnimation;
+            isAnimation = newIsAnimation;
         }
         else
         {
@@ -97,13 +102,19 @@ public class CameraMove : MonoBehaviour
             animator.SetBool("isGameOver", true);
             animator.SetBool("isTutorial", false);
         }
+    }
 
 
+    IEnumerator PauseGameForSeconds(float seconds)
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(seconds); // Realtimeで待機
+        Time.timeScale = 1f;
     }
 
     public bool IsAnimation()
     {
-        return isAnimation;//アニメーションしたか
+        return isAnimation;
     }
-   
+
 }

@@ -108,7 +108,6 @@ public class BossScript : MonoBehaviour
         Lazer_L.SetActive(false);
         Lazer_R.SetActive(false);
         FinalBossLazer.SetActive(false);
-        Robot.SetActive(false);
         BossAir.SetActive(true);
         FinalBossLazer.SetActive(false);
         isDameged = false;
@@ -504,16 +503,9 @@ public class BossScript : MonoBehaviour
             BossAir.transform.position = new Vector3(transform.position.x, 6.0f, transform.position.z);
         }
 
-        //// ロボット状態の切り替え
-        //if (animator.GetBool("isRobotStay") == true)
-        //{
-        //    BossAir.SetActive(false);
-        //    Robot.SetActive(true);
-        //}
         if (animator.GetBool("FinalWave") == true)
         {
             BossAir.SetActive(true);
-            Robot.SetActive(false);
         }
     }
 

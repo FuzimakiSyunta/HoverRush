@@ -28,6 +28,7 @@ TagManager:
   - FinalLazer
   - Wall
   - Piller
+  - BigBarst
   layers:
   - Default
   - TransparentFX

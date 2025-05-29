@@ -628,6 +628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarSparrow10
       objectReference: {fileID: 0}
+    - target: {fileID: 8228113749338080703, guid: b17882d066aba394dac85746d25eadfd, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 721608799864582647, guid: e84db841a9a98e444bd4466e423506d2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1680121199565101984, guid: b17882d066aba394dac85746d25eadfd, type: 3}

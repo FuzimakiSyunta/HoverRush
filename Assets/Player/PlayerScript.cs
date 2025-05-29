@@ -48,8 +48,11 @@ public class PlayerScript : MonoBehaviour
     private bool singleShotChenge = false;
     private bool lazerShotChenge = false;
     private bool penetrationShotChenge = false;
-    private float MoveSpeed = 18.0f;
-  
+    private float moveSpeed = 18.0f;
+    private bool isLaserPoweredUp = false;
+    private bool isSinglePoweredUp = false;
+    private bool isPenetrationPoweredUp = false;
+
     //上昇
     private float verticalSpeed = 0f; // 上下方向の速度
     private float jumpPower = 50f;    // 上昇の勢い
@@ -63,7 +66,6 @@ public class PlayerScript : MonoBehaviour
     private int currentHp;// プレイヤーの現在のHP
     public Slider hpSlider;//HPバー（スライダー）
     public bool isDamaged = false;
-    private bool damaged = false; // ←新規に追加（1フレームだけ使う）
     private bool isHeal=false;
     public float DamegeCoolTime;
 
@@ -132,6 +134,10 @@ public class PlayerScript : MonoBehaviour
         HoverParticle.SetActive(false);
         //ポジションリング
         positionRing.SetActive(false);
+        //パワーアップ
+        isLaserPoweredUp = false;
+        isSinglePoweredUp = false;
+        isPenetrationPoweredUp = false;
     }
 
     void Damaged()
@@ -283,7 +289,7 @@ public class PlayerScript : MonoBehaviour
     void PlayerMove()
     {
         // 時間依存の移動
-        float move = MoveSpeed * Time.deltaTime;
+        float move = moveSpeed * Time.deltaTime;
         //L Stick
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
@@ -412,39 +418,53 @@ public class PlayerScript : MonoBehaviour
 
     void ShotPattern()
     {
-        // 射撃パターン追加
-        if (gameManagerScript.GetBatteryEnargy() >= 30)
+        // 現在のエネルギーを取得しておく（無駄な呼び出しを減らす）
+        int energy = gameManagerScript.GetBatteryEnargy();
+
+        // レーザー（20以上）
+        if (energy >= 20)
         {
-            penetrationShotChenge = true; // 自機タイプ貫通弾
+            lazerShotChenge = true;
+
+            if (!isLaserPoweredUp)
+            {
+                isLaserPoweredUp = true;
+            }
         }
-        else if (gameManagerScript.GetBatteryEnargy() < 30)
+        else
         {
-            penetrationShotChenge = false; // 自機タイプ貫通弾
-            DamegeRing.SetActive(false);
+            lazerShotChenge = false;
         }
 
-        if (gameManagerScript.GetBatteryEnargy() >= 25)
+        // 単発（25以上）
+        if (energy >= 25)
         {
-            singleShotChenge = true; // 自機タイプ単発
+            singleShotChenge = true;
+
+            if (!isSinglePoweredUp)
+            {
+                isSinglePoweredUp = true;
+            }
         }
-        else if (gameManagerScript.GetBatteryEnargy() < 25)
+        else
         {
-            singleShotChenge = false; // 自機タイプ単発
-        }
-        if (gameManagerScript.GetBatteryEnargy() >= 20)
-        {
-            lazerShotChenge = true; // 自機タイプレーザー
-        }
-        else if (gameManagerScript.GetBatteryEnargy() < 20)
-        {
-            lazerShotChenge = false; // 自機タイプレーザー
+            singleShotChenge = false;
         }
 
-        ////ホバーモード
-        //if (gameManagerScript.GetBatteryEnargy() >= 100)
-        //{
+        // 貫通（30以上）
+        if (energy >= 30)
+        {
+            penetrationShotChenge = true;
 
-        //}
+            if (!isPenetrationPoweredUp)
+            {
+                isPenetrationPoweredUp = true;
+            }
+        }
+        else
+        {
+            penetrationShotChenge = false;
+        }
     }
 
     void FixedUpdate()
@@ -542,7 +562,7 @@ public class PlayerScript : MonoBehaviour
                     }
                 }
                 //DamegeRing
-                if (penetrationShotChenge)
+                if (penetrationShotChenge && playerModelsScript.IsIndex() == 2)
                 {
                     DamegeRing.SetActive(true);
                     bulletTimer[0]++;
@@ -550,6 +570,10 @@ public class PlayerScript : MonoBehaviour
                     {
                         bulletTimer[0] = 0.0f;
                     }
+                }
+                else
+                {
+                    DamegeRing.SetActive(false);
                 }
             }
             
@@ -676,6 +700,18 @@ public class PlayerScript : MonoBehaviour
     }
 
 
+    public bool IsLazerPowerUp()
+    {
+        return isLaserPoweredUp;
+    }
+    public bool IsSinglePowerUp()
+    {
+        return isSinglePoweredUp;
+    }
+    public bool IsPenetrationPowerUp()
+    {
+        return isPenetrationPoweredUp;
+    }
     public void SetLaserHit(bool v)
     {
         isTouchingLaser = v;
@@ -707,7 +743,7 @@ public class PlayerScript : MonoBehaviour
 
     public float Speed()
     {
-        return MoveSpeed * Time.deltaTime;
+        return moveSpeed * Time.deltaTime;
     }
     public float DamegeCoolTimer()
     {
