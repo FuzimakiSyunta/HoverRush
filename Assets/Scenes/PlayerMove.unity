@@ -11342,21 +11342,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 983976559}
     m_Modifications:
-    - target: {fileID: 164118477015961562, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e9252cdbd1efae84a88253c96918b275, type: 3}
-    - target: {fileID: 771441904004981448, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 36dda32c03f6431438856c3d51546786, type: 3}
-    - target: {fileID: 818178422370749551, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7b0459c9892f5bb46a1698f2b7bf315d, type: 3}
-    - target: {fileID: 2249211240728857766, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
-      propertyPath: m_Name
-      value: TutorialImage(2Page)
+    - target: {fileID: 1053192241141099516, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.67377174
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053192241141099516, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0861925
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053192241141099516, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1268193
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053192241141099516, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00003658622
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053192241141099516, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053192241141099516, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 14.900006
       objectReference: {fileID: 0}
     - target: {fileID: 3040715092753579293, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
       propertyPath: m_Name
@@ -11442,21 +11450,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4059359557809294109, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
-      propertyPath: m_Name
-      value: TutorialImage(1Page)
+    - target: {fileID: 4760142319946985344, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4201537203898575345, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5f5605ba21b23a24cbcf195e937887e1, type: 3}
-    - target: {fileID: 4227181467764962168, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
+    - target: {fileID: 5438060288136895792, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.24837422
       objectReference: {fileID: 0}
-    - target: {fileID: 4248620768542116000, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
-      propertyPath: m_Name
-      value: TutorialImage(3Page)
+    - target: {fileID: 5438060288136895792, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5715784
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438060288136895792, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5505164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438060288136895792, guid: 9640606c1080a1748ad03073fb28b6fd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -30.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
