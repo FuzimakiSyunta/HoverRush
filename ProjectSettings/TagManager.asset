@@ -28,6 +28,7 @@ TagManager:
   - FinalLazer
   - Wall
   - Piller
+  - Explosion
   layers:
   - Default
   - TransparentFX

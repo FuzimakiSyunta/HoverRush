@@ -1,26 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FinalExtraBullet : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float baseSpeedZ = 10.0f;
+    public float lifeTime = 5f; // ’e‚ªÁ‚¦‚é‚Ü‚Å‚ÌŠÔ
 
     void Start()
     {
-        Destroy(gameObject, 3); // 3•bŒã‚ÉƒIƒuƒWƒFƒNƒg‚ğ”j‰ó
+        // ˆê’èŠÔŒã‚É’e‚ğíœiƒƒ‚ƒŠß–ñj
+        Destroy(gameObject, lifeTime);
     }
 
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        // ‘¬“x‚ğ‹t•ûŒü‚Éİ’è (z ‚Ì•„†‚ğ”½“])
-        rb.velocity = new Vector3(0, 0, -(baseSpeedZ + Time.time));
-
-        // x•ûŒü‚Ì§ŒÀ
-        if (transform.position.x >= 13)
+        if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // ’e‚ğíœ
         }
     }
 }

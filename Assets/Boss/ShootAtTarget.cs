@@ -42,7 +42,7 @@ public class ShootAtTarget : MonoBehaviour
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.velocity = transform.forward * 200f; // 弾を前方に飛ばす（速度20）
+                rb.velocity = transform.forward * 100f; // 弾を前方に飛ばす
             }
         }
     }

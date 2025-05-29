@@ -146,6 +146,14 @@ public class NomalEnemy : MonoBehaviour
             sliderBool = true;
             Damaged();
         }
+        //爆発
+        if (other.gameObject.tag == "Explosion")
+        {
+            //audioSource.PlayOneShot(DamegeSound);
+            EnemyNowHP -= 999;
+            hpSlider.value = (float)EnemyNowHP / (float)enemyHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
+            sliderBool = true;
+        }
     }
 
     //

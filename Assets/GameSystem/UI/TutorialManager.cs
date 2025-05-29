@@ -46,7 +46,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             //チュートリアル
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 TutorialPage[i].gameObject.SetActive(false);
             }

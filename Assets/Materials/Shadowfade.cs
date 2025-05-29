@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShadowFade : MonoBehaviour
 {
-    [SerializeField] private float fixedY = 0.5f; // ŒÅ’è‚·‚éYÀ•W
+    private float fixedY = 0; // ŒÅ’è‚·‚éYÀ•W
 
     void Update()
     {
