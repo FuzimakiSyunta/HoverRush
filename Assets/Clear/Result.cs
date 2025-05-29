@@ -72,33 +72,40 @@ public class Result : MonoBehaviour
                 GameClearImage.SetActive(false);
             }
 
-            if (GameClearActiveTime >= 3f && !hasRankDisplayed) // ランク未表示の場合のみ処理実行
+            if (GameClearActiveTime >= 3f && !hasRankDisplayed)
             {
                 isRankOpen = true;
                 RankCanvas.SetActive(true);
                 RankImage.SetActive(true);
 
-                if (gameTimerScript.GetElapsedTime() <= 145)
+                // ★ ランクを一度リセット
+                SS_rank.SetActive(false);
+                S_rank.SetActive(false);
+                A_rank.SetActive(false);
+                B_rank.SetActive(false);
+
+                // ★ 新しいランク表示条件
+                float elapsedTime = gameTimerScript.GetElapsedTime();
+
+                if (elapsedTime <= 160f)
                 {
                     SS_rank.SetActive(true);
                 }
-                else if (gameTimerScript.GetElapsedTime() > 145 && gameTimerScript.GetElapsedTime() <= 150)
+                else if (elapsedTime <= 170f)
                 {
                     S_rank.SetActive(true);
                 }
-                else if (gameTimerScript.GetElapsedTime() > 150 && gameTimerScript.GetElapsedTime() <= 155)
+                else if (elapsedTime <= 180f)
                 {
                     A_rank.SetActive(true);
                 }
-                else if (gameTimerScript.GetElapsedTime() > 155)
+                else
                 {
                     B_rank.SetActive(true);
                 }
 
-                // ランクが表示された後にタイマーを停止
                 gameTimerScript.StopTimer();
-
-                hasRankDisplayed = true; // ランク表示済みフラグを更新
+                hasRankDisplayed = true;
             }
         }
         else

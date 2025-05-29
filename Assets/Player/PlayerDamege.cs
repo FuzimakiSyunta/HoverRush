@@ -12,22 +12,31 @@ public class PlayerDamage : MonoBehaviour
 
     public RawImage damageImage;
 
+    public Camera gameCamera;
+    private CameraShaker cameraShaker;
+
     private Coroutine fadeCoroutine = null;
     private Coroutine blinkCoroutine = null;
+
+    private bool isLaserShaking = false;
 
     void Start()
     {
         playerScript = player.GetComponent<PlayerScript>();
         pauseSystemScript = pausesystem.GetComponent<PauseSystem>();
         damageImage.color = new Color(1f, 0f, 0f, 0f);
+
+        if (gameCamera != null)
+        {
+            cameraShaker = gameCamera.GetComponent<CameraShaker>();
+        }
     }
 
     void Update()
     {
-        // tookDamageフラグが立っていたら毎回演出を行う
+        // 通常のダメージ
         if (playerScript.IsTookDamage())
         {
-            // 前のフェード演出があれば止める
             if (fadeCoroutine != null)
             {
                 StopCoroutine(fadeCoroutine);
@@ -35,17 +44,21 @@ public class PlayerDamage : MonoBehaviour
             }
 
             StartCoroutine(HandleDamageEffect());
-
-            // フラグリセット（PlayerScript側に実装が必要）
             playerScript.ResetDamageFlag();
         }
 
-        // レーザー接触時の点滅演出
+        // レーザー接触中
         if (playerScript.IsTouchingLaser())
         {
             if (blinkCoroutine == null)
             {
                 blinkCoroutine = StartCoroutine(BlinkDamageImage());
+            }
+
+            if (!isLaserShaking && cameraShaker != null)
+            {
+                cameraShaker.StartContinuousShake(0.15f);
+                isLaserShaking = true;
             }
         }
         else
@@ -54,18 +67,27 @@ public class PlayerDamage : MonoBehaviour
             {
                 StopCoroutine(blinkCoroutine);
                 blinkCoroutine = null;
-                damageImage.color = new Color(1f, 0f, 0f, 0f); // 元に戻す
+                damageImage.color = new Color(1f, 0f, 0f, 0f);
+            }
+
+            if (isLaserShaking && cameraShaker != null)
+            {
+                cameraShaker.StopContinuousShake();
+                isLaserShaking = false;
             }
         }
     }
 
     IEnumerator HandleDamageEffect()
     {
-        // 即赤くする
         damageImage.color = new Color(1f, 0f, 0f, 0.5f);
 
+        if (cameraShaker != null)
+        {
+            cameraShaker.ShakeOnce(0.3f, 0.25f);
+        }
+
         fadeCoroutine = StartCoroutine(FadeOutDamageImage());
-        //StartCoroutine(HitStopEffect());
         yield return null;
     }
 
@@ -85,20 +107,6 @@ public class PlayerDamage : MonoBehaviour
         damageImage.color = new Color(1f, 0f, 0f, 0f);
         fadeCoroutine = null;
     }
-
-    //IEnumerator HitStopEffect()
-    //{
-    //    if (!pauseSystemScript.IsPaused())
-    //    {
-    //        Time.timeScale = 0.1f;
-    //        yield return new WaitForSecondsRealtime(0.25f);
-    //        Time.timeScale = 1f;
-    //    }
-    //    else
-    //    {
-    //        Time.timeScale = 0f;
-    //    }
-    //}
 
     IEnumerator BlinkDamageImage()
     {
