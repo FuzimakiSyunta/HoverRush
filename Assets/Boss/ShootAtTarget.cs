@@ -8,6 +8,7 @@ public class ShootAtTarget : MonoBehaviour
     public Transform firePoint;
     public GameObject boss;
     public GameObject shieldPrefab;
+    public GameObject chargeEffectPrefab; // チャージエフェクトのプレハブ
 
     private BossScript bossScript;
     private bool isCharging = false;
@@ -49,7 +50,7 @@ public class ShootAtTarget : MonoBehaviour
         }
 
         // 以下はゲーム中のみ実行される
-        ShieldImage.SetActive(gameManagerScript.GetBatteryEnargy() >= 100);
+        ShieldImage.SetActive(gameManagerScript.GetBatteryEnargy() >= 30);
 
         if (bossScript != null && bossScript.IsFinalBattle() && !isCharging)
         {
@@ -58,63 +59,83 @@ public class ShootAtTarget : MonoBehaviour
             ShieldBatteryImage.SetActive(true);
         }
 
-        if (gameManagerScript.GetBatteryEnargy() >= 100 &&
+        if (gameManagerScript.GetBatteryEnargy() >= 30 &&
         (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.Q)))
         {
             gameManagerScript.ShieldBatteryEnargy();
             SpawnShieldAtPlayerPosition();
         }
 
-    }
-
-
-    IEnumerator ChargeAndFire()
-    {
-        isCharging = true;
-
-        yield return new WaitForSeconds(10f);
-
-        FireSpecialBullet();
-
-        isCharging = false;
-    }
-
-    void FireSpecialBullet()
-    {
-        if (target != null && bulletPrefab != null)
+        if (isCharging)
         {
-            transform.LookAt(target);
-
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            if (rb != null)
+            // チャージ中のエフェクトを表示
+            if (chargeEffectPrefab != null)
             {
-                rb.velocity = transform.forward * 10f;
+                Instantiate(chargeEffectPrefab, firePoint.position, firePoint.rotation);
             }
         }
+        else
+        {
+            // チャージ中でない場合はエフェクトを非表示にする
+            if (chargeEffectPrefab != null)
+            {
+                foreach (var effect in GameObject.FindGameObjectsWithTag("ChargeEffect"))
+                {
+                    Destroy(effect);
+                }
+            }
+
+        }
+
+
+        IEnumerator ChargeAndFire()
+        {
+            isCharging = true;
+
+            yield return new WaitForSeconds(10f);
+
+            FireSpecialBullet();
+
+            isCharging = false;
+        }
+
+        void FireSpecialBullet()
+        {
+            if (target != null && bulletPrefab != null)
+            {
+                transform.LookAt(target);
+
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.velocity = transform.forward * 10f;
+                }
+            }
+        }
+
+        //void SpawnShieldAtRandomPosition()
+        //{
+        //    if (shieldPrefab == null) return;
+
+        //    int index = Random.Range(0, shieldSpawnPositions.Length);
+        //    Vector2 pos2D = shieldSpawnPositions[index];
+
+        //    // y=0としてZ軸を2Dのyとして使う
+        //    Vector3 spawnPos = new Vector3(pos2D.x, 0f, pos2D.y);
+        //    Instantiate(shieldPrefab, spawnPos, Quaternion.identity);
+
+        //    Debug.Log($"シールド配置: {spawnPos}");
+        //}
+        void SpawnShieldAtPlayerPosition()
+        {
+            if (shieldPrefab == null || target == null) return;
+
+            Vector3 spawnPos = new Vector3(target.position.x, 0f, target.position.z); // Yは0固定、XZはプレイヤーに合わせる
+            Instantiate(shieldPrefab, spawnPos, Quaternion.identity);
+
+            Debug.Log($"シールド配置（プレイヤー位置）: {spawnPos}");
+        }
+
     }
-
-    //void SpawnShieldAtRandomPosition()
-    //{
-    //    if (shieldPrefab == null) return;
-
-    //    int index = Random.Range(0, shieldSpawnPositions.Length);
-    //    Vector2 pos2D = shieldSpawnPositions[index];
-
-    //    // y=0としてZ軸を2Dのyとして使う
-    //    Vector3 spawnPos = new Vector3(pos2D.x, 0f, pos2D.y);
-    //    Instantiate(shieldPrefab, spawnPos, Quaternion.identity);
-
-    //    Debug.Log($"シールド配置: {spawnPos}");
-    //}
-    void SpawnShieldAtPlayerPosition()
-    {
-        if (shieldPrefab == null || target == null) return;
-
-        Vector3 spawnPos = new Vector3(target.position.x, 0f, target.position.z); // Yは0固定、XZはプレイヤーに合わせる
-        Instantiate(shieldPrefab, spawnPos, Quaternion.identity);
-
-        Debug.Log($"シールド配置（プレイヤー位置）: {spawnPos}");
-    }
-
 }

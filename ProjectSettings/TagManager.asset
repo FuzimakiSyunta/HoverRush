@@ -31,6 +31,7 @@ TagManager:
   - Explosion
   - FinalBomm
   - Shield
+  - ChargeEffect
   layers:
   - Default
   - TransparentFX
