@@ -542,6 +542,10 @@ public class BossScript : MonoBehaviour
     {
        BossBattleTime++;
     }
+    public float BossTime()
+    {
+        return BossBattleTime++;
+    }
 
     public void DownHp()
     {

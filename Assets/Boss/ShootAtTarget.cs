@@ -20,17 +20,6 @@ public class ShootAtTarget : MonoBehaviour
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
-
-    // ランダム配置用座標リスト
-    private Vector2[] shieldSpawnPositions = new Vector2[]
-    {
-        new Vector2(11f, 8f),
-        new Vector2(-6f, 4f),
-        new Vector2(-17f, 10f),
-        new Vector2(-11f, 5f),
-        new Vector2(-4.6f, 6f)
-    };
-
     void Start()
     {
         bossScript = boss.GetComponent<BossScript>();
@@ -92,9 +81,13 @@ public class ShootAtTarget : MonoBehaviour
         {
             isCharging = true;
 
-            yield return new WaitForSeconds(10f);
+            // チャージ中エフェクトは Update() 内で表示される
 
-            FireSpecialBullet();
+            yield return new WaitForSeconds(10f); // チャージ
+
+            FireSpecialBullet(); // 発射
+
+            yield return new WaitForSeconds(20f); // クールダウン
 
             isCharging = false;
         }
@@ -114,19 +107,7 @@ public class ShootAtTarget : MonoBehaviour
             }
         }
 
-        //void SpawnShieldAtRandomPosition()
-        //{
-        //    if (shieldPrefab == null) return;
-
-        //    int index = Random.Range(0, shieldSpawnPositions.Length);
-        //    Vector2 pos2D = shieldSpawnPositions[index];
-
-        //    // y=0としてZ軸を2Dのyとして使う
-        //    Vector3 spawnPos = new Vector3(pos2D.x, 0f, pos2D.y);
-        //    Instantiate(shieldPrefab, spawnPos, Quaternion.identity);
-
-        //    Debug.Log($"シールド配置: {spawnPos}");
-        //}
+        
         void SpawnShieldAtPlayerPosition()
         {
             if (shieldPrefab == null || target == null) return;
@@ -138,4 +119,6 @@ public class ShootAtTarget : MonoBehaviour
         }
 
     }
+
+    
 }
