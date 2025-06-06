@@ -8,80 +8,48 @@ public class SpecDemo : MonoBehaviour
     private GameManager gameManagerScript;
 
     public GameObject boss;
-    private BossScript bossScript;
+    private BossController bossController;
 
     public GameObject player;
-    private PlayerScript playerScript;
+    private PlayerStatus playerStatus;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        bossScript = boss.GetComponent<BossScript>();
-        playerScript = player.GetComponent<PlayerScript>();
+        bossController = boss.GetComponent<BossController>();
+        playerStatus = player.GetComponent<PlayerStatus>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            gameManagerScript.BatteryEnargyUp();//スコア上昇
-        }
+        if (Input.GetKeyDown(KeyCode.M)) gameManagerScript.BatteryEnargyUp();
+        if (Input.GetKey(KeyCode.N)) bossController.BossWaveTimeAdd(1f);
+        if (Input.GetKeyDown(KeyCode.K)) gameManagerScript.BossWaveCountStart();
 
-        if (Input.GetKey(KeyCode.N))
-        {
-            bossScript.BossWaveTime();//ボス戦時間操作
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            gameManagerScript.BossWaveCountStart();//ウェーブ操作
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            playerScript.DownHp();//PlayerHp減少
-        }
-
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            playerScript.UpHp();//PlayerHp増加
-        }
-
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            bossScript.DownHp();//BossHp増加
-        }
-
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            bossScript.UpHp();//BossHp増加
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            gameManagerScript.HealCounter();//回復回数増加
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha0)) playerStatus.DecreaseHp(10);
+        if (Input.GetKey(KeyCode.Alpha1)) playerStatus.IncreaseHp(10);
+        if (Input.GetKey(KeyCode.Alpha2)) bossController.ReduceHp(100);
+        if (Input.GetKey(KeyCode.Alpha3)) bossController.ReduceHp(-100);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) gameManagerScript.HealCounter();
 
         if (Input.GetKeyDown(KeyCode.T))
         {
             Time.timeScale += 0.5f;
-            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 10f); 
-            Debug.Log("TimeScaleを上昇: " + Time.timeScale);
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 10f);
+            Debug.Log("TimeScale: " + Time.timeScale);
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Time.timeScale -= 0.5f;
-            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 5f); // 0以下にならないように
-            Debug.Log("TimeScaleを減少: " + Time.timeScale);
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 5f);
+            Debug.Log("TimeScale: " + Time.timeScale);
         }
 
         if (Input.GetKeyDown(KeyCode.U))
         {
-            Time.timeScale = 1.0f; // 通常速度に戻す
-            Debug.Log("TimeScaleリセット: " + Time.timeScale);
+            Time.timeScale = 1.0f;
+            Debug.Log("TimeScale Reset: " + Time.timeScale);
         }
     }
 }
