@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
     }
     public void ShieldBatteryEnargy()
     {
-        batteryEnergy -= 100; // バッテリーを-100
+        batteryEnergy -= 30; // バッテリーを-30
     }
     public int GetHealBatteryEnargy()
     {

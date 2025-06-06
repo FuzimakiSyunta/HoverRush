@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpBomm : MonoBehaviour
+public class PowerUpEffect : MonoBehaviour
 {
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
-    private PlayerScript playerScript;
+    private PlayerStatus playerStatus;
     public GameObject player;
 
     private PlayerModels playerModelsScript;
@@ -21,7 +21,7 @@ public class PowerUpBomm : MonoBehaviour
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        playerScript = player.GetComponent<PlayerScript>();
+        playerStatus = player.GetComponent<PlayerStatus>();
         playerModelsScript = playerModels.GetComponent<PlayerModels>();
     }
 
@@ -31,16 +31,15 @@ public class PowerUpBomm : MonoBehaviour
 
         int index = playerModelsScript.IsIndex();
 
-        // 正しいインデックスに応じたパワーアップ条件の判定
-        if (index == 0 && playerScript.IsSinglePowerUp())
+        if (index == 0 && playerStatus.IsSinglePoweredUp())
         {
             TriggerExplosion();
         }
-        else if (index == 1 && playerScript.IsLazerPowerUp())
+        else if (index == 1 && playerStatus.IsLaserPoweredUp())
         {
             TriggerExplosion();
         }
-        else if (index == 2 && playerScript.IsPenetrationPowerUp())
+        else if (index == 2 && playerStatus.IsPenetrationPoweredUp())
         {
             TriggerExplosion();
         }

@@ -7,19 +7,27 @@ public class BeamPatternAttack : MonoBehaviour
     private GameTimer gameTimerScript;
     public GameObject gameTimer;
 
+    public GameObject gameManager;
+    private GameManager gameManagerScript;
+
     public GameObject DamegePiller;
 
     public GameObject LeftPiller;
     public GameObject RightPiller;
     public GameObject CenterPiller;
 
+    public GameObject LeftQoadAllart;
+    public GameObject RightQoadAllart;
+    public GameObject CenterQoadAllart;
+
     private bool started = false;
 
     void Start()
     {
         gameTimerScript = gameTimer.GetComponent<GameTimer>();
+        gameManagerScript = gameManager.GetComponent<GameManager>();
         DamegePiller.SetActive(false);
-        SetAllInactive();
+        DisableAllPillers();
     }
 
     void Update()
@@ -35,30 +43,57 @@ public class BeamPatternAttack : MonoBehaviour
         {
             DamegePiller.SetActive(false);
         }
+        if(gameManagerScript.IsGameOver()||gameManagerScript.IsGameClear())
+        {
+            DamegePiller.SetActive(false);
+            DisableAllPillers();
+        }
     }
 
     IEnumerator SwitchPillers()
     {
+        yield return new WaitForSeconds(3f);
+
         while (true)
         {
+            //Leftƒsƒ‰[‚ÌŒx•UŒ‚
+            yield return StartCoroutine(ShowAlertBeforeAttack(LeftQoadAllart));
             LeftPiller.SetActive(true);
-            CenterPiller.SetActive(false);
-            RightPiller.SetActive(false);
             yield return new WaitForSeconds(3f);
-
             LeftPiller.SetActive(false);
+
+            //Centerƒsƒ‰[‚ÌŒx•UŒ‚
+            yield return StartCoroutine(ShowAlertBeforeAttack(CenterQoadAllart));
             CenterPiller.SetActive(true);
-            RightPiller.SetActive(false);
             yield return new WaitForSeconds(3f);
-
-            LeftPiller.SetActive(false);
             CenterPiller.SetActive(false);
+
+            //Rightƒsƒ‰[‚ÌŒx•UŒ‚
+            yield return StartCoroutine(ShowAlertBeforeAttack(RightQoadAllart));
             RightPiller.SetActive(true);
             yield return new WaitForSeconds(3f);
+            RightPiller.SetActive(false);
         }
     }
 
-    void SetAllInactive()
+    IEnumerator ShowAlertBeforeAttack(GameObject alert)
+    {
+        float duration = 3f;
+        float blinkInterval = 0.3f;
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            alert.SetActive(true);
+            yield return new WaitForSeconds(blinkInterval);
+            alert.SetActive(false);
+            yield return new WaitForSeconds(blinkInterval);
+            timer += blinkInterval * 2;
+        }
+    }
+
+
+    void DisableAllPillers()
     {
         LeftPiller.SetActive(false);
         CenterPiller.SetActive(false);
