@@ -26,6 +26,11 @@ public class FloorMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void FixedUpdate()//精密な処理を行うためFixedUpdateを使用
+    {
         if (gameManagerScript.IsOpenSelector()) // セレクター画面出現
         {
             // 時間を更新
@@ -62,6 +67,6 @@ public class FloorMove : MonoBehaviour
         }
     }
 
-    
+
 
 }
