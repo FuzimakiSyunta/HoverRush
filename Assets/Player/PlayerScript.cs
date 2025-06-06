@@ -98,6 +98,7 @@ public class PlayerScript : MonoBehaviour
 
     //シールド
     private bool isShieldActive = false; // シールドがアクティブかどうかのフラグ
+    public GameObject Shield; // シールドのGameObject
 
 
     // プレイヤーがレーザーに触れているかどうかのフラグ
@@ -141,6 +142,9 @@ public class PlayerScript : MonoBehaviour
         isLaserPoweredUp = false;
         isSinglePoweredUp = false;
         isPenetrationPoweredUp = false;
+        //シールド
+        isShieldActive = false; // シールドは初期状態では非アクティブ
+        Shield.SetActive(false); // シールドのGameObjectを非表示にする
     }
 
     void Damaged()
@@ -187,6 +191,8 @@ public class PlayerScript : MonoBehaviour
             HoverMode();
             //ポジションリング
             positionRing.SetActive(true);
+            // シールドのアクティブ状態を更新
+            ShieldActive();
             // タイマーを更新
             particleTimer += Time.deltaTime;
             damageTimer += Time.deltaTime;
@@ -291,47 +297,38 @@ public class PlayerScript : MonoBehaviour
 
     void PlayerMove()
     {
-        // 時間依存の移動
+        DamegeCoolTime += Time.deltaTime;
         float move = moveSpeed * Time.deltaTime;
-        //L Stick
+
+        // 入力取得（コントローラー + キーボードを合成）
         float stick = Input.GetAxis("Horizontal");
         float Vstick = Input.GetAxis("Vertical");
+        float horizontalInput = stick + (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0);
+        float verticalInput = Vstick + (Input.GetKey(KeyCode.W) ? 1 : 0) - (Input.GetKey(KeyCode.S) ? 1 : 0);
 
-        DamegeCoolTime += Time.deltaTime;
+        // 移動ベクトル
+        Vector3 moveDir = Vector3.zero;
 
-        
+        // X方向制限付き移動
+        if (horizontalInput > 0 && transform.position.x <= 10)
+            moveDir.x = move;
+        else if (horizontalInput < 0 && transform.position.x >= -10)
+            moveDir.x = -move;
 
-        ///コントローラー対応///////////////////////
-        if (stick > 0 && transform.position.x <= 10)
-        {
-            transform.position += new Vector3(move, 0, 0);
-        }
-        else if (stick < 0 && transform.position.x >= -10)
-        {
-            transform.position += new Vector3(-move, 0, 0);
-        }
-        if (Vstick > 0 && transform.position.z <= 15)
-        {
-            transform.position += new Vector3(0, 0, move);
-        }
-        else if (Vstick < 0 && transform.position.z >= -8.5f)
-        {
-            transform.position += new Vector3(0, 0, -move);
-        }
+        // Z方向制限付き移動
+        if (verticalInput > 0 && transform.position.z <= 15)
+            moveDir.z = move;
+        else if (verticalInput < 0 && transform.position.z >= -8.5f)
+            moveDir.z = -move;
 
-        //移動フラグ
-        if (stick > 0 || stick < 0 || Vstick > 0 || Vstick < 0 || Input.GetKey(KeyCode.D) || (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)))
-        {
-            isMoveActive = true;
-        }
-        else
-        {
-            isMoveActive = false;
-        }
+        // 実際に移動
+        transform.position += moveDir;
 
+        // 移動フラグ
+        isMoveActive = (horizontalInput != 0 || verticalInput != 0);
 
-        //火
-        if (Vstick > 0 || Input.GetKey(KeyCode.W))
+        // 火のON/OFF（前進中）
+        if (verticalInput > 0)
         {
             MachingunFire.SetActive(true);
             LazerFire.SetActive(true);
@@ -343,28 +340,8 @@ public class PlayerScript : MonoBehaviour
             LazerFire.SetActive(false);
             PanetrationFire.SetActive(false);
         }
-
-        //キーボード/////////////////////////////////
-        if (Input.GetKey(KeyCode.D) && transform.position.x <= 8)
-        {
-            transform.position += new Vector3(move, 0, 0);
-        }
-        else if (Input.GetKey(KeyCode.A) && transform.position.x >= -8)
-        {
-            transform.position += new Vector3(-move, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.W) && transform.position.z <= 15)
-        {
-            transform.position += new Vector3(0, 0, move);
-        }
-        else if (Input.GetKey(KeyCode.S) && transform.position.z >= -8.5f)
-        {
-            transform.position += new Vector3(0, 0, -move);
-        }
-
-        //////////////////////////////////////////////
-
     }
+
 
     void HoverMode()
     {
@@ -632,7 +609,6 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "FinalBomm" && !isShieldActive)
         {
             currentHp -= 100;
-            hpSlider.value = (float)currentHp / (float)maxHp;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             tookDamage = true;
             
         }
@@ -645,8 +621,7 @@ public class PlayerScript : MonoBehaviour
 
 
         if (other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "BossBullet" || other.gameObject.tag == "BossExtraBullet" || other.gameObject.tag == "Lazer"
-            || other.gameObject.tag == "RobotBullet" || other.gameObject.tag == "FinalLazer"|| other.gameObject.tag == "Piller" && cameraMoveScript.IsAnimation() == false||other.gameObject.tag == "FinalBomm"
-            && !isShieldActive)
+            || other.gameObject.tag == "RobotBullet" || other.gameObject.tag == "FinalLazer"|| other.gameObject.tag == "Piller" && cameraMoveScript.IsAnimation() == false||other.gameObject.tag == "FinalBomm")
         {
             Damaged();
         }
@@ -657,15 +632,6 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        //シールド
-        if (other.gameObject.tag == "Shield")
-        {
-            isShieldActive = true; // シールドがアクティブになる
-        }
-        else
-        {
-            isShieldActive = false; // シールドがアクティブでない場合
-        }
         if (other.gameObject.CompareTag("Lazer") || other.gameObject.CompareTag("FinalLazer"))
         {
             // レーザーに触れているフラグを立てる
@@ -674,11 +640,11 @@ public class PlayerScript : MonoBehaviour
             // ダメージ処理（0.1秒ごと）
             if (damageTimer >= damageCooldown)
             {
-                if (other.gameObject.CompareTag("Lazer"))
+                if (other.gameObject.CompareTag("Lazer")&&!isShieldActive)
                 {
                     currentHp -= 4;
                 }
-                else if (other.gameObject.CompareTag("FinalLazer"))
+                else if (other.gameObject.CompareTag("FinalLazer")&&!isShieldActive)
                 {
                     currentHp -= 6;
                 }
@@ -712,19 +678,54 @@ public class PlayerScript : MonoBehaviour
         tookDamage = false; // ここで毎回初期化
 
         string tag = other.gameObject.tag;
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy"&&!isShieldActive)
         {
             currentHp -= 5;
             hpSlider.value = (float)currentHp / (float)maxHp;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
             tookDamage = true;
             Damaged();
+        }
+    }
 
+    void ShieldActive()
+    {
+        if (!isShieldActive && // 展開中でない
+            gameManagerScript.GetBatteryEnargy() >= 30 &&
+            (Input.GetKeyDown("joystick button 3") || Input.GetKeyDown(KeyCode.Q)))
+        {
+            StartCoroutine(HandleShield());
+        }
+    }
+
+    IEnumerator HandleShield()
+    {
+        isShieldActive = true; // 展開中フラグON
+        gameManagerScript.ShieldBatteryEnargy();// シールド展開時にバッテリーエネルギーを消費
+        Shield.SetActive(true);
+
+        // 3秒間表示
+        yield return new WaitForSeconds(3f);
+
+        // 1秒間点滅（0.2秒ごとにON/OFF）
+        float blinkDuration = 1f;
+        float blinkInterval = 0.2f;
+        float elapsed = 0f;
+
+        while (elapsed < blinkDuration)
+        {
+            Shield.SetActive(false);
+            yield return new WaitForSeconds(blinkInterval);
+            Shield.SetActive(true);
+            yield return new WaitForSeconds(blinkInterval);
+            elapsed += blinkInterval * 2;
         }
 
-        
+        Shield.SetActive(false);
+        isShieldActive = false; // 展開終了
     }
 
 
+    // 他スクリプトから呼べる参照用メソッド
     public bool IsLazerPowerUp()
     {
         return isLaserPoweredUp;
@@ -741,8 +742,11 @@ public class PlayerScript : MonoBehaviour
     {
         isTouchingLaser = v;
     }
+    public bool IsSheildActive()
+    {
+        return isShieldActive;
+    }
 
-    // 他スクリプトから呼べる参照用メソッド
     public bool IsTouchingLaser()
     {
         return isTouchingLaser;

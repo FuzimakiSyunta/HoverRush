@@ -34,48 +34,52 @@ public class PlayerDamage : MonoBehaviour
 
     void Update()
     {
-        // 通常のダメージ
-        if (playerScript.IsTookDamage())
+        if(!playerScript.IsSheildActive())
         {
-            if (fadeCoroutine != null)
+            // 通常のダメージ
+            if (playerScript.IsTookDamage())
             {
-                StopCoroutine(fadeCoroutine);
-                fadeCoroutine = null;
+                if (fadeCoroutine != null)
+                {
+                    StopCoroutine(fadeCoroutine);
+                    fadeCoroutine = null;
+                }
+
+                StartCoroutine(HandleDamageEffect());
+                playerScript.ResetDamageFlag();
             }
 
-            StartCoroutine(HandleDamageEffect());
-            playerScript.ResetDamageFlag();
+            // レーザー接触中
+            if (playerScript.IsTouchingLaser())
+            {
+                if (blinkCoroutine == null)
+                {
+                    blinkCoroutine = StartCoroutine(BlinkDamageImage());
+                }
+
+                if (!isLaserShaking && cameraShaker != null)
+                {
+                    cameraShaker.StartContinuousShake(0.15f);
+                    isLaserShaking = true;
+                }
+            }
+            else
+            {
+                if (blinkCoroutine != null)
+                {
+                    StopCoroutine(blinkCoroutine);
+                    blinkCoroutine = null;
+                    damageImage.color = new Color(1f, 0f, 0f, 0f);
+                }
+
+                if (isLaserShaking && cameraShaker != null)
+                {
+                    cameraShaker.StopContinuousShake();
+                    isLaserShaking = false;
+                }
+            }
         }
-
-        // レーザー接触中
-        if (playerScript.IsTouchingLaser())
-        {
-            if (blinkCoroutine == null)
-            {
-                blinkCoroutine = StartCoroutine(BlinkDamageImage());
-            }
-
-            if (!isLaserShaking && cameraShaker != null)
-            {
-                cameraShaker.StartContinuousShake(0.15f);
-                isLaserShaking = true;
-            }
-        }
-        else
-        {
-            if (blinkCoroutine != null)
-            {
-                StopCoroutine(blinkCoroutine);
-                blinkCoroutine = null;
-                damageImage.color = new Color(1f, 0f, 0f, 0f);
-            }
-
-            if (isLaserShaking && cameraShaker != null)
-            {
-                cameraShaker.StopContinuousShake();
-                isLaserShaking = false;
-            }
-        }
+        
     }
 
     IEnumerator HandleDamageEffect()
