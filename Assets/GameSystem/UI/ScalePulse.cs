@@ -1,23 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
-public class ScaleRepeat : MonoBehaviour
+public class ScalePulse : MonoBehaviour
 {
     public float scaleFactor = 1.5f; // ägëÂî{ó¶
     public float duration = 0.3f;   // ägëÂÅEèkè¨Ç…Ç©Ç©ÇÈéûä‘
     private Vector3 originalScale;
-    private PlayerScript playerScriptScript;
-    public GameObject playerScript;
+    private PlayerStatus playerStatus;
+    public GameObject player;
 
     void Start()
     {
         originalScale = transform.localScale;
-        playerScriptScript = playerScript.GetComponent<PlayerScript>();
+        playerStatus = player.GetComponent<PlayerStatus>();
     }
 
     void Update()
     {
-        if (playerScriptScript.IsHeal()) 
+        if (playerStatus.IsHeal())
         {
             StartCoroutine(ScaleObject());
         }
