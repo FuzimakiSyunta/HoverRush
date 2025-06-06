@@ -7,8 +7,6 @@ public class ExplodingBullet : MonoBehaviour
     public float explosionDelay = 3f;   // 爆発までの時間
     public float damageAreaLifetime = 0.5f; // ダメージ判定の持続時間
 
-    public string shieldTag = "Shield"; // シールド用タグ
-
     void Start()
     {
         Invoke(nameof(Explode), explosionDelay);
@@ -27,14 +25,6 @@ public class ExplodingBullet : MonoBehaviour
         {
             GameObject damageArea = Instantiate(damageAreaPrefab, transform.position, Quaternion.identity);
             Destroy(damageArea, damageAreaLifetime); // 一定時間で自動破壊
-        }
-
-        // シールドを探して破壊する
-        GameObject shield = GameObject.FindWithTag(shieldTag);
-        if (shield != null)
-        {
-            Destroy(shield);
-            Debug.Log("シールドを消しました！");
         }
 
         // 自身（弾）を破壊

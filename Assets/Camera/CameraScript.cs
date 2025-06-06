@@ -4,50 +4,40 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public Camera mainCamera;   // タイトル用
-    public Camera subCamera;    // ゲーム導入 or チュートリアル用
-    public Camera gameCamera;   // 通常プレイ用
-    //public Camera bossCamera;   // ボス戦用
+    public Camera mainCamera;
+    public Camera subCamera;
+    public Camera gameCamera;
 
-    // SELECT
     private SelectorMenu selectorMenuScript;
     public GameObject selectMenu;
 
-    // PLAYER
-    private PlayerScript playerScriptScript;
+    private PlayerStatus playerStatus;
     public GameObject playerScript;
 
-    // GAME MANAGER
     private GameManager gameManagerScript;
     public GameObject gameManager;
 
-    // CAMERA MOVE (外部スクリプトで切り替えフラグを見る)
     private CameraMove cameraMoveScript;
     public GameObject cameraMove;
 
     private bool hasStarted = false;
     private bool hasSwitchedToGameCamera = false;
-
-    // ゲームオーバー時回転用フラグ
     private bool isRotatingOnGameOver = false;
 
     void Start()
     {
         selectorMenuScript = selectMenu.GetComponent<SelectorMenu>();
-        playerScriptScript = playerScript.GetComponent<PlayerScript>();
+        playerStatus = playerScript.GetComponent<PlayerStatus>();
         gameManagerScript = gameManager.GetComponent<GameManager>();
         cameraMoveScript = cameraMove.GetComponent<CameraMove>();
 
-        // 初期カメラ設定
         mainCamera.enabled = true;
         subCamera.enabled = false;
         gameCamera.enabled = false;
-        //bossCamera.enabled = false;
     }
 
     void Update()
     {
-        // --- スタートボタン押したら、2秒後に main → sub へ切り替え ---
         if (!hasStarted && selectorMenuScript.IsStartButtonFlag())
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
@@ -57,7 +47,6 @@ public class CameraScript : MonoBehaviour
             }
         }
 
-        // --- チュートリアル完了などで sub → game へ切り替え ---
         if (!hasSwitchedToGameCamera && cameraMoveScript.IsCameraSwitch())
         {
             SwitchToGameCamera();
@@ -69,9 +58,6 @@ public class CameraScript : MonoBehaviour
             isRotatingOnGameOver = true;
             StartCoroutine(RotateCamera180(gameCamera.transform, 2.0f));
         }
-
-
-
     }
 
     IEnumerator SwitchToSubCameraAfterDelay(float delay)
@@ -86,6 +72,7 @@ public class CameraScript : MonoBehaviour
         subCamera.enabled = false;
         gameCamera.enabled = true;
     }
+
     IEnumerator RotateCamera180(Transform target, float duration)
     {
         Quaternion startRotation = target.rotation;
